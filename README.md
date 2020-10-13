@@ -2,10 +2,10 @@
 
 Group Member:
 
-Zhanming Bai 
-Shengda Zhang
-Zichong Wang
-Yun Yang
+Zhanming Bai,
+Shengda Zhang,
+Zichong Wang,
+Yun Yang,
 Shuoyu Wang
 
 Description:
