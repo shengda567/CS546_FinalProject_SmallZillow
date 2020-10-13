@@ -11,12 +11,14 @@ Shuoyu Wang
 Description:
 
 This website is trying to help people find a good place to live. Using our application can efficiently and quickly obtain housing information.
+
 Core features:
 Main page : 
 1. User login
 2. Show recent update rent information
 3. Users search house or apartment
 a) after user search the apartment, at the bottom of the page, it will recommend close information apartment
+
 User without an account:
     1. Users can only see rent information, but can not post any re-rent
 User account: 
@@ -30,8 +32,10 @@ Update post:
 	1. Users can update their posts, like change prices, address, or title
 Administrator accounts
 1. Administrators who help run the site and take down posts that do not follow the guidelines 
+
 Tags:
 	1. Users will label tags, which for easy search
+
 Extra features:
 1.  Upload house pictures
 	2.  leave a comment at the bottom of the house post 
