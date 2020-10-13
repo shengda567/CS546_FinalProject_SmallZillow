@@ -1,6 +1,7 @@
 # CS546_FinalProject_SmallZillow
 
-Group Member 
+Group Member:
+
 Zhanming Bai 
 Shengda Zhang
 Zichong Wang
