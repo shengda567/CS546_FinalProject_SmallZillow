@@ -6,7 +6,9 @@ Shengda Zhang
 Zichong Wang
 Yun Yang
 Shuoyu Wang
-Description
+
+Description:
+
 This website is trying to help people find a good place to live. Using our application can efficiently and quickly obtain housing information.
 Core features:
 Main page : 
