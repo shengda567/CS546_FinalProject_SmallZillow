@@ -22,7 +22,7 @@ Main page :
 
 User without an account:
 
-    	1. Users can only see rent information, but can not post any re-rent
+    1. Users can only see rent information, but can not post any re-rent
 	
 User account: 
 
