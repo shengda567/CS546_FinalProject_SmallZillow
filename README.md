@@ -31,13 +31,14 @@ Make a post:
 Update post:
 	1. Users can update their posts, like change prices, address, or title
 Administrator accounts
-1. Administrators who help run the site and take down posts that do not follow the guidelines 
+	1. Administrators who help run the site and take down posts that do not follow the guidelines 
 
 Tags:
 	1. Users will label tags, which for easy search
 
 Extra features:
-1.  Upload house pictures
+
+	1.  Upload house pictures
 	2.  leave a comment at the bottom of the house post 
 	3.  private message
 	4.  recommend search analysis
