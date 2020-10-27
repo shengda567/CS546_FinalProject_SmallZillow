@@ -1,0 +1,159 @@
+Final Project Database Proposal
+Group Member:
+Zhanming Bai, Shengda Zhang, Zichong Wang, Yun Yang, Shuoyu Wang
+
+
+Users Collection
+The user collection will store all users. Users will be able to login, update their information, and post comments. 
+{ 	  "firstName": "Josh” 	  “lastName”: “Woodward", 	  "Email": "Josh@gmail.com",       "Gender": "M", 	  "City": "Hoboken", 	  "State": "NJ", 	  "BOD": "03/25/1997",
+"Phone": "909-655-7823",     "_id": "7b7997a2c0d24f8cb27a6a1d4b5b6310", "hashedPassword": "$2a$08$XdvNkfdNIL8F8xsuIUeSbNOFgK0M0iV5HOskfVn7.PWncShU.O",
+“Register_date”: “10/26/2020”,
+“Post_id”:[“7b7997a2c0d24f8cb27a6a1d4b5b6889”, “7b7997a2c0d24u76dt7a6a1d4b5b6889”]
+“comment_id”: [“7b7997a2cuirr68cb27a6a1d4b5b6889”, “7b785thyc0d24u76dt7a6a1d4b5b6889”]
+“saved_posts_id”: [“7b7997a2c0d24f8cb27a6a1d4b5b6889”, “7b7997a2c0d24u76dt7a6a1d4b5b6889”]
+
+
+}
+Name
+Type
+Description
+_id
+string
+A globally unique identifier to represent the user.
+hashedPassword
+string
+Store the password after use hash function encryption
+Post_id
+array
+An array that store the post_ids which users created.
+comment_id
+array
+An array that store the comment_ids which users created.
+Saved_posts_id
+array
+An array that store the ids the user want to review later
+
+
+Comments Collection
+
+Comment is a subdocument of the Posts collection. 
+
+“Comment”: {
+	“_id”: ”abceddfmqw213sda”,
+	“user_Id”: ”sflqerfmsdw33”,
+          “post_id”:  “asbcasdwejklas”,
+	“content”: ”A nice Comment”,
+	“date”: mm/dd/yy}
+
+Name
+Type
+Description
+_id
+string
+The comment ID.
+user_id
+string
+The ID of the user who comments on the post.
+post_id
+string
+The ID of the post the user comments on
+content
+string
+The content of comment
+date
+date
+The date user commented on the post
+
+
+Posts Collections
+The rent information post by the users. 
+Rent Posts:
+	“user_id“: “5e6b78bca77fbebfd40e6df1”
+	“post_id“: “871982708es312sesde3414”
+	“post_title“: “Okemos apartment re-rent”
+	“address“: “205 hudson street”
+	“state“: “NJ”
+	“city “: ”Hoboken”
+	“zipcode “: “07030”
+	“house_img“: “/static/example.jpg,
+	“house _description“: “This is house is pretty beautiful and comfortable”
+	“post_date“: mm/dd/yy,
+	“house_tag“: “apartment”:
+	“contact phone number”: “517-777-7777”,
+“Price”: “2000$ per/months”
+“contact email”: “wantrent@gmail.com”
+	“comments_Id“: [“871982708es312sesde3414”, “456982708es312sesde3414”]
+Name
+Type
+Description
+user_id
+string
+A globally unique identifier to represent the user
+post_id
+string
+unique identifier to represent the each post
+post_title
+string
+Title of the post name
+address
+string
+Address of the rent information
+city
+string
+City of the rent house
+state
+string
+State of the rent house
+zipcode
+string
+zipcode of the rent house
+house_img
+string
+img of rent house
+house _description
+string
+Description of the house status
+post_date
+date
+Date of the post
+house_tag
+string
+Tags for house, like apartment or house
+contact email
+string
+Email contact information
+contact phone number
+string
+Phone number contact information
+Price 
+string
+Price for rerent
+
+
+
+comments_Id
+Array
+An array that stores references(ids) to coments
+
+
+Manager Users Collections
+The manage user collection will store all manager accounts. Manager will be able to login.  Furthermore, manager can delete comments and posts post by other users. 
+
+
+
+{ 	  "Manager title": "Manager1011”, 	  "Email": "Josh@gmail.com",
+"_id": "7b7997a2c0d24f8cb27a6a1d4b5b6310", "hashedPassword":  "$2a$08$XdvNkfdNIL8F8xsuIUeSbNOFgK0M0iV5HOskfVn7.PWncShU.O"
+
+}
+
+
+Name
+Type
+Description
+_id
+string
+A globally unique identifier to represent the user.
+hashedPassword
+string
+Store the password after use hash function encryption
+
