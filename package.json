@@ -1,0 +1,27 @@
+{
+  "name": "finalproject_smallzillow",
+  "version": "1.0.0",
+  "description": "Group Member:Yun Yang",
+  "main": "app.js",
+  "scripts": {
+    "seed": "node ./tasks/seed.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shengda567/CS546_FinalProject_SmallZillow.git"
+  },
+  "author": "Yun Yang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shengda567/CS546_FinalProject_SmallZillow/issues"
+  },
+  "homepage": "https://github.com/shengda567/CS546_FinalProject_SmallZillow#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "handlebars": "^4.7.6",
+    "mongodb": "^3.6.2"
+  }
+}
