@@ -1,0 +1,33 @@
+.address{
+  color: #cc0000
+}
+.state{
+  color: #cc3300
+}
+.city{
+  color: #cc6600
+}
+.zipcode{
+  color: #cc9900
+}
+.img{
+  color: #cccc00
+}
+.description{
+  color: #99cc00
+}
+.date{
+  color: #66cc00
+}
+.tag{
+  color: #33cc00
+}
+.phone{
+  color: #00cc00
+}
+.price{
+  color: #00cc33
+}
+.email{
+  color: #00cc66
+}
