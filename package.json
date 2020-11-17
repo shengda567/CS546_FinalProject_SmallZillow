@@ -1,0 +1,19 @@
+{
+  "name": "cs546_finalproject_smallzillow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shengda567/CS546_FinalProject_SmallZillow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shengda567/CS546_FinalProject_SmallZillow/issues"
+  },
+  "homepage": "https://github.com/shengda567/CS546_FinalProject_SmallZillow#readme"
+}
