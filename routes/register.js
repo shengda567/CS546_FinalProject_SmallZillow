@@ -4,6 +4,11 @@ const router = express.Router();
 const data = require('../data');
 const customerinf = data.register;
 var bodyParser = require('body-parser');
+//const { default: renderEmpty } = require('antd/lib/config-provider/renderEmpty');
+
+router.get('/', async (req, res) => {
+  res.render('pages/register');
+})
 
 router.post('/', async (req, res) => {
   const personalinf = req.body;
