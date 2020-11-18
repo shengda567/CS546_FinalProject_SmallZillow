@@ -1,4 +1,4 @@
-# CS546_FinalProject_SmallZillow
+
 
 Group Member:
 
@@ -53,3 +53,4 @@ Extra features:
 	2.  leave a comment at the bottom of the house post 
 	3.  private message
 	4.  recommend search analysis
+
