@@ -8,16 +8,12 @@ const users = mongoCollections.users;
 
 router.get('/', async (req, res) => {
   //res.json({ route: '/users', method: req.method });
-  try {
-    if (req.session.user) {
-      res.redirect('/private');
-    }else{
+
+  //if (req.session.user) {
+    //res.redirect('/private');
+  //}else{
     res.render('pages/login');
-    }
-  } catch(e) {
-    res.status(404);
-  }
-  
+  //}
 });
 
 router.post('/', async (req, res) => {
@@ -43,23 +39,23 @@ router.post('/login', async (req, res) => {
                     res.redirect('/private');
                 }
                 else {
-                    res.status(401).render('handlebars/error', {error: "Either username or password are error."});
+                    res.status(401).render('pages/error', {error: "Either username or password are error."});
                 }
             }
         }
         if(check == false)
         {
-            res.status(401).render('handlebars/error', {error: "Username is not exist."});
+            res.status(401).render('pages/error', {error: "Username is not exist."});
         }
     }catch(e){
-    res.status(401).render('handlebars/error', {error: e});
+    res.status(401).render('pages/error', {error: e});
   }
 	
 });
 
 router.get('/logout', async (req, res) => {
   req.session.destroy();
-  res.render('handlebars/logout');
+  res.render('pages/logout');
   //res.send('Logged out');
 });
 
