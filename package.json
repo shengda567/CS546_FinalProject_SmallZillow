@@ -22,6 +22,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "handlebars": "^4.7.6",
-    "mongodb": "^3.6.2"
+    "mongodb": "^3.6.2",
+    "uuid": "^8.3.1"
   }
 }
