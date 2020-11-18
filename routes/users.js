@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
   if (req.session.user) {
     res.redirect('/private');
   }else{
-  res.render('handlebars/login');
+  res.render('pages/login');
   }
 });
 
@@ -38,23 +38,23 @@ router.post('/login', async (req, res) => {
                     res.redirect('/private');
                 }
                 else {
-                    res.status(401).render('handlebars/error', {error: "Either username or password are error."});
+                    res.status(401).render('pages/error', {error: "Either username or password are error."});
                 }
             }
         }
         if(check == false)
         {
-            res.status(401).render('handlebars/error', {error: "Username is not exist."});
+            res.status(401).render('pages/error', {error: "Username is not exist."});
         }
     }catch(e){
-    res.status(401).render('handlebars/error', {error: e});
+    res.status(401).render('pages/error', {error: e});
   }
 
 });
 
 router.get('/logout', async (req, res) => {
   req.session.destroy();
-  res.render('handlebars/logout');
+  res.render('pages/logout');
   //res.send('Logged out');
 });
 
