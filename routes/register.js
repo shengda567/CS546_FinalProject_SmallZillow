@@ -57,9 +57,17 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    const { username, user, email, gender, address, BOD, phone, password } = personalinf;
-    const newPost = await customerinf.createaccount( username, user, email, gender, address, BOD, phone, password);
-    res.json(newPost);
+      if(customerinf.createaccount(req.params.username))
+      {
+          const { username, user, email, gender, address, BOD, phone, password } = personalinf;
+          const newPost = await customerinf.createaccount( username, user, email, gender, address, BOD, phone, password);
+            res.json(newPost);
+      }
+      else
+      {
+          res.json({message:'username already exist.'})
+      }
+    
   } catch (e) {
     res.status(500).json({ error: e });
   }

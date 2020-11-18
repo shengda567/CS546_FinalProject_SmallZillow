@@ -1,27 +1,29 @@
 {
-  "name": "finalproject_smallzillow",
+  "name": "final",
   "version": "1.0.0",
-  "description": "Group Member:Yun Yang",
+  "description": "Group Member:",
   "main": "app.js",
   "scripts": {
-    "seed": "node ./tasks/seed.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shengda567/CS546_FinalProject_SmallZillow.git"
   },
-  "author": "Yun Yang",
+  "author": "Zichong Wong",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/shengda567/CS546_FinalProject_SmallZillow/issues"
   },
   "homepage": "https://github.com/shengda567/CS546_FinalProject_SmallZillow#readme",
   "dependencies": {
+    "axios": "^0.21.0",
+    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "handlebars": "^4.7.6",
+    "express-session": "^1.17.1",
     "mongodb": "^3.6.2",
     "uuid": "^8.3.1"
   }
