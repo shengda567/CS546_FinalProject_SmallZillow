@@ -4,6 +4,7 @@ const collection = require('../config/mongoCollections');
 const register = collection.register;
 const posts = collection.posts;
 const { v4: uuidV4 } = require('uuid');
+const bcrypt  = require('bcrypt');
 
 async function createaccount( username, user, email, gender, address, BOD, phone, password)
 {
@@ -53,6 +54,9 @@ async function createaccount( username, user, email, gender, address, BOD, phone
     var post = new Array;
     var save = new Array;
     var comment = new comment;
+    const saltRounds = 10;
+    const salt = bcrypt.genSaltSync(saltRounds);
+    var hashpassword = bcrypt.hashSync(password, salt);
     const registerCollection = await register();
     let newaccount = {
         username: username,
@@ -63,6 +67,7 @@ async function createaccount( username, user, email, gender, address, BOD, phone
         BOD: BOD,
         phone: phone,
         password: password,
+        hashpassword: hashpassword,
         post: post,
         save: save,
         comment: comment
@@ -94,6 +99,23 @@ async function getbyone(id)
         throw 'The user is not exist.';
     }
     return user;
+}
+
+async function checkusername(username)
+{
+    if(typeof(username) != "string")
+    {
+        throw "the id typy is error.";
+    }
+    const registerCollection = await register();
+    var { ObjectId } = require('mongodb');
+    var uname = ObjectId(username);
+    const user = await registerCollection.findOne({username: uname});
+    if (user != null)
+    {
+        throw 'The user is already exist.';
+    }
+    return true;
 }
 
 async function remove(id)
@@ -293,5 +315,6 @@ module.exports = {
     addcommentforuser,
     removepostfromuser,
     removesavefromuser,
-    removecommentfromuser
+    removecommentfromuser,
+    checkusername
 }
