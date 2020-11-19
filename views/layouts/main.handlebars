@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>Zillow</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+        integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="/public/css/main.css">
 </head>
 
@@ -14,12 +14,13 @@
         <ul>
             <li><a href="">Home</a></li>
             <li><a href="/rental_posts">Rent a home</a></li>
+            <li><a href="/newpost">Make a post</a></li>
             {{#if userLoggedIn}}
-                <li><a href="/users/profile" id="profile">Profile</a></li>
-                <li><a href="/restaurants/manage">Manage</a></li>
-                <li><a href="/users/logout" id ="logout">Logout</a></li>
+            <li><a href="/users/profile" id="profile">Profile</a></li>
+            <li><a href="/restaurants/manage">Manage</a></li>
+            <li><a href="/users/logout" id="logout">Logout</a></li>
             {{else}}
-                <li><a href="/" id="auth">Login</a></li>
+            <li><a href="/" id="auth">Login</a></li>
             {{/if}}
             <li><a href="/register">Sign up</a></li>
         </ul>
@@ -29,11 +30,13 @@
 
     {{{ body }}}
 
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    {{!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script> --}}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
         crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-        crossorigin="anonymous"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="public/js/postForm.js"></script>
 </body>
 
 </html>
