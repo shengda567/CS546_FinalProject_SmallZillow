@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <article class="new-post">
     <h1>Post your sublease</h1>
     <p id="postInstruct">Please fill out the following information (you must provided all of the following columns)</p>
@@ -7,6 +8,22 @@
     </div>
 
     <form method="POST" id="postForm">
+=======
+<article class="new-post-form">
+    <h1>Post your sublease</h1>
+    <p id="postInstruct">Please fill out the following information (you must provided all of the following columns)</p>
+    {{!-- errors --}}
+    <div class="postFormErrorDiv" id="postFormErrors" hidden>
+        <ul id="postErrorList"></ul>
+    </div>
+    <form method="POST" id="postForm">
+        {{!-- Date Time --}}
+        <label for="post-title" class="postInput">
+            Current Time : <span value="info.time" id="timestamp"> </span>
+        </label>
+        <br>
+
+>>>>>>> 68272472bde1193c207805765ad3b6400d66b226
         {{!-- title --}}
         <label for="post-title" class="postInput">
             Sublease title:
@@ -137,6 +154,7 @@
         </label>
         <br>
 
+<<<<<<< HEAD
         {{!--  TO DO --}}
         {{!-- Date --}}
 
@@ -144,5 +162,18 @@
 
 
         <button id="post-submit" type="submit">Click</button>
+=======
+        {{!-- IMG --}}
+        <label for="post-img" class="postInput">
+            <button id="postImg">Upload IMG</button>
+            <input type="file" id="file_input" multiple />
+        </label>
+
+
+        {{!-- submit button --}}
+        <label for="post-submitBtn" class="postInput">
+            <button id="post-submit" type="submit">Create Post</button>
+        </label>
+>>>>>>> 68272472bde1193c207805765ad3b6400d66b226
     </form>
 </article>

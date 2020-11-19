@@ -10,11 +10,15 @@ nav ul {
   padding: 0;
   overflow: hidden;
 <<<<<<< HEAD
+<<<<<<< HEAD
   background-color: #4CAF50;
 
 =======
   background-color: #4caf50;
 >>>>>>> 1e23738dd73e86fcd8943f5c5e6a6d7c6258a28e
+=======
+  background-color: #4caf50;
+>>>>>>> 68272472bde1193c207805765ad3b6400d66b226
 }
 
 nav li {
@@ -53,9 +57,12 @@ nav li a:hover {
 .other input {
   width: 30px;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 1e23738dd73e86fcd8943f5c5e6a6d7c6258a28e
+=======
+>>>>>>> 68272472bde1193c207805765ad3b6400d66b226
 }
 
 #login_frame input[type="text"],
@@ -171,40 +178,44 @@ nav li a:hover {
   width: auto;
   height: auto;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 68272472bde1193c207805765ad3b6400d66b226
 }
 
-.home-page-container{
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("/public/img/niceHouse.jpg");
+.home-page-container {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/public/img/niceHouse.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  text-align:center;
-  height:550px;
-  width:100%;
-  opacity:0.8;
+  text-align: center;
+  height: 550px;
+  width: 100%;
+  opacity: 0.8;
 }
-.mainPageText1{
-  color:white;
+.mainPageText1 {
+  color: white;
   text-align: center;
   padding-top: 50px;
   padding-bottom: 30px;
 }
-.mainPageText2{
-  color:white;
+.mainPageText2 {
+  color: white;
   text-align: center;
 }
-.searchForm{
+.searchForm {
   padding-top: 100px;
 }
-.searchBox{
+.searchBox {
   background-color: white;
   border-radius: 10px;
-  width:550px;
+  width: 550px;
   height: 50px;
-  font-size:14pt;
+  font-size: 14pt;
 }
-.searchButton{
+.searchButton {
   padding-left: -10px;
   border-radius: 10px;
 =======
@@ -231,4 +242,63 @@ nav li a:hover {
 #postErrorList {
   color: red;
 >>>>>>> 1e23738dd73e86fcd8943f5c5e6a6d7c6258a28e
+}
+
+/* post css */
+.new-post-form {
+  width: 100%;
+  margin-left: 20%;
+}
+
+#postErrorList {
+  color: red;
+}
+
+/* img css */
+.img-group {
+  margin: 20%;
+}
+.float {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-left: 20%;
+  display: inline-block;
+}
+img {
+  position: relative;
+}
+.result {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+#file_input {
+  display: none;
+}
+
+.delete {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  text-align: center;
+  line-height: 100px;
+  z-index: 10;
+  font-size: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #777;
+  opacity: 0;
+  transition-duration: 0.7s;
+  -webkit-transition-duration: 0.7s;
+}
+
+.delete:hover {
+  cursor: pointer;
+  opacity: 1;
 }
