@@ -9,16 +9,8 @@ nav ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-<<<<<<< HEAD
-<<<<<<< HEAD
-  background-color: #4CAF50;
+  background-color: #4caf50;
 
-=======
-  background-color: #4caf50;
->>>>>>> 1e23738dd73e86fcd8943f5c5e6a6d7c6258a28e
-=======
-  background-color: #4caf50;
->>>>>>> 68272472bde1193c207805765ad3b6400d66b226
 }
 
 nav li {
@@ -56,13 +48,6 @@ nav li a:hover {
 .female input,
 .other input {
   width: 30px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 1e23738dd73e86fcd8943f5c5e6a6d7c6258a28e
-=======
->>>>>>> 68272472bde1193c207805765ad3b6400d66b226
 }
 
 #login_frame input[type="text"],
@@ -177,11 +162,6 @@ nav li a:hover {
   /* position: absolute; */
   width: auto;
   height: auto;
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 68272472bde1193c207805765ad3b6400d66b226
 }
 
 .home-page-container {
@@ -218,7 +198,6 @@ nav li a:hover {
 .searchButton {
   padding-left: -10px;
   border-radius: 10px;
-=======
 }
 
 /* zb ----------------post css */
@@ -241,7 +220,6 @@ nav li a:hover {
 
 #postErrorList {
   color: red;
->>>>>>> 1e23738dd73e86fcd8943f5c5e6a6d7c6258a28e
 }
 
 /* post css */
