@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
   try {
     let posts = await postsData.getAllPosts();
     const newList = [];
-    console.log(posts)
+
     for (let i in posts){
       let item = {
         _id: posts[i]._id.toString(),
