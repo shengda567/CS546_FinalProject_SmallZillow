@@ -37,8 +37,7 @@ router.get('/', async (req, res) => {
       }
       newList.push(item);
     }
-    console.log("!!!111")
-    console.log(newList)
+
     res.render('pages/posts', { posts: newList });
   } catch (e) {
     res.status(500).json({error: e});

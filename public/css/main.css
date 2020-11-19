@@ -10,7 +10,7 @@ nav ul {
   padding: 0;
   overflow: hidden;
   background-color: #4CAF50;
-  
+
 }
 
 nav li
@@ -47,7 +47,7 @@ nav li a:hover {
 
 .male input, .female input, .other input{
   width: 30px;
-  
+
 }
 
 #login_frame input[type=text], #signup-div input, #signup-div select{
@@ -161,6 +161,40 @@ text-align: center;
   /* position: absolute; */
   width:auto;
   height: auto;
-  
+
 }
 
+.home-page-container{
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("/public/img/niceHouse.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align:center;
+  height:550px;
+  width:100%;
+  opacity:0.8;
+}
+.mainPageText1{
+  color:white;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+.mainPageText2{
+  color:white;
+  text-align: center;
+}
+.searchForm{
+  padding-top: 100px;
+}
+.searchBox{
+  background-color: white;
+  border-radius: 10px;
+  width:550px;
+  height: 50px;
+  font-size:14pt;
+}
+.searchButton{
+  padding-left: -10px;
+  border-radius: 10px;
+}
