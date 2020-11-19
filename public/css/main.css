@@ -34,7 +34,8 @@ nav li a:hover {
   vertical-align: center;
 }
 
-#login_frame label {
+#login_frame label,
+#manager_login_frame label{
   cursor: pointer;
   display: inline-block;
   padding: 3px 6px;
@@ -51,7 +52,8 @@ nav li a:hover {
 
 #login_frame input[type="text"],
 #signup-div input,
-#signup-div select {
+#signup-div select,
+#manager_login_frame input[type='text'] {
   width: 300px;
   padding: 12px 20px;
   margin: 8px 0;
@@ -61,12 +63,14 @@ nav li a:hover {
   color: white;
 }
 #login_frame input[type="text"]:focus,
-#signup-div input:focus {
+#signup-div input:focus,
+#manager_login_frame input[type="text"]:focus {
   background-color: lightblue;
 }
 
 #login_frame input[type="password"],
-#signup-div input {
+#signup-div input,
+#manager_login_frame input[type="password"] {
   width: 300px;
   padding: 12px 20px;
   margin: 8px 0;
@@ -76,11 +80,13 @@ nav li a:hover {
   color: black;
 }
 #login_frame input[type="password"]:focus,
-#signup-div input:focus {
+#signup-div input:focus,
+#manager_login_frame input[type="password"]:focus {
   background-color: lightblue;
 }
 
-#login_frame input[type="verifiy"] {
+#login_frame input[type="verifiy"],
+#manager_login_frame input[type="verifiy"] {
   width: 300px;
   padding: 12px 20px;
   margin: 8px 0;
@@ -89,11 +95,13 @@ nav li a:hover {
   border-radius: 4px;
   color: black;
 }
-#login_frame input[type="verifiy"]:focus {
+#login_frame input[type="verifiy"]:focus,
+#manager_login_frame input[type="verifiy"]:focus {
   background-color: lightblue;
 }
 
-#login_frame button {
+#login_frame button,
+#manager_login_frame button {
   width: 300px;
   background-color: #4caf50;
   color: white;
@@ -118,7 +126,8 @@ nav li a:hover {
 }
 
 #login_frame .row,
-#signup-div {
+#signup-div,
+#manager_login_frame .manager-login-div {
   border-radius: 5px;
   background-color: #f3f3e6;
   padding: 20px;
@@ -127,11 +136,13 @@ nav li a:hover {
   text-align: center;
 }
 
-#login_frame h1 {
+#login_frame h1,
+#manager_login_frame h1 {
   text-align: center;
 }
 
-#login_frame h2 {
+#login_frame h2,
+#manager_login_frame h2 {
   text-align: center;
 }
 
