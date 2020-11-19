@@ -8,11 +8,9 @@ const users = mongoCollections.users;
 
 router.get('/', async (req, res) => {
   //res.json({ route: '/users', method: req.method });
-  if (req.session.user) {
-    res.redirect('/private');
-  }else{
+
   res.render('pages/login');
-  }
+  
 });
 
 router.post('/', async (req, res) => {
