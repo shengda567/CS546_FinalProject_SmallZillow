@@ -10,6 +10,7 @@ const constructorMethod = (app) => {
     app.get('/', function(req, res){
       res.render('pages/mainPage');
     });
+
     app.use('/search', searchRoutes);
     app.use('/posts', postRoutes);
     //app.use('/private', privateRoutes);
