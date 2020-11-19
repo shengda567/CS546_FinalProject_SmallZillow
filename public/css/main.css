@@ -1,6 +1,6 @@
 html,
 body {
-  background-color:#d0e4fe;
+  background-color: #d0e4fe;
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 20pt;
 }
@@ -9,17 +9,15 @@ nav ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #4CAF50;
-
+  background-color: #4caf50;
 }
 
-nav li
-{
-  float:left;
+nav li {
+  float: left;
 }
 
 nav li a {
-display: block;
+  display: block;
   color: white;
   text-align: center;
   padding: 14px 16px;
@@ -27,7 +25,7 @@ display: block;
 }
 
 nav li a:hover {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 #signup-div label {
@@ -36,7 +34,8 @@ nav li a:hover {
   vertical-align: center;
 }
 
-#login_frame label{
+#login_frame label,
+#manager_login_frame label{
   cursor: pointer;
   display: inline-block;
   padding: 3px 6px;
@@ -45,12 +44,16 @@ nav li a:hover {
   vertical-align: center;
 }
 
-.male input, .female input, .other input{
+.male input,
+.female input,
+.other input {
   width: 30px;
-
 }
 
-#login_frame input[type=text], #signup-div input, #signup-div select{
+#login_frame input[type="text"],
+#signup-div input,
+#signup-div select,
+#manager_login_frame input[type='text'] {
   width: 300px;
   padding: 12px 20px;
   margin: 8px 0;
@@ -58,13 +61,16 @@ nav li a:hover {
   border: 2px solid green;
   border-radius: 4px;
   color: white;
-
 }
-#login_frame input[type=text]:focus, #signup-div input:focus{
-background-color: lightblue;
+#login_frame input[type="text"]:focus,
+#signup-div input:focus,
+#manager_login_frame input[type="text"]:focus {
+  background-color: lightblue;
 }
 
-#login_frame input[type=password], #signup-div input{
+#login_frame input[type="password"],
+#signup-div input,
+#manager_login_frame input[type="password"] {
   width: 300px;
   padding: 12px 20px;
   margin: 8px 0;
@@ -72,41 +78,44 @@ background-color: lightblue;
   border: 2px solid green;
   border-radius: 4px;
   color: black;
-
 }
-#login_frame input[type=password]:focus , #signup-div input:focus{
-background-color: lightblue;
+#login_frame input[type="password"]:focus,
+#signup-div input:focus,
+#manager_login_frame input[type="password"]:focus {
+  background-color: lightblue;
 }
 
-#login_frame input[type=verifiy]{
+#login_frame input[type="verifiy"],
+#manager_login_frame input[type="verifiy"] {
   width: 300px;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   border: 2px solid green;
   border-radius: 4px;
-    color: black;
-
+  color: black;
 }
-#login_frame input[type=verifiy]:focus {
-background-color: lightblue;
-}
-
-#login_frame button{
-width: 300px;
-background-color: #4CAF50;
-color: white;
-padding: 14px 20px;
-margin: 8px 0;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-margin-left: 13%;
+#login_frame input[type="verifiy"]:focus,
+#manager_login_frame input[type="verifiy"]:focus {
+  background-color: lightblue;
 }
 
-#signup-div button{
+#login_frame button,
+#manager_login_frame button {
   width: 300px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 13%;
+}
+
+#signup-div button {
+  width: 300px;
+  background-color: #4caf50;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -114,24 +123,27 @@ margin-left: 13%;
   border-radius: 4px;
   cursor: pointer;
   margin-left: 19%;
-  }
-
-#login_frame .row, #signup-div{
-border-radius: 5px;
-background-color: #f3f3e6;
-padding: 20px;
-width: 75%;
-margin: auto;
-text-align: center;
-
 }
 
-#login_frame h1{
-text-align: center;
+#login_frame .row,
+#signup-div,
+#manager_login_frame .manager-login-div {
+  border-radius: 5px;
+  background-color: #f3f3e6;
+  padding: 20px;
+  width: 75%;
+  margin: auto;
+  text-align: center;
 }
 
-#login_frame h2{
-text-align: center;
+#login_frame h1,
+#manager_login_frame h1 {
+  text-align: center;
+}
+
+#login_frame h2,
+#manager_login_frame h2 {
+  text-align: center;
 }
 
 #userForm {
@@ -150,7 +162,6 @@ text-align: center;
 .furniture_ads {
   display: inline;
   border: 1px;
-
 }
 .moving_house_ads {
   display: inline;
@@ -159,42 +170,101 @@ text-align: center;
 
 .ads img {
   /* position: absolute; */
-  width:auto;
+  width: auto;
   height: auto;
-
 }
 
-.home-page-container{
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("/public/img/niceHouse.jpg");
+.home-page-container {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/public/img/niceHouse.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  text-align:center;
-  height:550px;
-  width:100%;
-  opacity:0.8;
+  text-align: center;
+  height: 550px;
+  width: 100%;
+  opacity: 0.8;
 }
-.mainPageText1{
-  color:white;
+.mainPageText1 {
+  color: white;
   text-align: center;
   padding-top: 50px;
   padding-bottom: 30px;
 }
-.mainPageText2{
-  color:white;
+.mainPageText2 {
+  color: white;
   text-align: center;
 }
-.searchForm{
+.searchForm {
   padding-top: 100px;
 }
-.searchBox{
+.searchBox {
   background-color: white;
   border-radius: 10px;
-  width:550px;
+  width: 550px;
   height: 50px;
-  font-size:14pt;
+  font-size: 14pt;
 }
-.searchButton{
+.searchButton {
   padding-left: -10px;
   border-radius: 10px;
+}
+
+/* post css */
+.new-post-form {
+  width: 100%;
+  margin-left: 20%;
+}
+
+#postErrorList {
+  color: red;
+}
+
+/* img css */
+.img-group {
+  margin: 20%;
+}
+.float {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-left: 20%;
+  display: inline-block;
+}
+img {
+  position: relative;
+}
+.result {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+#file_input {
+  display: none;
+}
+
+.delete {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  text-align: center;
+  line-height: 100px;
+  z-index: 10;
+  font-size: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #777;
+  opacity: 0;
+  transition-duration: 0.7s;
+  -webkit-transition-duration: 0.7s;
+}
+
+.delete:hover {
+  cursor: pointer;
+  opacity: 1;
 }

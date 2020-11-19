@@ -42,6 +42,17 @@ app.use('/login', (req, res, next) => {
   }
 });
 
+app.use('/manager/login', (req, res, next) => {
+  if (req.session.manager) {
+    return res.redirect('/manager/private');
+  } else {
+    //here I',m just manually setting the req.method to post since it's usually coming from a form
+    res.render('pages/manager_login');
+    //req.method = 'POST';
+    //next();
+  }
+});
+
 
 configRoutes(app);
 

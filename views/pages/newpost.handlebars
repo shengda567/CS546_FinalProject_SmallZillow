@@ -1,0 +1,157 @@
+<article class="new-post-form">
+    <h1>Post your sublease</h1>
+    <p id="postInstruct">Please fill out the following information (you must provided all of the following columns)</p>
+    {{!-- errors --}}
+    <div class="postFormErrorDiv" id="postFormErrors" hidden>
+        <ul id="postErrorList"></ul>
+    </div>
+    <form method="POST" id="postForm">
+        {{!-- Date Time --}}
+        <label for="post-title" class="postInput">
+            Current Time : <span value="info.time" id="timestamp"> </span>
+        </label>
+        <br>
+
+        {{!-- title --}}
+        <label for="post-title" class="postInput">
+            Sublease title:
+            <input value="{{info.title}}" placeholder="title" type="text" id="post-title-input" name="titleInput">
+        </label>
+        <br>
+
+        {{!-- address --}}
+        <label for="post-address" class="postInput">
+            Address:
+            <input value="{{info.address}}" placeholder="address" type="text" id="post-address-input"
+                name="addressInput">
+        </label>
+
+
+        {{!-- city --}}
+        <label for="post-city" class="postInput">
+            City:
+            <input value="{{info.city}}" placeholder="city" type="text" id="post-city-input" name="cityInput">
+        </label>
+
+        {{!-- state --}}
+        <label for="post-state" class="postInput">
+            State:
+            <select id="post-state-select" name="stateSelect">
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+            </select>
+        </label>
+        <br>
+
+        {{!-- zipcode --}}
+        <label for="post-zipcode" class="postInput">
+            Zipcode:
+            <input value="{{info.zipcode}}" placeholder="zipcode" type="text" id="post-zipcode-input"
+                name="zipcodeInput">
+        </label>
+        <br>
+
+        {{!-- house description --}}
+        <label for="post-description" class="postInput">
+            Please describe your house:
+            <br>
+            <textarea value="{{info.description}}" placeholder="house description" type="textarea"
+                id="post-description-input" name="descriptionInput"></textarea>
+        </label>
+        <br>
+
+        {{!-- house tag --}}
+        <label for="post-tag" class="postInput">
+            Select your house tag:
+            <select id="post-tag-select" name="tagSelect">
+                <option value="apartment">apartment</option>
+                <option value="house">house</option>
+                <option value="villa">villa</option>
+            </select>
+        </label>
+        <br>
+
+        {{!-- contact email --}}
+        <label for="post-email" class="postInput">
+            Contact email:
+            <input value="{{info.email}}" placeholder="email" type="email" id="post-email-input" name="emailInput">
+        </label>
+
+        {{!-- contact phone --}}
+        <label for="post-phone" class="postInput">
+            Contact phone number:
+            <input value="{{info.phone}}" placeholder="phone number" type="text" id="post-phone-input"
+                name="phoneInput">
+        </label>
+        <br>
+
+        {{!-- prices --}}
+        <label for="post-prices" class="postInput">
+            Prices:
+            <input value="{{info.prices}}" placeholder="prices" type="text" id="post-prices-input" name="pricesInput">$
+            per/month
+        </label>
+        <br>
+
+        {{!-- IMG --}}
+        <label for="post-img" class="postInput">
+            <button id="postImg">Upload IMG</button>
+            <input type="file" id="file_input" multiple />
+        </label>
+
+
+        {{!-- submit button --}}
+        <label for="post-submitBtn" class="postInput">
+            <button id="post-submit" type="submit">Create Post</button>
+        </label>
+    </form>
+</article>
