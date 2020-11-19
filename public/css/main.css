@@ -1,6 +1,6 @@
 html,
 body {
-  background-color:#d0e4fe;
+  background-color: #d0e4fe;
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 20pt;
 }
@@ -9,17 +9,15 @@ nav ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #4CAF50;
-  
+  background-color: #4caf50;
 }
 
-nav li
-{
-  float:left;
+nav li {
+  float: left;
 }
 
 nav li a {
-display: block;
+  display: block;
   color: white;
   text-align: center;
   padding: 14px 16px;
@@ -27,7 +25,7 @@ display: block;
 }
 
 nav li a:hover {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 #signup-div label {
@@ -36,7 +34,7 @@ nav li a:hover {
   vertical-align: center;
 }
 
-#login_frame label{
+#login_frame label {
   cursor: pointer;
   display: inline-block;
   padding: 3px 6px;
@@ -45,12 +43,15 @@ nav li a:hover {
   vertical-align: center;
 }
 
-.male input, .female input, .other input{
+.male input,
+.female input,
+.other input {
   width: 30px;
-  
 }
 
-#login_frame input[type=text], #signup-div input, #signup-div select{
+#login_frame input[type="text"],
+#signup-div input,
+#signup-div select {
   width: 300px;
   padding: 12px 20px;
   margin: 8px 0;
@@ -58,13 +59,14 @@ nav li a:hover {
   border: 2px solid green;
   border-radius: 4px;
   color: white;
-
 }
-#login_frame input[type=text]:focus, #signup-div input:focus{
-background-color: lightblue;
+#login_frame input[type="text"]:focus,
+#signup-div input:focus {
+  background-color: lightblue;
 }
 
-#login_frame input[type=password], #signup-div input{
+#login_frame input[type="password"],
+#signup-div input {
   width: 300px;
   padding: 12px 20px;
   margin: 8px 0;
@@ -72,41 +74,40 @@ background-color: lightblue;
   border: 2px solid green;
   border-radius: 4px;
   color: black;
-
 }
-#login_frame input[type=password]:focus , #signup-div input:focus{
-background-color: lightblue;
+#login_frame input[type="password"]:focus,
+#signup-div input:focus {
+  background-color: lightblue;
 }
 
-#login_frame input[type=verifiy]{
+#login_frame input[type="verifiy"] {
   width: 300px;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   border: 2px solid green;
   border-radius: 4px;
-    color: black;
-
+  color: black;
 }
-#login_frame input[type=verifiy]:focus {
-background-color: lightblue;
-}
-
-#login_frame button{
-width: 300px;
-background-color: #4CAF50;
-color: white;
-padding: 14px 20px;
-margin: 8px 0;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-margin-left: 13%;
+#login_frame input[type="verifiy"]:focus {
+  background-color: lightblue;
 }
 
-#signup-div button{
+#login_frame button {
   width: 300px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 13%;
+}
+
+#signup-div button {
+  width: 300px;
+  background-color: #4caf50;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -114,24 +115,24 @@ margin-left: 13%;
   border-radius: 4px;
   cursor: pointer;
   margin-left: 19%;
-  }
-
-#login_frame .row, #signup-div{
-border-radius: 5px;
-background-color: #f3f3e6;
-padding: 20px;
-width: 75%;
-margin: auto;
-text-align: center;
-
 }
 
-#login_frame h1{
-text-align: center;
+#login_frame .row,
+#signup-div {
+  border-radius: 5px;
+  background-color: #f3f3e6;
+  padding: 20px;
+  width: 75%;
+  margin: auto;
+  text-align: center;
 }
 
-#login_frame h2{
-text-align: center;
+#login_frame h1 {
+  text-align: center;
+}
+
+#login_frame h2 {
+  text-align: center;
 }
 
 #userForm {
@@ -150,7 +151,6 @@ text-align: center;
 .furniture_ads {
   display: inline;
   border: 1px;
-
 }
 .moving_house_ads {
   display: inline;
@@ -159,8 +159,28 @@ text-align: center;
 
 .ads img {
   /* position: absolute; */
-  width:auto;
+  width: auto;
   height: auto;
-  
 }
 
+/* zb ----------------post css */
+
+/* .postInput {
+  width: 75%;
+  margin: 10%;
+  margin-left: 0%;
+} */
+/* input {
+  margin-bottom: 2%;
+}
+#post-description-input {
+  width: 80%;
+  margin-left: 0%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-right: 5%;
+} */
+
+#postErrorList {
+  color: red;
+}
