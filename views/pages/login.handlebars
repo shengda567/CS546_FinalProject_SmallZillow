@@ -1,20 +1,49 @@
 
-<h2>Please Login!</h2>
+<main id="login_frame">
+      <h1>Zillow</h1>
+      <div class="row">
+          <div>
+                <h2>Please Login!</h2>
 
-<form action="/login" method="post" id = "userForm">
-  <div class="container">
-    <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Input Username" id = "username" name="username">
+                <form action="/login" method="post" id = "userForm">
+                  <div class="container">
+                    <p>
+                      <label for="username"><b>Username</b></label>
+                      <input type="text" placeholder="Input Username" id = "username" name="username">
+                    </p>
+                    
 
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Input Password" id = "password" name="password">
+                    <p>
+                      <label for="password"><b>Password</b></label>
+                      <input type="password" placeholder="Input Password" id = "password" name="password">
+                    </p>
+                    
+                    <p>
+                      <label for="verifiy"><b>Verifiy</b></label>
+                      <input type="verifiy" placeholder="Input Verifiy Code" id = "verifiy" name="verifiy">
+                    </p>
+                    
 
-    <label for="verifiy"><b>Verifiy</b></label>
-    <input type="verifiy" placeholder="Input Verifiy Code" id = "verifiy" name="verifiy">
+                    <img @load="verifyLoadState=true"  @click="toggleVerify" :src="verifiy" alt="">
+                    
+                    <button type="submit">Login</button>
 
-    <img @load="verifyLoadState=true"  @click="toggleVerify" :src="verifiy" alt="">
-    
-    <button type="submit">Login</button>
+                  </div>
+                </form>
+            </div>
+        </div>
+      
+      <div class="ads">
+        <div class="furniture_ads">
+          <a href="https://www.bassettfurniture.com/?gclid=Cj0KCQiAqdP9BRDVARIsAGSZ8AkmibIjQz4CNQPjnAF43AvegpXEOXG6B1LHwjkz-Nnm3FRwAYAKFZsaAgSNEALw_wcB">
+            <img src="/public/img/furniture_ads.png" alt="furniture link">
+          </a>
+        </div>
 
-  </div>
-</form>
+        <div class="moving_house_ads">
+          <a href="https://www.collegehunkshaulingjunk.com/trenton/?trentonm&utm_campaign=nj-trenton-381&utm_source=google&utm_medium=cpc&utm_content=chair10-move&L=true&gclid=Cj0KCQiAqdP9BRDVARIsAGSZ8AlYKt9Zg0GgIo_FP3EyqJAOFqUYJf66HzyOjRBuLmkO1JQIbpYUBgIaAq3MEALw_wcB">
+            <img src="/public/img/movint_house_ads.png" alt="moving house link">
+          </a>
+        </div>
+      </div>
+    </main>
