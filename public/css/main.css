@@ -71,7 +71,7 @@ background-color: lightblue;
   box-sizing: border-box;
   border: 2px solid green;
   border-radius: 4px;
-  color: white;
+  color: black;
 
 }
 #login_frame input[type=password]:focus , #signup-div input:focus{
@@ -85,7 +85,7 @@ background-color: lightblue;
   box-sizing: border-box;
   border: 2px solid green;
   border-radius: 4px;
-    color: white;
+    color: black;
 
 }
 #login_frame input[type=verifiy]:focus {
