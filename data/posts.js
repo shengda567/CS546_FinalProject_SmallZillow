@@ -18,6 +18,24 @@ const exportedMethods = {
     const postCollection = await posts();
     return await postCollection.find({ tag: tag }).toArray();
   },
+  async getPostsByZipcode(zipcode) {
+    if (!zipcode) throw 'No zipcode provided';
+
+    const postCollection = await posts();
+    return await postCollection.find({ zipcode: zipcode }).toArray();
+  },
+  async getPostsByAddress(address) {
+    if (!address) throw 'No address provided';
+
+    const postCollection = await posts();
+    return await postCollection.find({ address: address }).toArray();
+  },
+  async getPostsByCity(city) {
+    if (!city) throw 'No city provided';
+
+    const postCollection = await posts();
+    return await postCollection.find({ city: city }).toArray();
+  },
   async getPostById(id) {
     const postCollection = await posts();
     const post = await postCollection.findOne({ _id: id });

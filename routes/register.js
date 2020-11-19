@@ -72,7 +72,7 @@ router.post('/', async (req, res) => {
       {
           res.json({message:'username already exist.'})
       }
-    
+
   } catch (e) {
     res.status(500).json({ error: e });
   }
@@ -83,7 +83,7 @@ router.get('/:id', async (req, res) => {
     const post = await customerinf.getbyone(req.params.id);
     res.json(post);
   } catch (e) {
-    
+
     res.status(404).json({ message: 'Post not found ' + e });
   }
 });

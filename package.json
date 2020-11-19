@@ -1,16 +1,18 @@
 {
-  "name": "final",
+  "name": "finalproject_smallzillow",
   "version": "1.0.0",
-  "description": "Group Member:",
+  "description": "Group Member:Shuoyu Wang,Yun Yang,Zichong Wang,Shengda Zhang,Zhanming Bai",
   "main": "app.js",
   "scripts": {
+    "seed": "node ./tasks/seed.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shengda567/CS546_FinalProject_SmallZillow.git"
   },
-  "author": "Zichong Wong",
+  "author": "Shuoyu Wang,Yun Yang,Zichong Wang,Shengda Zhang,Zhanming Bai",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/shengda567/CS546_FinalProject_SmallZillow/issues"

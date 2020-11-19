@@ -1,5 +1,4 @@
 //Name:Zichong Wang; SID:10464881; Course:CS546
-const axios = require('axios');
 const express = require('express');
 const collection = require('../config/mongoCollections');
 const register = collection.register;
@@ -158,7 +157,7 @@ async function update(id, updatedPost)
     const registerCollection = await register();
     var { ObjectId } = require('mongodb');
     var userId = ObjectId(id);
-    
+
     const updatedPostData = {};
 
     if (updatedPost.user) {
@@ -202,7 +201,7 @@ async function update(id, updatedPost)
 
 async function addpostforuser(id, postID)
 {
-    
+
     var { ObjectId } = require('mongodb');
     var userId = ObjectId(id);
     let currentreview = await this.getbyone(id);
@@ -220,7 +219,7 @@ async function addpostforuser(id, postID)
 
 async function addsaveforuser(id,saveID)
 {
-    
+
     var { ObjectId } = require('mongodb');
     var saveId = ObjectId(id);
     let currentreview = await this.getbyone(id);
@@ -238,7 +237,7 @@ async function addsaveforuser(id,saveID)
 
 async function addcommentforuser(id, commentID)
 {
-    
+
     var { ObjectId } = require('mongodb');
     var userId = ObjectId(id);
     let currentreview = await this.getbyone(id);
@@ -255,7 +254,7 @@ async function addcommentforuser(id, commentID)
 }
 
 async function removepostfromuser(id, postID) {
-    
+
     var { ObjectId } = require('mongodb');
     var userId = ObjectId(id);
     let currentreview = await this.getbyone(id.toString());
@@ -272,7 +271,7 @@ async function removepostfromuser(id, postID) {
 }
 
 async function removesavefromuser(id, saveID) {
-    
+
     var { ObjectId } = require('mongodb');
     var userId = ObjectId(id);
     let currentreview = await this.getbyone(id.toString());
@@ -289,7 +288,7 @@ async function removesavefromuser(id, saveID) {
 }
 
 async function removecommentfromuser(id, commentID) {
-    
+
     var { ObjectId } = require('mongodb');
     var userId = ObjectId(id);
     let currentreview = await this.getbyone(id.toString());
@@ -319,4 +318,3 @@ module.exports = {
     removecommentfromuser,
     checkusername
 }
-

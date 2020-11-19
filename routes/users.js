@@ -21,10 +21,10 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  
+
 	const { username, password } = req.body;
     var check = false;
-	
+
     try{
 
         for(var i in users)
@@ -35,7 +35,7 @@ router.post('/login', async (req, res) => {
                 var match = false;
                 match = bcrypt.compareSync(password, users[i].hashedPassword);
                 if(match){
-                    
+
                     res.redirect('/private');
                 }
                 else {
@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => {
     }catch(e){
     res.status(401).render('pages/error', {error: e});
   }
-	
+
 });
 
 router.get('/logout', async (req, res) => {
@@ -60,5 +60,3 @@ router.get('/logout', async (req, res) => {
 });
 
 module.exports = router;
-
-
