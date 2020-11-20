@@ -17,7 +17,6 @@ userLoginForm.submit(handleSignup);
 
 function handleSignup(e) {
   e.preventDefault();
-  console.log("123");
 
   let newFirstName = newFirstNameInput.val();
   let newLastName = newLastNameInput.val();
@@ -55,5 +54,38 @@ function handleSignup(e) {
   ) {
     $("#register-error").hide();
     alert("you have registered successfully.");
+  }
+
+  let formSet = {
+    newFirstName: newFirstName,
+    newLastName: newLastName,
+    newEmail: newEmail,
+    newGender: newGender,
+    newBirthday: newBirthday,
+    newPhone: newPhone,
+    newCity: newCity,
+    newState: newCity,
+    newPassword: newPassword,
+  };
+  try {
+    $.ajax({
+      url: "http://localhost:3000/register",
+      type: "post",
+      data: JSON.stringify(formSet),
+      dataType: "json",
+      //processData: false, //trans form data need these two
+      contentType: "application/json",
+      // success: function (data) {
+      //   //alert("send success");
+      //   console.log("The return data: " + JSON.stringify(data));
+      // },
+      //   error: function (error) {
+      //     alert(error);
+      //     alert("failed");
+      //     console.log("send data failed");
+      //   },
+    });
+  } catch (e) {
+    console.log(e);
   }
 }
