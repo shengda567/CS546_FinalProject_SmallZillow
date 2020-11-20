@@ -25,6 +25,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
+  console.log("hello")
   try {
     let posts = await postsData.getAllPosts();
     const newList = [];
@@ -44,18 +45,22 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  console.log("in posts post");
+
+
   let postInfo = JSON.parse(JSON.stringify(req.body));
-  //let postInfo = req.body;
-  console.log(postInfo);
+
+
   if (!postInfo) {
+
     res.status(400).json({ error: "You must provide data to create a post" });
     return;
   }
+
   if (!postInfo.title) {
     res.status(400).json({ error: "You must provide a title" });
     return;
   }
+
   if (!postInfo.address) {
     res.status(400).json({ error: "You must provide a address" });
     return;
@@ -68,6 +73,7 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide a city" });
     return;
   }
+
   if (!postInfo.zipcode) {
     res.status(400).json({ error: "You must provide a zipcode" });
     return;
@@ -80,7 +86,8 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide a description" });
     return;
   }
-  if (!postInfo.date) {
+
+  if (!postInfo.Time) {
     res.status(400).json({ error: "You must provide a date" });
     return;
   }
@@ -88,11 +95,13 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide a tag" });
     return;
   }
+
   if (!postInfo.phone) {
     res.status(400).json({ error: "You must provide a phone" });
     return;
   }
-  if (!postInfo.price) {
+
+  if (!postInfo.prices) {
     res.status(400).json({ error: "You must provide a price" });
     return;
   }
@@ -100,24 +109,37 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide a email" });
     return;
   }
+  let img_data = postInfo.img;
+
+  var base64Data = img_data[0].base64.replace(/^data:image\/jpg;base64,/, "");
+
+  require("fs").writeFile("public/img/" + img_data[0].name, base64Data, 'base64', function(err) {
+    console.log(err);
+  });
+
+  const {ObjectId} = require('mongodb');
+  let userId = ObjectId("5fb62a7f60fd91ca36339a9c");
 
   try {
-    const newPost = await postData.addPost(
+
+    let newPost = await postsData.addPost(
+      userId,
       postInfo.title,
       postInfo.address,
       postInfo.state,
       postInfo.city,
       postInfo.zipcode,
-      postInfo.img,
+      img_data[0].name,
       postInfo.description,
-      postInfo.date,
+      postInfo.Time,
       postInfo.tag,
       postInfo.phone,
-      postInfo.price,
+      postInfo.prices,
       postInfo.email,
-      []
-    );
-    res.json(newPost);
+      []);
+    let newId = newPost._id.toString();
+
+    res.redirect("posts/");
   } catch (e) {
     res.status(500).json({ error: e });
   }
