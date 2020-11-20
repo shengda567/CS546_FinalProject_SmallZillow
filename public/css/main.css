@@ -35,7 +35,7 @@ nav li a:hover {
 }
 
 #login_frame label,
-#manager_login_frame label{
+#manager_login_frame label {
   cursor: pointer;
   display: inline-block;
   padding: 3px 6px;
@@ -53,14 +53,13 @@ nav li a:hover {
 #login_frame input[type="text"],
 #signup-div input,
 #signup-div select,
-#manager_login_frame input[type='text'] {
+#manager_login_frame input[type="text"] {
   width: 300px;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   border: 2px solid green;
   border-radius: 4px;
-  color: white;
 }
 #login_frame input[type="text"]:focus,
 #signup-div input:focus,
@@ -267,4 +266,10 @@ img {
 .delete:hover {
   cursor: pointer;
   opacity: 1;
+}
+
+#register-error {
+  color: red;
+  text-align: center;
+  margin-left: 250px;
 }
