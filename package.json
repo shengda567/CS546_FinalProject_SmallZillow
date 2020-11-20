@@ -19,14 +19,15 @@
   },
   "homepage": "https://github.com/shengda567/CS546_FinalProject_SmallZillow#readme",
   "dependencies": {
+    "ajax": "0.0.4",
     "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
-    "handlebars": "^4.7.6",
     "express-session": "^1.17.1",
-    "mongodb": "^3.6.2",
+    "handlebars": "^4.7.6",
+    "mongodb": "^3.6.3",
     "uuid": "^8.3.1"
   }
 }

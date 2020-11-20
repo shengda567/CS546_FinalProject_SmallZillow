@@ -1,124 +1,152 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const data = require('../data');
+const data = require("../data");
 const postsData = data.posts;
 const commentsData = data.comments;
 
-function isEmptyOrSpaces(str){
-    return str === null || str.match(/^ *$/) !== null;
+function isEmptyOrSpaces(str) {
+  return str === null || str.match(/^ *$/) !== null;
 }
 
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    let { ObjectId } = require('mongodb');
+    let { ObjectId } = require("mongodb");
     let objectID = ObjectId(req.params.id);
     let post = await postsData.getPostById(objectID);
     let comments = [];
-    for(let i in post.comments){
+    for (let i in post.comments) {
       let comment = await commentsData.getCommentById(post.comments[i].id);
       comments.push(comment);
     }
-    res.render('pages/singlePost', { post: post, comments: comments });
+    res.render("pages/singlePost", { post: post, comments: comments });
   } catch (e) {
-    res.status(404).json({ error: 'Post not found' });
+    res.status(404).json({ error: "Post not found" });
   }
 });
 
-router.get('/', async (req, res) => {
-
+router.get("/", async (req, res) => {
+  console.log("hello")
   try {
     let posts = await postsData.getAllPosts();
     const newList = [];
+<<<<<<< HEAD
 
     for (let i in posts){
+=======
+    console.log(posts);
+    for (let i in posts) {
+>>>>>>> main
       let item = {
         _id: posts[i]._id.toString(),
-        title: posts[i].title
-      }
+        title: posts[i].title,
+      };
       newList.push(item);
     }
 
-    res.render('pages/posts', { posts: newList });
+    res.render("pages/posts", { posts: newList });
   } catch (e) {
-    res.status(500).json({error: e});
+    res.status(500).json({ error: e });
   }
 });
 
-router.post('/', async (req, res) => {
-  let postInfo = req.body;
+router.post("/", async (req, res) => {
+
+
+  let postInfo = JSON.parse(JSON.stringify(req.body));
+
 
   if (!postInfo) {
-    res.status(400).json({ error: 'You must provide data to create a post' });
+
+    res.status(400).json({ error: "You must provide data to create a post" });
     return;
   }
+
   if (!postInfo.title) {
-    res.status(400).json({ error: 'You must provide a title' });
+    res.status(400).json({ error: "You must provide a title" });
     return;
   }
+
   if (!postInfo.address) {
-    res.status(400).json({ error: 'You must provide a address' });
+    res.status(400).json({ error: "You must provide a address" });
     return;
   }
   if (!postInfo.state) {
-    res.status(400).json({ error: 'You must provide a state' });
+    res.status(400).json({ error: "You must provide a state" });
     return;
   }
   if (!postInfo.city) {
-    res.status(400).json({ error: 'You must provide a city' });
-    return;
-  }
-  if (!postInfo.zipcode) {
-    res.status(400).json({ error: 'You must provide a zipcode' });
-    return;
-  }
-  if (!postInfo.img) {
-    res.status(400).json({ error: 'You must provide a image' });
-    return;
-  }
-  if (!postInfo.description) {
-    res.status(400).json({ error: 'You must provide a description' });
-    return;
-  }
-  if (!postInfo.date) {
-    res.status(400).json({ error: 'You must provide a date' });
-    return;
-  }
-  if (!postInfo.tag) {
-    res.status(400).json({ error: 'You must provide a tag' });
-    return;
-  }
-  if (!postInfo.phone) {
-    res.status(400).json({ error: 'You must provide a phone' });
-    return;
-  }
-  if (!postInfo.price) {
-    res.status(400).json({ error: 'You must provide a price' });
-    return;
-  }
-  if (!postInfo.email) {
-    res.status(400).json({ error: 'You must provide a email' });
+    res.status(400).json({ error: "You must provide a city" });
     return;
   }
 
+  if (!postInfo.zipcode) {
+    res.status(400).json({ error: "You must provide a zipcode" });
+    return;
+  }
+  if (!postInfo.img) {
+    res.status(400).json({ error: "You must provide a image" });
+    return;
+  }
+  if (!postInfo.description) {
+    res.status(400).json({ error: "You must provide a description" });
+    return;
+  }
+
+  if (!postInfo.Time) {
+    res.status(400).json({ error: "You must provide a date" });
+    return;
+  }
+  if (!postInfo.tag) {
+    res.status(400).json({ error: "You must provide a tag" });
+    return;
+  }
+
+  if (!postInfo.phone) {
+    res.status(400).json({ error: "You must provide a phone" });
+    return;
+  }
+
+  if (!postInfo.prices) {
+    res.status(400).json({ error: "You must provide a price" });
+    return;
+  }
+  if (!postInfo.email) {
+    res.status(400).json({ error: "You must provide a email" });
+    return;
+  }
+  let img_data = postInfo.img;
+
+  var base64Data = img_data[0].base64.replace(/^data:image\/jpg;base64,/, "");
+
+  require("fs").writeFile("public/img/" + img_data[0].name, base64Data, 'base64', function(err) {
+    console.log(err);
+  });
+
+  const {ObjectId} = require('mongodb');
+  let userId = ObjectId("5fb62a7f60fd91ca36339a9c");
+
   try {
-    const newPost = await postData.addPost(
+
+    let newPost = await postsData.addPost(
+      userId,
       postInfo.title,
       postInfo.address,
       postInfo.state,
       postInfo.city,
       postInfo.zipcode,
-      postInfo.img,
+      img_data[0].name,
       postInfo.description,
-      postInfo.date,
+      postInfo.Time,
       postInfo.tag,
       postInfo.phone,
-      postInfo.price,
+      postInfo.prices,
       postInfo.email,
-      []
-    );
-    res.json(newPost);
+      []);
+    let newId = newPost._id.toString();
+
+    res.redirect("posts/");
   } catch (e) {
-    res.status(500).json({error: e});
+    res.status(500).json({ error: e });
   }
 });
 
@@ -211,15 +239,15 @@ router.post('/', async (req, res) => {
 //   }
 // });
 
-router.delete('/:id', async (req, res) => {
-  if (!req.params.id) throw 'You must specify an ID to delete';
-  let { ObjectId } = require('mongodb');
+router.delete("/:id", async (req, res) => {
+  if (!req.params.id) throw "You must specify an ID to delete";
+  let { ObjectId } = require("mongodb");
   let postId = ObjectId(req.params.id);
   let post = {};
   try {
     post = await postData.getPostById(postId);
   } catch (e) {
-    res.status(404).json({ error: 'Post not found' });
+    res.status(404).json({ error: "Post not found" });
     return;
   }
 
@@ -228,12 +256,12 @@ router.delete('/:id', async (req, res) => {
   } catch (e) {
     res.status(500).json({ error: e });
   }
-  for(let i in post.comments){
+  for (let i in post.comments) {
     let commentId = post.comments[i];
     try {
       await commentsData.getReviewById(commentId);
     } catch (e) {
-      res.status(404).json({ error: 'Review not found' });
+      res.status(404).json({ error: "Review not found" });
       return;
     }
     try {
@@ -242,7 +270,7 @@ router.delete('/:id', async (req, res) => {
       res.status(500).json({ error: e });
     }
   }
-  res.json({postId: req.params.id, deleted: true});
+  res.json({ postId: req.params.id, deleted: true });
 });
 
 module.exports = router;

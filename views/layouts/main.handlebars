@@ -12,7 +12,7 @@
 <body>
     <nav>
         <ul>
-            <li><a href="">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/rental_posts">Rent a home</a></li>
             <li><a href="/newpost">Make a post</a></li>
             {{#if userLoggedIn}}
@@ -20,7 +20,8 @@
             <li><a href="/restaurants/manage">Manage</a></li>
             <li><a href="/users/logout" id="logout">Logout</a></li>
             {{else}}
-            <li><a href="/" id="auth">Login</a></li>
+                <li><a href="/login" id="auth">Login</a></li>
+
             {{/if}}
             <li><a href="/register">Sign up</a></li>
 
@@ -43,7 +44,11 @@
     <script src='/public/js/postForm.js'></script>
 =======
     <script src="public/js/postForm.js"></script>
+<<<<<<< HEAD
 >>>>>>> 68272472bde1193c207805765ad3b6400d66b226
+=======
+    <script src="/public/js/signup.js"></script>
+>>>>>>> main
 </body>
 
 </html>
