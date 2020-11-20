@@ -56,27 +56,6 @@ window.onload = function () {
     }
   }
 
-  function send() {
-    var submitArr = [];
-    $(".subPic").each(function () {
-      submitArr.push({
-        name: $(this).attr("alt"),
-        base64: $(this).attr("src"),
-      });
-    });
-    $.ajax({
-      url: "http://123.206.89.242:9999",
-      type: "post",
-      data: JSON.stringify(submitArr),
-      dataType: "json",
-      //processData: false,  trans form data need these two
-      //contentType: false,
-      success: function (data) {
-        console.log("The return data: " + JSON.stringify(data));
-      },
-    });
-  }
-
   oAdd.onclick = function () {
     oInput.value = ""; // clean oInput
     oInput.click();
@@ -99,12 +78,7 @@ window.onload = function () {
     }
   }
 
-  let formSubmit = document.getElementById("postForm");
-  let imgButton = document.getElementById("postImg");
-  formSubmit.addEventListener("submit", (event) => {
-    event.preventDefault();
-    $("#postErrorList").empty();
-    // empty check
+  function postInputCheck() {
     let hasError = false;
     let title = $("#post-title-input").val().trim();
     let address = $("#post-address-input").val().trim();
@@ -117,6 +91,7 @@ window.onload = function () {
 
     if (!dataArr.length) {
       $("#postErrorList").append(`<li>You must upload your house pictures</li>`);
+      hasError = true;
     }
 
     if (!title) {
@@ -195,14 +170,98 @@ window.onload = function () {
       $("#postErrorList").append(`<li>Invalid prices, must be number</li>`);
       hasError = true;
     }
+
+    // form information log
+    let formSet = {
+      Time: showTime(),
+      title: title,
+      address: address,
+      city: city,
+      state: $("#post-state-select").val(),
+      zipcode: zipcode,
+      description: description,
+      tag: $("#post-tag-select").val(),
+      email: email,
+      phone: phone,
+      prices: prices,
+      IMG: $("#file_input").val(),
+    };
+    alert(JSON.stringify(formSet));
+
     if (hasError) {
-      $("#postFormErrors").show();
+      return true;
     } else {
+      return false;
+    }
+  }
+
+  let formSubmit = document.getElementById("postForm");
+  let imgButton = document.getElementById("postImg");
+
+  formSubmit.addEventListener("submit", (event) => {
+    event.preventDefault();
+    $("#postErrorList").empty();
+
+    let checkRes = postInputCheck();
+    if (checkRes) {
+      $("#postFormErrors").show();
+    } //
+    else {
       send();
-      window.location.href = "http://localhost:3000/newpost/success";
+      //window.location.href = "http://localhost:3000/posts";
       //$("#postForm").trigger("reset");
     }
   });
+
+  function send() {
+    let title = $("#post-title-input").val().trim();
+    let address = $("#post-address-input").val().trim();
+    let city = $("#post-city-input").val().trim();
+    let zipcode = $("#post-zipcode-input").val().trim();
+    let description = $("#post-description-input").val().trim();
+    let email = $("#post-email-input").val().trim();
+    let phone = $("#post-phone-input").val().trim();
+    let prices = $("#post-prices-input").val().trim();
+    var submitArr = [];
+    $(".subPic").each(function () {
+      submitArr.push({
+        name: $(this).attr("alt"),
+        base64: $(this).attr("src"),
+      });
+    });
+    let formSet = {
+      Time: showTime(),
+      title: title,
+      address: address,
+      city: city,
+      state: $("#post-state-select").val(),
+      zipcode: zipcode,
+      description: description,
+      tag: $("#post-tag-select").val(),
+      email: email,
+      phone: phone,
+      prices: prices,
+      img: submitArr,
+    };
+
+    $.ajax({
+      url: "http://localhost:3000/posts",
+      type: "post",
+      data: JSON.stringify(formSet),
+      dataType: "json",
+      //processData: false, //trans form data need these two
+      //contentType: false,
+      success: function (data) {
+        alert("send success");
+        console.log("The return data: " + JSON.stringify(data));
+      },
+      // error: function (error) {
+      //   alert(error);
+      //   alert("failed");
+      //   console.log("send data failed");
+      // },
+    });
+  }
 
   imgButton.addEventListener("click", (event) => {
     event.preventDefault();
