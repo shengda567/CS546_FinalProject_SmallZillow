@@ -37,7 +37,7 @@ router.get('/api/getCaptcha', function(req, res, next) {
 
 router.post('/login', async (req, res) => {
 
-	const { username, password } = req.body;
+	const { username, password, verifiy } = req.body;
     var check = false;
 
     try{
@@ -52,7 +52,7 @@ router.post('/login', async (req, res) => {
             }
                 
         }
-	if(authcode == captcha)
+	if(verifiy == captcha)
         {
            
             for(var i in users)
