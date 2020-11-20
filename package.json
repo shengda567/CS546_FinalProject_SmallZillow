@@ -28,6 +28,8 @@
     "express-session": "^1.17.1",
     "handlebars": "^4.7.6",
     "mongodb": "^3.6.3",
+    "gd-bmp": "^2.0.1",
+    "cookie-parser": "^1.4.5",
     "uuid": "^8.3.1"
   }
 }
