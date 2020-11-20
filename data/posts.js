@@ -44,6 +44,7 @@ const exportedMethods = {
     return post;
   },
   async addPost(posterId, title, address, state, city, zipcode, img, description, date, tag, phone, price, email, comments) {
+
     if (typeof title !== 'string' || isEmptyOrSpaces(title)) throw 'Please provide a valid title!';
     if (typeof address !== 'string' || isEmptyOrSpaces(address)) throw 'Please provide a valid address!';
     if (typeof city !== 'string' || isEmptyOrSpaces(city)) throw 'Please provide a valid city!';
