@@ -20,5 +20,6 @@ module.exports = {
   posts: getCollectionFn('posts'),
   users: getCollectionFn('users'),
   comments: getCollectionFn('comments'),
-  register: getCollectionFn('register')
+  register: getCollectionFn('register'),
+  managers: getCollectionFn('managers')
 };
