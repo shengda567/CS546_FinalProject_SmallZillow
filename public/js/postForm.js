@@ -247,14 +247,14 @@ window.onload = function () {
     $.ajax({
       url: "http://localhost:3000/posts",
       type: "post",
-      data: JSON.stringify(formSet),
+      data: formSet,
       dataType: "json",
       //processData: false, //trans form data need these two
       //contentType: false,
-      success: function (data) {
-        alert("send success");
-        console.log("The return data: " + JSON.stringify(data));
-      },
+      // success: function (data) {
+      //   alert("send success");
+      // 
+      // },
       // error: function (error) {
       //   alert(error);
       //   alert("failed");
