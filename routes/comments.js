@@ -4,6 +4,7 @@ const data = require('../data');
 const commentsData = data.comments;
 const postsData = data.posts;
 
+//abc
 router.get('/:id', async (req, res) => {
   if (!req.params.id) {
     res.status(400).json({ error: 'You must provide ID' });
