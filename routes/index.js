@@ -15,7 +15,7 @@ const constructorMethod = (app) => {
   app.use("/posts", postRoutes);
   //app.use('/private', privateRoutes);
   app.use("/register", registerData);
-
+  app.use("/login", userRoutes);
   //app.use('/comments', commentRoutes);
 
   app.get("/newpost", async (req, res) => {
