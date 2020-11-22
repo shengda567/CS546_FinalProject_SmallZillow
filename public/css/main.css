@@ -87,7 +87,7 @@ nav li a:hover {
 #login_frame input[type="verifiy"],
 #manager_login_frame input[type="verifiy"] {
   width: 300px;
-  padding: 12px 20px;
+  padding: 12px 0px;
   margin: 8px 0;
   box-sizing: border-box;
   border: 2px solid green;
@@ -99,6 +99,9 @@ nav li a:hover {
   background-color: lightblue;
 }
 
+#verify {
+  margin-left: 105px;
+}
 #login_frame button,
 #manager_login_frame button {
   width: 300px;
