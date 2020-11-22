@@ -11,13 +11,17 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const personalinf = req.body;
+  let personalinf = JSON.parse(JSON.stringify(req.body));
+  //const personalinf = req.body;
+  console.log(personalinf);
   if (!req.body) {
     res.status(400).json({ error: "You must provide body" + personalinf });
     return;
   }
   if (!personalinf.username) {
-    res.status(400).json({ error: "You must provide post username" });
+    console.log("here");
+    //res.render("pages/register", { hasErrors: true, errors: [1, 2, 3] });
+    res.redirect("pages/login");
     return;
   }
   if (!personalinf.user.firstname) {

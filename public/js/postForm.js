@@ -46,7 +46,8 @@ window.onload = function () {
           this.parentNode.style.display = "block";
           var oParent = this.parentNode;
           if (nowHeight) {
-            oParent.style.paddingTop = (oParent.offsetHeight - nowHeight) / 2 + "px";
+            oParent.style.paddingTop =
+              (oParent.offsetHeight - nowHeight) / 2 + "px";
           }
         };
         div.onclick = function () {
@@ -90,7 +91,9 @@ window.onload = function () {
     let prices = $("#post-prices-input").val().trim();
 
     if (!dataArr.length) {
-      $("#postErrorList").append(`<li>You must upload your house pictures</li>`);
+      $("#postErrorList").append(
+        `<li>You must upload your house pictures</li>`
+      );
       hasError = true;
     }
 
@@ -155,7 +158,9 @@ window.onload = function () {
     }
 
     if (phone && phoneCheck == false) {
-      $("#postErrorList").append(`<li>Invalid phone number, must be number</li>`);
+      $("#postErrorList").append(
+        `<li>Invalid phone number, must be number</li>`
+      );
       hasError = true;
     }
 
@@ -208,7 +213,7 @@ window.onload = function () {
     } //
     else {
       send();
-      //window.location.href = "http://localhost:3000/posts";
+      //window.location.href = "http://localhost:3000/";
       //$("#postForm").trigger("reset");
     }
   });
@@ -253,7 +258,7 @@ window.onload = function () {
       //contentType: false,
       // success: function (data) {
       //   alert("send success");
-      // 
+      //
       // },
       // error: function (error) {
       //   alert(error);

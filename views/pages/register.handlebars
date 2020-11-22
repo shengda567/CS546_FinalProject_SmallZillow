@@ -1,6 +1,6 @@
 <div class="signup-div" id="signup-div">
     <h2>Sign Up</h2>
-    <form id="signup-form" name="signupForm" class="register-form" method="POST">
+    <form id="signup-form" name="signupForm" class="register-form" method="POST" action='/register'>
         <p>
             <label for="firstname">First Name:</label>
             <input type="text" name="firstname" id="firstname" class="inputFields" placeholder="First Name" required />
@@ -137,20 +137,20 @@
 
         
 
-
+        <div>
+            {{#if hasErrors}}
+            <div class="r-error">
+                <ul>
+                    {{#each errors}}
+                    <li>
+                        {{this}}
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+            {{/if}}
+        </div>
     </form>
+    
 </div>
 
-<div>
-    {{#if hasErrors}}
-    <div class="error">
-        <ul>
-            {{#each errors}}
-            <li>
-                {{this}}
-            </li>
-            {{/each}}
-        </ul>
-    </div>
-    {{/if}}
-</div>
