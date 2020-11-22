@@ -4,11 +4,13 @@ const configRoutes = require('./routes');
 const session = require('express-session');
 const static = express.static(__dirname + '/public');
 const exphbs = require('express-handlebars');
+const cookieParase = require('cookie-parser');
 
 
 app.use('/public', static);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParase());
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
@@ -38,7 +40,7 @@ app.use('/login', (req, res, next) => {
     //here I',m just manually setting the req.method to post since it's usually coming from a form
     res.render('pages/login');
     //req.method = 'POST';
-    //next();
+    next();
   }
 });
 
