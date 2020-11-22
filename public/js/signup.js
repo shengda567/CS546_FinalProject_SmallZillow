@@ -4,6 +4,7 @@
 // () => {
 
 function send_form() {
+  let newUserNameInput = $("#username");
   let newFirstNameInput = $("#firstname");
   let newLastNameInput = $("#lastname");
   let newEmailInput = $("#email");
@@ -14,6 +15,7 @@ function send_form() {
   let newStateInput = $("#state");
   let newPasswordInput = $("#password");
 
+  let newUserName = newUserNameInput.val();
   let newFirstName = newFirstNameInput.val();
   let newLastName = newLastNameInput.val();
 
@@ -28,6 +30,7 @@ function send_form() {
   let newPassword = newPasswordInput.val();
 
   let formSet = {
+    newUserName: newUserName,
     newFirstName: newFirstName,
     newLastName: newLastName,
     newEmail: newEmail,
@@ -51,6 +54,7 @@ function send_form() {
 }
 
 function sign_up_input_check() {
+  let newUserNameInput = $("#username");
   let newFirstNameInput = $("#firstname");
   let newLastNameInput = $("#lastname");
   let newEmailInput = $("#email");
@@ -61,6 +65,7 @@ function sign_up_input_check() {
   let newStateInput = $("#state");
   let newPasswordInput = $("#password");
 
+  let newUserName = newUserNameInput.val();
   let newFirstName = newFirstNameInput.val();
   let newLastName = newLastNameInput.val();
 
@@ -96,7 +101,8 @@ function sign_up_input_check() {
     newPhone &&
     newCity &&
     newState &&
-    newPassword
+    newPassword &&
+    newUserName
   ) {
     return false;
   }

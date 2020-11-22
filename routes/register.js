@@ -19,9 +19,7 @@ router.post("/", async (req, res) => {
     return;
   }
   if (!personalinf.username) {
-    console.log("here");
-    //res.render("pages/register", { hasErrors: true, errors: [1, 2, 3] });
-    res.redirect("pages/login");
+    res.status(400).json({ error: "You must provide post username" });
     return;
   }
   if (!personalinf.user.firstname) {
