@@ -30,17 +30,16 @@ function send_form() {
   let newPassword = newPasswordInput.val();
 
   let formSet = {
-    newUserName: newUserName,
-    newFirstName: newFirstName,
-    newLastName: newLastName,
-    newEmail: newEmail,
-    newGender: newGender,
-    newBirthday: newBirthday,
-    newPhone: newPhone,
-    newCity: newCity,
-    newState: newState,
-    newPassword: newPassword,
+    username: newUserName,
+    user: { firstname: newFirstName, lastname: newLastName },
+    email: newEmail,
+    gender: newGender,
+    BOD: newBirthday,
+    phone: newPhone,
+    address: { city: newCity, state: newState },
+    password: newPassword,
   };
+  console.log(formSet);
   try {
     $.ajax({
       url: "http://localhost:3000/register",
