@@ -33,7 +33,7 @@ router.get('/api/getCaptcha', function(req, res, next) {
   
 })
 
-router.post('/', async (req, res) => {
+router.post('/check', async (req, res) => {
 
 	const { username, password, verifiy } = req.body;
     var check = false;
@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
                     match = bcrypt.compareSync(password, users[i].hashedPassword);
                     if(match){
                         req.session.user = { userId: users[i]._id, username: users[i].username, firstName: users[i].firstName, lastName: users[i].lastName, Profession: users[i].Profession, Bio: users[i].Bio };
-                        res.redirect('/private');
+                        res.redirect('/newpost');
                     }
                     else {
                         res.status(401).render('pages/error', {error: "Either username or password are error."});
