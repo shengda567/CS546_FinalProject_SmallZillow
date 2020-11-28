@@ -11,15 +11,13 @@ router.get('/', async (req, res) => {
   //res.json({ route: '/users', method: req.method });
 
   if (req.session.user) {
-    res.redirect('/private');
+    res.redirect('/post');
   }else{
     res.render('pages/login');
   }
 });
 
-router.post('/', async (req, res) => {
-  res.json({ route: '/users', method: req.method });
-});
+
 
 router.get('/api/getCaptcha', function(req, res, next) {
   let p = 'ABCDEFGHKMNPQRSTUVWXYZ1234567890';
@@ -35,7 +33,7 @@ router.get('/api/getCaptcha', function(req, res, next) {
   
 })
 
-router.post('/login', async (req, res) => {
+router.post('/', async (req, res) => {
 
 	const { username, password, verifiy } = req.body;
     var check = false;
@@ -67,23 +65,23 @@ router.post('/login', async (req, res) => {
                         res.redirect('/private');
                     }
                     else {
-                        res.status(401).render('handlebars/error', {error: "Either username or password are error."});
+                        res.status(401).render('pages/error', {error: "Either username or password are error."});
                     }
                 }
             }
             if(check == false)
             {
-                res.status(401).render('handlebars/error', {error: "Username is not exist."});
+                res.status(401).render('pages/error', {error: "Username is not exist."});
             }   
         
         }
         else
         {
             
-            res.status(401).render('handlebars/error', {error: "Code is wrong."});
+            res.status(401).render('pages/error', {error: "Code is wrong."});
         }
     }catch(e){
-    res.status(401).render('handlebars/error', {error: e});
+    res.status(401).render('pages/error', {error: e});
   }
 	
 });
