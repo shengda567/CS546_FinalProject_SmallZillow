@@ -4,7 +4,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const axios = require('axios');
 const mongoCollections = require('../config/mongoCollections');
-const users = mongoCollections.users;
+const users = mongoCollections.register;
 const pic = require('../data/VerificationCode');
 
 router.get('/', async (req, res) => {
@@ -37,7 +37,10 @@ router.post('/check', async (req, res) => {
 
 	const { username, password, verifiy } = req.body;
     var check = false;
-
+    const userCollection = await users();
+    const userdata = await userCollection.find({}).toArray();
+    const parsedData = JSON.stringify(userdata);
+    const userList = JSON.parse(parsedData);
     try{
 	const cookies = req.headers.cookie;
         var list = cookies.split("; ");
@@ -53,15 +56,16 @@ router.post('/check', async (req, res) => {
 	if(verifiy == captcha)
         {
            
-            for(var i in users)
+            for(var i in userList)
             {
-                if(users[i].username == username)
+                if(userList[i].username == username)
                 {
+                    
                     check = true;
                     var match = false;
-                    match = bcrypt.compareSync(password, users[i].hashedPassword);
+                    match = bcrypt.compareSync(password, userList[i].hashpassword);
                     if(match){
-                        req.session.user = { userId: users[i]._id, username: users[i].username, firstName: users[i].firstName, lastName: users[i].lastName, Profession: users[i].Profession, Bio: users[i].Bio };
+                        req.session.user = { userId: userList[i]._id, username: userList[i].username, firstName: userList[i].firstName, lastName: userList[i].lastName };
                         res.redirect('/newpost');
                     }
                     else {
