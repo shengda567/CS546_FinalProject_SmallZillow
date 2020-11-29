@@ -1,89 +1,109 @@
 //Name:Zichong Wang; SID:10464881; Course:CS546
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const data = require('../data');
+const data = require("../data");
 const customerinf = data.register;
-var bodyParser = require('body-parser');
+var bodyParser = require("body-parser");
+//const { default: renderEmpty } = require('antd/lib/config-provider/renderEmpty');
 
-router.post('/', async (req, res) => {
-  const personalinf = req.body;
+router.get("/", async (req, res) => {
+  res.render("pages/register");
+});
+
+router.post("/", async (req, res) => {
+  let personalinf = JSON.parse(JSON.stringify(req.body));
+  //const personalinf = req.body;
+  console.log(personalinf);
   if (!req.body) {
-    res.status(400).json({ error: 'You must provide body' + personalinf});
+    res.status(400).json({ error: "You must provide body" + personalinf });
     return;
   }
   if (!personalinf.username) {
-    res.status(400).json({ error: 'You must provide post username' });
+    res.status(400).json({ error: "You must provide post username" });
     return;
   }
   if (!personalinf.user.firstname) {
-    res.status(400).json({ error: 'You must provide post first name' });
+    res.status(400).json({ error: "You must provide post first name" });
     return;
   }
   if (!personalinf.user.lastname) {
-    res.status(400).json({ error: 'You must provide post last name' });
+    res.status(400).json({ error: "You must provide post last name" });
     return;
   }
   if (!personalinf.email) {
-    res.status(400).json({ error: 'You must provide post email' });
+    res.status(400).json({ error: "You must provide post email" });
     return;
   }
   if (!personalinf.gender) {
-    res.status(400).json({ error: 'You must provide gender' });
+    res.status(400).json({ error: "You must provide gender" });
     return;
   }
   if (!personalinf.address.city) {
-    res.status(400).json({ error: 'You must provide city' });
+    res.status(400).json({ error: "You must provide city" });
     return;
   }
   if (!personalinf.address.state) {
-    res.status(400).json({ error: 'You must provide state' });
+    res.status(400).json({ error: "You must provide state" });
     return;
   }
   if (!personalinf.BOD) {
-    res.status(400).json({ error: 'You must provide birthday' });
+    res.status(400).json({ error: "You must provide birthday" });
     return;
   }
   if (!personalinf.phone) {
-    res.status(400).json({ error: 'You must provide phone number' });
+    res.status(400).json({ error: "You must provide phone number" });
     return;
   }
   if (!personalinf.password) {
-    res.status(400).json({ error: 'You must provide password' });
+    res.status(400).json({ error: "You must provide password" });
     return;
   }
   if (personalinf.password.length < 10) {
-    res.status(400).json({ error: 'You password must has at last 10 digits' });
+    res.status(400).json({ error: "You password must has at last 10 digits" });
     return;
   }
 
   try {
-      if(customerinf.createaccount(req.params.username))
-      {
-          const { username, user, email, gender, address, BOD, phone, password } = personalinf;
-          const newPost = await customerinf.createaccount( username, user, email, gender, address, BOD, phone, password);
-            res.json(newPost);
-      }
-      else
-      {
-          res.json({message:'username already exist.'})
-      }
-    
+    if (customerinf.createaccount(req.params.username)) {
+      const {
+        username,
+        user,
+        email,
+        gender,
+        address,
+        BOD,
+        phone,
+        password,
+      } = personalinf;
+      const newPost = await customerinf.createaccount(
+        username,
+        user,
+        email,
+        gender,
+        address,
+        BOD,
+        phone,
+        password
+      );
+      res.json(newPost);
+    } else {
+      res.json({ message: "username already exist." });
+    }
   } catch (e) {
     res.status(500).json({ error: e });
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const post = await customerinf.getbyone(req.params.id);
     res.json(post);
   } catch (e) {
-    
-    res.status(404).json({ message: 'Post not found ' + e });
+    res.status(404).json({ message: "Post not found " + e });
   }
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch("/:id", async (req, res) => {
   const requestBody = req.body;
   let updatedObject = {};
   try {
@@ -103,7 +123,7 @@ router.patch('/:id', async (req, res) => {
     if (requestBody.password && requestBody.password !== oldPost.password)
       updatedObject.password = requestBody.password;
   } catch (e) {
-    res.status(404).json({ error: 'Post not found' });
+    res.status(404).json({ error: "Post not found" });
     return;
   }
   if (Object.keys(updatedObject).length !== 0) {
@@ -117,24 +137,22 @@ router.patch('/:id', async (req, res) => {
       res.status(500).json({ error: e });
     }
   } else {
-    res
-      .status(400)
-      .json({
-        error:
-          'No fields have been changed from their inital values, so no update has occurred'
-      });
+    res.status(400).json({
+      error:
+        "No fields have been changed from their inital values, so no update has occurred",
+    });
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   if (!req.params.id) {
-    res.status(400).json({ error: 'You must Supply and ID to delete' });
+    res.status(400).json({ error: "You must Supply and ID to delete" });
     return;
   }
   try {
     await customerinf.getbyone(req.params.id);
   } catch (e) {
-    res.status(404).json({ error: 'Post not found' });
+    res.status(404).json({ error: "Post not found" });
     return;
   }
   try {
@@ -144,6 +162,5 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ error: e });
   }
 });
-
 
 module.exports = router;
