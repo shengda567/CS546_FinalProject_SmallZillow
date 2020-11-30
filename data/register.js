@@ -144,7 +144,7 @@ async function update(id, updatedPost) {
   var userId = ObjectId(id);
   
   const updatedPostData = {};
-
+    
   if (updatedPost.user) {
     updatedPostData.user = updatedPost.user;
   }
@@ -173,10 +173,10 @@ async function update(id, updatedPost) {
     updatedPostData.password = updatedPost.password;
     const saltRounds = 10;
     const salt = bcrypt.genSaltSync(saltRounds);
-    var hashpassword = bcrypt.hashSync(password, salt);
+    var hashpassword = bcrypt.hashSync(updatedPost.password, salt);
     updatedPostData.hashpassword = hashpassword;
   }
-
+  
   const updatedInfo = await registerCollection.updateOne(
     { _id: userId },
     { $set: updatedPostData }
