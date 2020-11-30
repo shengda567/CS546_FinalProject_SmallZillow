@@ -1,3 +1,6 @@
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/Zillow');
 const MongoClient = require('mongodb').MongoClient;
 const settings = {
   mongoConfig: {

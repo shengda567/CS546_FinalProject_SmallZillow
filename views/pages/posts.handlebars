@@ -5,11 +5,26 @@
   </div>
   {{/if}}
 <div>
-<main>
-  <ul>
-    {{#each posts}}
-      <li><a href="/posts/{{_id}}">{{title}}</a></li>
+<div class="posts-container">
+  <div class="row">
+    <div class="col-sm-6">
+      aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!
+    </div>
+    <div class="col-sm-6">
+      {{#each posts}}
 
-    {{/each}}
-  </ul>
-</main>
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="{{image}}" alt="Card image cap" width="200">
+          <div class="card-body">
+            <h5 class="card-title">{{this.title}}</h5>
+            <p class="card-text">{{this.price}}</p>
+            <div class="text-right">
+              <a href="/posts/{{_id}}" class="btn btn-info">Detail</a>
+            </div>
+          </div>
+        </div>
+
+      {{/each}}
+    </div>
+  </div>
+</div>

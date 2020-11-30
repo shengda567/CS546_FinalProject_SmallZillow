@@ -79,8 +79,6 @@ let exportedMethods = {
   },
   async addPostToUser(userId, postId, postTitle) {
     let currentUser = await this.getUserById(userId);
-    console.log(currentUser);
-
     const userCollection = await users();
     const updateInfo = await userCollection.updateOne(
       { _id: userId },

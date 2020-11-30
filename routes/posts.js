@@ -34,6 +34,10 @@ router.get("/", async (req, res) => {
       let item = {
         _id: posts[i]._id.toString(),
         title: posts[i].title,
+        image: posts[i].img,
+        price: posts[i].price,
+        address: posts[i].address
+
       };
       newList.push(item);
     }
@@ -51,16 +55,13 @@ router.post("/", async (req, res) => {
 
 
   if (!postInfo) {
-
     res.status(400).json({ error: "You must provide data to create a post" });
     return;
   }
-
   if (!postInfo.title) {
     res.status(400).json({ error: "You must provide a title" });
     return;
   }
-
   if (!postInfo.address) {
     res.status(400).json({ error: "You must provide a address" });
     return;
@@ -73,7 +74,6 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide a city" });
     return;
   }
-
   if (!postInfo.zipcode) {
     res.status(400).json({ error: "You must provide a zipcode" });
     return;
@@ -86,7 +86,6 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide a description" });
     return;
   }
-
   if (!postInfo.Time) {
     res.status(400).json({ error: "You must provide a date" });
     return;
@@ -95,12 +94,10 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide a tag" });
     return;
   }
-
   if (!postInfo.phone) {
     res.status(400).json({ error: "You must provide a phone" });
     return;
   }
-
   if (!postInfo.prices) {
     res.status(400).json({ error: "You must provide a price" });
     return;
@@ -109,11 +106,15 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide a email" });
     return;
   }
-  let img_data = postInfo.img;
+  let img_data = postInfo.img[0];
 
-  var base64Data = img_data[0].base64.replace(/^data:image\/jpg;base64,/, "");
-
-  require("fs").writeFile("public/img/" + img_data[0].name, base64Data, 'base64', function(err) {
+  // save the image to /public/img
+  var fs = require('fs');
+  var base64Data = img_data.base64;
+  var base64 = base64Data.replace(/^data:image\/\w+;base64,/, "");
+  var buf = Buffer.from(base64, 'base64');
+  let dir = 'public/img/' + img_data.name;
+  fs.writeFile(dir, buf, function(err){
     console.log(err);
   });
 
@@ -129,7 +130,7 @@ router.post("/", async (req, res) => {
       postInfo.state,
       postInfo.city,
       postInfo.zipcode,
-      img_data[0].name,
+      dir,
       postInfo.description,
       postInfo.Time,
       postInfo.tag,
