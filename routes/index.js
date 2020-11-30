@@ -1,6 +1,7 @@
 const postRoutes = require("./posts");
 const userRoutes = require("./users");
 const searchRoutes = require("./search");
+const managerRoutes = require("./managers");
 
 //const privateRoutes = require('./private');
 const registerData = require("./register");
@@ -15,6 +16,7 @@ const constructorMethod = (app) => {
   app.use("/posts", postRoutes);
   //app.use('/private', privateRoutes);
   app.use("/register", registerData);
+  app.use("/managers", managerRoutes);
 
   //app.use('/comments', commentRoutes);
 
@@ -25,6 +27,8 @@ const constructorMethod = (app) => {
   app.get("/newpost/success", async (req, res) => {
     res.render("pages/newpostsuc");
   });
+
+
   app.use("*", (req, res) => {
     res.sendStatus(404);
   });
