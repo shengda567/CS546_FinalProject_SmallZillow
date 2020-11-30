@@ -6,18 +6,12 @@ const axios = require('axios');
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.register;
 const pic = require('../data/VerificationCode');
+const data = require("../data");
+const customerinf = data.register;
 
-router.get('/', async (req, res) => {
-  //res.json({ route: '/users', method: req.method });
-
-  if (req.session.user) {
-    res.redirect('/newpost');
-  }else{
-    res.render('pages/login');
-  }
+router.get("/", async (req, res) => {
+  res.render("pages/findpassword");
 });
-
-
 
 router.get('/api/getCaptcha', function(req, res, next) {
   let p = 'ABCDEFGHKMNPQRSTUVWXYZ1234567890';
@@ -35,7 +29,8 @@ router.get('/api/getCaptcha', function(req, res, next) {
 
 router.post('/check', async (req, res) => {
 
-	const { username, password, verifiy } = req.body;
+	//const { username, email, password, verifiy } = req.body;
+    let personalinf = JSON.parse(JSON.stringify(req.body));
     var check = false;
     const userCollection = await users();
     const userdata = await userCollection.find({}).toArray();
@@ -53,23 +48,29 @@ router.post('/check', async (req, res) => {
             }
                 
         }
-	if(verifiy == captcha)
+	if(personalinf.verifiy == captcha)
         {
            
             for(var i in userList)
             {
-                if(userList[i].username == username)
+                if(userList[i].username == personalinf.username)
                 {
                     
-                    check = true;
-                    var match = false;
-                    match = bcrypt.compareSync(password, userList[i].hashpassword);
-                    if(match){
-                        req.session.user = { userId: userList[i]._id, username: userList[i].username, firstName: userList[i].firstName, lastName: userList[i].lastName };
-                        res.redirect('/newpost');
+                    if(userList[i].email == personalinf.email)
+                    {
+                        const inputinf = {};
+                        inputinf.password = personalinf.password;
+                        
+                        const change = await customerinf.update(userList[i]._id, inputinf);
+                       
+                        if(change.length == 0)
+                        {
+                            res.status(401).render('pages/error', {error: "We fail to updata password."});
+                        }
+                        res.redirect('/login');
                     }
                     else {
-                        res.status(401).render('pages/error', {error: "Either username or password are error."});
+                        res.status(401).render('pages/error', {error: "Either username or Email are error."});
                     }
                 }
             }
@@ -91,11 +92,5 @@ router.post('/check', async (req, res) => {
 });
 
 
-
-router.get('/logout', async (req, res) => {
-  req.session.destroy();
-  res.render('pages/logout');
-  //res.send('Logged out');
-});
 
 module.exports = router;
