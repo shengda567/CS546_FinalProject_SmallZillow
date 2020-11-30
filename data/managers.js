@@ -1,12 +1,14 @@
 //Shuoyu Wang
 const mongoCollections = require('../config/mongoCollections');
 const managers = mongoCollections.managers;
-
 const managerCodeData = require('./managersCode');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 16;
 var { ObjectId } = require('mongodb');
 var registers = require('./register');
+
+
+
 
     /**
      * find all managers,  
@@ -18,6 +20,8 @@ var registers = require('./register');
         if (!managersList) throw 'No managers in system!';
         return managersList;
     }
+
+
 
     /**
      * find manager with id
@@ -32,6 +36,8 @@ var registers = require('./register');
         return manager;
     }
 
+
+
     /**
      * find manager by username
      * @param {string} username 
@@ -42,6 +48,8 @@ var registers = require('./register');
         if (!manager) return null;
         return manager;
     }
+
+
 
 
     /**
@@ -75,6 +83,9 @@ var registers = require('./register');
         }
         return false;
     }
+
+
+
 
     /**
      * 
@@ -132,8 +143,10 @@ var registers = require('./register');
         }        
     }
 
+
+
+
     async function removeManager(id){
-        
         let managerId = ObjectId(id);
         const managersCollection = await managers();
         const deletionInfo = await managersCollection.removeOne({_id: managerId});
@@ -142,6 +155,9 @@ var registers = require('./register');
         }
         return true;
     }
+
+
+
 
     async function updateManager(id, updatedManager){
         
@@ -192,6 +208,9 @@ var registers = require('./register');
         return await getManagerById(id);
     }
 
+
+
+
     async function deleteComment(mId, userId, commentId){
 
         //check have permission to deleted register's comments
@@ -226,6 +245,9 @@ var registers = require('./register');
 
     }
 
+
+
+
     async function deletePosts(mId, userId, postId){
 
         //check have permission to deleted register's posts
@@ -259,6 +281,9 @@ var registers = require('./register');
 
     }
 
+
+
+    
     async function deleteRegister(mId, registerId){
         //check have permission to deleted register
         let managerId = ObjectId(mId);

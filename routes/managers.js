@@ -7,9 +7,13 @@ const ManagersData = data.managers;
 const bcryptjs = require('bcryptjs');
 
 
+
 router.get('/', async (req, res) => {
     res.render('pages/managerLogin');
 });
+
+
+
 
 router.post('/', async (req, res) =>{
     //username, password, email, manager_level, managerCode
@@ -17,19 +21,19 @@ router.post('/', async (req, res) =>{
     if (!managerInfo){
         res.status(400).json({error : 'you must provide body'});
     }
-    if(!managerInfo.username){
+    if (!managerInfo.username){
         res.status(400).json({error : 'you must provide username'});
     }
-    if(!managerInfo.password){
+    if (!managerInfo.password){
         res.status(400).json({error : 'you must provide password'});
     }
-    if(!managerInfo.email){
+    if (!managerInfo.email){
         res.status(400).json({error : 'you must provide email'});
     }
-    if(!managerInfo.manager_level){
+    if (!managerInfo.manager_level){
         res.status(400).json({error : 'you must provide manager Level'});
     }
-    if(!managerInfo.managerCode){
+    if (!managerInfo.managerCode){
         res.status(400).json({error : 'you must provide manager code'});
     }
     
@@ -48,6 +52,9 @@ router.post('/', async (req, res) =>{
     }
 });
 
+
+
+
 router.get('/:id', async (req, res)=>{
     try{
         const manager = await ManagersData.getManagerById(req.params.id);
@@ -63,6 +70,8 @@ router.get('/:id', async (req, res)=>{
                 // email: email,
                 // manager_level: manager_level,
                 // manager_history: manageHistory
+
+
 
 
 router.patch('/:id', async (req, res) =>{
@@ -116,6 +125,9 @@ router.patch('/:id', async (req, res) =>{
     }
 });
 
+
+
+
 router.patch('/:mId/:registerId', async (req,res) =>{
     if(!req.params.mId){
         res.status(400).json({ error: 'You must Supply a manager ID to delete register' });
@@ -126,6 +138,9 @@ router.patch('/:mId/:registerId', async (req,res) =>{
         return;
     }
 });
+
+
+
 
 router.patch('/:mId/:userId/:postId', async (req,res) =>{
     if(!req.params.mId){
@@ -142,6 +157,9 @@ router.patch('/:mId/:userId/:postId', async (req,res) =>{
     }
 });
 
+
+
+
 router.patch('/:mId/:userId/:commentId', async (req,res) =>{
     if(!req.params.mId){
         res.status(400).json({ error: 'You must Supply a manager ID to delete register' });
@@ -156,6 +174,9 @@ router.patch('/:mId/:userId/:commentId', async (req,res) =>{
         return;
     }
 });
+
+
+
 
 router.delete('/:id', async(req, res) =>{
     if(!req.params.id){
@@ -175,5 +196,8 @@ router.delete('/:id', async(req, res) =>{
         res.status(500).json({error : e});
     }
 });
+
+
+
 
 module.exports = router;
