@@ -17,14 +17,14 @@ router.get('/api/getCaptcha', function(req, res, next) {
   let p = 'ABCDEFGHKMNPQRSTUVWXYZ1234567890';
   var str = '';
   for (var i = 0; i < 4; i++)
-  { 
+  {
     str += p.charAt(Math.random() * p.length | 0);
   }
-  res.cookie('captcha', str); 
+  res.cookie('captcha', str);
   let img = pic.makeCapcha(str);
   res.setHeader('Content-Type', 'image/bmp');
   res.end(img.getFileData());
-  
+
 })
 
 router.post('/check', async (req, res) => {
@@ -39,30 +39,30 @@ router.post('/check', async (req, res) => {
     try{
 	const cookies = req.headers.cookie;
         var list = cookies.split("; ");
-        for(var i = 0; i < list.length; i++) 
+        for(var i = 0; i < list.length; i++)
 	{
-            var arr = list[i].split("=");   
+            var arr = list[i].split("=");
             if(arr[0] == 'captcha')
             {
                  var captcha = arr[1];
             }
-                
+
         }
 	if(personalinf.verifiy == captcha)
         {
-           
+
             for(var i in userList)
             {
                 if(userList[i].username == personalinf.username)
                 {
-                    
+
                     if(userList[i].email == personalinf.email)
                     {
                         const inputinf = {};
                         inputinf.password = personalinf.password;
-                        
+
                         const change = await customerinf.update(userList[i]._id, inputinf);
-                       
+
                         if(change.length == 0)
                         {
                             res.status(401).render('pages/error', {error: "We fail to updata password."});
@@ -77,18 +77,18 @@ router.post('/check', async (req, res) => {
             if(check == false)
             {
                 res.status(401).render('pages/error', {error: "Username is not exist."});
-            }   
-        
+            }
+
         }
         else
         {
-            
+
             res.status(401).render('pages/error', {error: "Code is wrong."});
         }
     }catch(e){
     res.status(401).render('pages/error', {error: e});
   }
-	
+
 });
 
 

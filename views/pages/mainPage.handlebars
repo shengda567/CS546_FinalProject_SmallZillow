@@ -9,4 +9,35 @@
       <button type='submit' id="searchButton" class="searchButton" label="search">Search</button>
     </form>
   </div>
+
+
+  <div class = "main-page-list">
+     <h1 class = 'header'>Recent Posts</h1>
+     <div class="container" id = 'home-page-posts'>
+     <div class="row" id = 'recent-post'>
+
+      {{#each posts}}
+        <div class="col-md-4">
+        <div class="card rounded">
+          <div class = "card-image">
+          <img class="img-fluid" src="{{image}}" alt="Card image" width="300" height = '200'/>
+          </div>
+          <div class="card-image-overlay">
+                <span class="card-detail-badge">{{this.zipcode}}</span>
+                <span class="card-detail-badge">{{this.city}}</span>
+                <span class="card-detail-badge">{{this.price}}/mo</span>
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title">{{this.title}}</h5>
+
+            <a href="/posts/{{_id}}" class="post-info-btn">Detail</a>
+
+          </div>
+        </div>
+        </div>
+      {{/each}}
+
+    </div>
+  </div>
+  </div>
 </main>

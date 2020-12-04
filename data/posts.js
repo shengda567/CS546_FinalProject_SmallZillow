@@ -1,6 +1,6 @@
 const mongoCollections = require('../config/mongoCollections');
 const posts = mongoCollections.posts;
-const users = require('./users');
+const registers = require('./register');
 //const uuid = require('uuid/v4');
 
 function isEmptyOrSpaces(str){
@@ -8,34 +8,40 @@ function isEmptyOrSpaces(str){
 }
 
 const exportedMethods = {
+  //get all posts
   async getAllPosts() {
     const postCollection = await posts();
     return await postCollection.find({}).toArray();
   },
+  //search post by tag
   async getPostsByTag(tag) {
     if (!tag) throw 'No tag provided';
 
     const postCollection = await posts();
     return await postCollection.find({ tag: tag }).toArray();
   },
+  //search post by zipCode
   async getPostsByZipcode(zipcode) {
     if (!zipcode) throw 'No zipcode provided';
 
     const postCollection = await posts();
     return await postCollection.find({ zipcode: zipcode }).toArray();
   },
+  //search post by address
   async getPostsByAddress(address) {
     if (!address) throw 'No address provided';
 
     const postCollection = await posts();
     return await postCollection.find({ address: address }).toArray();
   },
+  //search post by city
   async getPostsByCity(city) {
     if (!city) throw 'No city provided';
 
     const postCollection = await posts();
     return await postCollection.find({ city: city }).toArray();
   },
+  //search post by Id
   async getPostById(id) {
     const postCollection = await posts();
     const post = await postCollection.findOne({ _id: id });
@@ -43,6 +49,7 @@ const exportedMethods = {
     if (!post) throw 'Post not found';
     return post;
   },
+  
   async addPost(posterId, title, address, state, city, zipcode, img, description, date, tag, phone, price, email, comments) {
 
     if (typeof title !== 'string' || isEmptyOrSpaces(title)) throw 'Please provide a valid title!';
@@ -63,12 +70,12 @@ const exportedMethods = {
 
     const postCollection = await posts();
 
-    const userThatPosted = await users.getUserById(posterId);
+    const userThatPosted = await registers.getbyone(posterId);
 
     const newPost = {
       user: {
         id: posterId,
-        name: `${userThatPosted.firstName} ${userThatPosted.lastName}`
+        name: `${userThatPosted.user.firstName} ${userThatPosted.user.lastName}`
       },
       title: title,
       address: address,
@@ -89,7 +96,7 @@ const exportedMethods = {
     const newInsertInformation = await postCollection.insertOne(newPost);
     const newId = newInsertInformation.insertedId;
 
-    await users.addPostToUser(posterId, newId, title);
+    await registers.addpostforuser(posterId, newId);
 
     return await this.getPostById(newId);
   },
@@ -106,7 +113,7 @@ const exportedMethods = {
     if (deletionInfo.deletedCount === 0) {
       throw `Could not delete post with id of ${id}`;
     }
-    await users.removePostFromUser(post.poster.id, id);
+    await registers.removepostfromuser(post.poster.id, id);
     return true;
   },
 
