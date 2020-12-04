@@ -25,11 +25,10 @@ router.get("/:id", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  console.log("hello")
+
   try {
     let posts = await postsData.getAllPosts();
     const newList = [];
-    console.log(posts);
     for (let i in posts) {
       let item = {
         _id: posts[i]._id.toString(),
@@ -107,6 +106,7 @@ router.post("/", async (req, res) => {
     return;
   }
   let img_data = postInfo.img[0];
+  console.log(req.session.user)
 
   // save the image to /public/img
   var fs = require('fs');
@@ -118,8 +118,10 @@ router.post("/", async (req, res) => {
     console.log(err);
   });
 
-  const {ObjectId} = require('mongodb');
-  let userId = ObjectId("5fb62a7f60fd91ca36339a9c");
+
+  let userId = req.session.user.userId;
+  console.log(userId)
+  console.log(typeof userId)
 
   try {
 

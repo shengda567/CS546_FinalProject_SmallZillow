@@ -3,16 +3,37 @@ const userRoutes = require("./users");
 const searchRoutes = require("./search");
 const managerRoutes = require("./managers");
 const findRoutes = require("./find");
-
+const data = require("../data");
+const postsData = data.posts;
 
 //const privateRoutes = require('./private');
 const registerData = require("./register");
 //const commentRoutes = require('./comments');
 
 const constructorMethod = (app) => {
+  // home page
+  app.get("/", async function (req, res) {
+    // main page only shows recent 3 posts.
+    try {
+      let posts = await postsData.getAllPosts();
+      const newList = [];
+      for (let i = 0; i < 3; i++) {
+        let item = {
+          _id: posts[posts.length - i - 1]._id.toString(),
+          title: posts[posts.length - i - 1].title,
+          image: posts[posts.length - i - 1].img,
+          price: posts[posts.length - i - 1].price,
+          zipcode: posts[posts.length - i - 1].zipcode,
+          city: posts[posts.length - i - 1].city,
 
-  app.get("/", function (req, res) {
-    res.render("pages/mainPage");
+        };
+        newList.push(item);
+      }
+      res.render("pages/mainPage", { posts: newList });
+    } catch (e) {
+      res.render("pages/mainPage", { errors: 'No posts in the databse' });
+    }
+
   });
   app.use("/search", searchRoutes);
   app.use("/posts", postRoutes);

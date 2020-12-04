@@ -55,7 +55,7 @@ async function createaccount(
   const salt = bcrypt.genSaltSync(saltRounds);
   var hashpassword = bcrypt.hashSync(password, salt);
   const registerCollection = await register();
-    
+
   let newaccount = {
     username: username,
     user: user,
@@ -142,9 +142,9 @@ async function update(id, updatedPost) {
   const registerCollection = await register();
   var { ObjectId } = require("mongodb");
   var userId = ObjectId(id);
-  
+
   const updatedPostData = {};
-    
+
   if (updatedPost.user) {
     updatedPostData.user = updatedPost.user;
   }
@@ -176,7 +176,7 @@ async function update(id, updatedPost) {
     var hashpassword = bcrypt.hashSync(updatedPost.password, salt);
     updatedPostData.hashpassword = hashpassword;
   }
-  
+
   const updatedInfo = await registerCollection.updateOne(
     { _id: userId },
     { $set: updatedPostData }

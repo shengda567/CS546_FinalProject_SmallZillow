@@ -1,6 +1,7 @@
 const mongoCollections = require('../config/mongoCollections');
 const comments = mongoCollections.comments;
 const posts = require('./posts');
+const registers = require('./register');
 
 
 function isEmptyOrSpaces(str){
@@ -33,6 +34,8 @@ const exportedMethods = {
     let { ObjectId } = require('mongodb');
     let post_id = ObjectId(postId);
 
+    //check if the user and post exist
+    const userThatPosted = await registers.getbyone(user);
     const post = await posts.getPostById(post_id);
 
     const newComment = {
@@ -44,7 +47,7 @@ const exportedMethods = {
 
     const newInsertInformation = await commentCollection.insertOne(newComment);
     const newId = newInsertInformation.insertedId;
-
+    await registers.addcommentforuser(user, newId);
     await posts.addCommentToPost(post_id, newId);
     return await this.getCommentById(newId);
   },
