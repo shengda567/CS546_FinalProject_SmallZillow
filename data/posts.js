@@ -49,7 +49,7 @@ const exportedMethods = {
     if (!post) throw 'Post not found';
     return post;
   },
-  
+
   async addPost(posterId, title, address, state, city, zipcode, img, description, date, tag, phone, price, email, comments) {
 
     if (typeof title !== 'string' || isEmptyOrSpaces(title)) throw 'Please provide a valid title!';
@@ -62,7 +62,7 @@ const exportedMethods = {
     if (typeof date !== 'string' || isEmptyOrSpaces(date)) throw 'Please provide a valid date!';
     if (typeof tag !== 'string' || isEmptyOrSpaces(tag)) throw 'Please provide a valid tag!';
     if (typeof phone !== 'string' || isEmptyOrSpaces(phone)) throw 'Please provide a valid phone!';
-    if (typeof price !== 'string' || isEmptyOrSpaces(price)) throw 'Please provide a valid price!';
+    if (typeof price !== 'number') throw 'Please provide a valid price!';
     if (typeof email !== 'string' || isEmptyOrSpaces(email)) throw 'Please provide a valid email!';
     if (!Array.isArray(comments)) {
       comments = [];
@@ -170,7 +170,7 @@ const exportedMethods = {
     if (typeof updatedPost.email === 'string' && !isEmptyOrSpaces(updatedPost.email)) {
       updatedPostData.email = updatedPost.email;
     }
-    if (typeof updatedPost.price === 'string' && !isEmptyOrSpaces(updatedPost.price)) {
+    if (typeof updatedPost.price === 'number' && !isEmptyOrSpaces(updatedPost.price)) {
       updatedPostData.price = updatedPost.price;
     }
     updatedPostData.comments = updatedPost.comments;

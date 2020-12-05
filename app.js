@@ -6,14 +6,56 @@ const static = express.static(__dirname + '/public');
 const exphbs = require('express-handlebars');
 const cookieParase = require('cookie-parser');
 
+const handlebarsInstance = exphbs.create({
+	defaultLayout: 'main',
+	// Specify helpers which are only registered on this instance.
+	helpers: {
+		asJSON: (obj, spacing) => {
+			if (typeof spacing === 'number') return new Handlebars.SafeString(JSON.stringify(obj, null, spacing));
+
+			return new Handlebars.SafeString(JSON.stringify(obj));
+		}
+	},
+
+	partialsDir: [ 'views/partials/' ]
+});
+
+
+const rewriteUnsupportedBrowserMethods = (req, res, next) => {
+	// If the user posts to the server with a property called _method, rewrite the request's method
+	// To be that method; so if they post _method=PUT you can now allow browsers to POST to a route that gets
+	// rewritten in this middleware to a PUT route
+	if (req.body && req.body._method) {
+		req.method = req.body._method;
+		delete req.body._method;
+	}
+
+	// let the next middleware run:
+	next();
+};
 
 app.use('/public', static);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(rewriteUnsupportedBrowserMethods);
+app.engine('handlebars', handlebarsInstance.engine);
 app.use(cookieParase());
-
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+
+handlebarsInstance.handlebars.registerHelper('grouped_each', function(every, context, options) {
+  var out = "", subcontext = [], i;
+  if (context && context.length > 0) {
+      for (i = 0; i < context.length; i++) {
+          if (i > 0 && i % every === 0) {
+              out += options.fn(subcontext);
+              subcontext = [];
+          }
+          subcontext.push(context[i]);
+      }
+      out += options.fn(subcontext);
+  }
+  return out;
+});
 
 app.use(
   session({

@@ -4,6 +4,7 @@ const searchRoutes = require("./search");
 const managerRoutes = require("./managers");
 const findRoutes = require("./find");
 const data = require("../data");
+const apiRoutes = require("./api");
 const postsData = data.posts;
 
 //const privateRoutes = require('./private');
@@ -43,6 +44,7 @@ const constructorMethod = (app) => {
   app.use("/managers", managerRoutes);
   app.use("/login", userRoutes);
   app.use("/find", findRoutes);
+  app.use("/api", apiRoutes);
 
   //app.use('/comments', commentRoutes);
 
