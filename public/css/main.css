@@ -179,11 +179,12 @@ nav li a:hover {
 .home-page-container {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("/public/img/niceHouse.jpg");
+  margin-top: -17px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
-  height: 550px;
+  height: 570px;
   width: 100%;
   opacity: 0.8;
 }
@@ -191,25 +192,36 @@ nav li a:hover {
   color: white;
   text-align: center;
   padding-top: 50px;
-  padding-bottom: 30px;
+
 }
 .mainPageText2 {
+  padding-top: 30px;
   color: white;
   text-align: center;
 }
 .searchForm {
   padding-top: 100px;
+  display: inline-flex;
+  flex-flow: row wrap;
+  align-items: center;
 }
-.searchBox {
-  background-color: white;
-  border-radius: 10px;
+.searchBox1 {
+  border-radius: 5px;
   width: 550px;
   height: 50px;
   font-size: 14pt;
 }
 .searchButton {
-  padding-left: -10px;
-  border-radius: 10px;
+  background: url("/public/icon/searchicon1.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor:pointer;
+  border:none;
+}
+#searchButton1{
+  margin-left: -40px;
+  width:40px;
+  height:40px;
 }
 
 /* post css */
@@ -294,7 +306,7 @@ img {
   transition: all 0.3s ease;
 }
 
-#recent-post .card-detail-badge {
+.card-detail-badge {
   background: #f2d900;
   text-align: center;
   border-radius: 30px 30px 30px 30px;
@@ -338,4 +350,46 @@ img {
     background: transparent;
     transition: all 0.3s ease;
     box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+}
+#search-area{
+  background-color:  #F8F8FF;
+  margin: 0;
+  padding-bottom: 15px;
+}
+.criteria{
+  display: inline-block;
+  align-items: center;
+  flex-flow: row wrap;
+}
+.searchForm2 {
+  padding-top: 15px;
+  display: inline-flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.searchBox2 {
+  width: 350px;
+  height: 35px;
+  font-size: 10pt;
+}
+#searchButton2{
+  width: 30px;
+  height: 30px;
+  margin-left: -40px;
+
+}
+.select_box{
+  height: 35px;
+  font-size: 10pt;
+}
+.error-area{
+  display: inline-block;
+  align-items: center;
+  flex-flow: row wrap;
+}
+.search-error-message {
+
+  color: red;
+  text-align: center;
+  font-size: 10pt;
 }
