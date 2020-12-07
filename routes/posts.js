@@ -25,7 +25,6 @@ router.get("/:id", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-
   try {
     let posts = await postsData.getAllPosts();
     const newList = [];
@@ -35,8 +34,7 @@ router.get("/", async (req, res) => {
         title: posts[i].title,
         image: posts[i].img,
         price: posts[i].price,
-        address: posts[i].address
-
+        address: posts[i].address,
       };
       newList.push(item);
     }
@@ -48,10 +46,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-
-
   let postInfo = JSON.parse(JSON.stringify(req.body));
-
 
   if (!postInfo) {
     res.status(400).json({ error: "You must provide data to create a post" });
@@ -106,25 +101,23 @@ router.post("/", async (req, res) => {
     return;
   }
   let img_data = postInfo.img[0];
-  console.log(req.session.user)
+  console.log(req.session.user);
 
   // save the image to /public/img
-  var fs = require('fs');
+  var fs = require("fs");
   var base64Data = img_data.base64;
   var base64 = base64Data.replace(/^data:image\/\w+;base64,/, "");
-  var buf = Buffer.from(base64, 'base64');
-  let dir = 'public/img/' + img_data.name;
-  fs.writeFile(dir, buf, function(err){
+  var buf = Buffer.from(base64, "base64");
+  let dir = "public/img/" + img_data.name;
+  fs.writeFile(dir, buf, function (err) {
     console.log(err);
   });
 
-
   let userId = req.session.user.userId;
-  console.log(userId)
-  console.log(typeof userId)
+  console.log(userId);
+  console.log(typeof userId);
 
   try {
-
     let newPost = await postsData.addPost(
       userId,
       postInfo.title,
@@ -137,9 +130,10 @@ router.post("/", async (req, res) => {
       postInfo.Time,
       postInfo.tag,
       postInfo.phone,
-      postInfo.prices,
+      parseInt(postInfo.prices),
       postInfo.email,
-      []);
+      []
+    );
     let newId = newPost._id.toString();
 
     res.redirect("posts/");
