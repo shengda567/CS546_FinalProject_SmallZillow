@@ -26,15 +26,13 @@ const constructorMethod = (app) => {
           price: posts[posts.length - i - 1].price,
           zipcode: posts[posts.length - i - 1].zipcode,
           city: posts[posts.length - i - 1].city,
-
         };
         newList.push(item);
       }
       res.render("pages/mainPage", { posts: newList });
     } catch (e) {
-      res.render("pages/mainPage", { errors: 'No posts in the databse' });
+      res.render("pages/mainPage", { errors: "No posts in the databse" });
     }
-
   });
   app.use("/search", searchRoutes);
   app.use("/posts", postRoutes);
@@ -55,7 +53,6 @@ const constructorMethod = (app) => {
   app.get("/newpost/success", async (req, res) => {
     res.render("pages/newpostsuc");
   });
-
 
   app.use("*", (req, res) => {
     res.sendStatus(404);

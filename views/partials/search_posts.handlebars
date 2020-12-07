@@ -1,29 +1,29 @@
 {{#if error}}
 <div hidden class="search-error">
-    <p id = 'search-error-message2'>{{error}}</p>
+  <p id='search-error-message2'>{{error}}</p>
 </div>
 {{/if}}
 {{#grouped_each 2 posts}}
 <div class="row">
-      {{#each this}}
-          <div class="col-sm-6" id = 'posts-area'>
-          <div class="card rounded">
-            <div class = "card-image">
-            <img class="img-fluid" src="{{image}}" alt="Card image" width="300" height = '200'/>
-            </div>
-            <div class="card-image-overlay">
-                  <span class="card-detail-badge">{{this.zipcode}}</span>
-                  <span class="card-detail-badge">{{this.city}}</span>
-                  <span class="card-detail-badge">{{this.price}}/mo</span>
-            </div>
-            <div class="card-body text-center">
-              <h5 class="card-title">{{this.title}}</h5>
+  {{#each this}}
+  <div class="col-sm-6" id='posts-area'>
+    <div class="card rounded">
+      <div class="card-image">
+        <img class="img-fluid" src="{{image}}" alt="Card image" width="300" height='200' />
+      </div>
+      <div class="card-image-overlay">
+        <span class="card-detail-badge">{{this.zipcode}}</span>
+        <span class="card-detail-badge">{{this.city}}</span>
+        <span class="card-detail-badge">{{this.price}}/mo</span>
+      </div>
+      <div class="card-body text-center">
+        <h5 class="card-title">{{this.title}}</h5>
 
-              <a href="/posts/{{_id}}" class="post-info-btn">Detail</a>
+        <a href="/posts/{{_id}}" class="post-info-btn">Detail</a>
 
-            </div>
-          </div>
-          </div>
-      {{/each}}
+      </div>
+    </div>
   </div>
-  {{/grouped_each}}
+  {{/each}}
+</div>
+{{/grouped_each}}

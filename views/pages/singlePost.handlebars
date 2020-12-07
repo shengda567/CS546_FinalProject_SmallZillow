@@ -1,18 +1,26 @@
-
 <main>
-<div>
-  <h1>{{post.title}}</h1>
+  <div>
+    <h1>{{post.title}}</h1>
 
-  <div class = 'address'>address: {{post.description}} </div>
-  <div class = 'state'>state: {{post.state}} </div>
-  <div class = 'city'>city: {{post.city}} </div>
-  <div class = 'zipcode'>zipcode: {{post.zipcode}} </div>
-  <div class = 'img'>image: {{post.img}} </div>
-  <div class = 'description'>description: {{post.description}} </div>
-  <div class = 'date'>date: {{post.date}} </div>
-  <div class = 'tag'>tag: {{post.tag}} </div>
-  <div class = 'phone'>phone: {{post.phone}} </div>
-  <div class = 'price'>price: {{post.price}} </div>
-  <div class = 'email'>email: {{post.email}} </div>
-</div>
+    <div class='address'>address: {{post.description}} </div>
+    <div class='state'>state: {{post.state}} </div>
+    <div class='city'>city: {{post.city}} </div>
+    <div class='zipcode'>zipcode: {{post.zipcode}} </div>
+
+    <div class="img">House Picture: <br><img src=/{{post.img}} height="200" width="200"></div>
+
+    <div class='description'>description: {{post.description}} </div>
+    <div class='date'>date: {{post.date}} </div>
+    <div class='tag'>tag: {{post.tag}} </div>
+    <div class='phone'>phone: {{post.phone}} </div>
+    <div class='price'>price: {{post.price}} </div>
+    <div class='email'>email: {{post.email}} </div>
+    <br>
+    <div class='comment'>Comments about this rent post:</div>
+    <div class='postComment'>Leave your comments here: <br><textarea></textarea>
+      <button id='singlePostCommentBtm'>submit</button>
+    </div>
+    <div class='map'>This {{post.tag}} on Map:</div>
+    <div class="recommendPosts">Here are some similar posts like this house: </div>
+  </div>
 </main>
