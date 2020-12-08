@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
       let item = {
          _id: results[i]._id.toString(),
          title: results[i].title,
-         image: results[i].img,
+         image: results[i].img[0],
          price: results[i].price,
          zipcode: results[i].zipcode,
          city: results[i].city,

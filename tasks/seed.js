@@ -63,7 +63,7 @@ async function main() {
     'New Jersey',
     'Hoboken',
      '07030',
-     'public/img/post1.jpg',
+    [ 'public/img/post1.jpg'],
      'FIRST 2 MONTHS FREE W/ 14TH MONTH LEASE! Security deposit FREE option through Rhino! Broker fee paid by LL! Amazing Very Large apartment for rent. Vaulted ceilings, large bedrooms and living room, plenty of closet space!! Very well laid out. Central AC!! Laundry in building!! Elevator building!!',
      '05/10/2020',
      'Apartment',
@@ -77,7 +77,7 @@ async function main() {
     'New Jersey',
     'Hoboken',
      '07030',
-     'public/img/post2.jpg',
+     ['public/img/post2.jpg'],
      'Fully updated and spacious one bedroom home in ideally location. Home features open renovated kitchen with stainless steel appliance, back-splash, granite counter tops, hardwood flooring throughout and updated bathroom. Large living space and bedroom are offered to accommodate guests. Basement offers storage and laundry.',
      '08/19/2020',
      'Apartment',
@@ -91,7 +91,7 @@ async function main() {
     'New Jersey',
     'Hoboken',
      '07030',
-     'public/img/post3.jpg',
+     ['public/img/post3.jpg'],
      'Rare studio apt in the heart of Hoboken! Steps to everything. PRIVATE entrance and easy access to common backyard. Two rooms. Eat in Kitchen and Living room/Bedroom. Good size bathroom. Built-ins make for great storage. ',
      '09/10/2020',
      'House',
@@ -105,7 +105,7 @@ async function main() {
      'New Jersey',
      'Hoboken',
       '07030',
-      'public/img/post4.jpg',
+     ['public/img/post4.jpg'],
       'NO BROKER FEE! Wonderful 1 bedroom & den in classic Garden St. rowhouse. Period detail blends with modern convenience perfectly w/ large scaled rooms, dining area, great bedroom & separate den/office. Hardwood flrs. ',
       '09/11/2020',
       'Apartment',
@@ -119,7 +119,7 @@ async function main() {
     'New Jersey',
     'Hoboken',
      '07030',
-     'public/img/post5.jpg',
+     ['public/img/post5.jpg'],
      'NEW PHOTOS COMING NEXT WEEK! Spacious 2 bed 1 bath apartment located on Willow Ave! Hardwood floors, Lots of light, many windows, newer kitchen, newer bathroom, central air and heat, exposed brick, and washer/dryer in the unit. ',
      '09/14/2020',
      'Apartment',
@@ -133,7 +133,7 @@ async function main() {
      'New Jersey',
      'North Arlington',
       '07031',
-      'public/img/post6.jpg',
+      ['public/img/post6.jpg'],
       'NO BROKER FEE! Wonderful 1 bedroom & den in classic Garden St. rowhouse. Period detail blends with modern convenience perfectly w/ large scaled rooms, dining area, great bedroom & separate den/office. Hardwood flrs. ',
       '10/9/2020',
       'Apartment',
@@ -147,7 +147,7 @@ async function main() {
       'New Jersey',
       'Hoboken',
        '07030',
-       'public/img/post7.jpg',
+       ['public/img/post7.jpg'],
        'We are temporarily ceasing in-person tours with prospective residents. Virtual tours are available. Call us today for more information!  ',
        '11/3/2020',
        'House',
@@ -161,7 +161,7 @@ async function main() {
      'New Jersey',
      'Hoboken',
       '07030',
-      'public/img/post8.jpg',
+      ['public/img/post8.jpg'],
       'Avalon Hoboken features 1 and 2 bedroom apartments in Hoboken, NJ. Apartments include fully equipped kitchens with stainless steel appliances and granite countertops.',
       '11/19/2020',
       'Villa',
@@ -176,7 +176,7 @@ async function main() {
       'New Jersey',
       'Kearny',
        '07032',
-       'public/img/post9.jpg',
+       ['public/img/post9.jpg'],
        'These luxurious, New York style Lofts feature high ceilings and breathtaking bay view windows which surpass your expectations of style and display an air of serenity.',
        '11/20/2020',
        'Villa',
@@ -186,9 +186,9 @@ async function main() {
 
 
 
-  let comment1 = await comments.addComment(register1._id.toString(), post1._id.toString(), 'this is a commment.', '10/10/2020');
-  let comment2 = await comments.addComment(register1._id.toString(), post2._id.toString(), 'this is a commment.', '10/10/2020');
-  let comment3 = await comments.addComment(register1._id.toString(), post2._id.toString(), 'this is a commment.', '10/10/2020');
+  let comment1 = await comments.addComment({userId: register1._id.toString(),username:register1.username}, post1._id.toString(), 'this is a commment.', '10/10/2020');
+  let comment2 = await comments.addComment({userId:register1._id.toString(), username:register1.username}, post2._id.toString(), 'this is a commment.', '10/10/2020');
+  let comment3 = await comments.addComment({userId:register1._id.toString(), username:register1.username}, post2._id.toString(), 'this is a commment.', '10/10/2020');
 
   console.log('Done seeding database');
 

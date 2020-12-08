@@ -71,7 +71,6 @@ router.post('/search', async function (req, res) {
         };
         recentList.push(recentItem);
       }
-      console.log(error)
       res.render('partials/search_posts', { layout: null, posts: recentList, error: error});
     }
     else{
@@ -80,7 +79,7 @@ router.post('/search', async function (req, res) {
         let item = {
            _id: results[i]._id.toString(),
            title: results[i].title,
-           image: results[i].img,
+           image: results[i].img[0],
            price: results[i].price,
            zipcode: results[i].zipcode,
            city: results[i].city,
@@ -97,4 +96,6 @@ router.post('/search', async function (req, res) {
     res.status(404).json({ error: 'Post not found' });
   }
 });
+
+
 module.exports = router;

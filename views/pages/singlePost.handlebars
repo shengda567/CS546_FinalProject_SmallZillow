@@ -1,26 +1,64 @@
 <main>
-  <div>
+  <div class = 'single-container' >
+    <div class = 'top-post-area'>
     <h1>{{post.title}}</h1>
+    <div class = 'row'>
+        <div class = 'col-md-8'>
+        <div class="gallery">
 
-    <div class='address'>address: {{post.description}} </div>
-    <div class='state'>state: {{post.state}} </div>
-    <div class='city'>city: {{post.city}} </div>
-    <div class='zipcode'>zipcode: {{post.zipcode}} </div>
+        <span class="slider-info">image 1 of 6</span>
+        <div class="img">House Picture: <br><img src=/{{main}} height="250" width="400"></div>
+        {{#if sides}}
+        <div class="side-image">
 
-    <div class="img">House Picture: <br><img src=/{{post.img}} height="200" width="200"></div>
+              {{#grouped_each 4 sides}}
+              {{#each this}}
+                  <div class="single-img"><img src=/{{this}} height="75" width="100"></div>
+              {{/each}}
 
+              {{/grouped_each}}
+
+        </div>
+        {{/if}}
+        </div>
+        <div class='date'>date: {{post.date}} </div>
+        </div>
+        <div class = 'col-md-4'>
+          <div class='address'>address: {{post.address}} </div>
+          <div class='state'>state: {{post.state}} </div>
+          <div class='city'>city: {{post.city}} </div>
+          <div class='zipcode'>zipcode: {{post.zipcode}} </div>
+          <div class='map'>This {{post.tag}} on Map:</div>
+        </div>
+    </div>
+    <div class = 'bottom-post-area'>
     <div class='description'>description: {{post.description}} </div>
-    <div class='date'>date: {{post.date}} </div>
+
     <div class='tag'>tag: {{post.tag}} </div>
     <div class='phone'>phone: {{post.phone}} </div>
     <div class='price'>price: {{post.price}} </div>
     <div class='email'>email: {{post.email}} </div>
-    <br>
-    <div class='comment'>Comments about this rent post:</div>
-    <div class='postComment'>Leave your comments here: <br><textarea></textarea>
-      <button id='singlePostCommentBtm'>submit</button>
+    <div data-id={{post._id}} class='comment' id = "postId">Comments about this rent post:
+    <form action="/comments/{{post._id}}" method="post" id="comment_form" class="commentForm">
+      <label for = "comment_input">Comment: <textarea id="comment_input"></textarea></label>
+      <input type="submit" value="Comment"  id = 'post_button' ></input>
+    </form>
+
+    <div hidden id ='comment-error' class = 'comment-error-area'>
+
     </div>
-    <div class='map'>This {{post.tag}} on Map:</div>
+
+    <div id = 'comments-area'>
+    {{#if comments}}
+    {{#each comments}}
+    <div class= 'comment_user'>{{this.user}} </div>
+    <div class= 'comment_date'>{{this.date}} </div>
+    <div class= 'comment_content'>{{this.content}} </div>
+    {{/each}}
+    {{/if}}
+    </div id = 'comments-area'>
+
     <div class="recommendPosts">Here are some similar posts like this house: </div>
-  </div>
+    </div>
+
 </main>

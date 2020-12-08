@@ -22,9 +22,18 @@ const exportedMethods = {
     if (!comment) throw 'Comment not found';
     return comment;
   },
+  async getCommentByPostId(id) {
+
+    const commentCollection = await comments();
+    const comment = await commentCollection.find({ postId: id }).toArray();
+
+    if (!comment) throw 'Comment not found';
+    return comment;
+  },
 
   async addComment(user, postId, content, date) {
 
+    if (typeof user !=='object') throw 'Please provide a valid user Id and username';
     if (typeof postId !== 'string' || isEmptyOrSpaces(postId)) throw 'Please provide a valid post Id';
     if (typeof content !== 'string' || isEmptyOrSpaces(content)) throw 'Please provide a valid content';
     if (typeof date !== 'string' || isEmptyOrSpaces(content)) throw 'Please provide a valid date';
@@ -35,7 +44,6 @@ const exportedMethods = {
     let post_id = ObjectId(postId);
 
     //check if the user and post exist
-    const userThatPosted = await registers.getbyone(user);
     const post = await posts.getPostById(post_id);
 
     const newComment = {
@@ -47,8 +55,11 @@ const exportedMethods = {
 
     const newInsertInformation = await commentCollection.insertOne(newComment);
     const newId = newInsertInformation.insertedId;
-    await registers.addcommentforuser(user, newId);
+
+    await registers.addcommentforuser(user.userId, newId);
+
     await posts.addCommentToPost(post_id, newId);
+
     return await this.getCommentById(newId);
   },
   async removeComment(id) {
