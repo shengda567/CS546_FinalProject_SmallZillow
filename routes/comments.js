@@ -91,7 +91,7 @@ router.post('/:id', async (req, res) => {
     let post_id = ObjectId(req.params.id);
 
     const commentList = await commentsData.getCommentByPostId(post_id);
-    
+
     res.render('partials/comments', { layout: null, commentList: commentList });
 
   } catch (e) {

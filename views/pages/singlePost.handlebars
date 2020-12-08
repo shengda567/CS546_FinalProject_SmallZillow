@@ -1,3 +1,41 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKqCSVMtzn9s6rFHVLGhfylw9abVVRT3A&callback=initMap&libraries=&v=weekly"
+  defer></script>
+<script>
+  function initMap() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 17,
+      center: { lat: -34.397, lng: 150.644 },
+    });
+    const geocoder = new google.maps.Geocoder();
+    document.getElementById("showMapBtm").addEventListener("click", () => {
+      $('#map').show();
+      geocodeAddress(geocoder, map);
+    });
+  }
+
+  function geocodeAddress(geocoder, resultsMap) {
+    //const address = document.getElementById("singlePost_address").value;
+    const address = $('#singlePost_address').val();
+    geocoder.geocode({ address: address }, (results, status) => {
+      if (status === "OK") {
+        resultsMap.setCenter(results[0].geometry.location);
+        //alert(results[0].geometry.location); -xianshi
+        //alert(JSON.stringify(results[0].geometry.location));
+        new google.maps.Marker({
+          map: resultsMap,
+          position: results[0].address_components.geometry.location,
+        });
+
+      } else {
+        alert(
+          "Geocode was not successful for the following reason: " + status
+        );
+      }
+    });
+  }
+</script>
 <main>
   <div class = 'single-container' >
     <div class = 'top-post-area'>
@@ -29,9 +67,19 @@
           <div class='city'>city: {{post.city}} </div>
           <div class='zipcode'>zipcode: {{post.zipcode}} </div>
           <div class='map'>This {{post.tag}} on Map:</div>
+
         </div>
     </div>
     <div class = 'bottom-post-area'>
+      <div id="floating-panel">
+        <textarea id="singlePost_address" type="button" name="show on map"
+          value={{post.address}},{{post.city}},{{post.state}}
+          hidden>{{post.address}},{{post.city}},{{post.state}}</textarea>
+      </div>
+
+      <div class='address'>Address: {{post.address}} {{post.state}} {{post.city}} {{post.zipcode}}</div>
+      <button id='showMapBtm'>Show location on map</button>
+      <div id="map" hidden></div>
     <div class='description'>description: {{post.description}} </div>
 
     <div class='tag'>tag: {{post.tag}} </div>
@@ -51,14 +99,17 @@
     <div id = 'comments-area'>
     {{#if comments}}
     {{#each comments}}
-    <div class= 'comment_user'>{{this.user}} </div>
+    <div class= 'comment_user'>{{this.user.username}} </div>
     <div class= 'comment_date'>{{this.date}} </div>
     <div class= 'comment_content'>{{this.content}} </div>
     {{/each}}
     {{/if}}
+
     </div id = 'comments-area'>
+
 
     <div class="recommendPosts">Here are some similar posts like this house: </div>
     </div>
+
 
 </main>
