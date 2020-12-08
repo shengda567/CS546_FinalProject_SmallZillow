@@ -1,26 +1,62 @@
-<main>
-  <div>
-    <h1>{{post.title}}</h1>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKqCSVMtzn9s6rFHVLGhfylw9abVVRT3A&callback=initMap&libraries=&v=weekly"
+  defer></script>
+<script>
+  function initMap() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 17,
+      center: { lat: -34.397, lng: 150.644 },
+    });
+    const geocoder = new google.maps.Geocoder();
+    document.getElementById("showMapBtm").addEventListener("click", () => {
+      $('#map').show();
+      geocodeAddress(geocoder, map);
+    });
+  }
 
-    <div class='address'>address: {{post.description}} </div>
-    <div class='state'>state: {{post.state}} </div>
-    <div class='city'>city: {{post.city}} </div>
-    <div class='zipcode'>zipcode: {{post.zipcode}} </div>
+  function geocodeAddress(geocoder, resultsMap) {
+    //const address = document.getElementById("singlePost_address").value;
+    const address = $('#singlePost_address').val();
+    geocoder.geocode({ address: address }, (results, status) => {
+      if (status === "OK") {
+        resultsMap.setCenter(results[0].geometry.location);
+        //alert(results[0].geometry.location); -xianshi
+        //alert(JSON.stringify(results[0].geometry.location));
+        new google.maps.Marker({
+          map: resultsMap,
+          position: results[0].address_components.geometry.location,
+        });
 
-    <div class="img">House Picture: <br><img src=/{{post.img}} height="200" width="200"></div>
+      } else {
+        alert(
+          "Geocode was not successful for the following reason: " + status
+        );
+      }
+    });
+  }
+</script>
+<div id="singlePost_page">
+  <div class='description'>Title: {{post.title}} </div>
 
-    <div class='description'>description: {{post.description}} </div>
-    <div class='date'>date: {{post.date}} </div>
-    <div class='tag'>tag: {{post.tag}} </div>
-    <div class='phone'>phone: {{post.phone}} </div>
-    <div class='price'>price: {{post.price}} </div>
-    <div class='email'>email: {{post.email}} </div>
-    <br>
-    <div class='comment'>Comments about this rent post:</div>
-    <div class='postComment'>Leave your comments here: <br><textarea></textarea>
-      <button id='singlePostCommentBtm'>submit</button>
-    </div>
-    <div class='map'>This {{post.tag}} on Map:</div>
-    <div class="recommendPosts">Here are some similar posts like this house: </div>
+  <div class='description'>Description: {{post.description}} </div>
+  <div id="floating-panel">
+    <textarea id="singlePost_address" type="button" name="show on map"
+      value={{post.address}},{{post.city}},{{post.state}}
+      hidden>{{post.address}},{{post.city}},{{post.state}}</textarea>
   </div>
-</main>
+
+  <div class='address'>Address: {{post.address}} {{post.state}} {{post.city}} {{post.zipcode}}</div>
+  <button id='showMapBtm'>Show location on map</button>
+  <div id="map" hidden></div>
+  <div class='date'>Date: {{post.date}} </div>
+  <div class='tag'>Tag: {{post.tag}} </div>
+  <div class='phone'>Contact Phone: {{post.phone}} </div>
+  <div class='price'>Price: {{post.price}} </div>
+  <div class='email'>Contact Email: {{post.email}} </div>
+  <br>
+  <div class='comment'>Comments about this rent post:</div>
+  <div class='postComment'>Leave your comments here: <br><textarea></textarea>
+    <button id='singlePostCommentBtm'>submit</button>
+  </div>
+</div>
