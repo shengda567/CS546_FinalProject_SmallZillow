@@ -390,11 +390,17 @@ img {
   text-align: center;
   font-size: 10pt;
 }
-
+/* .single-container{
+  max-width: 1000px;
+  margin: auto;
+}
+.side-image{
+  display:inline-flex;
+  margin:auto; */
 /* map */
 #map {
-  height: 400px;
+  height: 100px;
   /* The height is 400 pixels */
-  width: 30%;
+  width: 20%;
   /* The width is the width of the web page */
 }

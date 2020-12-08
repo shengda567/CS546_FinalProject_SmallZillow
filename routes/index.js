@@ -1,6 +1,7 @@
 const postRoutes = require("./posts");
 const userRoutes = require("./users");
 const searchRoutes = require("./search");
+const commentRoutes = require("./comments");
 const managerRoutes = require("./managers");
 const findRoutes = require("./find");
 const data = require("../data");
@@ -22,7 +23,7 @@ const constructorMethod = (app) => {
         let item = {
           _id: posts[posts.length - i - 1]._id.toString(),
           title: posts[posts.length - i - 1].title,
-          image: posts[posts.length - i - 1].img,
+          image: posts[posts.length - i - 1].img[0],
           price: posts[posts.length - i - 1].price,
           zipcode: posts[posts.length - i - 1].zipcode,
           city: posts[posts.length - i - 1].city,
@@ -36,6 +37,7 @@ const constructorMethod = (app) => {
   });
   app.use("/search", searchRoutes);
   app.use("/posts", postRoutes);
+  app.use("/comments", commentRoutes);
   //app.use('/private', privateRoutes);
   app.use("/register", registerData);
 

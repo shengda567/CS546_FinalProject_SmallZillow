@@ -57,7 +57,7 @@ const exportedMethods = {
     if (typeof city !== 'string' || isEmptyOrSpaces(city)) throw 'Please provide a valid city!';
     if (typeof state !== 'string' || isEmptyOrSpaces(state)) throw 'Please provide a valid state!';
     if (typeof zipcode !== 'string' || isEmptyOrSpaces(zipcode)) throw 'Please provide a valid zipcode!';
-    if (typeof img !== 'string' || isEmptyOrSpaces(img)) throw 'Please provide a valid image!';
+    if (!Array.isArray(img)) throw 'Please provide a valid image!';
     if (typeof description !== 'string' || isEmptyOrSpaces(description)) throw 'Please provide a valid description!';
     if (typeof date !== 'string' || isEmptyOrSpaces(date)) throw 'Please provide a valid date!';
     if (typeof tag !== 'string' || isEmptyOrSpaces(tag)) throw 'Please provide a valid tag!';
