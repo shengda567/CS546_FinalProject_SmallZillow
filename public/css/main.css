@@ -390,21 +390,17 @@ img {
   text-align: center;
   font-size: 10pt;
 }
-.single-container{
-
+.single-container {
   width: 80%;
   padding-top: 20px;
   background-color: #f8f8ff;
   margin: auto;
-/* display:inline-flex; */
-
-
+  /* display:inline-flex; */
 }
-#title-area{
-  display:inline-flex;
-  margin-top:20px;
+#title-area {
+  display: inline-flex;
+  margin-top: 20px;
   margin-bottom: 20px;
-
 }
 
 /* #top-row{
@@ -416,108 +412,123 @@ img {
   margin:auto; */
 /* map */
 #map {
-  height:350px;
+  height: 350px;
   width: 400px;
-
 }
-#showMapBtm{
+#showMapBtm {
   background: rgb(205, 255, 232);
-  height:25px;
+  height: 25px;
   position: center;
   margin-top: -250px;
   border: 2px;
   text-decoration: none;
   font-size: 10pt;
-  color:rgb(106, 163, 137);;
+  color: rgb(106, 163, 137);
   font-weight: 700;
   outline: none;
   border-radius: 3px;
-
 }
-.middle-post-area{
+.middle-post-area {
   border-style: solid;
 
-  border-width:3px;
+  border-width: 3px;
   border-color: #696969;
 }
 
-#similarPosts-container{
-
-  background-color:#FFF8DC;
+#similarPosts-container {
+  background-color: #fff8dc;
   text-align: center;
-
 }
 #comments-area {
-    background-color:#F0F8FF;
-    margin-bottom: 50px !important;
-    border: 1px solid #edeff2;
-    border-radius: 2px;
-    padding: 50px 70px;
-    border:1px solid #ffffff;
+  background-color: #f0f8ff;
+  margin-bottom: 50px !important;
+  border: 1px solid #edeff2;
+  border-radius: 2px;
+  padding: 50px 70px;
+  border: 1px solid #ffffff;
 }
 
 .comments-title {
-    font-size: 16px;
-    color: #262626;
-    margin-bottom: 15px;
-    font-family: 'Conv_helveticaneuecyr-bold';
+  font-size: 16px;
+  color: #262626;
+  margin-bottom: 15px;
+  font-family: "Conv_helveticaneuecyr-bold";
 }
 
 .be-img-comment {
-    width: 60px;
-    height: 60px;
-    float: left;
-    margin-bottom: 15px;
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-bottom: 15px;
 }
 
 .be-ava-comment {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
 }
 
 .be-comment-content {
-    margin-left: 80px;
+  margin-left: 80px;
 }
 
 .be-comment-content span {
-    display: inline-block;
-    width: 49%;
-    margin-bottom: 15px;
+  display: inline-block;
+  width: 49%;
+  margin-bottom: 15px;
 }
 
 .be-comment-name {
-    font-size: 13px;
-    font-family: 'Conv_helveticaneuecyr-bold';
+  font-size: 13px;
+  font-family: "Conv_helveticaneuecyr-bold";
 }
 
 .be-comment-content span {
-    display: inline-block;
-    width: 49%;
-    margin-bottom: 15px;
+  display: inline-block;
+  width: 49%;
+  margin-bottom: 15px;
 }
 
 .be-comment-time {
-    text-align: right;
+  text-align: right;
 }
 
 .be-comment-time {
-    font-size: 11px;
-    color: #b4b7c1;
+  font-size: 11px;
+  color: #b4b7c1;
 }
-.single-post-information{
-  margin-top:20px;
-  font-size:15px;
+.single-post-information {
+  margin-top: 20px;
+  font-size: 15px;
 }
-.single-contact-information{
-  margin-top:20px;
-  font-size:15px;
+.single-contact-information {
+  margin-top: 20px;
+  font-size: 15px;
 }
 
 .be-comment-text {
-    font-size: 13px;
-    line-height: 18px;
-    color: #7a8192;
-    display: block;
-    background: #f6f6f7;
-    border: 1px solid #edeff2;
+  font-size: 13px;
+  line-height: 18px;
+  color: #7a8192;
+  display: block;
+  background: #f6f6f7;
+  border: 1px solid #edeff2;
+}
+
+/* User -> posts/postsId page*/
+.userSinglePostInfo_div {
+  margin-left: 30%;
+}
+.userSinglePost_Head_div {
+  margin-left: 30%;
+}
+
+#userSinglePostInfoError {
+  color: red;
+}
+#userSinglePostInstruction {
+  color: blue;
+}
+.userSinglePostName {
+  padding-right: 10%;
+}
