@@ -8,38 +8,37 @@ function editPost() {
   if ($("#instruction").length == 0) {
     $("#userPostGroup_h1").append(instruction);
   }
-  //td中已经有了input,则不需要响应点击事件
+
   $(".userPostValue").click(function (event) {
-    //td中已经有了input,则不需要响应点击事件
     if ($(this).children("input").length > 0) return false;
     var tdObj = $(this);
     var preText = tdObj.html();
-    //得到当前文本内容
+    //current text
     var inputObj = $("<input type='text' />");
-    //创建一个文本框元素
+    //create a input text
     tdObj.html(""); //清空td中的所有元素
     inputObj
       .width(tdObj.width())
-      //设置文本框宽度与td相同
+      //setting text
       .height(tdObj.height())
       .css({ border: "0px", fontSize: "17px", font: "Arial" })
       .val(preText)
       .appendTo(tdObj)
-      //把创建的文本框插入到tdObj子节点的最后
+      //insert to last point
       .trigger("focus")
-      //用trigger方法触发事件
+      //set trigger
       .trigger("select");
     inputObj.keyup(function (event) {
       if (13 == event.which) {
-        //用户按下回车
+        //set enter key
         var text = $(this).val();
         tdObj.html(text);
       } else if (27 == event.which) {
-        //ESC键
+        //esc key
         tdObj.html(preText);
       }
     });
-    //已进入编辑状态后，不再处理click事件
+    //mute click
     inputObj.click(function () {
       return false;
     });
