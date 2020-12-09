@@ -36,80 +36,104 @@
     });
   }
 </script>
-<main>
-  <div class = 'single-container' >
-    <div class = 'top-post-area'>
-    <h1>{{post.title}}</h1>
-    <div class = 'row'>
-        <div class = 'col-md-8'>
-        <div class="gallery">
 
-        <span class="slider-info">image 1 of 6</span>
-        <div class="img">House Picture: <br><img src=/{{main}} height="250" width="400"></div>
-        {{#if sides}}
-        <div class="side-image">
+<div class = 'single-container' >
+  <div id = 'title-area'>
+  <h1 id = 'single-post-title'>{{post.title}}</h1>
 
-              {{#grouped_each 4 sides}}
-              {{#each this}}
-                  <div class="single-img"><img src=/{{this}} height="75" width="100"></div>
-              {{/each}}
+  </div>
+  <div class = 'top-post-area'>
+  <div class = 'container'>
+  <div class = 'row'>
+      <div class = 'col-xs-6'>
+      <div class="gallery">
+      <div class="img"><img src= /{{main}} height="250" width="400"></div>
+      {{#if sides}}
+      <div class="side-image">
+            {{#grouped_each 4 sides}}
+            {{#each this}}
+                <div class="single-img"><img src=/{{this}} height="75" width="100"></div>
+            {{/each}}
 
-              {{/grouped_each}}
-
-        </div>
-        {{/if}}
-        </div>
-        <div class='date'>date: {{post.date}} </div>
-        </div>
-        <div class = 'col-md-4'>
-          <div class='address'>address: {{post.address}} </div>
-          <div class='state'>state: {{post.state}} </div>
-          <div class='city'>city: {{post.city}} </div>
-          <div class='zipcode'>zipcode: {{post.zipcode}} </div>
-          <div class='map'>This {{post.tag}} on Map:</div>
-
-        </div>
-    </div>
-    <div class = 'bottom-post-area'>
+            {{/grouped_each}}
+      </div>
+      {{/if}}
+      </div>
+      </div>
+      <div class = 'col-xs-6'>
       <div id="floating-panel">
         <textarea id="singlePost_address" type="button" name="show on map"
           value={{post.address}},{{post.city}},{{post.state}}
           hidden>{{post.address}},{{post.city}},{{post.state}}</textarea>
       </div>
+      <button id='showMapBtm'>Show map</button>
+      <div id="map"></div>
+      </div>
+    </div>
+    </div>
+    </div>
 
-      <div class='address'>Address: {{post.address}} {{post.state}} {{post.city}} {{post.zipcode}}</div>
-      <button id='showMapBtm'>Show location on map</button>
-      <div id="map" hidden></div>
-    <div class='description'>description: {{post.description}} </div>
+      <!-- frontend is going to read these values -->
+    <div class= 'single-post-information'>
 
-    <div class='tag'>tag: {{post.tag}} </div>
-    <div class='phone'>phone: {{post.phone}} </div>
+    <h2>Post Information:</h2>
+    <span id = 'single-date'>date: {{post.date}}</span>
     <div class='price'>price: {{post.price}} </div>
+    <div class='address' id = 'address' data =  "{{post.address}}")>address: {{post.address}} </div>
+    <div class='state' id = 'state' data = "{{post.state}}">state: {{post.state}} </div>
+    <div class='city' id = 'city' data = "{{post.city}}">city: {{post.city}} </div>
+    <div class='zipcode' id = 'zipcode' data = "{{post.zipcode}}">zipcode: {{post.zipcode}} </div>
+    <div class='description'>description: {{post.description}} </div>
+    <div class='tag'>tag: {{post.tag}} </div>
+    </div>
+
+
+    <div class = 'single-contact-information'>
+      <h2>Contact Information: </h2>
+    <!-- <div class='address'>Address: {{post.address}} {{post.state}} {{post.city}} {{post.zipcode}}</div> -->
+    <div class = 'single-username'> </div>
+    <div class='phone'>phone: {{post.phone}} </div>
     <div class='email'>email: {{post.email}} </div>
-    <div data-id={{post._id}} class='comment' id = "postId">Comments about this rent post:
+    </div>
+
+    <div data-id={{post._id}} class='comment' id = "postId">
+    <h2>Comments:</h2>
     <form action="/comments/{{post._id}}" method="post" id="comment_form" class="commentForm">
-      <label for = "comment_input">Comment: <textarea id="comment_input"></textarea></label>
+      <label for = "comment_input"> <textarea id="comment_input"></textarea></label>
       <input type="submit" value="Comment"  id = 'post_button' ></input>
     </form>
 
+    </div>
     <div hidden id ='comment-error' class = 'comment-error-area'>
-
     </div>
 
     <div id = 'comments-area'>
     {{#if comments}}
     {{#each comments}}
-    <div class= 'comment_user'>{{this.user.username}} </div>
-    <div class= 'comment_date'>{{this.date}} </div>
-    <div class= 'comment_content'>{{this.content}} </div>
+    <div class="be-comment">
+    <div class="be-img-comment">
+    <img src="http://localhost:3000/public/icon/avatar1.png" alt="" class="be-ava-comment">
+    </div>
+    <div class = "be-comment-content">
+      <span class="be-comment-name">
+    					<p>{{this.user.username}}</p>
+    					</span>
+    				<span class="be-comment-time">
+    					<i class="fa fa-clock-o"></i>
+    					{{this.date}}
+    	</span>
+
+    <p class= 'comment_content'>{{this.content}} </p>
+    </div>
+    </div>
     {{/each}}
     {{/if}}
 
-    </div id = 'comments-area'>
-
-
-    <div class="recommendPosts">Here are some similar posts like this house: </div>
     </div>
 
+    <div class= 'container' id = 'similarPosts-container'>
+    <div class="recommendPosts" id = 'recommendPosts-area'>Here are some similar posts like this house: </div>
+    </div>
 
-</main>
+</div>
+<script src="../public/js/singlePost.js"></script>
