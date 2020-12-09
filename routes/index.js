@@ -43,7 +43,7 @@ const constructorMethod = (app) => {
 
   app.use("/managers", managerRoutes);
   app.use("/login", userRoutes);
-  app.use("/find", findRoutes);
+  app.use("/findinf", findRoutes);
   app.use("/api", apiRoutes);
 
   //app.use('/comments', commentRoutes);
