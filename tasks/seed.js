@@ -3,10 +3,35 @@ const data = require('../data/');
 const comments = data.comments;
 const posts = data.posts;
 const users = data.users;
+const managers = data.managers;
 
 async function main() {
   const db = await dbConnection();
   await db.dropDatabase();
+
+  let manager1 = await managers.addManager(
+    //username, password, email, manager_level, managerCode
+    'Shawn',
+    'Shawn1',
+    'swang147@stevens.edu',
+    'manager2',
+    'damnyoujackdonaghy',
+    
+  );
+  console.log('add manager1 success!!');
+  console.log(manager1);
+
+  let manager2 = await managers.addManager(
+    //username, password, email, manager_level, managerCode
+    'Michael',
+    'Michael1',
+    'michael123@stevens.edu',
+    'manager1',
+    'elementarymydearwatson'
+  );
+  console.log('add manager2 success!!');
+  console.log(manager2);
+
   let user1 = await users.addUser(
     'Josh',
     'Woodward',
