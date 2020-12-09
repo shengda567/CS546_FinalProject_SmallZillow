@@ -49,11 +49,19 @@ const constructorMethod = (app) => {
   //app.use('/comments', commentRoutes);
 
   app.get("/newpost", async (req, res) => {
-    res.render("pages/newpost");
+    if (req.session.user) {
+      res.render("pages/newpost");
+    } else {
+      res.render("pages/login");
+    }
   });
 
   app.get("/newpost/success", async (req, res) => {
     res.render("pages/newpostsuc");
+  });
+
+  app.get("/userSinglePost", async (req, res) => {
+    res.render("pages/userSinglePost");
   });
 
   app.use("*", (req, res) => {
