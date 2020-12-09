@@ -57,7 +57,7 @@ router.post('/', async (req, res) => {
         let recentItem = {
           _id: recentPosts[recentPosts.length - i - 1]._id.toString(),
           title: recentPosts[recentPosts.length - i - 1].title,
-          image: recentPosts[recentPosts.length - i - 1].img,
+          image: recentPosts[recentPosts.length - i - 1].img[0],
           price: recentPosts[recentPosts.length - i - 1].price,
           zipcode: recentPosts[recentPosts.length - i - 1].zipcode,
           city: recentPosts[recentPosts.length - i - 1].city,
@@ -65,7 +65,6 @@ router.post('/', async (req, res) => {
         };
         recentList.push(recentItem);
       }
-      console.log(error)
       res.render('pages/posts', { posts: recentList, error: error, search: input});
     }
     else {
@@ -73,6 +72,7 @@ router.post('/', async (req, res) => {
     }
 
   } catch (e) {
+
     res.status(404).json({ error: 'Post not found' });
   }
 });

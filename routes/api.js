@@ -37,8 +37,6 @@ function checkPrice(num, range){
 
 }
 router.post('/search', async function (req, res) {
-
-
   // response.json({ success: true, message: request.body.description });
   try {
 
@@ -63,7 +61,7 @@ router.post('/search', async function (req, res) {
         let recentItem = {
           _id: recentPosts[recentPosts.length - i - 1]._id.toString(),
           title: recentPosts[recentPosts.length - i - 1].title,
-          image: recentPosts[recentPosts.length - i - 1].img,
+          image: recentPosts[recentPosts.length - i - 1].img[0],
           price: recentPosts[recentPosts.length - i - 1].price,
           zipcode: recentPosts[recentPosts.length - i - 1].zipcode,
           city: recentPosts[recentPosts.length - i - 1].city,
@@ -97,5 +95,63 @@ router.post('/search', async function (req, res) {
   }
 });
 
+router.post('/similarPosts', async function (req, res) {
+  // response.json({ success: true, message: request.body.description });
+  try {
+    let address = req.body.address;
+    let city = req.body.city;
+    let state = req.body.state;
+    let zipcode = req.body.zipcode;
+    let results = [];
+    results = await postsData.getPostsByZipcode(zipcode);
+    if(results.length == 0)
+      results = await postsData.getPostsByAddress(address);
+    if(results.length == 0)
+      results = await postsData.getPostsByCity(city);
+    if(results.length == 0)
+      results = await postsData.getPostsByCity(state);
 
+    if(results.length == 1){
+      error = "Unfortunately, there is no similar results";
+      let recentPosts = await postsData.getAllPosts();
+      const recentList = [];
+      for (let i = 0; i < 2; i++) {
+        let recentItem = {
+          _id: recentPosts[recentPosts.length - i - 1]._id.toString(),
+          title: recentPosts[recentPosts.length - i - 1].title,
+          image: recentPosts[recentPosts.length - i - 1].img[0],
+          price: recentPosts[recentPosts.length - i - 1].price,
+          zipcode: recentPosts[recentPosts.length - i - 1].zipcode,
+          city: recentPosts[recentPosts.length - i - 1].city,
+
+        };
+        recentList.push(recentItem);
+      }
+      res.render('partials/search_posts', { layout: null, posts: recentList, error: error});
+    }
+    else{
+
+      const newList = [];
+      // send two similar results;
+      for (let i  = results.length - 1; i > results.length - 3; i--){
+        let item = {
+           _id: results[i]._id.toString(),
+           title: results[i].title,
+           image: results[i].img[0],
+           price: results[i].price,
+           zipcode: results[i].zipcode,
+           city: results[i].city,
+         };
+        newList.push(item);
+        //check if the price and tag match the criteria
+      }
+
+      res.render('partials/search_posts', { layout: null, posts: newList });
+    }
+
+  } catch (e) {
+    console.log(e)
+    res.status(404).json({ error: 'Something went wrong while searching similar Posts' });
+  }
+});
 module.exports = router;

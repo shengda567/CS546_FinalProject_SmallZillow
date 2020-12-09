@@ -41,6 +41,13 @@ const exportedMethods = {
     const postCollection = await posts();
     return await postCollection.find({ city: city }).toArray();
   },
+  //search post by state
+  async getPostsByState(state) {
+    if (!state) throw 'No state provided';
+
+    const postCollection = await posts();
+    return await postCollection.find({ state: state }).toArray();
+  },
   //search post by Id
   async getPostById(id) {
     const postCollection = await posts();

@@ -6,12 +6,9 @@ $('#search-area').ready(function(){
   var searchForm = $('#search_form');
   var postArea = $('#results');
   var searchInput = $('#search_input');
-
   var errorMessage = $('#search-error-message1');
   var errorArea = $('#error-area');
-
   let pTag2 = `Here are some of the apartments we currently have`;
-
 
   if(errorMessage.text() != ""){
     let pTag = ` <p class = 'search-error-message'>${errorMessage.text()}. ${pTag2}</p>`;
@@ -101,7 +98,6 @@ $('#search-area').ready(function(){
       postArea.empty();
       postArea.append(newElement);
       let errorMessage2 = $('#search-error-message2');
-      console.log(errorMessage2.text())
       if(errorMessage2.text() != ""){
 
         let pTag = `<p class = 'search-error-message'>${errorMessage2.text()}. ${pTag2}</p> `;
