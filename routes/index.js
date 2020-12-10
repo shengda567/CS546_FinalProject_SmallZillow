@@ -60,9 +60,7 @@ const constructorMethod = (app) => {
     res.render("pages/newpostsuc");
   });
 
-  app.get("/userSinglePost", async (req, res) => {
-    res.render("pages/userSinglePost");
-  });
+
 
   app.use("*", (req, res) => {
     res.sendStatus(404);

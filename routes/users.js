@@ -3,9 +3,14 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const axios = require('axios');
-const mongoCollections = require('../config/mongoCollections');
-const users = mongoCollections.register;
+const data = require("../data");
+// const mongoCollections = require('../config/mongoCollections');
+const usersData = data.register;
+const postsData = data.posts;
+
 const pic = require('../data/VerificationCode');
+
+
 
 router.get('/', async (req, res) => {
   //res.json({ route: '/users', method: req.method });
@@ -16,6 +21,30 @@ router.get('/', async (req, res) => {
     res.render('pages/login');
   }
 });
+router.get('/:id', async (req, res) => {
+  //res.json({ route: '/users', method: req.method });
+
+  if (req.session.user) {
+    console.log(typeof req.session.user.userId)
+    let users = await usersData.getbyone(req.session.user.userId);
+    console.log(users)
+    let posts = [];
+    for(let i in users.post){
+      let singlePost = await postsData.getPostById(users.post[i])
+      posts.push({title: singlePost.title, id : singlePost._id})
+    }
+    res.render("pages/user", { user: users , posts: posts});
+
+
+
+  }else{
+    res.render('pages/login');
+  }
+});
+
+
+router.get('/userSinglePost/:id', async(req, res) =>{
+});
 
 
 
@@ -23,50 +52,56 @@ router.get('/api/getCaptcha', function(req, res, next) {
   let p = 'ABCDEFGHKMNPQRSTUVWXYZ1234567890';
   var str = '';
   for (var i = 0; i < 4; i++)
-  { 
+  {
     str += p.charAt(Math.random() * p.length | 0);
   }
-  res.cookie('captcha', str); 
+  res.cookie('captcha', str);
   let img = pic.makeCapcha(str);
   res.setHeader('Content-Type', 'image/bmp');
   res.end(img.getFileData());
-  
-})
+
+});
 
 router.post('/check', async (req, res) => {
 
 	const { username, password, verifiy } = req.body;
     var check = false;
-    const userCollection = await users();
-    const userdata = await userCollection.find({}).toArray();
+    let userdata = [];
+    try{
+
+      userdata = await usersData.getAllUsers();
+
+    }catch(e){
+      console.log(e)
+    }
     const parsedData = JSON.stringify(userdata);
     const userList = JSON.parse(parsedData);
     try{
 	const cookies = req.headers.cookie;
         var list = cookies.split("; ");
-        for(var i = 0; i < list.length; i++) 
+        for(var i = 0; i < list.length; i++)
 	{
-            var arr = list[i].split("=");   
+            var arr = list[i].split("=");
             if(arr[0] == 'captcha')
             {
                  var captcha = arr[1];
             }
-                
+
         }
 	if(verifiy == captcha)
         {
-           
+
             for(var i in userList)
             {
                 if(userList[i].username == username)
                 {
-                    
+
                     check = true;
                     var match = false;
                     match = bcrypt.compareSync(password, userList[i].hashpassword);
                     if(match){
                         req.session.user = { userId: userList[i]._id, username: userList[i].username, firstName: userList[i].firstName, lastName: userList[i].lastName };
-                        res.redirect('/newpost');
+                        res.redirect('/login/' + req.session.user.userId);
                     }
                     else {
                         res.status(401).render('pages/error', {error: "Either username or password are error."});
@@ -76,18 +111,18 @@ router.post('/check', async (req, res) => {
             if(check == false)
             {
                 res.status(401).render('pages/error', {error: "Username is not exist."});
-            }   
-        
+            }
+
         }
         else
         {
-            
+
             res.status(401).render('pages/error', {error: "Code is wrong."});
         }
     }catch(e){
     res.status(401).render('pages/error', {error: e});
   }
-	
+
 });
 
 

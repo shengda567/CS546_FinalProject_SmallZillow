@@ -83,6 +83,11 @@ async function createaccount(
     return info;
 }
 
+async function getAllUsers() {
+  const userCollection = await register();
+  return await userCollection.find({}).toArray();
+}
+
 async function getbyone(id) {
   if (typeof id != "string") {
     throw "the id typy is error.";
@@ -287,6 +292,7 @@ async function removecommentfromuser(id, commentID) {
 }
 
 module.exports = {
+  getAllUsers,
   createaccount,
   getbyone,
   remove,
