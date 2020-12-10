@@ -120,7 +120,7 @@ const exportedMethods = {
     if (deletionInfo.deletedCount === 0) {
       throw `Could not delete post with id of ${id}`;
     }
-    await registers.removepostfromuser(post.poster.id, id);
+    await registers.removepostfromuser(post.user.id, id);
     return true;
   },
 
@@ -142,48 +142,44 @@ const exportedMethods = {
   async updatePost(id, updatedPost) {
     const postCollection = await posts();
 
-    const updatedPostData = {};
+    if (typeof updatedPost.title !== 'string' || isEmptyOrSpaces(updatedPost.title)) {
+      throw 'You must provide a valid address';
+    }
+    if (typeof updatedPost.address !== 'string' || isEmptyOrSpaces(updatedPost.address)) {
+      throw 'You must provide a valid address';
+    }
+    if (typeof updatedPost.state !== 'string' || isEmptyOrSpaces(updatedPost.state)) {
+      throw 'You must provide a valid address';
+    }
+    if (typeof updatedPost.city !== 'string' || isEmptyOrSpaces(updatedPost.city)) {
+      throw 'You must provide a valid address';
+    }
+    if (typeof updatedPost.zipcode !== 'string' || isEmptyOrSpaces(updatedPost.zipcode)) {
+      throw 'You must provide a valid zipcode';
+    }
+    if (!Array.isArray(updatedPost.img)) {
+      throw 'You must provide a valid img';
+    }
+    if (typeof updatedPost.description !== 'string' || isEmptyOrSpaces(updatedPost.description)) {
+      throw 'You must provide a valid description';
+    }
+    if (typeof updatedPost.date !== 'string' || isEmptyOrSpaces(updatedPost.date)) {
+      throw 'You must provide a valid date';
+    }
+    if (typeof updatedPost.tag !== 'string' || isEmptyOrSpaces(updatedPost.tag)) {
+      throw 'You must provide a valid tag';
+    }
+    if (typeof updatedPost.phone !== 'string' || isEmptyOrSpaces(updatedPost.phone)) {
+      throw 'You must provide a valid phone';
+    }
+    if (typeof updatedPost.email !== 'string' || isEmptyOrSpaces(updatedPost.email)) {
+      throw 'You must provide a valid email';
+    }
+    if (typeof updatedPost.price !== 'number') {
+      throw 'You must provide a valid price';
+    }
 
-    if (typeof updatedPost.title === 'string' && !isEmptyOrSpaces(updatedPost.title)) {
-      updatedPostData.title = updatedPost.title;
-    }
-    if (typeof updatedPost.address === 'string' && !isEmptyOrSpaces(updatedPost.address)) {
-      updatedPostData.adress = updatedPost.adress;
-    }
-    if (typeof updatedPost.state === 'string' && !isEmptyOrSpaces(updatedPost.state)) {
-      updatedPostData.state = updatedPost.state;
-    }
-    if (typeof updatedPost.city === 'string' && !isEmptyOrSpaces(updatedPost.city)) {
-      updatedPostData.city = updatedPost.city;
-    }
-    if (typeof updatedPost.zipcode === 'string' && !isEmptyOrSpaces(updatedPost.zipcode)) {
-      updatedPostData.zipcode = updatedPost.zipcode;
-    }
-    if (typeof updatedPost.img === 'string' && !isEmptyOrSpaces(updatedPost.img)) {
-      updatedPostData.img = updatedPost.img;
-    }
-    if (typeof updatedPost.description === 'string' && !isEmptyOrSpaces(updatedPost.description)) {
-      updatedPostData.description = updatedPost.description;
-    }
-    if (typeof updatedPost.date === 'string' && !isEmptyOrSpaces(updatedPost.date)) {
-      updatedPostData.date = updatedPost.date;
-    }
-    if (typeof updatedPost.tag === 'string' && !isEmptyOrSpaces(updatedPost.tag)) {
-      updatedPostData.tag = updatedPost.tag;
-    }
-    if (typeof updatedPost.phone === 'string' && !isEmptyOrSpaces(updatedPost.phone)) {
-      updatedPostData.phone = updatedPost.phone;
-    }
-    if (typeof updatedPost.email === 'string' && !isEmptyOrSpaces(updatedPost.email)) {
-      updatedPostData.email = updatedPost.email;
-    }
-    if (typeof updatedPost.price === 'number' && !isEmptyOrSpaces(updatedPost.price)) {
-      updatedPostData.price = updatedPost.price;
-    }
-    updatedPostData.comments = updatedPost.comments;
-
-    await postCollection.updateOne({ _id: id }, { $set: updatedPostData });
-
+    await postCollection.updateOne({ _id: id }, { $set: updatedPost});
     return await this.getPostById(id);
   },
   async renameTag(oldTag, newTag) {

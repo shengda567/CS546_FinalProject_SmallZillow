@@ -15,7 +15,6 @@ const exportedMethods = {
   },
 
   async getCommentById(id) {
-
     const commentCollection = await comments();
     const comment = await commentCollection.findOne({ _id: id });
 

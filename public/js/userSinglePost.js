@@ -70,10 +70,20 @@ function editPost() {
 }
 
 function deletePost() {
+  let id = $('#post_Id_Value').attr("data-id");
   alert("delete clicked");
+  $.ajax({
+    type: "DELETE",
+    url: "/posts/" + id,
+    dataType: "json",
+    success: function () {
+      alert("save clicked and delet successfully");
+    },
+  });
 }
 
 function savePost() {
+  let id = $('#post_Id_Value').attr("data-id");
   let title = $("#userPostGroup_li_title").text().trim();
   let address = $("#userPostGroup_li_address").text();
   let city = $("#userPostGroup_li_city").text();
@@ -196,14 +206,16 @@ function savePost() {
       price: price,
     };
     alert(JSON.stringify(savePostDate));
-    alert("save clicked and save successfully");
-    // $.ajax({
-    //   type: "PUT",
-    //   url: "",
-    //   dataType: "json",
-    //   success: function (data) {
-    //     alert("save clicked and save successfully");
-    //   },
-    // });
+    console.log(savePostDate)
+    console.log(typeof id)
+    $.ajax({
+      type: "PATCH",
+      url: "/posts/" + id,
+      dataType: "json",
+      data: savePostDate,
+      success: function () {
+        alert("save clicked and save successfully");
+      },
+    });
   }
 }

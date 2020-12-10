@@ -42,7 +42,7 @@ router.get('/userSinglePost/:id', async(req, res) =>{
     let { ObjectId } = require("mongodb");
     let objectID = ObjectId(req.params.id);
     let singlePost = await postsData.getPostById(objectID);
-
+    singlePost._id = singlePost._id.toString();
     res.render("pages/userSinglePost", {post: singlePost});
   }
   else{
@@ -120,7 +120,6 @@ router.post('/check', async (req, res) => {
         }
         else
         {
-
             res.status(401).render('pages/error', {error: "Code is wrong."});
         }
     }catch(e){
