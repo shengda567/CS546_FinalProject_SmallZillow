@@ -191,26 +191,31 @@ window.onload = function () {
       prices: prices,
       IMG: $("#file_input").val(),
     };
-    alert(JSON.stringify(formSet));
+    //alert(JSON.stringify(formSet));
 
     if (hasError) {
       return true;
     } else {
-      //send();
-      var requestConfig = {
-          method: 'POST',
-          url: '/posts/',
-          contentType: 'application/json',
-          data: JSON.stringify({
-            title: title,
-            address: address
-          })
-        };
+      return false;
+    }
+  }
 
-        $.ajax(requestConfig).then(function (responseMessage) {
-          console.log(responseMessage);
+  let formSubmit = document.getElementById("postForm");
+  let imgButton = document.getElementById("postImg");
 
-        });
+  formSubmit.addEventListener("submit", (event) => {
+    event.preventDefault();
+    $("#postErrorList").empty();
+
+    let checkRes = postInputCheck();
+    if (checkRes) {
+      $("#postFormErrors").show();
+    } //
+    else {
+      send();
+      window.location.href = "http://localhost:3000/newpost/success";
+
+      //window.location.href = "http://localhost:3000/newpost/success";
       //$("#postForm").trigger("reset");
     }
   });
@@ -248,20 +253,11 @@ window.onload = function () {
 
     $.ajax({
       url: "http://localhost:3000/posts",
-      type: "post",
+      type: "POST",
       data: formSet,
-      dataType: "json",
+      dataType: "JSON",
       //processData: false, //trans form data need these two
       //contentType: false,
-      // success: function (data) {
-      //   alert("send success");
-      //
-      // },
-      // error: function (error) {
-      //   alert(error);
-      //   alert("failed");
-      //   console.log("send data failed");
-      // },
     });
   }
 
@@ -274,6 +270,5 @@ window.onload = function () {
     date = date.toLocaleDateString();
     return date;
   }
-
   $("#timestamp").text(showTime());
 };

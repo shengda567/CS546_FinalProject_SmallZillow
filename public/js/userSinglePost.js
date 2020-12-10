@@ -1,3 +1,27 @@
+window.onload = function () {
+  var editBtm = document.getElementById("userPostGroup_EditBtm");
+
+  // Edit
+  editBtm.onclick = function (event) {
+    event.preventDefault();
+    editPost();
+  };
+
+  //Save
+  var saveBtm = document.getElementById("userPostGroup_SaveBtm");
+  saveBtm.onclick = function (event) {
+    event.preventDefault();
+    savePost();
+  };
+
+  //Delete
+  var deleteBtm = document.getElementById("userPostGroup_DeleteBtm");
+  deleteBtm.onclick = function (event) {
+    event.preventDefault();
+    deletePost();
+  };
+};
+
 function editPost() {
   //alert("edit clicked");
   let instruction = $(
@@ -159,7 +183,6 @@ function savePost() {
   if (hasError) {
     error_ul.show();
   } else {
-    alert("save clicked and save successfully");
     let savePostDate = {
       title: title,
       address: address,
@@ -173,5 +196,14 @@ function savePost() {
       price: price,
     };
     alert(JSON.stringify(savePostDate));
+    alert("save clicked and save successfully");
+    // $.ajax({
+    //   type: "PUT",
+    //   url: "",
+    //   dataType: "json",
+    //   success: function (data) {
+    //     alert("save clicked and save successfully");
+    //   },
+    // });
   }
 }
