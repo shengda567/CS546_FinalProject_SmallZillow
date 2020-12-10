@@ -1,6 +1,6 @@
 <div class='userSinglePostPage' id='userSinglePostPage'>
     <div class="userSinglePost_Head_div">
-        <h1 class="userPostGroup_info" id='userPostGroup_h1'>ibairah's Nice Apartment-1</h1>
+        <h1 class="userPostGroup_info" id='userPostGroup_h1'>{{post.title}}</h1>
     </div>
     <div class="userSinglePostInfo_div">
         <ul id="userSinglePostInfoError" hidden></ul>
@@ -11,15 +11,15 @@
         <table class="userPostGroup_info" id="userPostGroup_table" align="left">
             <tr>
                 <td class="userSinglePostName">Title</td>
-                <td class="userPostValue" id="userPostGroup_li_title">Nice Apartment</td>
+                <td class="userPostValue" id="userPostGroup_li_title">{{post.title}}</td>
             </tr>
             <tr>
                 <td class="userSinglePostName">Address</td>
-                <td class="userPostValue" id="userPostGroup_li_address">1000 Jer Street</td>
+                <td class="userPostValue" id="userPostGroup_li_address">{{post.address}}</td>
             </tr>
             <tr>
                 <td class="userSinglePostName">City</td>
-                <td class="userPostValue" id="userPostGroup_li_city">Hoboken</td>
+                <td class="userPostValue" id="userPostGroup_li_city">{{post.city}}</td>
             </tr>
             <tr>
                 <td class="userSinglePostName">State</td>
@@ -80,11 +80,11 @@
             </tr>
             <tr>
                 <td class="userSinglePostName">Zipcode</td>
-                <td class="userPostValue" id="userPostGroup_li_zipcode">07030</td>
+                <td class="userPostValue" id="userPostGroup_li_zipcode">{{post.zipcode}}</td>
             </tr>
             <tr>
                 <td class="userSinglePostName">Description</td>
-                <td class="userPostValue" id="userPostGroup_li_description">This is a nice apartment</td>
+                <td class="userPostValue" id="userPostGroup_li_description">{{post.description}}</td>
             </tr>
             <tr>
                 <td class="userSinglePostName">Tag</td>
@@ -98,15 +98,15 @@
             </tr>
             <tr>
                 <td class="userSinglePostName">E-mail</td>
-                <td class="userPostValue" id="userPostGroup_li_email">test@gmail.com</td>
+                <td class="userPostValue" id="userPostGroup_li_email">{{post.email}}</td>
             </tr>
             <tr>
                 <td class="userSinglePostName">Phone</td>
-                <td class="userPostValue" id="userPostGroup_li_phone">1234567890</td>
+                <td class="userPostValue" id="userPostGroup_li_phone">{{post.phone}}</td>
             </tr>
             <tr>
                 <td class="userSinglePostName">Price</td>
-                <td class="userPostValue" id="userPostGroup_li_price">1230</td>
+                <td class="userPostValue" id="userPostGroup_li_price">{{post.price}}</td>
             </tr>
         </table>
     </div>
