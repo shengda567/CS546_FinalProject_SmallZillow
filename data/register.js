@@ -16,9 +16,9 @@ async function createaccount(
   phone,
   password
 ) {
-  console.log(username)
-  console.log(typeof username)
+
   if (typeof username !== "string") {
+    console.log(typeof username)
     throw "No username provided";
   }
   if (username.length == 0) {
@@ -246,12 +246,12 @@ async function addcommentforuser(id, commentID) {
 async function removepostfromuser(id, postID) {
   var { ObjectId } = require("mongodb");
   var userId = ObjectId(id);
-  let currentreview = await this.getbyone(id.toString());
+  let currentreview = await this.getbyone(id);
   const registerCollection = await register();
-  var postid = ObjectId(postID);
+
   const updateInfo = await registerCollection.updateOne(
     { _id: userId },
-    { $pull: { post: postid } }
+    { $pull: { post: postID} }
   );
   if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
     throw "Update failed";
