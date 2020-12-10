@@ -56,6 +56,7 @@ async function createaccount(
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
   var hashpassword = bcrypt.hashSync(password, salt);
+
   const registerCollection = await register();
 
   let newaccount = {
@@ -72,15 +73,14 @@ async function createaccount(
     save: save,
     comment: comment,
   };
-   const insertInfo = await registerCollection.insertOne(newaccount);
-    if (insertInfo.insertedCount === 0)
-    {
-        throw "Could not create account";
-    }
-    const newId = insertInfo.insertedId;
-    var str = newId.toString();
-    const info = await this.getbyone(str);
-    return info;
+  const insertInfo = await registerCollection.insertOne(newaccount);
+  if (insertInfo.insertedCount === 0) {
+    throw "Could not create account";
+  }
+  const newId = insertInfo.insertedId;
+  var str = newId.toString();
+  const info = await this.getbyone(str);
+  return info;
 }
 
 async function getAllUsers() {
