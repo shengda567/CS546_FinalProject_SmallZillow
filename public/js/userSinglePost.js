@@ -1,3 +1,27 @@
+window.onload = function () {
+  var editBtm = document.getElementById("userPostGroup_EditBtm");
+
+  // Edit
+  editBtm.onclick = function (event) {
+    event.preventDefault();
+    editPost();
+  };
+
+  //Save
+  var saveBtm = document.getElementById("userPostGroup_SaveBtm");
+  saveBtm.onclick = function (event) {
+    event.preventDefault();
+    savePost();
+  };
+
+  //Delete
+  var deleteBtm = document.getElementById("userPostGroup_DeleteBtm");
+  deleteBtm.onclick = function (event) {
+    event.preventDefault();
+    deletePost();
+  };
+};
+
 function editPost() {
   //alert("edit clicked");
   let instruction = $(
@@ -46,10 +70,20 @@ function editPost() {
 }
 
 function deletePost() {
+  let id = $('#post_Id_Value').attr("data-id");
   alert("delete clicked");
+  $.ajax({
+    type: "DELETE",
+    url: "/posts/" + id,
+    dataType: "json",
+    success: function () {
+      alert("save clicked and delet successfully");
+    },
+  });
 }
 
 function savePost() {
+  let id = $('#post_Id_Value').attr("data-id");
   let title = $("#userPostGroup_li_title").text().trim();
   let address = $("#userPostGroup_li_address").text();
   let city = $("#userPostGroup_li_city").text();
@@ -159,7 +193,6 @@ function savePost() {
   if (hasError) {
     error_ul.show();
   } else {
-    alert("save clicked and save successfully");
     let savePostDate = {
       title: title,
       address: address,
@@ -173,5 +206,16 @@ function savePost() {
       price: price,
     };
     alert(JSON.stringify(savePostDate));
+    console.log(savePostDate)
+    console.log(typeof id)
+    $.ajax({
+      type: "PATCH",
+      url: "/posts/" + id,
+      dataType: "json",
+      data: savePostDate,
+      success: function () {
+        alert("save clicked and save successfully");
+      },
+    });
   }
 }
