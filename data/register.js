@@ -16,11 +16,13 @@ async function createaccount(
   phone,
   password
 ) {
+  console.log(username)
+  console.log(typeof username)
   if (typeof username !== "string") {
-    throw "No title provided";
+    throw "No username provided";
   }
   if (username.length == 0) {
-    throw "the title can not be empty";
+    throw "the username can not be empty";
   }
   if (typeof user != "object") {
     throw "the author type must be object";

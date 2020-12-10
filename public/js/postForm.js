@@ -196,24 +196,21 @@ window.onload = function () {
     if (hasError) {
       return true;
     } else {
-      return false;
-    }
-  }
+      //send();
+      var requestConfig = {
+          method: 'POST',
+          url: '/posts/',
+          contentType: 'application/json',
+          data: JSON.stringify({
+            title: title,
+            address: address
+          })
+        };
 
-  let formSubmit = document.getElementById("postForm");
-  let imgButton = document.getElementById("postImg");
+        $.ajax(requestConfig).then(function (responseMessage) {
+          console.log(responseMessage);
 
-  formSubmit.addEventListener("submit", (event) => {
-    event.preventDefault();
-    $("#postErrorList").empty();
-
-    let checkRes = postInputCheck();
-    if (checkRes) {
-      $("#postFormErrors").show();
-    } //
-    else {
-      send();
-      //window.location.href = "http://localhost:3000/";
+        });
       //$("#postForm").trigger("reset");
     }
   });

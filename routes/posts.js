@@ -13,31 +13,41 @@ router.get("/:id", async (req, res) => {
     let { ObjectId } = require("mongodb");
     let objectID = ObjectId(req.params.id);
     let post = await postsData.getPostById(objectID);
+    post._id = post._id.toString();
+    // main Image and side Images
+    let main = post.img[0],
+        sides = post.img.slice(1);
     let comments = [];
-    for (let i in post.comments) {
-      let comment = await commentsData.getCommentById(post.comments[i].id);
-      comments.push(comment);
+
+    // if there are comments
+    if(post.comments.length != 0){
+      for (let i in post.comments) {
+        let comment = await commentsData.getCommentById(post.comments[i].id);
+        comments.push(comment);
+      }
+      res.render("pages/singlePost", { post: post, main: main, sides: sides, comments: comments });
     }
-    res.render("pages/singlePost", { post: post, comments: comments });
+    // else no comments
+    else{
+      res.render("pages/singlePost", { post: post, main: main, sides: sides});
+    }
+
   } catch (e) {
-    res.status(404).json({ error: "Post not found" });
+    res.status(404).json({ error: e });
   }
 });
 
 router.get("/", async (req, res) => {
-  console.log("hello")
   try {
     let posts = await postsData.getAllPosts();
     const newList = [];
-    console.log(posts);
     for (let i in posts) {
       let item = {
         _id: posts[i]._id.toString(),
         title: posts[i].title,
         image: posts[i].img,
         price: posts[i].price,
-        address: posts[i].address
-
+        address: posts[i].address,
       };
       newList.push(item);
     }
@@ -49,10 +59,8 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-
-
+  let userId = req.session.user.userId;
   let postInfo = JSON.parse(JSON.stringify(req.body));
-
 
   if (!postInfo) {
     res.status(400).json({ error: "You must provide data to create a post" });
@@ -106,23 +114,21 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide a email" });
     return;
   }
-  let img_data = postInfo.img[0];
+  let dir = [];//  an array of image directories
+  for(let image in postInfo.img){
+    let img_data = postInfo.img[image];
+    // save the image to /public/img
+    var fs = require("fs");
+    var base64Data = img_data.base64;
+    var base64 = base64Data.replace(/^data:image\/\w+;base64,/, "");
+    var buf = Buffer.from(base64, "base64");
+    dir.push("public/img/" + img_data.name);
+    fs.writeFile(dir[image], buf, function (err) {
+    });
+  }
 
-  // save the image to /public/img
-  var fs = require('fs');
-  var base64Data = img_data.base64;
-  var base64 = base64Data.replace(/^data:image\/\w+;base64,/, "");
-  var buf = Buffer.from(base64, 'base64');
-  let dir = 'public/img/' + img_data.name;
-  fs.writeFile(dir, buf, function(err){
-    console.log(err);
-  });
-
-  const {ObjectId} = require('mongodb');
-  let userId = ObjectId("5fb62a7f60fd91ca36339a9c");
 
   try {
-
     let newPost = await postsData.addPost(
       userId,
       postInfo.title,
@@ -135,9 +141,10 @@ router.post("/", async (req, res) => {
       postInfo.Time,
       postInfo.tag,
       postInfo.phone,
-      postInfo.prices,
+      parseInt(postInfo.prices),
       postInfo.email,
-      []);
+      []
+    );
     let newId = newPost._id.toString();
 
     res.redirect("posts/");

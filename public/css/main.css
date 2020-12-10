@@ -179,11 +179,12 @@ nav li a:hover {
 .home-page-container {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("/public/img/niceHouse.jpg");
+  margin-top: -17px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
-  height: 550px;
+  height: 570px;
   width: 100%;
   opacity: 0.8;
 }
@@ -191,25 +192,35 @@ nav li a:hover {
   color: white;
   text-align: center;
   padding-top: 50px;
-  padding-bottom: 30px;
 }
 .mainPageText2 {
+  padding-top: 30px;
   color: white;
   text-align: center;
 }
 .searchForm {
   padding-top: 100px;
+  display: inline-flex;
+  flex-flow: row wrap;
+  align-items: center;
 }
-.searchBox {
-  background-color: white;
-  border-radius: 10px;
+.searchBox1 {
+  border-radius: 5px;
   width: 550px;
   height: 50px;
   font-size: 14pt;
 }
 .searchButton {
-  padding-left: -10px;
-  border-radius: 10px;
+  background: url("/public/icon/searchicon1.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  border: none;
+}
+#searchButton1 {
+  margin-left: -40px;
+  width: 40px;
+  height: 40px;
 }
 
 /* post css */
@@ -275,4 +286,249 @@ img {
   color: red;
   text-align: center;
   margin-left: 250px;
+}
+
+.main-page-list {
+  background-color: #f8f8ff;
+}
+.header {
+  margin-top: 30px;
+  margin-left: 30px;
+}
+#recent-post {
+  margin: 30px 0 30px 0;
+}
+#recent-post .card:hover {
+  background: #fff;
+  box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.15);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.card-detail-badge {
+  background: #f2d900;
+  text-align: center;
+  border-radius: 30px 30px 30px 30px;
+  color: #000;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+.card-image img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.card-image-overlay {
+  margin-left: 50px;
+}
+.card-image-overlay span {
+  display: inline-block;
+}
+.post-info-btn {
+  text-transform: uppercase;
+  width: 150px;
+  height: 40px;
+  border-radius: 80px;
+  font-size: 16px;
+  line-height: 35px;
+  text-align: center;
+  border: 3px solid #e6de08;
+  display: block;
+  text-decoration: none;
+  margin: 20px auto 1px auto;
+  color: #000;
+  overflow: hidden;
+  position: relative;
+  background-color: #e6de08;
+}
+
+.post-info-btn:hover {
+  background-color: #e6de08;
+  color: #1e1717;
+  border: 2px solid #e6de08;
+  background: transparent;
+  transition: all 0.3s ease;
+  box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.15);
+}
+#search-area {
+  background-color: #f8f8ff;
+  margin: 0;
+  padding-bottom: 15px;
+}
+.criteria {
+  display: inline-block;
+  align-items: center;
+  flex-flow: row wrap;
+}
+.searchForm2 {
+  padding-top: 15px;
+  display: inline-flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.searchBox2 {
+  width: 350px;
+  height: 35px;
+  font-size: 10pt;
+}
+#searchButton2 {
+  width: 30px;
+  height: 30px;
+  margin-left: -40px;
+}
+.select_box {
+  height: 35px;
+  font-size: 10pt;
+}
+.error-area {
+  display: inline-block;
+  align-items: center;
+  flex-flow: row wrap;
+}
+.search-error-message {
+  color: red;
+  text-align: center;
+  font-size: 10pt;
+}
+.single-container {
+  width: 80%;
+  padding-top: 20px;
+  background-color: #f8f8ff;
+  margin: auto;
+  /* display:inline-flex; */
+}
+#title-area {
+  display: inline-flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* #top-row{
+  height:1000px;
+  display: inline-block;
+} */
+/* .side-image{
+  display:inline-flex;
+  margin:auto; */
+/* map */
+#map {
+  height: 350px;
+  width: 400px;
+}
+#showMapBtm {
+  background: rgb(205, 255, 232);
+  height: 25px;
+  position: center;
+  margin-top: -250px;
+  border: 2px;
+  text-decoration: none;
+  font-size: 10pt;
+  color: rgb(106, 163, 137);
+  font-weight: 700;
+  outline: none;
+  border-radius: 3px;
+}
+.middle-post-area {
+  border-style: solid;
+
+  border-width: 3px;
+  border-color: #696969;
+}
+
+#similarPosts-container {
+  background-color: #fff8dc;
+  text-align: center;
+}
+#comments-area {
+  background-color: #f0f8ff;
+  margin-bottom: 50px !important;
+  border: 1px solid #edeff2;
+  border-radius: 2px;
+  padding: 50px 70px;
+  border: 1px solid #ffffff;
+}
+
+.comments-title {
+  font-size: 16px;
+  color: #262626;
+  margin-bottom: 15px;
+  font-family: "Conv_helveticaneuecyr-bold";
+}
+
+.be-img-comment {
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-bottom: 15px;
+}
+
+.be-ava-comment {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.be-comment-content {
+  margin-left: 80px;
+}
+
+.be-comment-content span {
+  display: inline-block;
+  width: 49%;
+  margin-bottom: 15px;
+}
+
+.be-comment-name {
+  font-size: 13px;
+  font-family: "Conv_helveticaneuecyr-bold";
+}
+
+.be-comment-content span {
+  display: inline-block;
+  width: 49%;
+  margin-bottom: 15px;
+}
+
+.be-comment-time {
+  text-align: right;
+}
+
+.be-comment-time {
+  font-size: 11px;
+  color: #b4b7c1;
+}
+.single-post-information {
+  margin-top: 20px;
+  font-size: 15px;
+}
+.single-contact-information {
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.be-comment-text {
+  font-size: 13px;
+  line-height: 18px;
+  color: #7a8192;
+  display: block;
+  background: #f6f6f7;
+  border: 1px solid #edeff2;
+}
+
+/* User -> posts/postsId page*/
+.userSinglePostInfo_div {
+  margin-left: 30%;
+}
+.userSinglePost_Head_div {
+  margin-left: 30%;
+}
+
+#userSinglePostInfoError {
+  color: red;
+}
+#userSinglePostInstruction {
+  color: blue;
+}
+.userSinglePostName {
+  padding-right: 10%;
 }

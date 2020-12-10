@@ -1,0 +1,20 @@
+
+{{#each commentList}}
+<div class="be-comment">
+<div class="be-img-comment">
+<img src="http://localhost:3000/public/icon/avatar1.png" alt="" class="be-ava-comment">
+</div>
+<div class = "be-comment-content">
+  <span class="be-comment-name">
+					<p>{{this.user.username}}</p>
+					</span>
+				<span class="be-comment-time">
+					<i class="fa fa-clock-o"></i>
+					{{this.date}}
+	</span>
+
+<p class= 'comment_content'>{{this.content}} </p>
+</div>
+</div>
+
+{{/each}}

@@ -18,7 +18,7 @@ router.get('/:id', async (req, res) => {
     for (let i in post.comments){
       try {
         let commentID = post.comments[i];
-        const comment = await commentData.getCommentById(commentID);
+        const comment = await commentsData.getCommentById(commentID);
         commentlist.push(comment);
       } catch (e) {
         res.status(404).json({ error: 'Comment not found' });
@@ -58,48 +58,42 @@ router.get('/:id/:comment', async (req, res) => {
 });
 
 router.post('/:id', async (req, res) => {
+   console.log(req.session.user)
+  if(!req.session.user){
+    res.json({ error: 'You have to login first!!!!' });
+    return;
+  }
   if (!req.params.id) {
-    res.status(400).json({ error: 'You must provide a ID to post' });
+    res.status(400).json({ error: 'You must provide a ID to post!' });
     return;
   }
-  const CommentData = req.body;
-  if (!CommentData.title) {
-    res.status(400).json({ error: 'You must provide a comment title' });
-    return;
-  }
-  if (!CommentData.commenter) {
-    res.status(400).json({ error: 'You must provide a reviwer' });
-    return;
-  }
-  if (!CommentData.rating) {
-    res.status(400).json({ error: 'You must provide a rating' });
-    return;
-  }
-  if (!CommentData.dateOfComment) {
-    res.status(400).json({ error: 'You must provide a date' });
-    return;
-  }
-  if (!CommentData.comment) {
+  if (!req.body.comment_input) {
     res.status(400).json({ error: 'You must provide a comment' });
     return;
   }
-  let { ObjectId } = require('mongodb');
-  let objectID = ObjectId(req.params.id);
-  try{
-    let post = await postsData.getPostById(objectID);
-  } catch(e){
-    res.status(400).json({ error: "Post not found"})
-  }
+
+  let userId = req.session.user.userId;
+  let username = req.session.user.username;
+
+  let today = new Date().toLocaleDateString();
+
   try {
-    const newComment = await commentData.addComment(
-      CommentData.title,
-      CommentData.commenter,
+    console.log(typeof userId + typeof username + typeof req.params.id + typeof req.body.comment_input)
+    const newComment = await commentsData.addComment(
+      {userId: userId,
+      username: username},
       req.params.id,
-      CommentData.rating,
-      CommentData.dateOfComment,
-      CommentData.comment
+      req.body.comment_input,
+      today,
     );
-    res.json(newComment);
+
+    let { ObjectId } = require('mongodb');
+    let post_id = ObjectId(req.params.id);
+
+    const commentList = await commentsData.getCommentByPostId(post_id);
+
+    res.render('partials/comments', { layout: null, commentList: commentList });
+
   } catch (e) {
     res.status(500).json({ error: e });
   }
@@ -129,7 +123,7 @@ router.delete('/:id/:comment', async (req, res) => {
   }
   try {
     commentID = ObjectId(req.params.comment)
-    theComment = await commentData.getCommentById(commentID);
+    theComment = await commentsData.getCommentById(commentID);
   } catch (e) {
     res.status(404).json({ error: 'Comment not found' });
     return;
@@ -143,7 +137,7 @@ router.delete('/:id/:comment', async (req, res) => {
     }
     post.comments = array;
     await postsData.updatePost(objectID, post);
-    await commentData.removeComment(commentID);
+    await commentsData.removeComment(commentID);
     res.json(theComment);
   } catch (e) {
     res.status(500).json({ error: e });

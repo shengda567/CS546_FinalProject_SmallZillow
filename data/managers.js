@@ -11,7 +11,7 @@ var registers = require('./register');
 
 
     /**
-     * find all managers,  
+     * find all managers,
      * return array of managers(obj)
      */
     async function getAllManagers(){
@@ -40,7 +40,7 @@ var registers = require('./register');
 
     /**
      * find manager by username
-     * @param {string} username 
+     * @param {string} username
      */
     async function getManagerByUsername(username){
         const managersCollection = await managers();
@@ -54,14 +54,14 @@ var registers = require('./register');
 
     /**
      * when add new manager, system need to verify the Authentication
-     * 
+     *
      * using managercode compare with managersCode.hashedPasscode
-     * 
+     *
      * return true if Authentication
      * return false if non-Authentication
-     * 
-     * @param {string} manager_level 
-     * @param {string} managerCode 
+     *
+     * @param {string} manager_level
+     * @param {string} managerCode
      */
     async function compareManagerCodeHelper(manager_level, managerCode){
         if(!manager_level|| !managerCode){
@@ -88,14 +88,14 @@ var registers = require('./register');
 
 
     /**
-     * 
+     *
      * add sign up new manager need provide below things:
-     * username, password, email, manager_level, and special managerCode 
-     * @param {stirng} username 
-     * @param {string} password 
-     * @param {string} email 
-     * @param {string} manager_tital 
-     * @param {string} managerCode 
+     * username, password, email, manager_level, and special managerCode
+     * @param {stirng} username
+     * @param {string} password
+     * @param {string} email
+     * @param {string} manager_tital
+     * @param {string} managerCode
      */
     async function addManager(username, password, email, manager_level, managerCode, manageHistory){
         if(!username) throw 'no username of addManager!';
@@ -103,7 +103,7 @@ var registers = require('./register');
         if(!email) throw 'no Email of addManager!';
         if(!manager_level) throw 'no manager_level of addManager!';
 
-        //check manager_level with managerCode 
+        //check manager_level with managerCode
         if(managerCode){
             let flag = await compareManagerCodeHelper(manager_level, managerCode)
             if(!flag){
@@ -130,7 +130,7 @@ var registers = require('./register');
                 manager_level: manager_level,
                 manager_history: manageHistory
             };
-    
+
             try{
                 const newInsertInformation = await managersCollection.insertOne(newManager);
                 if (newInsertInformation.insertedCount === 0) throw 'Insert failed!';
@@ -140,7 +140,7 @@ var registers = require('./register');
             }
         }else{
             throw 'you need add new manager with new username';
-        }        
+        }
     }
 
 
@@ -160,7 +160,7 @@ var registers = require('./register');
 
 
     async function updateManager(id, updatedManager){
-        
+
         let managerId = ObjectId(id);
         const manager = await getManagerById(id);
         if(!manager){
@@ -283,7 +283,7 @@ var registers = require('./register');
 
 
 
-    
+
     async function deleteRegister(mId, registerId){
         //check have permission to deleted register
         let managerId = ObjectId(mId);
