@@ -16,11 +16,13 @@ async function createaccount(
   phone,
   password
 ) {
+  console.log(username)
+  console.log(typeof username)
   if (typeof username !== "string") {
-    throw "No title provided";
+    throw "No username provided";
   }
   if (username.length == 0) {
-    throw "the title can not be empty";
+    throw "the username can not be empty";
   }
   if (typeof user != "object") {
     throw "the author type must be object";
@@ -55,7 +57,7 @@ async function createaccount(
   const salt = bcrypt.genSaltSync(saltRounds);
   var hashpassword = bcrypt.hashSync(password, salt);
   const registerCollection = await register();
-    
+
   let newaccount = {
     username: username,
     user: user,
@@ -93,6 +95,18 @@ async function getbyone(id) {
     throw "The user is not exist.";
   }
   return user;
+}
+
+async function getbyoneusername(username) {
+    if (typeof username != "string") {
+        throw "the username typy is error.";
+    }
+    const registerCollection = await register();
+    const user = await registerCollection.findOne({ username: username });
+    if (user === null) {
+        throw "The user is not exist.";
+    }
+    return user;
 }
 
 async function checkusername(username) {
@@ -142,9 +156,9 @@ async function update(id, updatedPost) {
   const registerCollection = await register();
   var { ObjectId } = require("mongodb");
   var userId = ObjectId(id);
-  
+
   const updatedPostData = {};
-    
+
   if (updatedPost.user) {
     updatedPostData.user = updatedPost.user;
   }
@@ -176,7 +190,7 @@ async function update(id, updatedPost) {
     var hashpassword = bcrypt.hashSync(updatedPost.password, salt);
     updatedPostData.hashpassword = hashpassword;
   }
-  
+
   const updatedInfo = await registerCollection.updateOne(
     { _id: userId },
     { $set: updatedPostData }
@@ -296,4 +310,5 @@ module.exports = {
   removesavefromuser,
   removecommentfromuser,
   checkusername,
+  getbyoneusername
 };
