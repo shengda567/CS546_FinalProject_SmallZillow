@@ -23,20 +23,14 @@ router.get('/', async (req, res) => {
 });
 router.get('/:id', async (req, res) => {
   //res.json({ route: '/users', method: req.method });
-
   if (req.session.user) {
-    console.log(typeof req.session.user.userId)
     let users = await usersData.getbyone(req.session.user.userId);
-    console.log(users)
     let posts = [];
     for(let i in users.post){
       let singlePost = await postsData.getPostById(users.post[i])
       posts.push({title: singlePost.title, id : singlePost._id})
     }
     res.render("pages/user", { user: users , posts: posts});
-
-
-
   }else{
     res.render('pages/login');
   }
@@ -44,6 +38,16 @@ router.get('/:id', async (req, res) => {
 
 
 router.get('/userSinglePost/:id', async(req, res) =>{
+  if (req.session.user){
+    let { ObjectId } = require("mongodb");
+    let objectID = ObjectId(req.params.id);
+    let singlePost = await postsData.getPostById(objectID);
+
+    res.render("pages/userSinglePost", {post: singlePost});
+  }
+  else{
+      res.render('pages/login');
+  }
 });
 
 
