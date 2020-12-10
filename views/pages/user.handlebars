@@ -1,14 +1,35 @@
-<h1>username:{{user.username}}</h1>
-<h1>email:{{user.email}}</h1>
-<h1>gender:{{user.gender}}</h1>
-<h1>address:{{user.address}}</h1>
-<h1>bod:{{user.BOD}}</h1>
-<h1>phone:{{user.phone}}</h1>
+<div class="container p-3 my-3 bg-dark text-white">
+  <h4>My profile:</h4>
+  <dl class="row">
+    <dt class="col-sm-3">username:</dt>
+    <dd class="col-sm-9">{{user.username}}</dd>
 
+    <dt class="col-sm-3">email:</dt>
+    <dd class="col-sm-9">{{user.email}}</dd>
 
-{{#each posts}}
-  <div>title:{{this.title}}</div>
-  <div>id:{{this.id}}</div>
+    <dt class="col-sm-3">gender:</dt>
+    <dd class="col-sm-9">{{user.gender}}</dd>
 
+    <dt class="col-sm-3">address:</dt>
+    <dd class="col-sm-9">{{user.address}}</dd>
 
-{{/each}}
+    <dt class="col-sm-3">bod:</dt>
+    <dd class="col-sm-9">{{user.BOD}}</dd>
+
+    <dt class="col-sm-3">phone:</dt>
+    <dd class="col-sm-9">{{user.phone}}</dd>
+  </dl>
+</div>
+
+<div class="container p-3 my-3 bg-dark text-white">
+  <h4>My Posts:</h4>
+  <dl class="row">
+    {{#each posts}}
+      <dt class="col-sm-5">Id:{{this.id}} : </dt>
+      <dd class="col-sm-7"><a href="#">{{this.title}}</a></dd>
+       
+    {{/each}}
+  </div>
+  
+  
+</div>
