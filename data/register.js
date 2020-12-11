@@ -16,9 +16,8 @@ async function createaccount(
   phone,
   password
 ) {
-
   if (typeof username !== "string") {
-    console.log(typeof username)
+    console.log(typeof username);
     throw "No username provided";
   }
   if (username.length == 0) {
@@ -114,6 +113,20 @@ async function checkusername(username) {
     throw "The user is already exist.";
   }
   return true;
+}
+
+async function getByUserName(username) {
+  if (typeof username != "string") {
+    throw "the id typy is error.";
+  }
+  const registerCollection = await register();
+  var { ObjectId } = require("mongodb");
+  const user = await registerCollection.findOne({ username: username });
+  if (user == null) {
+    throw "The user is not exist.";
+  }
+  user._id = user._id.toString();
+  return user;
 }
 
 async function remove(id) {
@@ -251,7 +264,7 @@ async function removepostfromuser(id, postID) {
 
   const updateInfo = await registerCollection.updateOne(
     { _id: userId },
-    { $pull: { post: postID} }
+    { $pull: { post: postID } }
   );
   if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
     throw "Update failed";
@@ -304,4 +317,5 @@ module.exports = {
   removesavefromuser,
   removecommentfromuser,
   checkusername,
+  getByUserName,
 };

@@ -93,11 +93,9 @@ router.post("/check", async (req, res) => {
             };
             res.redirect("/login/" + req.session.user.userId);
           } else {
-            res
-              .status(401)
-              .render("pages/error", {
-                error: "Either username or password are error.",
-              });
+            res.status(401).render("pages/error", {
+              error: "Either username or password are error.",
+            });
           }
         }
       }

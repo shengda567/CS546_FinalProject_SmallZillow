@@ -6,6 +6,7 @@ const static = express.static(__dirname + "/public");
 const exphbs = require("express-handlebars");
 const cookieParase = require("cookie-parser");
 const bodyParser = require("body-parser");
+const Handlebars = require("handlebars");
 
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(bodyParser.json({ limit: "50mb" }));

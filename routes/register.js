@@ -163,4 +163,47 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+//add the update user detail function
+router.post("/userInfo/update", async (req, res) => {
+  const requestBody = req.body;
+  let updatedObject = {};
+  let oldUserDetail = null;
+  try {
+    oldUserDetail = await customerinf.getByUserName(requestBody.username);
+    if (requestBody.user && requestBody.user !== oldUserDetail.user)
+      updatedObject.user = requestBody.user;
+    if (requestBody.email && requestBody.email !== oldUserDetail.email)
+      updatedObject.email = requestBody.email;
+    if (requestBody.gender && requestBody.gender !== oldUserDetail.gender)
+      updatedObject.gender = requestBody.gender;
+    if (requestBody.address && requestBody.address !== oldUserDetail.address)
+      updatedObject.address = requestBody.address;
+    if (requestBody.BOD && requestBody.BOD !== oldUserDetail.BOD)
+      updatedObject.BOD = requestBody.BOD;
+    if (requestBody.phone && requestBody.phone !== oldUserDetail.phone)
+      updatedObject.phone = requestBody.phone;
+    if (requestBody.password && requestBody.password !== oldUserDetail.password)
+      updatedObject.password = requestBody.password;
+  } catch (e) {
+    res.status(404).json({ error: "User not found" });
+    return;
+  }
+  if (Object.keys(updatedObject).length !== 0) {
+    try {
+      const updatedPost = await customerinf.update(
+        oldUserDetail._id,
+        updatedObject
+      );
+      res.json(updatedPost);
+    } catch (e) {
+      res.status(500).json({ error: e });
+    }
+  } else {
+    res.status(400).json({
+      error:
+        "No fields have been changed from their inital values, so no update has occurred",
+    });
+  }
+});
+
 module.exports = router;
