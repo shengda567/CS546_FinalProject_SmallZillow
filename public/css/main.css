@@ -540,3 +540,15 @@ img {
 #user-account-edit-save-button {
   float: right;
 }
+
+#user-info-container {
+  margin-top: 20px;
+  background-color: MediumSeaGreen;
+  border-style: solid;
+}
+
+#user-posts-container {
+  margin-top: 20px;
+  background-color: MediumSeaGreen;
+  border-style: solid;
+}
