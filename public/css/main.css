@@ -532,3 +532,11 @@ img {
 .userSinglePostName {
   padding-right: 10%;
 }
+
+#modal-content-backgroud {
+  background-color: cornflowerblue;
+}
+
+#user-account-edit-save-button {
+  float: right;
+}

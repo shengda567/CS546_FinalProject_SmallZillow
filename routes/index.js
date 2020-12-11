@@ -60,8 +60,6 @@ const constructorMethod = (app) => {
     res.render("pages/newpostsuc");
   });
 
-
-
   app.use("*", (req, res) => {
     res.sendStatus(404);
   });
