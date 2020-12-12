@@ -78,7 +78,7 @@ router.post("/", async (req, res) => {
         lastname: personalinf.lastname},
         personalinf.email,
         personalinf.gender,
-        personalinf.city,
+        personalinf.city + ', ' + personalinf.state,
         personalinf.birthdaytime,
         personalinf.phone,
         personalinf.password
