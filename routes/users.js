@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
   //res.json({ route: '/users', method: req.method });
 
   if (req.session.user) {
-    res.redirect("/newpost");
+    res.redirect("/login/" + req.session.user.userId);
   } else {
     res.render("pages/login");
   }

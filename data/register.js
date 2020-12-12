@@ -17,13 +17,13 @@ async function createaccount(
   password
 ) {
   if (typeof username !== "string") {
-    console.log(typeof username);
+
     throw "No username provided";
   }
   if (username.length == 0) {
     throw "the username can not be empty";
   }
-  if (typeof user != "object") {
+  if (typeof user !== "object") {
     throw "the author type must be object";
   }
   if (Object.keys(user).length < 2) {
