@@ -8,8 +8,12 @@ const bcryptjs = require('bcryptjs');
 
 
 
-router.get('/', async (req, res) => {
+router.get('/login', async (req, res) => {
     res.render('pages/manager_login');
+});
+
+router.get('/signup', async (req, res) => {
+    res.render('pages/manager_signup');
 });
 
 
