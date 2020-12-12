@@ -90,6 +90,12 @@ router.get("/api/getCaptcha", function (req, res, next) {
     }
   });
 
+  router.get("/logout", async (req, res) => {
+    req.session.destroy();
+    res.render("pages/logout");
+    //res.send('Logged out');
+  });
+
 
 
 
