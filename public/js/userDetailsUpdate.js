@@ -1,4 +1,57 @@
 (function ($) {
+  let delete_post_button = $("#delet-post-button");
+  delete_post_button.click(async function (event) {
+    event.preventDefault();
+    let post_form = $("#user-account-post-form");
+    let valueList = post_form.serializeArray();
+    if (valueList.length == 0) {
+      alert("you need choose one post first");
+      return;
+    }
+    console.log(valueList[0].value);
+    let post_name = valueList[0].value;
+
+    await $.post(
+      "http://localhost:3000/posts/postName",
+      { name: post_name },
+      (data) => {
+        console.log(data);
+        if (data == null) {
+          alert("No post found");
+        } else {
+          let delete_modal_p = $("#delete-modal-body-p");
+          delete_modal_p.text("");
+          delete_modal_p.text(`You will delete the post: ${data.title} ?`);
+        }
+      }
+    );
+  });
+
+  let yes_delete_post_button = $("#delete-yes");
+  yes_delete_post_button.click(async function (event) {
+    event.preventDefault();
+
+    let post_name = $("#delete-modal-body-p").text();
+    post_name = post_name.slice(26, post_name.length - 2);
+    console.log(post_name);
+
+    await $.post(
+      "http://localhost:3000/posts/postName",
+      { name: post_name },
+      async (data) => {
+        await $.post(
+          `http://localhost:3000/posts/delete/${data._id}`,
+          (data) => {
+            console.log(data);
+            if (data != null) {
+              location.reload();
+            }
+          }
+        );
+      }
+    );
+  });
+
   let save_profile_button = $("#user-account-edit-save-button");
 
   save_profile_button.click(async function (event) {

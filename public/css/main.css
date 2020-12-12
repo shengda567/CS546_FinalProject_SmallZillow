@@ -558,6 +558,7 @@ img {
   transform: scale(1.7);
 }
 
-#user-profile-edit-modal {
+#user-profile-edit-modal,
+#delete-post-modal {
   margin-top: 150px;
 }

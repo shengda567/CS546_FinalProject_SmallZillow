@@ -63,6 +63,9 @@
       </div>
     </div>
   </div>
+
+  
+
   <dl class="row">
     <dt class="col-sm-3">Username:</dt>
     <dd class="col-sm-9">{{user.username}}</dd>
@@ -90,6 +93,7 @@
     <h3>My Posts: 
       <a href="http://localhost:3000/newpost" role="button" class="btn btn-primary btn-lg">Creat New Post</a> 
       <button id="edit-post-button" type="submit" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myPost">Edit Post</button>
+      <button id="delet-post-button" type="submit" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#deleteModal">Delete Post</button>
     </h3> 
     <dl class="row">
       {{#each posts}}
@@ -102,6 +106,26 @@
     </dl>
   </form>
   
+  <div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog" id="delete-post-modal">
+    
+      <!-- Modal content-->
+      <div class="modal-content" id="modal-content-backgroud">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Delete Post Info: </h4>
+        </div>
+        <div class="modal-body">
+          <p id="delete-modal-body-p"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-danger btn-lg" id="delete-yes" data-dismiss="modal">Yes</button>
+          <button type="button" class="btn btn-lg" data-dismiss="modal">No</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 
   <div class="modal fade" id="myPost">
     <div class="modal-dialog modal-lg" id="user-posts-edit-modal">
