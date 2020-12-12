@@ -533,11 +533,14 @@ img {
   padding-right: 10%;
 }
 
-#modal-content-backgroud {
+#modal-content-backgroud,
+#manager-edit-content-backgroud,
+#manager-modal-content-backgroud {
   background-color: cornflowerblue;
 }
 
-#user-account-edit-save-button {
+#user-account-edit-save-button,
+#manager-account-edit-save-button {
   float: right;
 }
 
@@ -557,8 +560,27 @@ img {
   margin-left: 50px;
   transform: scale(1.7);
 }
+#manager-posts-dt-radio {
+  margin-left: 40px;
+  transform: scale(1.4);
+}
 
 #user-profile-edit-modal,
 #delete-post-modal {
   margin-top: 150px;
+}
+
+#manager-nav-tabs {
+  padding: 100px, 0;
+}
+
+#manager-nav-tabs-container {
+  margin-top: 20px;
+  margin-left: -15px;
+  background-color: rgb(202, 241, 240);
+}
+#manager-all-posts-table,
+#manager-all-posts-table th,
+#manager-all-posts-table td {
+  border-color: tomato;
 }
