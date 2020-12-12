@@ -22,11 +22,11 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide post username" });
     return;
   }
-  if (!personalinf.user.firstname) {
+  if (!personalinf.firstname) {
     res.status(400).json({ error: "You must provide post first name" });
     return;
   }
-  if (!personalinf.user.lastname) {
+  if (!personalinf.lastname) {
     res.status(400).json({ error: "You must provide post last name" });
     return;
   }
@@ -38,15 +38,15 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide gender" });
     return;
   }
-  if (!personalinf.address.city) {
+  if (!personalinf.city) {
     res.status(400).json({ error: "You must provide city" });
     return;
   }
-  if (!personalinf.address.state) {
+  if (!personalinf.state) {
     res.status(400).json({ error: "You must provide state" });
     return;
   }
-  if (!personalinf.BOD) {
+  if (!personalinf.birthdaytime) {
     res.status(400).json({ error: "You must provide birthday" });
     return;
   }
@@ -64,32 +64,39 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    if (customerinf.createaccount(req.params.username)) {
-      const {
-        username,
-        user,
-        email,
-        gender,
-        address,
-        BOD,
-        phone,
-        password,
-      } = personalinf;
+    const users = await customerinf.getAllUsers();
+    let match = 0;
+    for(let i in users){
+      if(users[i].username == personalinf.username){
+        match = 1;
+      }
+    }
+    if(match == 0){
       const newPost = await customerinf.createaccount(
-        username,
-        user,
-        email,
-        gender,
-        address,
-        BOD,
-        phone,
-        password
-      );
-      res.json(newPost);
-    } else {
+        personalinf.username,
+        {firstname: personalinf.firstname,
+        lastname: personalinf.lastname},
+        personalinf.email,
+        personalinf.gender,
+        personalinf.city + ', ' + personalinf.state,
+        personalinf.birthdaytime,
+        personalinf.phone,
+        personalinf.password
+        );
+        req.session.user = {
+          userId: newPost._id.toString(),
+          username: personalinf.username,
+          firstName: personalinf.firstname,
+          lastName: personalinf.lastname,
+        };
+        res.redirect("/login/" + newPost._id.toString());
+    }
+    else{
       res.json({ message: "username already exist." });
     }
+
   } catch (e) {
+    console.log(e)
     res.status(500).json({ error: e });
   }
 });
@@ -160,6 +167,49 @@ router.delete("/:id", async (req, res) => {
     res.json(result);
   } catch (e) {
     res.status(500).json({ error: e });
+  }
+});
+
+//add the update user detail function
+router.post("/userInfo/update", async (req, res) => {
+  const requestBody = req.body;
+  let updatedObject = {};
+  let oldUserDetail = null;
+  try {
+    oldUserDetail = await customerinf.getByUserName(requestBody.username);
+    if (requestBody.user && requestBody.user !== oldUserDetail.user)
+      updatedObject.user = requestBody.user;
+    if (requestBody.email && requestBody.email !== oldUserDetail.email)
+      updatedObject.email = requestBody.email;
+    if (requestBody.gender && requestBody.gender !== oldUserDetail.gender)
+      updatedObject.gender = requestBody.gender;
+    if (requestBody.address && requestBody.address !== oldUserDetail.address)
+      updatedObject.address = requestBody.address;
+    if (requestBody.BOD && requestBody.BOD !== oldUserDetail.BOD)
+      updatedObject.BOD = requestBody.BOD;
+    if (requestBody.phone && requestBody.phone !== oldUserDetail.phone)
+      updatedObject.phone = requestBody.phone;
+    if (requestBody.password && requestBody.password !== oldUserDetail.password)
+      updatedObject.password = requestBody.password;
+  } catch (e) {
+    res.status(404).json({ error: "User not found" });
+    return;
+  }
+  if (Object.keys(updatedObject).length !== 0) {
+    try {
+      const updatedPost = await customerinf.update(
+        oldUserDetail._id,
+        updatedObject
+      );
+      res.json(updatedPost);
+    } catch (e) {
+      res.status(500).json({ error: e });
+    }
+  } else {
+    res.status(400).json({
+      error:
+        "No fields have been changed from their inital values, so no update has occurred",
+    });
   }
 });
 

@@ -2,11 +2,44 @@
   <div class="home-page-container">
     <h1 class="mainPageText1">Reimagine home</h1>
     <h2 class="mainPageText2">We’ll help you find a place you’ll love.</h2>
+
     <form action="/search" method="post" id="search" class="searchForm">
 
-      <input type="text" class="searchBox" placeholder="Enter an address, city, or ZIP code" name="search_input"
+      <input type="text" class="searchBox1" placeholder="Enter an address, city, or ZIP code" name="search_input"
         id="search_input" /></input>
-      <button type='submit' id="searchButton" class="searchButton" label="search">Search</button>
+      <input type='submit' name = 'button' value = '' id="searchButton1" class="searchButton" label="search"></input>
     </form>
+
+  </div>
+
+
+  <div class = "main-page-list">
+     <h1 class = 'header'>Recent Posts</h1>
+     <div class="container" id = 'home-page-posts'>
+     <div class="row" id = 'recent-post'>
+
+      {{#each posts}}
+        <div class="col-md-4">
+        <div class="card rounded">
+          <div class = "card-image">
+          <img class="img-fluid" src="{{image}}" alt="Card image" width="300" height = '200'/>
+          </div>
+          <div class="card-image-overlay">
+                <span class="card-detail-badge">{{this.zipcode}}</span>
+                <span class="card-detail-badge">{{this.city}}</span>
+                <span class="card-detail-badge">${{this.price}}/mo</span>
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title">{{this.title}}</h5>
+
+            <a href="/posts/{{_id}}" class="post-info-btn">Detail</a>
+
+          </div>
+        </div>
+        </div>
+      {{/each}}
+
+    </div>
+  </div>
   </div>
 </main>

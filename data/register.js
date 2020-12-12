@@ -17,12 +17,13 @@ async function createaccount(
   password
 ) {
   if (typeof username !== "string") {
-    throw "No title provided";
+
+    throw "No username provided";
   }
   if (username.length == 0) {
-    throw "the title can not be empty";
+    throw "the username can not be empty";
   }
-  if (typeof user != "object") {
+  if (typeof user !== "object") {
     throw "the author type must be object";
   }
   if (Object.keys(user).length < 2) {
@@ -54,8 +55,9 @@ async function createaccount(
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
   var hashpassword = bcrypt.hashSync(password, salt);
+
   const registerCollection = await register();
-    
+
   let newaccount = {
     username: username,
     user: user,
@@ -70,15 +72,19 @@ async function createaccount(
     save: save,
     comment: comment,
   };
-   const insertInfo = await registerCollection.insertOne(newaccount);
-    if (insertInfo.insertedCount === 0)
-    {
-        throw "Could not create account";
-    }
-    const newId = insertInfo.insertedId;
-    var str = newId.toString();
-    const info = await this.getbyone(str);
-    return info;
+  const insertInfo = await registerCollection.insertOne(newaccount);
+  if (insertInfo.insertedCount === 0) {
+    throw "Could not create account";
+  }
+  const newId = insertInfo.insertedId;
+  var str = newId.toString();
+  const info = await this.getbyone(str);
+  return info;
+}
+
+async function getAllUsers() {
+  const userCollection = await register();
+  return await userCollection.find({}).toArray();
 }
 
 async function getbyone(id) {
@@ -107,6 +113,20 @@ async function checkusername(username) {
     throw "The user is already exist.";
   }
   return true;
+}
+
+async function getByUserName(username) {
+  if (typeof username != "string") {
+    throw "the id typy is error.";
+  }
+  const registerCollection = await register();
+  var { ObjectId } = require("mongodb");
+  const user = await registerCollection.findOne({ username: username });
+  if (user == null) {
+    throw "The user is not exist.";
+  }
+  user._id = user._id.toString();
+  return user;
 }
 
 async function remove(id) {
@@ -142,9 +162,9 @@ async function update(id, updatedPost) {
   const registerCollection = await register();
   var { ObjectId } = require("mongodb");
   var userId = ObjectId(id);
-  
+
   const updatedPostData = {};
-    
+
   if (updatedPost.user) {
     updatedPostData.user = updatedPost.user;
   }
@@ -176,7 +196,7 @@ async function update(id, updatedPost) {
     var hashpassword = bcrypt.hashSync(updatedPost.password, salt);
     updatedPostData.hashpassword = hashpassword;
   }
-  
+
   const updatedInfo = await registerCollection.updateOne(
     { _id: userId },
     { $set: updatedPostData }
@@ -239,12 +259,12 @@ async function addcommentforuser(id, commentID) {
 async function removepostfromuser(id, postID) {
   var { ObjectId } = require("mongodb");
   var userId = ObjectId(id);
-  let currentreview = await this.getbyone(id.toString());
+  let currentreview = await this.getbyone(id);
   const registerCollection = await register();
-  var postid = ObjectId(postID);
+
   const updateInfo = await registerCollection.updateOne(
     { _id: userId },
-    { $pull: { post: postid } }
+    { $pull: { post: postID } }
   );
   if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
     throw "Update failed";
@@ -285,6 +305,7 @@ async function removecommentfromuser(id, commentID) {
 }
 
 module.exports = {
+  getAllUsers,
   createaccount,
   getbyone,
   remove,
@@ -296,4 +317,5 @@ module.exports = {
   removesavefromuser,
   removecommentfromuser,
   checkusername,
+  getByUserName,
 };
