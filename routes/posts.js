@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data");
-const xss = require('xss');
+const xss = require("xss");
 const postsData = data.posts;
 const commentsData = data.comments;
 
@@ -17,22 +17,26 @@ router.get("/:id", async (req, res) => {
     post._id = post._id.toString();
     // main Image and side Images
     let main = post.img[0],
-        sides = post.img.slice(1);
+      sides = post.img.slice(1);
     let comments = [];
 
     // if there are comments
-    if(post.comments.length != 0){
+    if (post.comments.length != 0) {
       for (let i in post.comments) {
         let comment = await commentsData.getCommentById(post.comments[i].id);
         comments.push(comment);
       }
-      res.render("pages/singlePost", { post: post, main: main, sides: sides, comments: comments });
+      res.render("pages/singlePost", {
+        post: post,
+        main: main,
+        sides: sides,
+        comments: comments,
+      });
     }
     // else no comments
-    else{
-      res.render("pages/singlePost", { post: post, main: main, sides: sides});
+    else {
+      res.render("pages/singlePost", { post: post, main: main, sides: sides });
     }
-
   } catch (e) {
     res.status(404).json({ error: e });
   }
@@ -115,8 +119,8 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide a email" });
     return;
   }
-  let dir = [];//  an array of image directories
-  for(let image in postInfo.img){
+  let dir = []; //  an array of image directories
+  for (let image in postInfo.img) {
     let img_data = postInfo.img[image];
     // save the image to /public/img
     var fs = require("fs");
@@ -124,10 +128,8 @@ router.post("/", async (req, res) => {
     var base64 = base64Data.replace(/^data:image\/\w+;base64,/, "");
     var buf = Buffer.from(base64, "base64");
     dir.push("public/img/" + img_data.name);
-    fs.writeFile(dir[image], buf, function (err) {
-    });
+    fs.writeFile(dir[image], buf, function (err) {});
   }
-
 
   try {
     let newPost = await postsData.addPost(
@@ -209,14 +211,24 @@ router.post("/", async (req, res) => {
 //   }
 // });
 
-router.patch('/:id', async (req, res) => {
-
+router.patch("/:id", async (req, res) => {
   const requestBody = req.body;
-    if (!requestBody.title && !requestBody.address && !requestBody.state && !requestBody.city && !requestBody.zipcode &&  !requestBody.description && !requestBody.tag && !requestBody.email && !requestBody.phone && !requestBody.price ){
-    res.status(404).json({ error: 'At least one field has to  be provided' });
+  if (
+    !requestBody.title &&
+    !requestBody.address &&
+    !requestBody.state &&
+    !requestBody.city &&
+    !requestBody.zipcode &&
+    !requestBody.description &&
+    !requestBody.tag &&
+    !requestBody.email &&
+    !requestBody.phone &&
+    !requestBody.price
+  ) {
+    res.status(404).json({ error: "At least one field has to  be provided" });
   }
   let updatedObject = {};
-  let { ObjectId } = require('mongodb');
+  let { ObjectId } = require("mongodb");
 
   let objectID = ObjectId(req.params.id);
 
@@ -226,41 +238,41 @@ router.patch('/:id', async (req, res) => {
     if (requestBody.title && requestBody.title !== oldPost.title)
       updatedObject.title = xss(requestBody.title);
     if (requestBody.address && requestBody.address !== oldPost.address)
-        updatedObject.address = xss(requestBody.address);
+      updatedObject.address = xss(requestBody.address);
     if (requestBody.state && requestBody.state !== oldPost.state)
-        updatedObject.state = xss(requestBody.state);
+      updatedObject.state = xss(requestBody.state);
     if (requestBody.city && requestBody.city !== oldPost.city)
       updatedObject.city = xss(requestBody.city);
     if (requestBody.zipcode && requestBody.zipcode !== oldPost.zipcode)
-        updatedObject.zipcode = xss(requestBody.zipcode);
-    if (requestBody.description && requestBody.description !== oldPost.description)
-        updatedObject.description = xss(requestBody.description);
+      updatedObject.zipcode = xss(requestBody.zipcode);
+    if (
+      requestBody.description &&
+      requestBody.description !== oldPost.description
+    )
+      updatedObject.description = xss(requestBody.description);
     if (requestBody.tag && requestBody.tag !== oldPost.tag)
       updatedObject.tag = xss(requestBody.tag);
     if (requestBody.email && requestBody.email !== oldPost.email)
-        updatedObject.email = xss(requestBody.email);
+      updatedObject.email = xss(requestBody.email);
     if (requestBody.phone && requestBody.phone !== oldPost.phone)
-        updatedObject.phone = xss(requestBody.phone);
+      updatedObject.phone = xss(requestBody.phone);
     if (requestBody.price && requestBody.price !== oldPost.price)
-        updatedObject.price = parseInt(xss(requestBody.price));
-
+      updatedObject.price = parseInt(xss(requestBody.price));
   } catch (e) {
-    res.status(404).json({ error: 'Post not found' });
+    res.status(404).json({ error: "Post not found" });
     return;
   }
 
   try {
-
     const updatedPost = await postsData.updatePost(objectID, updatedObject);
     res.json(updatedPost);
   } catch (e) {
-    console.log(e)
+    console.log(e);
     res.status(500).json({ error: e });
   }
 });
 
 router.delete("/:id", async (req, res) => {
-
   if (!req.params.id) throw "You must specify an ID to delete";
   let { ObjectId } = require("mongodb");
   let postId = ObjectId(req.params.id);
@@ -275,20 +287,91 @@ router.delete("/:id", async (req, res) => {
   try {
     await postsData.removePost(postId);
   } catch (e) {
-    console.log(e)
+    console.log(e);
     res.status(500).json({ error: e });
   }
   for (let i in post.comments) {
-
     let commentId = post.comments[i].id;
     try {
       await commentsData.removeComment(commentId);
     } catch (e) {
-      console.log(e)
+      console.log(e);
       res.status(500).json({ error: e });
     }
   }
   res.json({ postId: req.params.id, deleted: true });
+});
+
+router.post("/postName", async (req, res) => {
+  try {
+    const body = req.body;
+    const post = await postsData.getPostByname(body.name);
+    res.json(post);
+    return;
+  } catch (e) {
+    res.status(404).json({ message: "Post not found " + e });
+  }
+});
+
+router.post("/:id", async (req, res) => {
+  const requestBody = req.body;
+  if (
+    !requestBody.title &&
+    !requestBody.address &&
+    !requestBody.state &&
+    !requestBody.city &&
+    !requestBody.zipcode &&
+    !requestBody.description &&
+    !requestBody.tag &&
+    !requestBody.email &&
+    !requestBody.phone &&
+    !requestBody.price
+  ) {
+    res.status(404).json({ error: "At least one field has to  be provided" });
+  }
+  let updatedObject = {};
+  let { ObjectId } = require("mongodb");
+
+  let objectID = ObjectId(req.params.id);
+
+  try {
+    const oldPost = await postsData.getPostById(objectID);
+    updatedObject = oldPost;
+    if (requestBody.title && requestBody.title !== oldPost.title)
+      updatedObject.title = xss(requestBody.title);
+    if (requestBody.address && requestBody.address !== oldPost.address)
+      updatedObject.address = xss(requestBody.address);
+    if (requestBody.state && requestBody.state !== oldPost.state)
+      updatedObject.state = xss(requestBody.state);
+    if (requestBody.city && requestBody.city !== oldPost.city)
+      updatedObject.city = xss(requestBody.city);
+    if (requestBody.zipcode && requestBody.zipcode !== oldPost.zipcode)
+      updatedObject.zipcode = xss(requestBody.zipcode);
+    if (
+      requestBody.description &&
+      requestBody.description !== oldPost.description
+    )
+      updatedObject.description = xss(requestBody.description);
+    if (requestBody.tag && requestBody.tag !== oldPost.tag)
+      updatedObject.tag = xss(requestBody.tag);
+    if (requestBody.email && requestBody.email !== oldPost.email)
+      updatedObject.email = xss(requestBody.email);
+    if (requestBody.phone && requestBody.phone !== oldPost.phone)
+      updatedObject.phone = xss(requestBody.phone);
+    if (requestBody.price && requestBody.price !== oldPost.price)
+      updatedObject.price = parseInt(xss(requestBody.price));
+  } catch (e) {
+    res.status(404).json({ error: "Post not found" });
+    return;
+  }
+
+  try {
+    const updatedPost = await postsData.updatePost(objectID, updatedObject);
+    res.json(updatedPost);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: e });
+  }
 });
 
 module.exports = router;

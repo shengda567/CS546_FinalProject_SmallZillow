@@ -552,3 +552,12 @@ img {
   background-color: MediumSeaGreen;
   border-style: solid;
 }
+
+#user-posts-dt-radio {
+  margin-left: 50px;
+  transform: scale(1.7);
+}
+
+#user-profile-edit-modal {
+  margin-top: 150px;
+}
