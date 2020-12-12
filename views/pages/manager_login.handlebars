@@ -4,22 +4,28 @@
             <div>
                 <h2>Only Manager Login!</h2>
 
-                <form action="/manager/login" method="post" id = "managerForm">
+                <form action="/managerLogin/checkManager" method="post" id = "managerForm">
                   <div class="manager-container">
                     <p>
-                      <label for="manage-username"><b>Username</b></label>
-                      <input type="text" placeholder="Input Username" id = "manage-username" name="manage-username">
+                      <label for="username"><b>Username</b></label>
+                      <input type="text" placeholder="Input Username" id = "username" name="username">
                     </p>
                     
 
                     <p>
-                      <label for="manage-password"><b>Password</b></label>
-                      <input type="password" placeholder="Input Password" id = "manage-password" name="manage-password">
+                      <label for="password"><b>Password</b></label>
+                      <input type="password" placeholder="Input Password" id = "password" name="password">
                     </p>
                     
-                    <p>
+                    {{!-- <p>
                       <label for="manage-verifiy"><b>Verifiy</b></label>
                       <input type="verifiy" placeholder="Input Verifiy Code" id = "manage-verifiy" name="manage-verifiy">
+                    </p> --}}
+
+                    <p id='verify'>
+                      <label for="verifiy"><b>Verifiy</b></label>
+                      <input type="verifiy" placeholder="Input Verifiy Code" id = "verifiy" name="verifiy">
+                      <img src="/managerLogin/api/getCaptcha" alt="captcha" >
                     </p>
                     
 
