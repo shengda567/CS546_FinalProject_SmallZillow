@@ -3,13 +3,13 @@
   <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content" id="modal-content-backgroud">
-      
+
         <!-- Modal Header -->
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Edit Profile</h4>
         </div>
-        
+
         <!-- Modal body -->
         <div class="modal-body">
           <form id="user-account-update-form">
@@ -55,11 +55,11 @@
             <div class="modal-footer">
               <button type="submit" class="btn btn-danger btn-lg" data-dismiss="modal" id="user-account-edit-save-button">Save</button>
             </div>
-            
+
           </form>
         </div>
-        
-        
+
+
       </div>
     </div>
   </div>
@@ -85,15 +85,15 @@
 </div>
 
 <div class="container" id="user-posts-container">
-  <h3>My Posts: <a href="http://localhost:3000/newpost" role="button" class="btn btn-primary btn-lg">Creat New Post</a></h3> 
+  <h3>My Posts: <a href="http://localhost:3000/newpost" role="button" class="btn btn-primary btn-lg">Creat New Post</a></h3>
   <dl class="row">
     {{#each posts}}
-      <dt class="col-sm-5">Id:{{this.id}} : </dt>
-      <dd class="col-sm-7"><a href="#">{{this.title}}</a></dd>
-       
+
+      <dt class="col-sm-7"><a href="http://localhost:3000/posts/{{this.id}}">{{this.title}}</a></dt>
+      <dd class="col-sm-5"><a href="http://localhost:3000/login/userSinglePost/{{this.id}}" role="button" class="btn btn-primary btn-lg">Edit Post</a></dd>
     {{/each}}
   </div>
-  
-  
+
+
 </div>
 <script src="/public/js/userDetailsUpdate.js"></script>

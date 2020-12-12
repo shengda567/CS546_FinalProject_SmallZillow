@@ -22,11 +22,11 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide post username" });
     return;
   }
-  if (!personalinf.user.firstname) {
+  if (!personalinf.firstname) {
     res.status(400).json({ error: "You must provide post first name" });
     return;
   }
-  if (!personalinf.user.lastname) {
+  if (!personalinf.lastname) {
     res.status(400).json({ error: "You must provide post last name" });
     return;
   }
@@ -38,15 +38,15 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide gender" });
     return;
   }
-  if (!personalinf.address.city) {
+  if (!personalinf.city) {
     res.status(400).json({ error: "You must provide city" });
     return;
   }
-  if (!personalinf.address.state) {
+  if (!personalinf.state) {
     res.status(400).json({ error: "You must provide state" });
     return;
   }
-  if (!personalinf.BOD) {
+  if (!personalinf.birthdaytime) {
     res.status(400).json({ error: "You must provide birthday" });
     return;
   }
@@ -64,32 +64,39 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    if (customerinf.createaccount(req.params.username)) {
-      const {
-        username,
-        user,
-        email,
-        gender,
-        address,
-        BOD,
-        phone,
-        password,
-      } = personalinf;
+    const users = await customerinf.getAllUsers();
+    let match = 0;
+    for(let i in users){
+      if(users[i].username == personalinf.username){
+        match = 1;
+      }
+    }
+    if(match == 0){
       const newPost = await customerinf.createaccount(
-        username,
-        user,
-        email,
-        gender,
-        address,
-        BOD,
-        phone,
-        password
-      );
-      res.json(newPost);
-    } else {
+        personalinf.username,
+        {firstname: personalinf.firstname,
+        lastname: personalinf.lastname},
+        personalinf.email,
+        personalinf.gender,
+        personalinf.address.city,
+        personalinf.birthdaytime,
+        personalinf.phone,
+        personalinf.password
+        );
+        req.session.user = {
+          userId: newPost._id.toString(),
+          username: personalinf.username,
+          firstName: personalinf.firstname,
+          lastName: personalinf.lastname,
+        };
+        res.redirect("/login/" + newPost._id.toString());
+    }
+    else{
       res.json({ message: "username already exist." });
     }
+
   } catch (e) {
+    console.log(e)
     res.status(500).json({ error: e });
   }
 });
