@@ -3,6 +3,7 @@ const userRoutes = require("./users");
 const searchRoutes = require("./search");
 const commentRoutes = require("./comments");
 const managerRoutes = require("./managers");
+const managerLogRoutes = require("./managerLogin");
 const findRoutes = require("./find");
 const data = require("../data");
 const apiRoutes = require("./api");
@@ -42,6 +43,7 @@ const constructorMethod = (app) => {
   app.use("/register", registerData);
 
   app.use("/managers", managerRoutes);
+  app.use("/managerLogin", managerLogRoutes);
   app.use("/login", userRoutes);
   app.use("/findinf", findRoutes);
   app.use("/api", apiRoutes);

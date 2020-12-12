@@ -9,7 +9,6 @@ var registers = require('./register');
 
 
 
-
     /**
      * find all managers,
      * return array of managers(obj)
@@ -51,7 +50,6 @@ var registers = require('./register');
 
 
 
-
     /**
      * when add new manager, system need to verify the Authentication
      *
@@ -64,12 +62,12 @@ var registers = require('./register');
      * @param {string} managerCode
      */
     async function compareManagerCodeHelper(manager_level, managerCode){
-        if(!manager_level|| !managerCode){
+        if (!manager_level|| !managerCode){
             return false;
         }
         let size = managerCodeData.length;
         for(let i =0; i < size; i ++){
-            if(managerCodeData[i].level === manager_level){
+            if (managerCodeData[i].level === manager_level){
                 let compareToMerlin = false;
                 try{
                     compareToMerlin = await bcryptjs.compare(managerCode, managerCodeData[i].hashedPasscode);
@@ -86,22 +84,21 @@ var registers = require('./register');
 
 
 
-
     /**
      *
      * add sign up new manager need provide below things:
-     * username, password, email, manager_level, and special managerCode
-     * @param {stirng} username
-     * @param {string} password
-     * @param {string} email
-     * @param {string} manager_tital
-     * @param {string} managerCode
+     * username, password, email, manager_level, and special managerCode 
+     * @param {stirng} username 
+     * @param {string} password 
+     * @param {string} email 
+     * @param {string} manager_level
+     * @param {string} managerCode 
      */
     async function addManager(username, password, email, manager_level, managerCode, manageHistory){
-        if(!username) throw 'no username of addManager!';
-        if(!password) throw 'no password of addManager!';
-        if(!email) throw 'no Email of addManager!';
-        if(!manager_level) throw 'no manager_level of addManager!';
+        if (!username) throw 'no username of addManager!';
+        if (!password) throw 'no password of addManager!';
+        if (!email) throw 'no Email of addManager!';
+        if (!manager_level) throw 'no manager_level of addManager!';
 
         //check manager_level with managerCode
         if(managerCode){
@@ -109,10 +106,10 @@ var registers = require('./register');
             if(!flag){
                 throw 'Non-Authenticated of addManager!';
             }
-        }else{
+        } else {
             throw 'no managerCode of addManager!';
         }
-        if(!Array.isArray(manageHistory) || !manageHistory){
+        if (!Array.isArray(manageHistory) || !manageHistory){
             manageHistory = [];
         }
         let hash = await bcryptjs.hash(password, saltRounds);
@@ -122,7 +119,7 @@ var registers = require('./register');
         //check username duplicate
         let usernameIsExist = await getManagerByUsername(username);
 
-        if(!usernameIsExist){
+        if (!usernameIsExist){
             let newManager = {
                 username: username,
                 hashedPassword: hash,
@@ -135,22 +132,22 @@ var registers = require('./register');
                 const newInsertInformation = await managersCollection.insertOne(newManager);
                 if (newInsertInformation.insertedCount === 0) throw 'Insert failed!';
                 return await getManagerById(newInsertInformation.insertedId);
-            }catch(e){
+            } catch(e) {
                 console.log('add failed');
             }
-        }else{
+        } else {
             throw 'you need add new manager with new username';
         }
     }
 
 
 
-
     async function removeManager(id){
+        
         let managerId = ObjectId(id);
         const managersCollection = await managers();
         const deletionInfo = await managersCollection.removeOne({_id: managerId});
-        if(deletionInfo.deletedCount === 0){
+        if (deletionInfo.deletedCount === 0){
             throw `could not delete manager with id of ${id}`;
         }
         return true;
@@ -158,41 +155,40 @@ var registers = require('./register');
 
 
 
-
     async function updateManager(id, updatedManager){
 
         let managerId = ObjectId(id);
         const manager = await getManagerById(id);
-        if(!manager){
+        if (!manager){
             console.log('update fail, no such manager');
         }
         // console.log(manager);
         let managerUpdateInfo = {};
 
-        if(updatedManager.username){
+        if (updatedManager.username){
             managerUpdateInfo.username = updatedManager.username;
         }
 
-        if(updatedManager.password){
+        if (updatedManager.password){
             let hashedPassword = await bcryptjs.hash(updatedManager.password, saltRounds);
             console.log(hashedPassword)
             managerUpdateInfo.hashedPassword = hashedPassword;
         }
 
-        if(updatedManager.email){
+        if (updatedManager.email){
             managerUpdateInfo.email = updatedManager.email;
         }
 
-        if(updatedManager.manager_level){
+        if (updatedManager.manager_level){
             managerUpdateInfo.manager_level = updatedManager.manager_level;
         }
 
-        if(updatedManager.manager_history){
+        if (updatedManager.manager_history){
             managerUpdateInfo.manager_history = [];
-            for(let oldItem of manager.manager_history){
+            for (let oldItem of manager.manager_history){
                 managerUpdateInfo.manager_history.push(oldItem);
             }
-            for(let item of updatedManager.manager_history){
+            for (let item of updatedManager.manager_history){
                 managerUpdateInfo.manager_history.push(item);
             }
         }
@@ -210,13 +206,12 @@ var registers = require('./register');
 
 
 
-
     async function deleteComment(mId, userId, commentId){
 
         //check have permission to deleted register's comments
         let managerId = ObjectId(mId);
         let isManager = await getManagerById(managerId);
-        if(!isManager){
+        if (!isManager){
             throw 'No permission to delete register';
         }
         let managerUsername = isManager.username;
@@ -224,7 +219,7 @@ var registers = require('./register');
 
         //delete register's comments
         let deletedRegisterComments = await registers.removecommentfromuser(userId, commentId);
-        if(!deletedRegisterComments){
+        if (!deletedRegisterComments){
             throw `could not deleted register's post`;
         }
 
@@ -237,14 +232,13 @@ var registers = require('./register');
         updatedManager.manage_history = [];
         updatedManager.manage_history.push(tempHistory);
         let newManager = await updateManager(mId,updatedManager);
-        if(newManager){
+        if (newManager){
             return true;
-        }else{
+        } else {
             throw `update manager history failed after delete register's comment`;
         }
 
     }
-
 
 
 
@@ -253,14 +247,14 @@ var registers = require('./register');
         //check have permission to deleted register's posts
         let managerId = ObjectId(mId);
         let isManager = await getManagerById(managerId);
-        if(!isManager){
+        if (!isManager){
             throw 'No permission to delete register';
         }
         let managerUsername = isManager.username;
 
         //delete register's posts
         let deletedRegisterPosts = await registers.removepostfromuser(userId, postId);
-        if(!deletedRegisterPosts){
+        if (!deletedRegisterPosts){
             throw `could not deleted register's post`;
         }
 
@@ -273,7 +267,7 @@ var registers = require('./register');
         updatedManager.manage_history = [];
         updatedManager.manage_history.push(tempHistory);
         let newManager = await updateManager(mId,updatedManager);
-        if(newManager){
+        if (newManager){
             return true;
         }else{
             throw `update manager history failed after delete register's post`;
@@ -283,19 +277,18 @@ var registers = require('./register');
 
 
 
-
     async function deleteRegister(mId, registerId){
         //check have permission to deleted register
         let managerId = ObjectId(mId);
         let isManager = await getManagerById(managerId);
-        if(!isManager){
+        if (!isManager){
             throw 'No permission to delete register';
         }
         let managerUsername = isManager.username;
 
         //delete register
         let deletedRegister = await registers.remove(registerId);
-        if(!deletedRegister){
+        if (!deletedRegister){
             throw 'could not delete register';
         }
 
@@ -308,7 +301,7 @@ var registers = require('./register');
         updatedManager.manage_history = [];
         updatedManager.manage_history.push(tempHistory);
         let newManager = await updateManager(mId, updatedManager);
-        if(newManager){
+        if (newManager){
             return true;
         }else{
             throw 'update manager history failed after delete register';

@@ -9,7 +9,7 @@ const bcryptjs = require('bcryptjs');
 
 
 router.get('/', async (req, res) => {
-    res.render('pages/managerLogin');
+    res.render('pages/manager_login');
 });
 
 
@@ -136,6 +136,12 @@ router.patch('/:mId/:registerId', async (req,res) =>{
     if(!req.params.registerId){
         res.status(400).json({ error: 'You must Supply a register ID to delete' });
         return;
+    }
+    try{
+        let manager = await ManagersData.deleteRegister(req.params.mId, req.params.registerId);
+        res.json(manager);
+    }catch(e){
+        throw e;
     }
 });
 

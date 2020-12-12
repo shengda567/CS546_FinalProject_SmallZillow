@@ -54,7 +54,6 @@ async function main() {
     '774-301-0708',
     'helloworld1',
   );
-  console.log("success!!!!!")
 
   let post1 = await posts.addPost(
     register1._id.toString(),
