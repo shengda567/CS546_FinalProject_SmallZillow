@@ -13,6 +13,8 @@ function isZipCode(str) {
   }
   else return false;
 }
+
+
 function checkPrice(num, range){
   if(range == 0){
       if(num > 0 && num < 1000) return true;
@@ -36,6 +38,19 @@ function checkPrice(num, range){
   }
 
 }
+
+router.get("/post/:id", async (req, res) => {
+  try {
+    let { ObjectId } = require("mongodb");
+    let objectID = ObjectId(req.params.id);
+    let post = await postsData.getPostById(objectID);
+    post._id = post._id.toString();
+    res.json(post);
+    return;
+  } catch (e) {
+    res.status(404).json({ message: "Post not found " + e });
+  }
+});
 router.post('/search', async function (req, res) {
   // response.json({ success: true, message: request.body.description });
   try {

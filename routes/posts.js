@@ -302,16 +302,16 @@ router.delete("/:id", async (req, res) => {
   res.json({ postId: req.params.id, deleted: true });
 });
 
-router.post("/postName", async (req, res) => {
-  try {
-    const body = req.body;
-    const post = await postsData.getPostByname(body.name);
-    res.json(post);
-    return;
-  } catch (e) {
-    res.status(404).json({ message: "Post not found " + e });
-  }
-});
+// router.post("/postName", async (req, res) => {
+//   try {
+//     const body = req.body;
+//     const post = await postsData.getPostByname(body.name);
+//     res.json(post);
+//     return;
+//   } catch (e) {
+//     res.status(404).json({ message: "Post not found " + e });
+//   }
+// });
 
 router.post("/:id", async (req, res) => {
   const requestBody = req.body;
@@ -374,34 +374,6 @@ router.post("/:id", async (req, res) => {
   }
 });
 
-router.post("/delete/:id", async (req, res) => {
-  if (!req.params.id) throw "You must specify an ID to delete";
-  let { ObjectId } = require("mongodb");
-  let postId = ObjectId(req.params.id);
-  let post = {};
-  try {
-    post = await postsData.getPostById(postId);
-  } catch (e) {
-    res.status(404).json({ error: "Post not found" });
-    return;
-  }
 
-  try {
-    await postsData.removePost(postId);
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({ error: e });
-  }
-  for (let i in post.comments) {
-    let commentId = post.comments[i].id;
-    try {
-      await commentsData.removeComment(commentId);
-    } catch (e) {
-      console.log(e);
-      res.status(500).json({ error: e });
-    }
-  }
-  res.json({ post });
-});
 
 module.exports = router;

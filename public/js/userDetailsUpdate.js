@@ -8,18 +8,19 @@
       alert("you need choose one post first");
       return;
     }
-    console.log(valueList[0].value);
-    let post_name = valueList[0].value;
-
-    await $.post(
-      "http://localhost:3000/posts/postName",
-      { name: post_name },
+    let post_id = valueList[0].value;
+    console.log(post_id)
+    await $.get(
+      "http://localhost:3000/api/post/" + post_id,
+      // { name: post_name },
       (data) => {
-        console.log(data);
+        // console.log(data);
         if (data == null) {
           alert("No post found");
         } else {
+          let delete_post_id = $("#delete-post-id");
           let delete_modal_p = $("#delete-modal-body-p");
+          delete_post_id.text(`${data._id}`);
           delete_modal_p.text("");
           delete_modal_p.text(`You will delete the post: ${data.title} ?`);
         }
@@ -31,25 +32,17 @@
   yes_delete_post_button.click(async function (event) {
     event.preventDefault();
 
-    let post_name = $("#delete-modal-body-p").text();
-    post_name = post_name.slice(26, post_name.length - 2);
-    console.log(post_name);
+    let post_id = $("#delete-post-id").text();
+    $.ajax({
+      type: "DELETE",
+      url: "/posts/" + post_id,
+      dataType: "json",
+      success: function () {
+        alert("Delete successfully");
+        location.reload();
+      },
+    });
 
-    await $.post(
-      "http://localhost:3000/posts/postName",
-      { name: post_name },
-      async (data) => {
-        await $.post(
-          `http://localhost:3000/posts/delete/${data._id}`,
-          (data) => {
-            console.log(data);
-            if (data != null) {
-              location.reload();
-            }
-          }
-        );
-      }
-    );
   });
 
   let save_profile_button = $("#user-account-edit-save-button");
@@ -85,17 +78,17 @@
       alert("you need choose one post first");
       return;
     }
-    console.log(valueList[0].value);
-    let post_name = valueList[0].value;
-
-    await $.post(
-      "http://localhost:3000/posts/postName",
-      { name: post_name },
-      (data) => {
+    let post_id = valueList[0].value;
+    $.ajax({
+      type: "GET",
+      url: "http://localhost:3000/api/post/" + post_id,
+      dataType: "json",
+      success: function (data) {
         console.log(data);
         if (data == null) {
           alert("No post found");
         } else {
+          let id = $("#post-update-id");
           let title = $("#title");
           let time = $("#date");
           let post_adress = $("#post-address");
@@ -107,7 +100,7 @@
           let post_email = $("#post-email");
           let post_phone = $("#post-phone");
           let price = $("#price");
-
+          id.val(data._id);
           title.val(data.title);
           time.val(data.date);
           post_adress.val(data.address);
@@ -125,24 +118,22 @@
           post_phone.val(data.phone);
           price.val(data.price);
         }
-      }
-    );
+      },
+    });
   });
 
   let save_post_button = $("#user-post-edit-save-button");
   save_post_button.click(async function (event) {
     event.preventDefault();
 
-    let title = $("#title").val();
+    let id = $("#post-update-id").val();
 
-    await $.post(
-      "http://localhost:3000/posts/postName",
-      { name: title },
+    await $.get(
+      "http://localhost:3000/api/post/" + id,
       async (data) => {
-        console.log(data);
-        let id = data._id;
+        let title = $("#title").val();
         let time = $("#date").val();
-        let post_adress = $("#post-address").val();
+        let post_address = $("#post-address").val();
         let city = $("#city").val();
         let state = $("#state").val();
         let zipcode = $("#zipcode").val();
@@ -152,28 +143,29 @@
         let post_phone = $("#post-phone").val();
         let price = $("#price").val();
         let img = $("#img").val();
-
-        await $.post(
-          `http://localhost:3000/posts/${id}`,
-          {
-            title: title,
-            address: post_adress,
-            city: city,
-            state: state,
-            zipcode: zipcode,
-            description: description,
-            tag: tag,
-            email: post_email,
-            phone: post_phone,
-            price: price,
+        console.log(img)
+        let savePostData = {
+          title: title,
+          address: post_address,
+          city: city,
+          state: state,
+          zipcode: zipcode,
+          description: description,
+          tag: tag,
+          email: post_email,
+          phone: post_phone,
+          price: price,
+        };
+        $.ajax({
+          type: "PATCH",
+          url: "/posts/" + id,
+          dataType: "json",
+          data: savePostData,
+          success: function () {
+            alert("Edit successfully");
+            location.reload();
           },
-          (data) => {
-            console.log(data);
-            if (data != null) {
-              location.reload();
-            }
-          }
-        );
+        });
       }
     );
   });
