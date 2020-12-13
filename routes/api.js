@@ -84,7 +84,11 @@ router.post('/search', async function (req, res) {
         };
         recentList.push(recentItem);
       }
-      res.render('partials/search_posts', { layout: null, number: recentList.length, posts: recentList, error: error});
+      let map_address = {address:recentPosts[0].address,
+                         city: recentPosts[0].city,
+                        state: recentPosts[0].state};
+      console.log(map_address)
+      res.render('partials/search_posts', { layout: null, number: recentList.length, posts: recentList, error: error, address: map_address});
     }
     else{
       const newList = [];
@@ -102,7 +106,11 @@ router.post('/search', async function (req, res) {
         if((!req.body.tag || results[i].tag == req.body.tag) && (!req.body.price || checkPrice(results[i].price, parseInt(req.body.price))))
           newList.push(item);
       }
-      res.render('partials/search_posts', { layout: null, posts: newList });
+      let map_address = {address:results[0].address,
+                     city: results[0].city,
+                     state: results[0].state};
+      console.log(map_address)
+      res.render('partials/search_posts', { layout: null, number: newList.length, posts: newList, address: map_address});
     }
 
   } catch (e) {

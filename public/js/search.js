@@ -1,6 +1,6 @@
 
   // Let's start writing AJAX calls!
-$('#search-area').ready(function(){
+(function ($) {
   var priceRange = $('#priceRange');
   var selectTag = $('#selectTag');
   var searchForm = $('#search_form');
@@ -9,6 +9,8 @@ $('#search-area').ready(function(){
   var errorMessage = $('#search-error-message1');
   var errorArea = $('#error-area');
   let pTag2 = `Here are some of the apartments we currently have`;
+
+  console.log("i am here")
 
   if(errorMessage.text() != ""){
     let pTag = ` <p class = 'search-error-message'>${errorMessage.text()}. ${pTag2}</p>`;
@@ -107,4 +109,4 @@ $('#search-area').ready(function(){
 
     });
   });
-});
+})(jQuery);

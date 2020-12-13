@@ -47,7 +47,11 @@ router.post('/', async (req, res) => {
         };
         recentList.push(recentItem);
       }
-      res.render('pages/posts', { posts: recentList, error: error, number: recentList.length, search: input});
+      let map_address = {address:recentPosts[0].address,
+                         city: recentPosts[0].city,
+                        state: recentPosts[0].state};
+      console.log(map_address)
+      res.render('pages/posts', { posts: recentList, error: error, number: recentList.length, search: input, address: map_address});
 
     }
     else{
@@ -64,7 +68,11 @@ router.post('/', async (req, res) => {
         //check if the price and tag match the criteria
         newList.push(item);
       }
-      res.render('pages/posts', { posts: newList, search: input});
+      let map_address = {address:results[0].address,
+                     city: results[0].city,
+                     state: results[0].state};
+      console.log(map_address)
+      res.render('pages/posts', { posts: newList, number:newList.length, search: input, address: map_address});
     }
 
 

@@ -31,32 +31,30 @@
 
 
 <div class="container" id = 'posts-container'>
-   <div class="row">
+   <div class="row" id = 'map-area'>
+
     <div class = 'col-md-6'>
-
-      <div id="floating-panel">
-        <textarea id="singlePost_address" type="button" name="show on map"
-          value={{post.address}},{{post.city}},{{post.state}}
-          hidden>{{post.address}},{{post.city}},{{post.state}}</textarea>
-      </div>
-      <button hidden id='showMapBtm'>Show address on map</button>
-      <div id="map" hidden></div>
-
+      <div id="map"></div>
     </div>
-    <div class = 'col-md-6'>
-    <div hidden style="float:right; width:50%; height:1000px; overflow:auto;" id = 'results'>
+
+    <div hidden class = 'col-md-6' style="float:right; overflow:auto;" id = 'results'>
+    <h2>Rental Listings</h2>
+    <h5 id= 'number-of-posts'>{{number}} results</h5>
     {{#if error}}
     <div hidden class="search-error">
       <p id='search-error-message1'>{{error}}</p>
     </div>
     {{/if}}
+    <div hidden id="map-address" value={{address.address}},{{address.city}},{{address.state}}>
+    </div>
     {{#grouped_each 2 posts}}
     <div class="row">
       {{#each this}}
+
       <div class="col-sm-6" id='posts-area'>
-        <div class="card rounded">
+        <div class="card">
           <div class="card-image">
-            <img class="img-fluid" src="{{image}}" alt="Card image" width="300" height='200' />
+            <img class="img-fluid" src="{{image}}" alt="Card image" width="325" height='150' />
           </div>
           <div class="card-image-overlay">
             <span class="card-detail-badge">{{this.zipcode}}</span>
@@ -74,8 +72,7 @@
       {{/each}}
     </div>
     {{/grouped_each}}
-  </div>
-</div>
+    </div>
 </div>
 </div>
 
@@ -83,4 +80,36 @@
 <script
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKqCSVMtzn9s6rFHVLGhfylw9abVVRT3A&callback=initMap&libraries=&v=weekly"
   defer></script>
-<script src="../public/js/map.js"></script>
+<script>
+function initMap() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 17,
+    center: { lat: -34.397, lng: 150.644 },
+  });
+  const geocoder = new google.maps.Geocoder();
+  document.getElementById("map").onLoad(){
+      geocodeAddress(geocoder, map);
+  }
+
+}
+
+function geocodeAddress(geocoder, resultsMap) {
+  const number = $('number-of-posts').text();
+  console.log(number)
+  const address = $('#map-address').val();
+  console.log(address)
+  geocoder.geocode({ address: address }, (results, status) => {
+
+    if (status === "OK") {
+      resultsMap.setCenter(results[0].geometry.location);
+      new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location,
+      });
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+}
+</script>
+<script src="/public/js/search.js"></script>
