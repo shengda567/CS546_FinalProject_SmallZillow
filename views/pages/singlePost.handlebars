@@ -1,46 +1,17 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKqCSVMtzn9s6rFHVLGhfylw9abVVRT3A&callback=initMap&libraries=&v=weekly"
-  defer></script>
-<script>
-  function initMap() {
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 17,
-      center: { lat: -34.397, lng: 150.644 },
-    });
-    const geocoder = new google.maps.Geocoder();
-    document.getElementById("showMapBtm").addEventListener("click", () => {
-      $('#map').show();
-      geocodeAddress(geocoder, map);
-    });
-  }
 
-  function geocodeAddress(geocoder, resultsMap) {
-    const address = $('#singlePost_address').val();
-    geocoder.geocode({ address: address }, (results, status) => {
-      if (status === "OK") {
-        resultsMap.setCenter(results[0].geometry.location);
-        new google.maps.Marker({
-          map: resultsMap,
-          position: results[0].geometry.location,
-        });
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  }
 
-</script>
-
-<div class='single-container'>
+<div class='container' id = 'single-container'>
   <div id='title-area'>
     <h1 id='single-post-title'>{{post.title}}</h1>
+    <button class="like-button" id = 'heart'></button>
+    <p hidden class = 'user-error-message' id = 'user-error-message' data = {{userLoggedIn}}> You have to login first!</p>
 
   </div>
+
   <div class='top-post-area'>
     <div class='container'>
       <div class='row'>
-        <div class='col-xs-6'>
+        <div class='col-md-6'>
           <div class="gallery">
             <div class="img"><img src=/{{main}} height="250" width="400"></div>
             {{#if sides}}
@@ -55,14 +26,9 @@
             {{/if}}
           </div>
         </div>
-        <div class='col-xs-6'>
-          <div id="floating-panel">
-            <textarea id="singlePost_address" type="button" name="show on map"
-              value={{post.address}},{{post.city}},{{post.state}}
-              hidden>{{post.address}},{{post.city}},{{post.state}}</textarea>
-          </div>
-          <button id='showMapBtm'>Show address on map</button>
-          <div id="map" hidden></div>
+        <div class='col-md-6' id = 'map-area-2'>
+            <textarea hidden id="map-address">{{post.address}},{{post.city}},{{post.state}}</textarea>
+            <div id="map"></div>
         </div>
       </div>
     </div>
@@ -73,6 +39,7 @@
 
     <h2>Post Information:</h2>
     <span id='single-date'>date: {{post.date}}</span>
+
     <div class='price'>price: {{post.price}} </div>
     <div class='address' id='address' data="{{post.address}}" )>address: {{post.address}} </div>
     <div class='state' id='state' data="{{post.state}}">state: {{post.state}} </div>
@@ -125,10 +92,44 @@
     {{/if}}
 
   </div>
-
   <div class='container' id='similarPosts-container'>
     <div class="recommendPosts" id='recommendPosts-area'>Here are some similar posts like this house: </div>
   </div>
 
 </div>
+
 <script src="../public/js/singlePost.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKqCSVMtzn9s6rFHVLGhfylw9abVVRT3A&callback=initMap&libraries=&v=weekly"
+  defer></script>
+<script>
+
+function initMap() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 17,
+    center: { lat: -34.397, lng: 150.644 },
+  });
+  const geocoder = new google.maps.Geocoder();
+
+  geocodeAddress(geocoder, map);
+
+}
+
+function geocodeAddress(geocoder, resultsMap) {
+  const address = $('#map-address').val();
+
+  geocoder.geocode({ address: address }, (results, status) => {
+
+    if (status === "OK") {
+      resultsMap.setCenter(results[0].geometry.location);
+      new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location,
+      });
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+}
+</script>

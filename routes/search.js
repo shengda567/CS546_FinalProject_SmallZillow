@@ -17,11 +17,12 @@ router.post('/', async (req, res) => {
   try {
 
     let input = req.body.search_input;
+
     let results = [];
     let error = "";
-    let found = 1;
     if(isZipCode(input)){
       results = await postsData.getPostsByZipcode(input);
+
     }
     else if(input.includes(" ")){
       results = await postsData.getPostsByAddress(input);
@@ -30,50 +31,54 @@ router.post('/', async (req, res) => {
       results = await postsData.getPostsByCity(input);
     }
     if(results.length == 0){
-      found = 0;
+
       error = "Unfortunately, there is no apartment listed in  " + input;
-
-    }
-
-    const newList = [];
-
-    for (let i in results){
-      let item = {
-         _id: results[i]._id.toString(),
-         title: results[i].title,
-         image: results[i].img[0],
-         price: results[i].price,
-         zipcode: results[i].zipcode,
-         city: results[i].city,
-        }
-      //check if the price and tag match the criteria
-      newList.push(item);
-
-    }
-    if(found == 0){
       let recentPosts = await postsData.getAllPosts();
       const recentList = [];
-      for (let i = 0; i < 8; i++) {
+      for (let i in recentPosts) {
         let recentItem = {
-          _id: recentPosts[recentPosts.length - i - 1]._id.toString(),
-          title: recentPosts[recentPosts.length - i - 1].title,
-          image: recentPosts[recentPosts.length - i - 1].img[0],
-          price: recentPosts[recentPosts.length - i - 1].price,
-          zipcode: recentPosts[recentPosts.length - i - 1].zipcode,
-          city: recentPosts[recentPosts.length - i - 1].city,
+          _id: recentPosts[i]._id.toString(),
+          title: recentPosts[i].title,
+          image: recentPosts[i].img[0],
+          price: recentPosts[i].price,
+          zipcode: recentPosts[i].zipcode,
+          city: recentPosts[i].city,
 
         };
         recentList.push(recentItem);
       }
-      res.render('pages/posts', { posts: recentList, error: error, search: input});
+      let map_address = {address:recentPosts[0].address,
+                         city: recentPosts[0].city,
+                        state: recentPosts[0].state};
+      console.log(map_address)
+      res.render('pages/posts', { posts: recentList, error: error, number: recentList.length, search: input, address: map_address});
+
     }
-    else {
-      res.render('pages/posts', { posts: newList, search: input});
+    else{
+      const newList = [];
+      for (let i in results){
+        let item = {
+           _id: results[i]._id.toString(),
+           title: results[i].title,
+           image: results[i].img[0],
+           price: results[i].price,
+           zipcode: results[i].zipcode,
+           city: results[i].city,
+          }
+        //check if the price and tag match the criteria
+        newList.push(item);
+      }
+      let map_address = {address:results[0].address,
+                     city: results[0].city,
+                     state: results[0].state};
+      console.log(map_address)
+      res.render('pages/posts', { posts: newList, number:newList.length, search: input, address: map_address});
     }
+
 
   } catch (e) {
 
-    res.status(404).json({ error: 'Post not found' });
+    res.status(404).json({ error: 'Post not found'  +  e});
   }
 });
 

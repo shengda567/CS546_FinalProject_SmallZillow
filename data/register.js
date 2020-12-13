@@ -226,7 +226,7 @@ async function addpostforuser(id, postID) {
 
 async function addsaveforuser(id, saveID) {
   var { ObjectId } = require("mongodb");
-  var saveId = ObjectId(id);
+  var userId = ObjectId(id);
   let currentreview = await this.getbyone(id);
   const registerCollection = await register();
   const updateInfo = await registerCollection.updateOne(
@@ -243,7 +243,7 @@ async function addsaveforuser(id, saveID) {
 async function addcommentforuser(id, commentID) {
   var { ObjectId } = require("mongodb");
   var userId = ObjectId(id);
-  let currentreview = await this.getbyone(id);
+  let currentUser= await this.getbyone(id);
   const registerCollection = await register();
   const updateInfo = await registerCollection.updateOne(
     { _id: userId },
@@ -263,7 +263,7 @@ async function removepostfromuser(id, postID) {
   const registerCollection = await register();
 
   const updateInfo = await registerCollection.updateOne(
-    { _id: userId },
+    { _id: id },
     { $pull: { post: postID } }
   );
   if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
@@ -275,12 +275,11 @@ async function removepostfromuser(id, postID) {
 async function removesavefromuser(id, saveID) {
   var { ObjectId } = require("mongodb");
   var userId = ObjectId(id);
-  let currentreview = await this.getbyone(id.toString());
+  let currentUser = await this.getbyone(id);
   const registerCollection = await register();
-  var saveid = ObjectId(saveID);
   const updateInfo = await registerCollection.updateOne(
     { _id: userId },
-    { $pull: { save: saveid } }
+    { $pull: { save: saveID } }
   );
   if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
     throw "Update failed";

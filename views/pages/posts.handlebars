@@ -30,20 +30,31 @@
 
 
 
-<div class="posts-container">
-  <div hidden style="float:right; width:100%; height:1000px;" id='results'>
+<div class="container" id = 'posts-container'>
+   <div class="row">
+
+    <div class = 'col-md-6' id = 'map-area'>
+      <div id="map"></div>
+    </div>
+
+    <div hidden class = 'col-md-6' style="float:right; overflow:auto;" id = 'results'>
+    <h2>Rental Listings</h2>
+    <h5 id= 'number-of-posts'>{{number}} results</h5>
     {{#if error}}
     <div hidden class="search-error">
       <p id='search-error-message1'>{{error}}</p>
     </div>
     {{/if}}
+    <textarea hidden id="map-address">
+    {{address.address}},{{address.city}},{{address.state}}</textarea>
     {{#grouped_each 2 posts}}
     <div class="row">
       {{#each this}}
+
       <div class="col-sm-6" id='posts-area'>
-        <div class="card rounded">
+        <div class="card">
           <div class="card-image">
-            <img class="img-fluid" src="{{image}}" alt="Card image" width="300" height='200' />
+            <img class="img-fluid" src="{{image}}" alt="Card image" width="325" height='150' />
           </div>
           <div class="card-image-overlay">
             <span class="card-detail-badge">{{this.zipcode}}</span>
@@ -61,5 +72,41 @@
       {{/each}}
     </div>
     {{/grouped_each}}
-  </div>
+    </div>
 </div>
+</div>
+<script src="/public/js/search.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKqCSVMtzn9s6rFHVLGhfylw9abVVRT3A&callback=initMap&libraries=&v=weekly"
+  defer></script>
+<script>
+
+function initMap() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 17,
+    center: { lat: -34.397, lng: 150.644 },
+  });
+  const geocoder = new google.maps.Geocoder();
+
+  geocodeAddress(geocoder, map);
+
+}
+
+function geocodeAddress(geocoder, resultsMap) {
+  const address = $('#map-address').val();
+
+  geocoder.geocode({ address: address }, (results, status) => {
+
+    if (status === "OK") {
+      resultsMap.setCenter(results[0].geometry.location);
+      new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location,
+      });
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+}
+</script>
