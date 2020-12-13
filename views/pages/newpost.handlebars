@@ -98,16 +98,6 @@
             <input value="{{info.zipcode}}" placeholder="zipcode" type="text" id="post-zipcode-input"
                 name="zipcodeInput">
         </label>
-        <br>
-
-        {{!-- house description --}}
-        <label for="post-description" class="postInput">
-            Please describe your house:
-            <br>
-            <textarea value="{{info.description}}" placeholder="house description" type="textarea"
-                id="post-description-input" name="descriptionInput"></textarea>
-        </label>
-        <br>
 
         {{!-- house tag --}}
         <label for="post-tag" class="postInput">
@@ -119,6 +109,16 @@
             </select>
         </label>
         <br>
+
+        {{!-- house description --}}
+        <label for="post-description" class="postInput">
+            Please describe your house:
+            <br>
+            <textarea value="{{info.description}}" placeholder="house description" type="textarea"
+                id="post-description-input" name="descriptionInput"></textarea>
+        </label>
+        <br>
+
 
         {{!-- contact email --}}
         <label for="post-email" class="postInput">

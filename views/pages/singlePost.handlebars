@@ -16,124 +16,119 @@
   }
 
   function geocodeAddress(geocoder, resultsMap) {
-    //const address = document.getElementById("singlePost_address").value;
     const address = $('#singlePost_address').val();
     geocoder.geocode({ address: address }, (results, status) => {
       if (status === "OK") {
         resultsMap.setCenter(results[0].geometry.location);
-        //alert(results[0].geometry.location); -xianshi
-        //alert(JSON.stringify(results[0].geometry.location));
         new google.maps.Marker({
           map: resultsMap,
-          position: results[0].address_components.geometry.location,
+          position: results[0].geometry.location,
         });
-
       } else {
-        alert(
-          "Geocode was not successful for the following reason: " + status
-        );
+        alert("Geocode was not successful for the following reason: " + status);
       }
     });
   }
+
 </script>
 
-<div class = 'single-container' >
-  <div id = 'title-area'>
-  <h1 id = 'single-post-title'>{{post.title}}</h1>
+<div class='single-container'>
+  <div id='title-area'>
+    <h1 id='single-post-title'>{{post.title}}</h1>
 
   </div>
-  <div class = 'top-post-area'>
-  <div class = 'container'>
-  <div class = 'row'>
-      <div class = 'col-xs-6'>
-      <div class="gallery">
-      <div class="img"><img src= /{{main}} height="250" width="400"></div>
-      {{#if sides}}
-      <div class="side-image">
-            {{#grouped_each 4 sides}}
-            {{#each this}}
-                <div class="single-img"><img src=/{{this}} height="75" width="100"></div>
-            {{/each}}
+  <div class='top-post-area'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-xs-6'>
+          <div class="gallery">
+            <div class="img"><img src=/{{main}} height="250" width="400"></div>
+            {{#if sides}}
+            <div class="side-image">
+              {{#grouped_each 4 sides}}
+              {{#each this}}
+              <div class="single-img"><img src=/{{this}} height="75" width="100"></div>
+              {{/each}}
 
-            {{/grouped_each}}
-      </div>
-      {{/if}}
-      </div>
-      </div>
-      <div class = 'col-xs-6'>
-      <div id="floating-panel">
-        <textarea id="singlePost_address" type="button" name="show on map"
-          value={{post.address}},{{post.city}},{{post.state}}
-          hidden>{{post.address}},{{post.city}},{{post.state}}</textarea>
-      </div>
-      <button id='showMapBtm'>Show map</button>
-      <div id="map"></div>
+              {{/grouped_each}}
+            </div>
+            {{/if}}
+          </div>
+        </div>
+        <div class='col-xs-6'>
+          <div id="floating-panel">
+            <textarea id="singlePost_address" type="button" name="show on map"
+              value={{post.address}},{{post.city}},{{post.state}}
+              hidden>{{post.address}},{{post.city}},{{post.state}}</textarea>
+          </div>
+          <button id='showMapBtm'>Show address on map</button>
+          <div id="map" hidden></div>
+        </div>
       </div>
     </div>
-    </div>
-    </div>
+  </div>
 
-      <!-- frontend is going to read these values -->
-    <div class= 'single-post-information'>
+  <!-- frontend is going to read these values -->
+  <div class='single-post-information'>
 
     <h2>Post Information:</h2>
-    <span id = 'single-date'>date: {{post.date}}</span>
+    <span id='single-date'>date: {{post.date}}</span>
     <div class='price'>price: {{post.price}} </div>
-    <div class='address' id = 'address' data =  "{{post.address}}")>address: {{post.address}} </div>
-    <div class='state' id = 'state' data = "{{post.state}}">state: {{post.state}} </div>
-    <div class='city' id = 'city' data = "{{post.city}}">city: {{post.city}} </div>
-    <div class='zipcode' id = 'zipcode' data = "{{post.zipcode}}">zipcode: {{post.zipcode}} </div>
+    <div class='address' id='address' data="{{post.address}}" )>address: {{post.address}} </div>
+    <div class='state' id='state' data="{{post.state}}">state: {{post.state}} </div>
+    <div class='city' id='city' data="{{post.city}}">city: {{post.city}} </div>
+    <div class='zipcode' id='zipcode' data="{{post.zipcode}}">zipcode: {{post.zipcode}} </div>
     <div class='description'>description: {{post.description}} </div>
     <div class='tag'>tag: {{post.tag}} </div>
-    </div>
+  </div>
 
 
-    <div class = 'single-contact-information'>
-      <h2>Contact Information: </h2>
+  <div class='single-contact-information'>
+    <h2>Contact Information: </h2>
     <!-- <div class='address'>Address: {{post.address}} {{post.state}} {{post.city}} {{post.zipcode}}</div> -->
-    <div class = 'single-username'> </div>
+    <div class='single-username'> </div>
     <div class='phone'>phone: {{post.phone}} </div>
     <div class='email'>email: {{post.email}} </div>
-    </div>
+  </div>
 
-    <div data-id={{post._id}} class='comment' id = "postId">
+  <div data-id={{post._id}} class='comment' id="postId">
     <h2>Comments:</h2>
     <form action="/comments/{{post._id}}" method="post" id="comment_form" class="commentForm">
-      <label for = "comment_input"> <textarea id="comment_input"></textarea></label>
-      <input type="submit" value="Comment"  id = 'post_button' ></input>
+      <label for="comment_input"> <textarea id="comment_input"></textarea></label>
+      <input type="submit" value="Comment" id='post_button'></input>
     </form>
 
-    </div>
-    <div hidden id ='comment-error' class = 'comment-error-area'>
-    </div>
+  </div>
+  <div hidden id='comment-error' class='comment-error-area'>
+  </div>
 
-    <div id = 'comments-area'>
+  <div id='comments-area'>
     {{#if comments}}
     {{#each comments}}
     <div class="be-comment">
-    <div class="be-img-comment">
-    <img src="http://localhost:3000/public/icon/avatar1.png" alt="" class="be-ava-comment">
-    </div>
-    <div class = "be-comment-content">
-      <span class="be-comment-name">
-    					<p>{{this.user.username}}</p>
-    					</span>
-    				<span class="be-comment-time">
-    					<i class="fa fa-clock-o"></i>
-    					{{this.date}}
-    	</span>
+      <div class="be-img-comment">
+        <img src="http://localhost:3000/public/icon/avatar1.png" alt="" class="be-ava-comment">
+      </div>
+      <div class="be-comment-content">
+        <span class="be-comment-name">
+          <p>{{this.user.username}}</p>
+        </span>
+        <span class="be-comment-time">
+          <i class="fa fa-clock-o"></i>
+          {{this.date}}
+        </span>
 
-    <p class= 'comment_content'>{{this.content}} </p>
-    </div>
+        <p class='comment_content'>{{this.content}} </p>
+      </div>
     </div>
     {{/each}}
     {{/if}}
 
-    </div>
+  </div>
 
-    <div class= 'container' id = 'similarPosts-container'>
-    <div class="recommendPosts" id = 'recommendPosts-area'>Here are some similar posts like this house: </div>
-    </div>
+  <div class='container' id='similarPosts-container'>
+    <div class="recommendPosts" id='recommendPosts-area'>Here are some similar posts like this house: </div>
+  </div>
 
 </div>
 <script src="../public/js/singlePost.js"></script>
