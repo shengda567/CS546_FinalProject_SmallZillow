@@ -9,30 +9,28 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/public/css/main.css">
-    
+
 </head>
 
 <body>
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/rental_posts">Rent a home</a></li>
-            <li><a href="/newpost">Make a post</a></li>
             {{#if userLoggedIn}}
-            <li><a href="/users/profile" id="profile">Profile</a></li>
-            <li><a href="/restaurants/manage">Manage</a></li>
-            <li><a href="/users/logout" id="logout">Logout</a></li>
+                <li><a href="/users/myaccount" id="my-account">My Account</a></li>
+                <li><a href="http://localhost:3000/logout" id="logout">Logout</a></li>
             {{else}}
-            <li><a href="/login" id="auth">Login</a></li>
-            <li><a href="/find" id="auth">Forgot password</a></li>
+                <li><a href="/users/login" id="login-page">Login</a></li>
+                <li><a href="/register" id="register-page">Sign up</a></li>
+                <li><a href="/managers/login" id="manager-login-page">Manager Login</a></li>
+                <li><a href="/managers/signup" id="manager-signup-page">Manager SignUp</a></li>
             {{/if}}
-            <li><a href="/register">Sign up</a></li>
-            <li><a href="/managers/login">Manager Login</a></li>
-            <li><a href="/managers/signup">Manager SignUp</a></li>
+
+
         </ul>
     </nav>
 
-    {{{ body }}}  
+    {{{ body }}}
     <script src="/public/js/search.js"></script>
 </body>
 

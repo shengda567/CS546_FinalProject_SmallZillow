@@ -14,6 +14,17 @@ const registerData = require("./register");
 //const commentRoutes = require('./comments');
 
 const constructorMethod = (app) => {
+  app.use("/search", searchRoutes);
+  app.use("/posts", postRoutes);
+  app.use("/comments", commentRoutes);
+  //app.use('/private', privateRoutes);
+  app.use("/register", registerData);
+
+  app.use("/managers", managerRoutes);
+  app.use("/managerLogin", managerLogRoutes);
+  app.use("/findinf", findRoutes);
+  app.use("/api", apiRoutes);
+  app.use("/users", userRoutes);
   // home page
   app.get("/", async function (req, res) {
     // main page only shows recent 3 posts.
@@ -31,22 +42,18 @@ const constructorMethod = (app) => {
         };
         newList.push(item);
       }
-      res.render("pages/mainPage", { posts: newList });
+
+      res.status(200).render("pages/mainPage", {posts: newList});
     } catch (e) {
       res.render("pages/mainPage", { errors: "No posts in the databse" });
     }
   });
-  app.use("/search", searchRoutes);
-  app.use("/posts", postRoutes);
-  app.use("/comments", commentRoutes);
-  //app.use('/private', privateRoutes);
-  app.use("/register", registerData);
-
-  app.use("/managers", managerRoutes);
-  app.use("/managerLogin", managerLogRoutes);
-  app.use("/login", userRoutes);
-  app.use("/findinf", findRoutes);
-  app.use("/api", apiRoutes);
+  app.get("/logout", async (req, res) => {
+    req.session.destroy();
+    console.log("User logged out");
+    res.redirect("/");
+    //res.send('Logged out');
+  });
 
   //app.use('/comments', commentRoutes);
 

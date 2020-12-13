@@ -10,14 +10,10 @@ const postsData = data.posts;
 
 const pic = require("../data/VerificationCode");
 
-router.get("/", async (req, res) => {
+router.get("/login", async (req, res) => {
   //res.json({ route: '/users', method: req.method });
 
-  if (req.session.user) {
-    res.redirect("/login/" + req.session.user.userId);
-  } else {
-    res.render("pages/login");
-  }
+  res.render("pages/login");
 });
 router.get("/:id", async (req, res) => {
   //res.json({ route: '/users', method: req.method });
@@ -34,17 +30,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.get("/userSinglePost/:id", async (req, res) => {
-  if (req.session.user) {
-    let { ObjectId } = require("mongodb");
-    let objectID = ObjectId(req.params.id);
-    let singlePost = await postsData.getPostById(objectID);
-    singlePost._id = singlePost._id.toString();
-    res.render("pages/userSinglePost", { post: singlePost });
-  } else {
-    res.render("pages/login");
-  }
-});
 
 router.get("/api/getCaptcha", function (req, res, next) {
   let p = "ABCDEFGHKMNPQRSTUVWXYZ1234567890";
@@ -91,7 +76,8 @@ router.post("/check", async (req, res) => {
               firstName: userList[i].firstName,
               lastName: userList[i].lastName,
             };
-            res.redirect("/login/" + req.session.user.userId);
+            res.redirect("/");
+            //res.redirect("/login/" + req.session.user.userId);
           } else {
             res.status(401).render("pages/error", {
               error: "Either username or password are error.",
@@ -111,11 +97,22 @@ router.post("/check", async (req, res) => {
     res.status(401).render("pages/error", { error: e });
   }
 });
-
-router.get("/logout", async (req, res) => {
-  req.session.destroy();
-  res.render("pages/logout");
-  //res.send('Logged out');
+router.get("/myaccount", async (req, res) => {
+  if (req.session.user) {
+    let users = await usersData.getbyone(req.session.user.userId);
+    let posts = [];
+    for (let i in users.post) {
+      let singlePost = await postsData.getPostById(users.post[i]);
+      posts.push({ title: singlePost.title, id: singlePost._id });
+    }
+    return res.render("pages/user", {
+      user: users,
+      posts: posts,
+    });
+  } else {
+    res.render("pages/login");
+  }
 });
+
 
 module.exports = router;
