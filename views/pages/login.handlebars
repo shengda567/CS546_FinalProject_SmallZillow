@@ -5,48 +5,58 @@
           <div>
                 <h2>Please Login!</h2>
 
-                <form action="/users/check" method="post" id = "userForm">
+                <form action="/login/check" method="post" id = "userForm">
                   <div class="container">
                     <p>
                       <label for="username"><b>Username</b></label>
                       <input type="text" placeholder="Input Username" id = "username" name="username">
                     </p>
-
+                    
 
                     <p>
                       <label for="password"><b>Password</b></label>
                       <input type="password" placeholder="Input Password" id = "password" name="password">
                     </p>
-
+                    
                     <p id='verify'>
                       <label for="verifiy"><b>Verifiy</b></label>
                       <input type="verifiy" placeholder="Input Verifiy Code" id = "verifiy" name="verifiy">
-                      <img src="/users/api/getCaptcha" alt="captcha" >
+                      <img src="/login/api/getCaptcha" alt="captcha" >
                     </p>
+                    
 
-
-
-
-
+                   
+                    
+                    
                     <button type="submit">Login</button>
 
                   </div>
                 </form>
             </div>
         </div>
+      
+      
+        <div class="row">
+          <div class="col-sm-6" id="furniture_ads">
+            <div class="thumbnail">
+              <a href="https://www.bassettfurniture.com/?gclid=Cj0KCQiAqdP9BRDVARIsAGSZ8AkmibIjQz4CNQPjnAF43AvegpXEOXG6B1LHwjkz-Nnm3FRwAYAKFZsaAgSNEALw_wcB">
+                <img src="/public/img/furniture_ads.png" alt="furniture link">
+              </a>
+            </div>
 
-      <div class="ads">
-        <div class="furniture_ads">
-          <a href="https://www.bassettfurniture.com/?gclid=Cj0KCQiAqdP9BRDVARIsAGSZ8AkmibIjQz4CNQPjnAF43AvegpXEOXG6B1LHwjkz-Nnm3FRwAYAKFZsaAgSNEALw_wcB">
-            <img src="/public/img/furniture_ads.png" alt="furniture link">
-          </a>
-        </div>
+            
+          </div>
 
-        <div class="moving_house_ads">
-          <a href="https://www.topmoving.com/?source=tm_google_ppc_desktop&keyword=%2Bmoving&physical=9003967&interest=&gclid=Cj0KCQiAqdP9BRDVARIsAGSZ8Al-Uo0Nghluqebb1rBz3xzEg9n1Ao-8bvvg_RbsHj64bYUWPbzT9UoaAuZxEALw_wcB">
-            <img src="/public/img/movint_house_ads.png" alt="moving house link">
-          </a>
+          <div class="col-sm-6" id="moving_house_ads">
+            <div class="thumbnail">
+              <a href="https://www.topmoving.com/?source=tm_google_ppc_desktop&keyword=%2Bmoving&physical=9003967&interest=&gclid=Cj0KCQiAqdP9BRDVARIsAGSZ8Al-Uo0Nghluqebb1rBz3xzEg9n1Ao-8bvvg_RbsHj64bYUWPbzT9UoaAuZxEALw_wcB">
+                <img src="/public/img/movint_house_ads.png" alt="moving house link" id="moving-house-img">
+              </a>
+            </div>
+            
+          </div>
         </div>
-      </div>
+      
+        
     </main>
 <script src="/public/js/signup.js"></script>
