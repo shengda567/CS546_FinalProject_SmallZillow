@@ -95,7 +95,7 @@
                     <td>
                         {{#each post}}
                             <dt class="col-sm-1" >
-                                <input type="radio" id="manager-posts-dt-radio" name="post-radio" value="{{this.title}}">
+                                <input type="radio" id="manager-posts-dt-radio" name="post-radio" value="{{this._id}}">
                             </dt>
                             
                             <dd class="col-sm-11"><a href="/posts/{{this._id}}">{{this.title}}</a></dd>
@@ -122,6 +122,7 @@
           <h4 class="modal-title">Delete Post Info: </h4>
         </div>
         <div class="modal-body">
+            <p id="manager-delete-post-id" hidden></p>
           <p id="manager-delete-modal-body-p"></p>
         </div>
         <div class="modal-footer">

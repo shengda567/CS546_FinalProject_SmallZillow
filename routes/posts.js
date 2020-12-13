@@ -282,7 +282,6 @@ router.delete("/:id", async (req, res) => {
     res.status(404).json({ error: "Post not found" });
     return;
   }
-
   try {
     await postsData.removePost(postId);
   } catch (e) {
