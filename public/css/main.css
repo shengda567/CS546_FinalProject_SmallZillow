@@ -133,7 +133,7 @@ nav li a:hover {
 #signup-div,
 #manager_login_frame .manager-login-div {
   border-radius: 5px;
-  background-color: #f3f3e6;
+  background-color: white;
   padding: 20px;
   width: 75%;
   margin: auto;
@@ -167,9 +167,10 @@ nav li a:hover {
   display: inline;
   border: 1px;
 }
-#moving-house-img {
-  height: 50px;
-  width: 100%;
+#moving-house-img,
+#furniture-img {
+  height: 300px;
+  width: 500px;
 }
 /* Main page*/
 #home-page-container {
