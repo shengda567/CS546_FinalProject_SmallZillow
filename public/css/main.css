@@ -30,7 +30,8 @@ nav li a {
 #manager_login_frame label,
 #signup-div label,
 #managerForm label,
-#user-userForm label {
+#user-userForm label,
+#changepassword-find-frame label {
   font-family: "Montserrat", sans-serif;
   font-weight: normal;
   font-size: 20px;
@@ -57,6 +58,9 @@ nav li a {
   margin-left: 50px;
 }
 
+#changepassword-container {
+  margin-left: -120px;
+}
 #user-find-password-form-div {
   margin-left: -150px;
 }
@@ -69,7 +73,8 @@ nav li a {
 #signup-div input,
 #signup-div select,
 #manager_login_frame input[type="text"],
-#user-userForm input {
+#user-userForm input,
+#changepassword-find-frame input {
   font-family: "Montserrat", sans-serif;
   font-weight: normal;
   font-size: 20px;
@@ -90,7 +95,8 @@ nav li a {
 #manager-login-p,
 #findpassword-p,
 #manager-signup-p,
-#manager-findpassword-p {
+#manager-findpassword-p,
+#change-password-p {
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
   font-size: 25px;
@@ -166,7 +172,8 @@ nav li a {
 #manager-signup-forgetpassword-div {
   margin-left: 95px;
 }
-#signup-div button {
+#signup-div button,
+#changepassword-find-frame button {
   height: 50px;
   width: 400px;
   background-color: #266df6;
@@ -199,7 +206,8 @@ nav li a {
   color: white;
 }
 
-#user-findpassword-button {
+#user-findpassword-button,
+#user-changepassword-button {
   font-family: "Montserrat", sans-serif;
   font-weight: normal;
   font-size: 17px;
@@ -232,7 +240,8 @@ nav li a {
 }
 
 #signup-div,
-#user-find-password-div {
+#user-find-password-div,
+#changepassword-find-frame {
   border-radius: 5px;
   background-color: white;
   padding: 20px;
