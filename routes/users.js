@@ -10,14 +10,10 @@ const postsData = data.posts;
 
 const pic = require("../data/VerificationCode");
 
-router.get("/", async (req, res) => {
+router.get("/login", async (req, res) => {
   //res.json({ route: '/users', method: req.method });
 
-  if (req.session.user) {
-    res.redirect("/login/" + req.session.user.userId);
-  } else {
-    res.render("pages/login");
-  }
+  res.render("pages/login");
 });
 router.get("/:id", async (req, res) => {
   //res.json({ route: '/users', method: req.method });
@@ -91,7 +87,8 @@ router.post("/check", async (req, res) => {
               firstName: userList[i].firstName,
               lastName: userList[i].lastName,
             };
-            res.redirect("/login/" + req.session.user.userId);
+            res.redirect("/");
+            //res.redirect("/login/" + req.session.user.userId);
           } else {
             res.status(401).render("pages/error", {
               error: "Either username or password are error.",
@@ -111,10 +108,28 @@ router.post("/check", async (req, res) => {
     res.status(401).render("pages/error", { error: e });
   }
 });
-
+router.get("/myaccount", async (req, res) => {
+  if (req.session.user) {
+    let users = await usersData.getbyone(req.session.user.userId);
+    let posts = [];
+    for (let i in users.post) {
+      let singlePost = await postsData.getPostById(users.post[i]);
+      posts.push({ title: singlePost.title, id: singlePost._id });
+    }
+    return res.render("pages/user", {
+      user: users,
+      posts: posts,
+      userLoggedIn: true,
+    });
+  } else {
+    res.render("pages/login");
+  }
+});
 router.get("/logout", async (req, res) => {
-  req.session.destroy();
-  res.render("pages/logout");
+  req.session.destroy(() => {
+    console.log("User logged out");
+  });
+  res.status(200).render("pages/logout", { userLoggedIn: false });
   //res.send('Logged out');
 });
 
