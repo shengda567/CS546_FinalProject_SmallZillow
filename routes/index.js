@@ -22,7 +22,6 @@ const constructorMethod = (app) => {
 
   app.use("/managers", managerRoutes);
   app.use("/managerLogin", managerLogRoutes);
-  app.use("/login", userRoutes);
   app.use("/findinf", findRoutes);
   app.use("/api", apiRoutes);
   app.use("/users", userRoutes);
@@ -43,17 +42,8 @@ const constructorMethod = (app) => {
         };
         newList.push(item);
       }
-      let userLoggedIn = false;
-      let userSession = req.session.user;
-      if (!userSession) {
-        userLoggedIn = false;
-      } else {
-        userLoggedIn = true;
-      }
-      res.status(200).render("pages/mainPage", {
-        posts: newList,
-        userLoggedIn: userLoggedIn,
-      });
+
+      res.status(200).render("pages/mainPage", {posts: newList});
     } catch (e) {
       res.render("pages/mainPage", { errors: "No posts in the databse" });
     }

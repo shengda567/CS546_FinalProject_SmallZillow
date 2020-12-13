@@ -30,17 +30,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.get("/userSinglePost/:id", async (req, res) => {
-  if (req.session.user) {
-    let { ObjectId } = require("mongodb");
-    let objectID = ObjectId(req.params.id);
-    let singlePost = await postsData.getPostById(objectID);
-    singlePost._id = singlePost._id.toString();
-    res.render("pages/userSinglePost", { post: singlePost });
-  } else {
-    res.render("pages/login");
-  }
-});
 
 router.get("/api/getCaptcha", function (req, res, next) {
   let p = "ABCDEFGHKMNPQRSTUVWXYZ1234567890";
@@ -119,17 +108,17 @@ router.get("/myaccount", async (req, res) => {
     return res.render("pages/user", {
       user: users,
       posts: posts,
-      userLoggedIn: true,
     });
   } else {
     res.render("pages/login");
   }
 });
 router.get("/logout", async (req, res) => {
-  req.session.destroy(() => {
-    console.log("User logged out");
-  });
-  res.status(200).render("pages/logout", { userLoggedIn: false });
+
+  req.session.destroy();
+  console.log("User logged out");
+
+  res.redirect("/");
   //res.send('Logged out');
 });
 

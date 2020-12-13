@@ -76,6 +76,16 @@ app.use(
     //cookie: { maxAge: 60000 },
   })
 );
+app.use(async (req, res, next) => {
+
+  if (req.session.user) {
+
+      res.locals.userLoggedIn = true;
+  }else{
+      res.locals.userLoggedIn = false;
+  }
+	next();
+});
 app.use("/private", (req, res, next) => {
   if (!req.session.user) {
     return res.redirect("/");
