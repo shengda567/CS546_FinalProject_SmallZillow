@@ -113,13 +113,6 @@ router.get("/myaccount", async (req, res) => {
     res.render("pages/login");
   }
 });
-router.get("/logout", async (req, res) => {
 
-  req.session.destroy();
-  console.log("User logged out");
-
-  res.redirect("/");
-  //res.send('Logged out');
-});
 
 module.exports = router;

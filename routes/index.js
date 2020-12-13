@@ -48,6 +48,12 @@ const constructorMethod = (app) => {
       res.render("pages/mainPage", { errors: "No posts in the databse" });
     }
   });
+  app.get("/logout", async (req, res) => {
+    req.session.destroy();
+    console.log("User logged out");
+    res.redirect("/");
+    //res.send('Logged out');
+  });
 
   //app.use('/comments', commentRoutes);
 
