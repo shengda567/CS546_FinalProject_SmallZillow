@@ -9,7 +9,7 @@ nav ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #266DF6;
+  background-color: #266df6;
   font-family: "Montserrat", sans-serif;
   font-size: large;
 }
@@ -167,17 +167,10 @@ nav li a:hover {
   display: inline;
   border: 1px;
 }
-.moving_house_ads {
-  display: inline;
-  border: 1px;
+#moving-house-img {
+  height: 50px;
+  width: 100%;
 }
-
-.ads img {
-  /* position: absolute; */
-  width: auto;
-  height: auto;
-}
-
 /* Main page*/
 #home-page-container {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -295,7 +288,6 @@ img {
   margin-left: 250px;
 }
 
-
 .header {
   margin-top: 30px;
   margin-left: 30px;
@@ -316,17 +308,16 @@ img {
   border-radius: 4px;
   transition: all 0.3s ease;
 }
-#posts-area .card{
-
-  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+#posts-area .card {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
-  border-bottom: 3px solid #266DF6;
+  border-bottom: 3px solid #266df6;
 }
 
-.card{
+.card {
   margin-top: 10px;
-  padding-top:10px;
-  padding-bottom:10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .card-detail-badge {
   background: #f2d900;
@@ -374,14 +365,14 @@ img {
   transition: all 0.3s ease;
   box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.15);
 }
-#posts-container{
+#posts-container {
   width: 100%;
   height: 100vh;
 }
-#results{
-  background-color:#F0F8FF;
+#results {
+  background-color: #f0f8ff;
   height: auto;
-  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
 #search-area {
   background-color: #f8f8ff;
@@ -444,19 +435,17 @@ img {
   display:inline-flex;
   margin:auto; */
 /* map */
-#map-area{
-  background-color: #F0F8FF;
+#map-area {
+  background-color: #f0f8ff;
 }
 #map-area #map {
   height: 100vh;
   width: 100vh;
-
 }
-#map-area-2{
-  width:auto;
-
+#map-area-2 {
+  width: auto;
 }
-#map-area-2 #map{
+#map-area-2 #map {
   height: 100vh;
   width: 150vh;
 }
@@ -470,7 +459,7 @@ img {
 
 #similarPosts-container {
   width: 100%;
-  background-color: #FFFFF0;
+  background-color: #fffff0;
   text-align: center;
 }
 #comments-area {
@@ -633,48 +622,46 @@ img {
   margin: auto;
   text-align: left;
 }
-.comment-error-message{
+.comment-error-message {
   color: red;
 }
 .gallery {
   margin-left: auto;
 }
 
-
 /* heart button */
 .like-button {
   margin-left: 100px;
-  margin-right:50px;
-  float:right;
+  margin-right: 50px;
+  float: right;
   position: relative;
   font-size: 32px;
   cursor: pointer;
   /* // border: 1px solid black; */
 }
 .like-button::before {
-    font-size: 3em;
-    color: #000;
-    content: '♥';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    &::before{
-
-    }
+  font-size: 3em;
+  color: #000;
+  content: "♥";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  &::before {
+  }
 }
 .like-button::after {
-    font-size: 3em;
-    color: red;
-    content: '♥';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.2s;
+  font-size: 3em;
+  color: red;
+  content: "♥";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s;
 }
 .like-button.liked::after {
-    transform: translate(-50%, -50%) scale(1.1);
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
 #userDetailErrorLists_div {

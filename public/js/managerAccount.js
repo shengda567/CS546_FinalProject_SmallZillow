@@ -27,17 +27,19 @@
       return;
     }
     console.log(valueList[0].value);
-    let post_name = valueList[0].value;
+    let post_id = valueList[0].value;
 
-    await $.post(
-      "http://localhost:3000/posts/postName",
-      { name: post_name },
+    await $.get(
+      "http://localhost:3000/api/post/" + post_id,
+      //{ name: post_name },
       (data) => {
-        console.log(data);
+        //console.log(data);
         if (data == null) {
           alert("No post found");
         } else {
+          let delete_post_id = $("#manager-delete-post-id");
           let manager_delete_modal_p = $("#manager-delete-modal-body-p");
+          delete_post_id.text(`${data._id}`);
           manager_delete_modal_p.text("");
           manager_delete_modal_p.text(
             `You will delete the post: ${data.title} ?`
@@ -51,35 +53,32 @@
   manager_yes_delete_post_button.click(async function (event) {
     event.preventDefault();
 
+    let post_id = $("#manager-delete-post-id").text();
     let post_name = $("#manager-delete-modal-body-p").text();
     post_name = post_name.slice(26, post_name.length - 2);
-    console.log(post_name);
+    //console.log(post_name);
 
     let id = $("#manager-id").val();
     let manager_history = [];
-    await $.post(
-      "http://localhost:3000/posts/postName",
-      { name: post_name },
-      async (data) => {
+
+    $.ajax({
+      type: "DELETE",
+      url: "/posts/" + post_id,
+      dataType: "json",
+      success: async function () {
+        alert("Delete successfully");
+        manager_history.push(post_name);
         await $.post(
-          `http://localhost:3000/posts/delete/${data._id}`,
+          `http://localhost:3000/managers/${id}`,
+          { manager_history: manager_history },
           async (data) => {
             console.log(data);
-            if (data != null) {
-              manager_history.push(data.post.title);
-              await $.post(
-                `http://localhost:3000/managers/${id}`,
-                { manager_history: manager_history },
-                async (data) => {
-                  console.log(data);
-                  location.reload();
-                }
-              );
-            }
+            location.reload();
           }
         );
-      }
-    );
+        location.reload();
+      },
+    });
   });
 
   save_manager_profile_button = $("#manager-account-edit-save-button");
