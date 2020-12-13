@@ -9,8 +9,8 @@
       return;
     }
     let post_id = valueList[0].value;
-
-    await $.post(
+    console.log(post_id)
+    await $.get(
       "http://localhost:3000/api/post/" + post_id,
       // { name: post_name },
       (data) => {
