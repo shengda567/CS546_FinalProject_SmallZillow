@@ -1,4 +1,22 @@
 (function ($) {
+  let all_posts_button = $("#allpost-button");
+  all_posts_button.click(async function (event) {
+    event.preventDefault();
+    let all_posts_container = $("#manager-all-posts-container");
+    let manager_history_container = $("#manager-history-container");
+    manager_history_container.hide();
+    all_posts_container.show();
+  });
+
+  let manager_history_button = $("#manager-history-button");
+  manager_history_button.click(async function (event) {
+    event.preventDefault();
+    let all_posts_container = $("#manager-all-posts-container");
+    let manager_history_container = $("#manager-history-container");
+    all_posts_container.hide();
+    manager_history_container.show();
+  });
+
   let manager_delete_post_button = $("#manager-delet-post-button");
   manager_delete_post_button.click(async function (event) {
     event.preventDefault();
@@ -37,16 +55,26 @@
     post_name = post_name.slice(26, post_name.length - 2);
     console.log(post_name);
 
+    let id = $("#manager-id").val();
+    let manager_history = [];
     await $.post(
       "http://localhost:3000/posts/postName",
       { name: post_name },
       async (data) => {
         await $.post(
           `http://localhost:3000/posts/delete/${data._id}`,
-          (data) => {
+          async (data) => {
             console.log(data);
             if (data != null) {
-              location.reload();
+              manager_history.push(data.post.title);
+              await $.post(
+                `http://localhost:3000/managers/${id}`,
+                { manager_history: manager_history },
+                async (data) => {
+                  console.log(data);
+                  location.reload();
+                }
+              );
             }
           }
         );

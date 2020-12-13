@@ -584,3 +584,9 @@ img {
 #manager-all-posts-table td {
   border-color: tomato;
 }
+
+#manager-history-container {
+  margin-top: 20px;
+  border-style: solid;
+  border-color: tomato;
+}
