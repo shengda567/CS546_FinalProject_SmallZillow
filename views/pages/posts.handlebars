@@ -31,9 +31,9 @@
 
 
 <div class="container" id = 'posts-container'>
-   <div class="row" id = 'map-area'>
+   <div class="row">
 
-    <div class = 'col-md-6'>
+    <div class = 'col-md-6' id = 'map-area'>
       <div id="map"></div>
     </div>
 
@@ -45,8 +45,8 @@
       <p id='search-error-message1'>{{error}}</p>
     </div>
     {{/if}}
-    <div hidden id="map-address" value={{address.address}},{{address.city}},{{address.state}}>
-    </div>
+    <textarea hidden id="map-address">
+    {{address.address}},{{address.city}},{{address.state}}</textarea>
     {{#grouped_each 2 posts}}
     <div class="row">
       {{#each this}}
@@ -75,29 +75,27 @@
     </div>
 </div>
 </div>
-
+<script src="/public/js/search.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKqCSVMtzn9s6rFHVLGhfylw9abVVRT3A&callback=initMap&libraries=&v=weekly"
   defer></script>
 <script>
+
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 17,
     center: { lat: -34.397, lng: 150.644 },
   });
   const geocoder = new google.maps.Geocoder();
-  document.getElementById("map").onLoad(){
-      geocodeAddress(geocoder, map);
-  }
+
+  geocodeAddress(geocoder, map);
 
 }
 
 function geocodeAddress(geocoder, resultsMap) {
-  const number = $('number-of-posts').text();
-  console.log(number)
   const address = $('#map-address').val();
-  console.log(address)
+
   geocoder.geocode({ address: address }, (results, status) => {
 
     if (status === "OK") {
@@ -112,4 +110,3 @@ function geocodeAddress(geocoder, resultsMap) {
   });
 }
 </script>
-<script src="/public/js/search.js"></script>

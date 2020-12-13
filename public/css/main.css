@@ -423,7 +423,7 @@ img {
   text-align: center;
   font-size: 10pt;
 }
-.single-container {
+#single-container {
   width: 80%;
   padding-top: 20px;
   background-color: #f8f8ff;
@@ -447,23 +447,20 @@ img {
 #map-area{
   background-color: #F0F8FF;
 }
-#map {
-  height: 95vh;
-  width: 95vh;
+#map-area #map {
+  height: 100vh;
+  width: 100vh;
+
 }
-#showMapBtm {
-  background: rgb(205, 255, 232);
-  height: 25px;
-  position: center;
-  margin-top: -250px;
-  border: 2px;
-  text-decoration: none;
-  font-size: 15pt;
-  color: rgb(106, 163, 137);
-  font-weight: 700;
-  outline: none;
-  border-radius: 3px;
+#map-area-2{
+  width:auto;
+
 }
+#map-area-2 #map{
+  height: 100vh;
+  width: 150vh;
+}
+
 .middle-post-area {
   border-style: solid;
 
@@ -472,7 +469,8 @@ img {
 }
 
 #similarPosts-container {
-  background-color: #fff8dc;
+  width: 100%;
+  background-color: #FFFFF0;
   text-align: center;
 }
 #comments-area {
@@ -635,8 +633,46 @@ img {
   margin: auto;
   text-align: left;
 }
-
+.comment-error-message{
+  color: red;
+}
 .gallery {
-  text-align: left;
-  margin-left: -50%;
+  margin-left: auto;
+}
+
+
+/* heart button */
+.like-button {
+  margin-left: 100px;
+  margin-right:50px;
+  float:right;
+  position: relative;
+  font-size: 32px;
+  cursor: pointer;
+  /* // border: 1px solid black; */
+}
+.like-button::before {
+    font-size: 3em;
+    color: #000;
+    content: '♥';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    &::before{
+
+    }
+}
+.like-button::after {
+    font-size: 3em;
+    color: red;
+    content: '♥';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s;
+}
+.like-button.liked::after {
+    transform: translate(-50%, -50%) scale(1.1);
 }

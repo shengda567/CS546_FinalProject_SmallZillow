@@ -114,5 +114,40 @@ router.get("/myaccount", async (req, res) => {
   }
 });
 
+router.post("/add/:id", async (req, res) => {
+  if (req.session.user) {
+    let { ObjectId } = require("mongodb");
+    let objectID = ObjectId(req.params.id);
+    try{
+      await usersData.addsaveforuser(req.session.user.userId, objectID);
+      res.json({success: true})
+    }catch(e){
+      console.log(e)
+      res.status(500).json({ error: e });
+    }
+  }else{
+    console.log(e)
+    res.status(500).json({ error: e });
+  }
+
+
+});
+router.post("/remove/:id", async (req, res) => {
+  if (req.session.user) {
+    let { ObjectId } = require("mongodb");
+    let objectID = ObjectId(req.params.id);
+    try{
+      await usersData. removesavefromuser(req.session.user.userId, objectID);
+      res.json({success: true})
+    }catch(e){
+      console.log(e)
+      res.status(500).json({ error: e });
+    }
+  }else{
+    console.log(e)
+    res.status(500).json({ error: e });
+  }
+});
+
 
 module.exports = router;

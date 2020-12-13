@@ -267,7 +267,6 @@ router.patch("/:id", async (req, res) => {
     const updatedPost = await postsData.updatePost(objectID, updatedObject);
     res.json(updatedPost);
   } catch (e) {
-    console.log(e);
     res.status(500).json({ error: e });
   }
 });
