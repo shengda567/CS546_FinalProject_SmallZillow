@@ -263,7 +263,7 @@ async function removepostfromuser(id, postID) {
   const registerCollection = await register();
 
   const updateInfo = await registerCollection.updateOne(
-    { _id: id },
+    { _id: userId},
     { $pull: { post: postID } }
   );
   if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
