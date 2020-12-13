@@ -9,6 +9,8 @@ const registersData = data.register;
 const postsData = data.posts;
 const pic = require("../data/VerificationCode");
 
+
+
 router.get("/api/getCaptcha", function (req, res, next) {
   let p = "ABCDEFGHKMNPQRSTUVWXYZ1234567890";
   var str = "";
@@ -20,6 +22,8 @@ router.get("/api/getCaptcha", function (req, res, next) {
   res.setHeader("Content-Type", "image/bmp");
   res.end(img.getFileData());
 });
+
+
 
 router.post("/checkManager", async (req, res) => {
   const { username, password, verifiy } = req.body;
@@ -73,6 +77,8 @@ router.post("/checkManager", async (req, res) => {
   }
 });
 
+
+
 router.get("/:id", async (req, res) => {
   if (req.session.manager) {
     let managerInfo = await managersData.getManagerByUsername(
@@ -104,6 +110,8 @@ router.get("/:id", async (req, res) => {
     res.render("pages/manager_login");
   }
 });
+
+
 
 router.get("/logout", async (req, res) => {
   req.session.destroy();

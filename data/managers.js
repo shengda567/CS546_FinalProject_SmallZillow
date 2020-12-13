@@ -16,7 +16,7 @@ var registers = require('./register');
     async function getAllManagers(){
         const managersCollection = await managers();
         const managersList = await managersCollection.find({}).toArray();
-        if (!managersList) throw 'No managers in system!';
+        if (!managersList) return null;
         return managersList;
     }
 
@@ -31,7 +31,7 @@ var registers = require('./register');
         const managersCollection = await managers();
         let managerId = ObjectId(id);
         const manager = await managersCollection.findOne({ _id: managerId });
-        if (!manager) throw 'manager not found';
+        if (!manager) return null;
         return manager;
     }
 
@@ -319,5 +319,6 @@ module.exports = {
     updateManager,
     deleteComment,
     deletePosts,
-    deleteRegister
+    deleteRegister,
+    compareManagerCodeHelper
 };
