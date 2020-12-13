@@ -4,6 +4,7 @@ const router = express.Router();
 const data = require("../data");
 const customerinf = data.register;
 var bodyParser = require("body-parser");
+const nodemailer = require('nodemailer');
 //const { default: renderEmpty } = require('antd/lib/config-provider/renderEmpty');
 
 router.get("/", async (req, res) => {
@@ -89,7 +90,45 @@ router.post("/", async (req, res) => {
           firstName: personalinf.firstname,
           lastName: personalinf.lastname,
         };
-        res.redirect("/users/" + newPost._id.toString());
+        const output = `
+    <p>You create a new account</p>
+    
+`;
+
+
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.qq.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: '1648271784@qq.com',
+                pass: 'wyeqgnsoxracfcej'
+            },
+            tls: {
+                rejectUnauthorized: false
+            }
+        });
+
+
+        let mailOptions = {
+            from: '1648271784@qq.com',
+            to: req.body.email,
+            subject: 'Create a new account',
+            text: 'Hello world?',
+            html: output
+        };
+
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Message sent: %s', info.messageId);
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+            
+        });
+        res.redirect("/login/" + newPost._id.toString());
     }
     else{
       res.json({ message: "username already exist." });
