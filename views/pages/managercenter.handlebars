@@ -68,8 +68,8 @@
 
 <div class="container" id="manager-nav-tabs-container">
     <ul class="nav nav-tabs" id="manager-nav-tabs">
-        <li><a href="#"><h5>All Posts</h5></a></li>
-        <li><a href="#"><h5>Manager History</h5></a></li>
+        <li id="allpost-button"><a href="#"><h5>All Posts</h5></a></li>
+        <li id="manager-history-button"><a href="#"><h5>Manager History</h5></a></li>
     </ul>
 </div>
 
@@ -131,6 +131,15 @@
       </div>
       
     </div>
-  </div>
+</div>
+
+<div class="container" id="manager-history-container" hidden>
+    Deleted Posts: 
+    <ol id="deleted-post-list">
+        {{#each manager.manager_history}}
+            <li >{{this}}</li>
+        {{/each}}
+    </ol>
+</div>
 
 <script src="/public/js/managerAccount.js"></script>
