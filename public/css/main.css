@@ -319,7 +319,8 @@ img {
   display: block;
 }
 .card-image-overlay {
-  margin-left: 50px;
+  margin-left: auto;
+  text-align: center;
 }
 .card-image-overlay span {
   display: inline-block;
@@ -422,7 +423,7 @@ img {
   margin-top: -250px;
   border: 2px;
   text-decoration: none;
-  font-size: 10pt;
+  font-size: 15pt;
   color: rgb(106, 163, 137);
   font-weight: 700;
   outline: none;
@@ -589,4 +590,18 @@ img {
   margin-top: 20px;
   border-style: solid;
   border-color: tomato;
+}
+
+.new-post-form {
+  border-radius: 5px;
+  background-color: #f3f3e6;
+  padding: 20px;
+  width: 75%;
+  margin: auto;
+  text-align: left;
+}
+
+.gallery {
+  text-align: left;
+  margin-left: -50%;
 }
