@@ -26,18 +26,14 @@ nav li a {
   text-decoration: none;
 }
 
-nav li a:hover {
-  background-color: #4caf50;
-}
-
-#signup-div label {
-  text-align: right;
-  width: 220px;
-  vertical-align: center;
-}
-
 #login_frame label,
-#manager_login_frame label {
+#manager_login_frame label,
+#signup-div label,
+#managerForm label,
+#user-userForm label {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
   cursor: pointer;
   display: inline-block;
   padding: 3px 6px;
@@ -51,17 +47,37 @@ nav li a:hover {
 .other input {
   width: 30px;
 }
+#user-login-container,
+#signup-main-container,
+#manager-signup-container {
+  margin-left: 90px;
+}
+
+#manager-findpassword-form-div {
+  margin-left: 50px;
+}
+
+#user-find-password-form-div {
+  margin-left: -150px;
+}
+
+#manager-container {
+  margin-left: -150px;
+}
 
 #login_frame input[type="text"],
 #signup-div input,
 #signup-div select,
-#manager_login_frame input[type="text"] {
-  width: 300px;
-  padding: 12px 20px;
+#manager_login_frame input[type="text"],
+#user-userForm input {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  height: 50px;
+  width: 400px;
+  padding: 6px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 2px solid green;
-  border-radius: 4px;
 }
 #login_frame input[type="text"]:focus,
 #signup-div input:focus,
@@ -69,15 +85,30 @@ nav li a:hover {
   background-color: lightblue;
 }
 
+#login-p,
+#signup-p,
+#manager-login-p,
+#findpassword-p,
+#manager-signup-p,
+#manager-findpassword-p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+}
+
 #login_frame input[type="password"],
 #signup-div input,
 #manager_login_frame input[type="password"] {
-  width: 300px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  height: 50px;
+  width: 400px;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 2px solid green;
-  border-radius: 4px;
+
   color: black;
 }
 #login_frame input[type="password"]:focus,
@@ -88,12 +119,14 @@ nav li a:hover {
 
 #login_frame input[type="verifiy"],
 #manager_login_frame input[type="verifiy"] {
-  width: 300px;
-  padding: 12px 0px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  height: 50px;
+  width: 400px;
+  padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 2px solid green;
-  border-radius: 4px;
   color: black;
 }
 #login_frame input[type="verifiy"]:focus,
@@ -104,39 +137,108 @@ nav li a:hover {
 #verify {
   margin-left: 105px;
 }
-#login_frame button,
-#manager_login_frame button {
-  width: 300px;
-  background-color: #4caf50;
+#login_frame button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  text-align: center;
+  height: 50px;
+  width: 400px;
+  background-color: #266df6;
   color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
+  margin: 8px 43px;
   border: none;
-  border-radius: 4px;
+
   cursor: pointer;
   margin-left: 13%;
 }
+#ChangePassword {
+  margin-left: 145px;
+  font-size: 20px;
+}
 
+#manager-signup-a,
+#manager-signup-page {
+  margin-left: 55px;
+  font-size: 20px;
+}
+
+#manager-signup-forgetpassword-div {
+  margin-left: 95px;
+}
 #signup-div button {
-  width: 300px;
-  background-color: #4caf50;
+  height: 50px;
+  width: 400px;
+  background-color: #266df6;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: 19%;
+  margin-left: 160px;
+}
+
+#manager-login-button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  text-align: center;
+  height: 50px;
+  width: 400px;
+  background-color: #266df6;
+  color: white;
+  margin: 8px 43px;
+  border: none;
+
+  cursor: pointer;
+  margin-left: 12.3%;
+}
+
+#change-password-button {
+  color: white;
+}
+
+#user-findpassword-button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 17px;
+  text-align: center;
+  height: 50px;
+  width: 400px;
+  background-color: #266df6;
+  color: white;
+  margin: 8px 43px;
+  border: none;
+
+  cursor: pointer;
+  margin-left: 17.5%;
+}
+
+#manager-signup-a:hover,
+#manager-signup-page:hover {
+  text-decoration: none;
 }
 
 #login_frame .row,
-#signup-div,
 #manager_login_frame .manager-login-div {
   border-radius: 5px;
   background-color: white;
   padding: 20px;
   width: 75%;
   margin: auto;
+  margin-top: 40px;
+  text-align: center;
+}
+
+#signup-div,
+#user-find-password-div {
+  border-radius: 5px;
+  background-color: white;
+  padding: 20px;
+  width: 75%;
+  margin: auto;
+  margin-top: 40px;
   text-align: center;
 }
 

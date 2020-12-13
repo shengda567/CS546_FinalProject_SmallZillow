@@ -9,8 +9,6 @@ const registersData = data.register;
 const postsData = data.posts;
 const pic = require("../data/VerificationCode");
 
-
-
 router.get("/api/getCaptcha", function (req, res, next) {
   let p = "ABCDEFGHKMNPQRSTUVWXYZ1234567890";
   var str = "";
@@ -22,8 +20,6 @@ router.get("/api/getCaptcha", function (req, res, next) {
   res.setHeader("Content-Type", "image/bmp");
   res.end(img.getFileData());
 });
-
-
 
 router.post("/checkManager", async (req, res) => {
   const { username, password, verifiy } = req.body;
@@ -77,8 +73,6 @@ router.post("/checkManager", async (req, res) => {
   }
 });
 
-
-
 router.get("/:id", async (req, res) => {
   if (req.session.manager) {
     let managerInfo = await managersData.getManagerByUsername(
@@ -111,7 +105,37 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/myaccount", async (req, res) => {
+  if (req.session.manager) {
+    let managerInfo = await managersData.getManagerByUsername(
+      req.session.manager.username
+    );
+    let allRegisters = await registersData.getAllUsers();
+    let userInfoList = [];
+    for (let i of allRegisters) {
+      let userInfo = {};
+      userInfo.username = i.username;
+      userInfo.userid = i._id;
 
+      let users = await registersData.getbyone(i._id.toString());
+      userInfo.post = [];
+      for (let j in users.post) {
+        let singlePost = await postsData.getPostById(users.post[j]);
+
+        userInfo.post.push(singlePost);
+      }
+      userInfoList.push(userInfo);
+      console.log(userInfo.post);
+    }
+
+    res.render("pages/managercenter", {
+      manager: managerInfo,
+      userInfoList: userInfoList,
+    });
+  } else {
+    res.render("pages/manager_login");
+  }
+});
 
 router.get("/logout", async (req, res) => {
   req.session.destroy();
