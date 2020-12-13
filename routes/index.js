@@ -3,10 +3,11 @@ const userRoutes = require("./users");
 const searchRoutes = require("./search");
 const commentRoutes = require("./comments");
 const managerRoutes = require("./managers");
+const managerLogRoutes = require("./managerLogin");
 const findRoutes = require("./find");
 const data = require("../data");
+const changeRoute = require("./change");
 const apiRoutes = require("./api");
-const editprofile = require("./editprofile");
 const postsData = data.posts;
 
 //const privateRoutes = require('./private');
@@ -14,6 +15,17 @@ const registerData = require("./register");
 //const commentRoutes = require('./comments');
 
 const constructorMethod = (app) => {
+  app.use("/search", searchRoutes);
+  app.use("/posts", postRoutes);
+  app.use("/comments", commentRoutes);
+  //app.use('/private', privateRoutes);
+  app.use("/register", registerData);
+  app.use("/change", changeRoute);
+  app.use("/managers", managerRoutes);
+  app.use("/managerLogin", managerLogRoutes);
+  app.use("/findinf", findRoutes);
+  app.use("/api", apiRoutes);
+  app.use("/users", userRoutes);
   // home page
   app.get("/", async function (req, res) {
     // main page only shows recent 3 posts.
@@ -31,26 +43,27 @@ const constructorMethod = (app) => {
         };
         newList.push(item);
       }
-      res.render("pages/mainPage", { posts: newList });
+
+      res.status(200).render("pages/mainPage", {posts: newList});
     } catch (e) {
       res.render("pages/mainPage", { errors: "No posts in the databse" });
     }
   });
-  app.use("/search", searchRoutes);
-  app.use("/posts", postRoutes);
-  app.use("/comments", commentRoutes);
-  //app.use('/private', privateRoutes);
-    app.use("/register", registerData);
-    app.use("/profile", editprofile);
-  app.use("/managers", managerRoutes);
-  app.use("/login", userRoutes);
-  app.use("/findinf", findRoutes);
-  app.use("/api", apiRoutes);
+  app.get("/logout", async (req, res) => {
+    req.session.destroy();
+    console.log("User logged out");
+    res.redirect("/");
+    //res.send('Logged out');
+  });
 
   //app.use('/comments', commentRoutes);
 
   app.get("/newpost", async (req, res) => {
-    res.render("pages/newpost");
+    if (req.session.user) {
+      res.render("pages/newpost");
+    } else {
+      res.render("pages/login");
+    }
   });
 
   app.get("/newpost/success", async (req, res) => {
