@@ -676,3 +676,14 @@ img {
 .like-button.liked::after {
     transform: translate(-50%, -50%) scale(1.1);
 }
+
+#userDetailErrorLists_div {
+  color: red;
+}
+
+#userDetailPostErrorLists_div {
+  color: red;
+}
+#UserDetailPostUnchooseError {
+  color: red;
+}
