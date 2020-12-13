@@ -119,4 +119,25 @@ router.get("/logout", async (req, res) => {
   //res.send('Logged out');
 });
 
+
+router.post('/deletepost', async (req, res) =>{
+  if (!req.params.mId) {
+      res
+        .status(400)
+        .json({ error: "You must Supply a manager ID to delete register" });
+      return;
+    }
+    if (!req.params.userId) {
+      res
+        .status(400)
+        .json({ error: `You must Supply a user ID to delete user's comment` });
+      return;
+    }
+    if (!req.params.commentId) {
+      res.status(400).json({ error: `You must Supply a comment ID to delete` });
+      return;
+    }
+});
+
+
 module.exports = router;

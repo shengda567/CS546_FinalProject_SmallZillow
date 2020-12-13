@@ -659,9 +659,9 @@ img {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    &::before{
+    /* &::before{
 
-    }
+    } */
 }
 .like-button::after {
     font-size: 3em;
