@@ -6,6 +6,7 @@ const managerRoutes = require("./managers");
 const managerLogRoutes = require("./managerLogin");
 const findRoutes = require("./find");
 const data = require("../data");
+const changeRoute = require("./change");
 const apiRoutes = require("./api");
 const postsData = data.posts;
 
@@ -19,7 +20,7 @@ const constructorMethod = (app) => {
   app.use("/comments", commentRoutes);
   //app.use('/private', privateRoutes);
   app.use("/register", registerData);
-
+  app.use("/change", changeRoute);
   app.use("/managers", managerRoutes);
   app.use("/managerLogin", managerLogRoutes);
   app.use("/findinf", findRoutes);
