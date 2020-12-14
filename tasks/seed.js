@@ -69,6 +69,7 @@ async function main() {
      '111-777-4444',
      2314,
      'example@gmail.com');
+
   let post2 = await posts.addPost(
     register1._id.toString(),
     'A Cozy Apartment in Hoboken!',
@@ -83,6 +84,7 @@ async function main() {
      '122-333-6666',
       1975,
      'yunyang@gmail.com');
+
   let post3 = await posts.addPost(
     register1._id.toString(),
     'A Fancy Apartment Available at 805 Bloomfield St #G!',
@@ -97,6 +99,7 @@ async function main() {
      '333-442-4434',
      1175,
      'yoch@gmail.com');
+
    let post4 = await posts.addPost(
      register1._id.toString(),
      'A Fancy Apartment Available at 928 Garden St!',
@@ -111,6 +114,7 @@ async function main() {
       '333-442-4444',
       2000,
       'yocheckItOut@gmail.com');
+
   let post5 = await posts.addPost(
     register1._id.toString(),
     '1000 Willow Ave APT 2!',
@@ -125,6 +129,7 @@ async function main() {
      '333-442-4444',
      23250,
      'yocheckItOut@gmail.com');
+
    let post6 = await posts.addPost(
      register1._id.toString(),
      'A Fancy Apartment Available at 9175 Ogold St!',
@@ -139,6 +144,7 @@ async function main() {
       '333-442-4444',
       999,
       'yocheckItOut@gmail.com');
+
     let post7 = await posts.addPost(
       register1._id.toString(),
       '1000 Jefferson Street Apartments!',
@@ -153,6 +159,7 @@ async function main() {
        '333-442-4444',
        4500,
        'yocheckItOut@gmail.com');
+       
    let post8 = await posts.addPost(
      register1._id.toString(),
      'Avalon Hoboken!',

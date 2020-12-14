@@ -20,16 +20,25 @@
             <li><a href="/">Home</a></li>
             {{#if userLoggedIn}}
                 <li><a href="/users/myaccount" id="my-account">My Account</a></li>
-                <li><a href="/users/change" id="Changepassword">Change password</a></li>
                 <li><a href="http://localhost:3000/logout" id="logout">Logout</a></li>
                 
             {{else}}
-                <li><a href="/users/login" id="login-page">Login</a></li>
-                <li><a href="/register" id="register-page">Sign up</a></li>
-                <li><a href="/managers/login" id="manager-login-page">Admin</a></li>
-                <li><a href="/findinf" id="findpassword">Forgot password</a></li>
-                {{!-- <li><a href="/managers/signup" id="manager-signup-page">Manager SignUp</a></li> --}}
+                {{#if managerLoggedIn}}
+                    <li><a href="/managerLogin/myaccount" id="manager-my-account">Manager Account</a></li>
+                    
+                    <li><a href="http://localhost:3000/logout" id="manager-logout">Logout</a></li>
+                {{else}}
+                    <li><a href="/users/login" id="login-page">Login</a></li>
+                    <li><a href="/register" id="register-page">Sign up</a></li>
+                    <li><a href="/managers/login" id="manager-login-page">Admin</a></li>
+                
+                    {{!-- <li><a href="/managers/signup" id="manager-signup-page">Manager SignUp</a></li> --}}
+                {{/if}}
+                
             {{/if}}
+
+            
+
 
 
         </ul>

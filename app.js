@@ -77,14 +77,18 @@ app.use(
   })
 );
 app.use(async (req, res, next) => {
-
   if (req.session.user) {
-
-      res.locals.userLoggedIn = true;
-  }else{
-      res.locals.userLoggedIn = false;
+    res.locals.userLoggedIn = true;
+  } else {
+    res.locals.userLoggedIn = false;
   }
-	next();
+
+  if (req.session.manager) {
+    res.locals.managerLoggedIn = true;
+  } else {
+    res.locals.managerLoggedIn = false;
+  }
+  next();
 });
 app.use("/private", (req, res, next) => {
   if (!req.session.user) {
@@ -104,7 +108,6 @@ app.use("/private", (req, res, next) => {
 //     next();
 //   }
 // });
-
 
 app.use("/manager/login", (req, res, next) => {
   if (req.session.manager) {

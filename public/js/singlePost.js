@@ -33,29 +33,27 @@ window.onload = function () {
   // when clicking the button start the timeline/animation:
   document.querySelector(".like-button" ).addEventListener('click', async function(e) {
     let user = $('#user-error-message').attr("data");
-    e.currentTarget.classList.toggle('liked');
     if(user == 'false'){
-      $('#user-error-message').show();
+      alert("You have to login first!");
     }
     else{
+      e.currentTarget.classList.toggle('liked');
       if($("#heart").hasClass("clicked")){
 
-        console.log("2")
         $("#heart").addClass("clicked");
         await $.post(
           "http://localhost:3000/users/remove/" + postId,
           (data) => {
-            console.log(data);
+            console.log("Removed the post from user");
           }
         );
 
       }else{
-        console.log("1")
         $("#heart").removeClass("clicked");
         await $.post(
           "http://localhost:3000/users/add/" + postId,
           (data) => {
-            console.log(data);
+              console.log("Saved the post from user");
           }
         );
 

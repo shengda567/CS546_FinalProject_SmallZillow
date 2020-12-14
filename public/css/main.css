@@ -26,18 +26,15 @@ nav li a {
   text-decoration: none;
 }
 
-nav li a:hover {
-  background-color: #4caf50;
-}
-
-#signup-div label {
-  text-align: right;
-  width: 220px;
-  vertical-align: center;
-}
-
 #login_frame label,
-#manager_login_frame label {
+#manager_login_frame label,
+#signup-div label,
+#managerForm label,
+#user-userForm label,
+#changepassword-find-frame label {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
   cursor: pointer;
   display: inline-block;
   padding: 3px 6px;
@@ -51,17 +48,41 @@ nav li a:hover {
 .other input {
   width: 30px;
 }
+#user-login-container,
+#signup-main-container,
+#manager-signup-container {
+  margin-left: 90px;
+}
+
+#manager-findpassword-form-div {
+  margin-left: 50px;
+}
+
+#changepassword-container {
+  margin-left: -120px;
+}
+#user-find-password-form-div {
+  margin-left: -150px;
+}
+
+#manager-container {
+  margin-left: -150px;
+}
 
 #login_frame input[type="text"],
 #signup-div input,
 #signup-div select,
-#manager_login_frame input[type="text"] {
-  width: 300px;
-  padding: 12px 20px;
+#manager_login_frame input[type="text"],
+#user-userForm input,
+#changepassword-find-frame input {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  height: 50px;
+  width: 400px;
+  padding: 6px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 2px solid green;
-  border-radius: 4px;
 }
 #login_frame input[type="text"]:focus,
 #signup-div input:focus,
@@ -69,15 +90,31 @@ nav li a:hover {
   background-color: lightblue;
 }
 
+#login-p,
+#signup-p,
+#manager-login-p,
+#findpassword-p,
+#manager-signup-p,
+#manager-findpassword-p,
+#change-password-p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+}
+
 #login_frame input[type="password"],
 #signup-div input,
 #manager_login_frame input[type="password"] {
-  width: 300px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  height: 50px;
+  width: 400px;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 2px solid green;
-  border-radius: 4px;
+
   color: black;
 }
 #login_frame input[type="password"]:focus,
@@ -88,12 +125,14 @@ nav li a:hover {
 
 #login_frame input[type="verifiy"],
 #manager_login_frame input[type="verifiy"] {
-  width: 300px;
-  padding: 12px 0px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  height: 50px;
+  width: 400px;
+  padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 2px solid green;
-  border-radius: 4px;
   color: black;
 }
 #login_frame input[type="verifiy"]:focus,
@@ -104,39 +143,111 @@ nav li a:hover {
 #verify {
   margin-left: 105px;
 }
-#login_frame button,
-#manager_login_frame button {
-  width: 300px;
-  background-color: #4caf50;
+#login_frame button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  text-align: center;
+  height: 50px;
+  width: 400px;
+  background-color: #266df6;
   color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
+  margin: 8px 43px;
   border: none;
-  border-radius: 4px;
+
   cursor: pointer;
   margin-left: 13%;
 }
+#ChangePassword {
+  margin-left: 145px;
+  font-size: 20px;
+}
 
-#signup-div button {
-  width: 300px;
-  background-color: #4caf50;
+#manager-signup-a,
+#manager-signup-page {
+  margin-left: 55px;
+  font-size: 20px;
+}
+
+#manager-signup-forgetpassword-div {
+  margin-left: 95px;
+}
+#signup-div button,
+#changepassword-find-frame button {
+  height: 50px;
+  width: 400px;
+  background-color: #266df6;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: 19%;
+  margin-left: 160px;
+}
+
+#manager-login-button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  text-align: center;
+  height: 50px;
+  width: 400px;
+  background-color: #266df6;
+  color: white;
+  margin: 8px 43px;
+  border: none;
+
+  cursor: pointer;
+  margin-left: 12.3%;
+}
+
+#change-password-button {
+  color: white;
+}
+
+#user-findpassword-button,
+#user-changepassword-button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 17px;
+  text-align: center;
+  height: 50px;
+  width: 400px;
+  background-color: #266df6;
+  color: white;
+  margin: 8px 43px;
+  border: none;
+
+  cursor: pointer;
+  margin-left: 17.5%;
+}
+
+#manager-signup-a:hover,
+#manager-signup-page:hover {
+  text-decoration: none;
 }
 
 #login_frame .row,
-#signup-div,
 #manager_login_frame .manager-login-div {
   border-radius: 5px;
-  background-color: #f3f3e6;
+  background-color: white;
   padding: 20px;
   width: 75%;
   margin: auto;
+  margin-top: 40px;
+  text-align: center;
+}
+
+#signup-div,
+#user-find-password-div,
+#changepassword-find-frame {
+  border-radius: 5px;
+  background-color: white;
+  padding: 20px;
+  width: 75%;
+  margin: auto;
+  margin-top: 40px;
   text-align: center;
 }
 
@@ -167,9 +278,10 @@ nav li a:hover {
   display: inline;
   border: 1px;
 }
-#moving-house-img {
-  height: 50px;
-  width: 100%;
+#moving-house-img,
+#furniture-img {
+  height: 300px;
+  width: 500px;
 }
 /* Main page*/
 #home-page-container {
@@ -416,15 +528,18 @@ img {
 }
 #single-container {
   width: 80%;
-  padding-top: 20px;
   background-color: #f8f8ff;
   margin: auto;
   /* display:inline-flex; */
 }
 #title-area {
+  text-align: center;
   display: inline-flex;
+  align-items: center;
+  width: 100%;
+  height:40px;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 /* #top-row{
@@ -435,19 +550,24 @@ img {
   display:inline-flex;
   margin:auto; */
 /* map */
+#top-post-area{
+  height: 60vh;
+
+}
 #map-area {
   background-color: #f0f8ff;
 }
-#map-area #map {
+#map {
   height: 100vh;
   width: 100vh;
 }
 #map-area-2 {
   width: auto;
+
 }
-#map-area-2 #map {
-  height: 100vh;
-  width: 150vh;
+#map2 {
+  height: 50vh;
+  width: 70vh;
 }
 
 .middle-post-area {
@@ -458,23 +578,45 @@ img {
 }
 
 #similarPosts-container {
+  padding-top: 20px;
   width: 100%;
-  background-color: #fffff0;
+  background-color: #F5F5F5;
   text-align: center;
 }
+#post-comment-area{
+  display: inline-flex;
+  align-items: center;
+  margin-top: 20px;
+  height:20vh;
+}
+#comment_input{
+  width: 500px;
+}
+.commentForm{
+  height:auto;
+  display: inline-block;
+  align-items: center;
+}
+#post_button{
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 #comments-area {
+  margin-top: 50px;
   background-color: #f0f8ff;
   margin-bottom: 50px !important;
   border: 1px solid #edeff2;
   border-radius: 2px;
-  padding: 50px 70px;
+  padding: 25px 30px;
   border: 1px solid #ffffff;
 }
 
 .comments-title {
-  font-size: 16px;
+  font-size: 15px;
   color: #262626;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   font-family: "Conv_helveticaneuecyr-bold";
 }
 
@@ -492,14 +634,9 @@ img {
 }
 
 .be-comment-content {
-  margin-left: 80px;
+  margin-left: 70px;
 }
 
-.be-comment-content span {
-  display: inline-block;
-  width: 49%;
-  margin-bottom: 15px;
-}
 
 .be-comment-name {
   font-size: 13px;
@@ -509,7 +646,7 @@ img {
 .be-comment-content span {
   display: inline-block;
   width: 49%;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .be-comment-time {
@@ -520,11 +657,15 @@ img {
   font-size: 11px;
   color: #b4b7c1;
 }
-.single-post-information {
+#single-post-information {
+  background-color: #F5FFFA;
+  width: 100%;
   margin-top: 20px;
   font-size: 15px;
 }
-.single-contact-information {
+#single-contact-information {
+  background-color: #FFFAFA;
+  width: 100%;
   margin-top: 20px;
   font-size: 15px;
 }
@@ -625,6 +766,9 @@ img {
 .comment-error-message {
   color: red;
 }
+.user-error-message{
+  color: red;
+}
 .gallery {
   margin-left: auto;
 }
@@ -632,14 +776,14 @@ img {
 /* heart button */
 .like-button {
   margin-left: 100px;
-  margin-right: 50px;
   float: right;
   position: relative;
-  font-size: 32px;
+  font-size: 24px;
   cursor: pointer;
-  /* // border: 1px solid black; */
 }
+
 .like-button::before {
+<<<<<<< HEAD
     font-size: 3em;
     color: #000;
     content: '♥';
@@ -650,14 +794,21 @@ img {
     /* &::before{
 
     } */
+=======
+  font-size: 2em;
+  color: #000;
+  content: "♥";
+  position: absolute;
+  transform: translate(-50%, -50%);
+
+>>>>>>> main
 }
+
 .like-button::after {
-  font-size: 3em;
+  font-size: 2em;
   color: red;
   content: "♥";
   position: absolute;
-  left: 50%;
-  top: 50%;
   transform: translate(-50%, -50%) scale(0);
   transition: transform 0.2s;
 }
