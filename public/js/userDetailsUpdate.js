@@ -9,7 +9,7 @@
       return;
     }
     let post_id = valueList[0].value;
-    console.log(post_id)
+    console.log(post_id);
     await $.get(
       "http://localhost:3000/api/post/" + post_id,
       // { name: post_name },
@@ -42,7 +42,6 @@
         location.reload();
       },
     });
-
   });
 
   let save_profile_button = $("#user-account-edit-save-button");
@@ -100,7 +99,7 @@
           let post_email = $("#post-email");
           let post_phone = $("#post-phone");
           let price = $("#price");
-          id.val(data._id);
+          id.text(data._id);
           title.val(data.title);
           time.val(data.date);
           post_adress.val(data.address);
@@ -126,47 +125,44 @@
   save_post_button.click(async function (event) {
     event.preventDefault();
 
-    let id = $("#post-update-id").val();
+    let id = $("#post-update-id").text();
 
-    await $.get(
-      "http://localhost:3000/api/post/" + id,
-      async (data) => {
-        let title = $("#title").val();
-        let time = $("#date").val();
-        let post_address = $("#post-address").val();
-        let city = $("#city").val();
-        let state = $("#state").val();
-        let zipcode = $("#zipcode").val();
-        let description = $("#description").val();
-        let tag = $("#tag").val();
-        let post_email = $("#post-email").val();
-        let post_phone = $("#post-phone").val();
-        let price = $("#price").val();
-        let img = $("#img").val();
-        console.log(img)
-        let savePostData = {
-          title: title,
-          address: post_address,
-          city: city,
-          state: state,
-          zipcode: zipcode,
-          description: description,
-          tag: tag,
-          email: post_email,
-          phone: post_phone,
-          price: price,
-        };
-        $.ajax({
-          type: "PATCH",
-          url: "/posts/" + id,
-          dataType: "json",
-          data: savePostData,
-          success: function () {
-            alert("Edit successfully");
-            location.reload();
-          },
-        });
-      }
-    );
+    await $.get("http://localhost:3000/api/post/" + id, async (data) => {
+      let title = $("#title").val();
+      let time = $("#date").val();
+      let post_address = $("#post-address").val();
+      let city = $("#city").val();
+      let state = $("#state").val();
+      let zipcode = $("#zipcode").val();
+      let description = $("#description").val();
+      let tag = $("#tag").val();
+      let post_email = $("#post-email").val();
+      let post_phone = $("#post-phone").val();
+      let price = $("#price").val();
+      let img = $("#img").val();
+      console.log(img);
+      let savePostData = {
+        title: title,
+        address: post_address,
+        city: city,
+        state: state,
+        zipcode: zipcode,
+        description: description,
+        tag: tag,
+        email: post_email,
+        phone: post_phone,
+        price: price,
+      };
+      $.ajax({
+        type: "PATCH",
+        url: "/posts/" + id,
+        dataType: "json",
+        data: savePostData,
+        success: function () {
+          alert("Edit successfully");
+          location.reload();
+        },
+      });
+    });
   });
 })(jQuery);

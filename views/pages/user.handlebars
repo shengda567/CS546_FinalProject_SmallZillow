@@ -2,11 +2,11 @@
   <div id="userDetailErrorLists_div" hidden> Sorry, your save failed and here are errors:
     <ul id="userDetailErrorLists_ul"></ul>
   </div>
-  <h3>My profile: <button id="edit-profile-button" type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-      data-target="#myModal">Edit Profile</button> <a href="/change" id="Changepassword"><button type="button" class="btn btn-primary btn-lg" id="change-password-button">Change Password</button></a></h3>
+  <p class="user-account-p">My profile: <button id="edit-profile-button" type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+      data-target="#myModal">Edit Profile</button> <a href="/change" class="btn btn-primary btn-lg" role="button" id="Changepassword">Change Password</a></p>
   <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-lg" id="user-profile-edit-modal">
-      <div class="modal-content" id="modal-content-backgroud">
+      <div class="modal-content" id="user-profile-edit-modal-content-backgroud">
 
         <!-- Modal Header -->
         <div class="modal-header">
@@ -97,20 +97,23 @@
 <div class="container" id="user-posts-container">
 
   <form id="user-account-post-form">
-    <h3>My Posts:
+    <p class="user-account-p">My Posts:
       <a href="http://localhost:3000/newpost" role="button" class="btn btn-primary btn-lg">Creat New Post</a>
       <button id="edit-post-button" type="submit" class="btn btn-primary btn-lg" data-toggle="modal"
         data-target="#myPost">Edit Post</button>
       <button id="delet-post-button" type="submit" class="btn btn-primary btn-lg" data-toggle="modal"
         data-target="#deleteModal">Delete Post</button>
-    </h3>
-    <dl class="row">
+    </p>
+    <dl class="row" id="user-posts-dl-container">
       {{#each posts}}
-      <dt class="col-sm-1">
-        <input type="radio" id="user-posts-dt-radio" name="post-radio" value="{{this.id}}">
-      </dt>
+      
+        <dt class="col-sm-1">
+          <label for="{{this.id}}" hidden></label>
+          <input type="radio" id="{{this.id}}" class="user-posts-dt-radio" name="post-radio" value="{{this.id}}">
+        </dt>
+      
 
-      <dd class="col-sm-11"><a href="/posts/{{this.id}}">{{this.title}}</a></dd>
+      <dd class="col-sm-11"><a class="user-posts-a"href="/posts/{{this.id}}">{{this.title}}</a></dd>
 
       {{/each}}
     </dl>
@@ -120,7 +123,7 @@
     <div class="modal-dialog" id="delete-post-modal">
 
       <!-- Modal content-->
-      <div class="modal-content" id="modal-content-backgroud">
+      <div class="modal-content" id="user-delete-post-modal-content-backgroud">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Delete Post Info: </h4>
@@ -146,7 +149,7 @@
   <div class="modal fade" id="myPost">
 
     <div class="modal-dialog modal-lg" id="user-posts-edit-modal">
-      <div class="modal-content" id="modal-content-backgroud">
+      <div class="modal-content" id="user-posts-edit-modal-content-backgroud">
 
         <!-- Modal Header -->
         <div class="modal-header">
@@ -161,24 +164,23 @@
             <div class="form-group row">
               <label for="date" class="col-sm-3 col-form-label">Time:</label>
               <div class="col-sm-9">
-                <input readonly type="text" class="form-control input-lg" id="date" value={{post.date}}>
+                <input readonly type="text" class="form-control input-lg" id="date">
               </div>
             </div>
-            <div hidden id='post-update-id' value="">
+            <div hidden id='post-update-id'>
             </div>
             <div class="form-group row">
               <label for="title" class="col-sm-3 col-form-label">Title: </label>
               <div class="col-sm-9">
                 <input placeholder="Nice Apartment in Jefferson Street" type="text" class="form-control input-lg"
-                  id="title" value={{posts.title}}>
+                  id="title">
               </div>
             </div>
 
             <div class="form-group row">
               <label for="post-address" class="col-sm-3 col-form-label">Address: </label>
               <div class="col-sm-9">
-                <input placeholder="1000 Jefferson Street" type="text" class="form-control input-lg" id="post-address"
-                  value={{posts.address}}>
+                <input placeholder="1000 Jefferson Street" type="text" class="form-control input-lg" id="post-address">
               </div>
             </div>
 
@@ -186,7 +188,7 @@
             <div class="form-group row">
               <label for="city" class="col-sm-3 col-form-label">City: </label>
               <div class="col-sm-9">
-                <input placeholder="Hoboken" type="text" class="form-control input-lg" id="city" value={{posts.city}}>
+                <input placeholder="Hoboken" type="text" class="form-control input-lg" id="city">
               </div>
             </div>
 
@@ -252,8 +254,7 @@
             <div class="form-group row">
               <label for="zipcode" class="col-sm-3 col-form-label">Zipcode: </label>
               <div class="col-sm-9">
-                <input placeholder="07030" type="text" class="form-control input-lg" id="zipcode"
-                  value={{posts.zipcode}}>
+                <input placeholder="07030" type="text" class="form-control input-lg" id="zipcode">
               </div>
             </div>
 
@@ -261,14 +262,14 @@
               <label for="description" class="col-sm-3 col-form-label">Description: </label>
               <div class="col-sm-9">
                 <input placeholder="A nice house with good bathroom" type="text" class="form-control input-lg"
-                  id="description" value={{posts.description}}>
+                  id="description">
               </div>
             </div>
 
             <div class="form-group row">
               <label for="tag" class="col-sm-3 col-form-label">Tag: </label>
               <div class="col-sm-9">
-                <select id="tag" class="form-control input-lg" value={{posts.tag}}>
+                <select id="tag" class="form-control input-lg">
                   <option value="Apartment">Apartment</option>
                   <option value="House">House</option>
                   <option value="Villa">Villa</option>
@@ -279,31 +280,29 @@
             <div class="form-group row">
               <label for="post-email" class="col-sm-3 col-form-label">Email: </label>
               <div class="col-sm-9">
-                <input placeholder="123456@gmail.com" type="text" class="form-control input-lg" id="post-email"
-                  value={{posts.email}}>
+                <input placeholder="123456@gmail.com" type="text" class="form-control input-lg" id="post-email">
               </div>
             </div>
 
             <div class="form-group row">
               <label for="post-phone" class="col-sm-3 col-form-label">Phone: </label>
               <div class="col-sm-9">
-                <input placeholder="123-123-1234" type="text" class="form-control input-lg" id="post-phone"
-                  value={{posts.phone}}>
+                <input placeholder="123-123-1234" type="text" class="form-control input-lg" id="post-phone">
               </div>
             </div>
 
             <div class="form-group row">
               <label for="price" class="col-sm-3 col-form-label">Price: </label>
               <div class="col-sm-9">
-                <input placeholder="1000" type="text" class="form-control input-lg" id="price" value={{posts.price}}>
+                <input placeholder="1000" type="text" class="form-control input-lg" id="price">
               </div>
             </div>
 
             <div class="form-group row" hidden>
-              <label for="img" class="col-sm-3 col-form-label"><button id="postImg">Upload
+              <label for="postImg" class="col-sm-3 col-form-label"><button id="postImg">Upload
                   IMG</button></label>
               <div class="col-sm-9">
-                <input type="file" class="form-control input-lg" multiple id="img" value={{posts.img}}>
+                <input type="file" class="form-control input-lg" multiple id="img">
               </div>
             </div>
 
@@ -326,10 +325,10 @@
 </div>
 
 <div class="container" id="liked-posts-container">
-  <h3>Liked Posts: </h3>
+  <p class="user-account-p">Liked Posts: </p>
     <ol id="liked-post-list">
         {{#each saves}}
-            <li ><a href="/posts/{{this.save_id}}">{{this.saveTitle}}</a></li>
+            <li ><a href="/posts/{{this.save_id}}" class="liked-a">{{this.saveTitle}}</a></li>
         {{/each}}
     </ol>
 </div>
