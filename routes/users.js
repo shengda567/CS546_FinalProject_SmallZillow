@@ -24,12 +24,20 @@ router.get("/:id", async (req, res) => {
       let singlePost = await postsData.getPostById(users.post[i]);
       posts.push({ title: singlePost.title, id: singlePost._id });
     }
-    res.render("pages/user", { user: users, posts: posts });
+    let saves = [];
+    for (let j in users.save) {
+      let signleSave = await postsData.getPostById(users.save[j]);
+      saves.push({
+        saveTitle: signleSave.title,
+        save_id: signleSave._id.toString(),
+      });
+      //console.log(saves);
+    }
+    res.render("pages/user", { user: users, posts: posts, saves: saves });
   } else {
     res.render("pages/login");
   }
 });
-
 
 router.get("/api/getCaptcha", function (req, res, next) {
   let p = "ABCDEFGHKMNPQRSTUVWXYZ1234567890";
@@ -105,9 +113,19 @@ router.get("/myaccount", async (req, res) => {
       let singlePost = await postsData.getPostById(users.post[i]);
       posts.push({ title: singlePost.title, id: singlePost._id });
     }
+    let saves = [];
+    for (let j in users.save) {
+      let signleSave = await postsData.getPostById(users.save[j]);
+      saves.push({
+        saveTitle: signleSave.title,
+        save_id: signleSave._id.toString(),
+      });
+      console.log(saves);
+    }
     return res.render("pages/user", {
       user: users,
       posts: posts,
+      saves: saves,
     });
   } else {
     res.render("pages/login");
@@ -118,36 +136,33 @@ router.post("/add/:id", async (req, res) => {
   if (req.session.user) {
     let { ObjectId } = require("mongodb");
     let objectID = ObjectId(req.params.id);
-    try{
+    try {
       await usersData.addsaveforuser(req.session.user.userId, objectID);
-      res.json({success: true})
-    }catch(e){
-      console.log(e)
+      res.json({ success: true });
+    } catch (e) {
+      console.log(e);
       res.status(500).json({ error: e });
     }
-  }else{
-    console.log(e)
+  } else {
+    console.log(e);
     res.status(500).json({ error: e });
   }
-
-
 });
 router.post("/remove/:id", async (req, res) => {
   if (req.session.user) {
     let { ObjectId } = require("mongodb");
     let objectID = ObjectId(req.params.id);
-    try{
-      await usersData. removesavefromuser(req.session.user.userId, objectID);
-      res.json({success: true})
-    }catch(e){
-      console.log(e)
+    try {
+      await usersData.removesavefromuser(req.session.user.userId, objectID);
+      res.json({ success: true });
+    } catch (e) {
+      console.log(e);
       res.status(500).json({ error: e });
     }
-  }else{
-    console.log(e)
+  } else {
+    console.log(e);
     res.status(500).json({ error: e });
   }
 });
-
 
 module.exports = router;
