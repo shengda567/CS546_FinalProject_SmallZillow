@@ -95,7 +95,7 @@ router.post("/managerforgetpassword", async (req, res) =>{
         managerVerifyBL = await ManagersData.compareManagerCodeHelper(managerInfo.manager_level, managerInfo.managerCode);
     
         if(tempMana.email != managerInfo.email || tempMana.manager_level != managerInfo.manager_level || !managerVerifyBL){
-            errors.push("Sorry, could not buil new password. The input information wrong, please check again");
+            errors.push("Sorry, could not change password. The input information wrong, please check again");
         }
         if(errors.length > 0){
             res.status(401).render('pages/errors_managerforgetpassword', {

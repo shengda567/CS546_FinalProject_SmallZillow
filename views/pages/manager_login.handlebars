@@ -18,14 +18,16 @@
 
                       <p id='verify'>
                         <label for="verifiy">Verifiy</label>
-                        <input type="verifiy" placeholder="Input Verifiy Code" id = "verifiy" name="verifiy">
+                        <input type="text" placeholder="Input Verifiy Code" id = "verifiy" name="verifiy">
                         <img src="/managerLogin/api/getCaptcha" alt="captcha" >
                       </p>
                       
 
-                      <img @load="verifyLoadState=true"  @click="toggleVerify" :src="verifiy" alt="">
+                      {{!-- <img @load="verifyLoadState=true"  @click="toggleVerify" :src="verifiy" alt=""/> --}}
 
                       <button type="submit" id="manager-login-button">Login</button><br>
+
+                      
 
                       <div id="manager-signup-forgetpassword-div">
                         <a href="/managers/signup" id="manager-signup-a">Sign up for new admin</a>
