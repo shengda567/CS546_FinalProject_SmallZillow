@@ -5,68 +5,67 @@
     <h1 id='single-post-title'>{{post.title}}</h1>
     <button class="like-button" id = 'heart'></button>
     <p hidden class = 'user-error-message' id = 'user-error-message' data = {{userLoggedIn}}> You have to login first!</p>
-
   </div>
 
-  <div class='top-post-area'>
-    <div class='container'>
-      <div class='row'>
-        <div class='col-md-6'>
-          <div class="gallery">
-            <div class="img"><img src=/{{main}} height="250" width="400"></div>
-            {{#if sides}}
-            <div class="side-image">
-              {{#grouped_each 4 sides}}
-              {{#each this}}
-              <div class="single-img"><img src=/{{this}} height="75" width="100"></div>
-              {{/each}}
 
-              {{/grouped_each}}
-            </div>
-            {{/if}}
+  <div class='container' id = 'top-post-area'>
+    <div class='row'>
+      <div class='col-md-6'>
+        <div class="gallery">
+          <div class="img"><img src=/{{main}} height="250" width="400"></div>
+          {{#if sides}}
+          <div class="side-image">
+            {{#grouped_each 4 sides}}
+            {{#each this}}
+            <div class="single-img"><img src=/{{this}} height="75" width="100"></div>
+            {{/each}}
+
+            {{/grouped_each}}
           </div>
+          {{/if}}
         </div>
-        <div class='col-md-6' id = 'map-area-2'>
-            <textarea hidden id="map-address">{{post.address}},{{post.city}},{{post.state}}</textarea>
-            <div id="map"></div>
-        </div>
+      </div>
+      <div class='col-md-6' id = 'map-area-2'>
+          <textarea hidden id="map-address">{{post.address}},{{post.city}},{{post.state}}</textarea>
+          <div id="map2"></div>
       </div>
     </div>
   </div>
 
   <!-- frontend is going to read these values -->
-  <div class='single-post-information'>
+  <div class='container' id = 'single-post-information'>
 
     <h2>Post Information:</h2>
-    <span id='single-date'>date: {{post.date}}</span>
+    <span id='single-date'>Date: {{post.date}}</span>
 
-    <div class='price'>price: {{post.price}} </div>
-    <div class='address' id='address' data="{{post.address}}" )>address: {{post.address}} </div>
-    <div class='state' id='state' data="{{post.state}}">state: {{post.state}} </div>
-    <div class='city' id='city' data="{{post.city}}">city: {{post.city}} </div>
-    <div class='zipcode' id='zipcode' data="{{post.zipcode}}">zipcode: {{post.zipcode}} </div>
-    <div class='description'>description: {{post.description}} </div>
-    <div class='tag'>tag: {{post.tag}} </div>
+    <div class='price'>Price: {{post.price}} </div>
+    <div class='address' id='address' data="{{post.address}}" )>Address: {{post.address}} </div>
+    <div class='state' id='state' data="{{post.state}}">State: {{post.state}} </div>
+    <div class='city' id='city' data="{{post.city}}">City: {{post.city}} </div>
+    <div class='zipcode' id='zipcode' data="{{post.zipcode}}">Zipcode: {{post.zipcode}} </div>
+    <div class='description'>Description: {{post.description}} </div>
+    <div class='tag'>Tag: {{post.tag}} </div>
   </div>
 
 
-  <div class='single-contact-information'>
+  <div class='container' id = 'single-contact-information'>
     <h2>Contact Information: </h2>
     <!-- <div class='address'>Address: {{post.address}} {{post.state}} {{post.city}} {{post.zipcode}}</div> -->
-    <div class='single-username'> </div>
-    <div class='phone'>phone: {{post.phone}} </div>
-    <div class='email'>email: {{post.email}} </div>
+    <div class='single-username'> Name: {{post.user.name}}</div>
+    <div class='phone'>Phone: {{post.phone}} </div>
+    <div class='email'>Email: {{post.email}} </div>
   </div>
 
+  <div class = 'container' id = 'post-comment-area'>
   <div data-id={{post._id}} class='comment' id="postId">
     <h2>Comments:</h2>
     <form action="/comments/{{post._id}}" method="post" id="comment_form" class="commentForm">
       <label for="comment_input"> <textarea id="comment_input"></textarea></label>
       <input type="submit" value="Comment" id='post_button'></input>
     </form>
-
   </div>
   <div hidden id='comment-error' class='comment-error-area'>
+  </div>
   </div>
 
   <div id='comments-area'>
@@ -93,7 +92,7 @@
 
   </div>
   <div class='container' id='similarPosts-container'>
-    <div class="recommendPosts" id='recommendPosts-area'>Here are some similar posts like this house: </div>
+    <div class="recommendPosts" id='recommendPosts-area'>Similar Posts: </div>
   </div>
 
 </div>
@@ -106,7 +105,7 @@
 <script>
 
 function initMap() {
-  const map = new google.maps.Map(document.getElementById("map"), {
+  const map = new google.maps.Map(document.getElementById("map2"), {
     zoom: 17,
     center: { lat: -34.397, lng: 150.644 },
   });
