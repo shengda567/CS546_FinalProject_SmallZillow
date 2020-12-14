@@ -2,8 +2,10 @@
   <div id="userDetailErrorLists_div" hidden> Sorry, your save failed and here are errors:
     <ul id="userDetailErrorLists_ul"></ul>
   </div>
+
   <p class="user-account-p">My profile: <button id="edit-profile-button" type="button" class="btn btn-primary btn-lg" data-toggle="modal"
       data-target="#myModal">Edit Profile</button> <a href="/change" class="btn btn-primary btn-lg" role="button" id="Changepassword">Change Password</a></p>
+
   <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-lg" id="user-profile-edit-modal">
       <div class="modal-content" id="user-profile-edit-modal-content-backgroud">
@@ -113,7 +115,7 @@
         </dt>
       
 
-      <dd class="col-sm-11"><a class="user-posts-a"href="/posts/{{this.id}}">{{this.title}}</a></dd>
+      <dd class="col-sm-11"><a class="user-posts-a" href="/posts/{{this.id}}">{{this.title}}</a></dd>
 
       {{/each}}
     </dl>
@@ -145,7 +147,7 @@
   <div id="userDetailPostErrorLists_div" hidden>Sorry, edit post failed and errors here:
     <ul id="userDetailPostErrorLists_ul"></ul>
   </div>
-  <p id='UserDetailPostUnchooseError' hidden>Error: Your need to pick a post first</p>
+  <p id='unChooseError' hidden>Error: Your need to pick a post first</p>
   <div class="modal fade" id="myPost">
 
     <div class="modal-dialog modal-lg" id="user-posts-edit-modal">
@@ -325,12 +327,14 @@
 </div>
 
 <div class="container" id="liked-posts-container">
+
   <p class="user-account-p">Liked Posts: </p>
     <ol id="liked-post-list">
         {{#each saves}}
             <li ><a href="/posts/{{this.save_id}}" class="liked-a">{{this.saveTitle}}</a></li>
         {{/each}}
     </ol>
+
 </div>
 
 
