@@ -694,10 +694,27 @@ img {
   padding-right: 10%;
 }
 
+.liked-a,
+.user-posts-a {
+  color: rgb(49, 40, 40);
+}
+
+.nav-font {
+  font-size: large;
+}
+
 #modal-content-backgroud,
 #manager-edit-content-backgroud,
-#manager-modal-content-backgroud {
+#manager-modal-content-backgroud,
+#user-profile-edit-modal-content-backgroud,
+#user-delete-post-modal-content-backgroud,
+#user-posts-edit-modal-content-backgroud {
   background-color: cornflowerblue;
+}
+
+.user-account-p {
+  font-size: 25px;
+  margin-top: 10px;
 }
 
 #user-account-edit-save-button,
@@ -718,7 +735,7 @@ img {
   border-style: solid;
 }
 
-#user-posts-dt-radio {
+.user-posts-dt-radio {
   margin-left: 50px;
   transform: scale(1.7);
 }
