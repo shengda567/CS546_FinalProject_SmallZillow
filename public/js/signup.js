@@ -108,7 +108,7 @@ function sign_up_input_check() {
 }
 
 let userLoginForm = $("#signup-form");
-userLoginForm[0].addEventListener("submit", (event) => {
+userLoginForm.click((event) => {
   event.preventDefault();
 
   let checkSignUP = sign_up_input_check();
