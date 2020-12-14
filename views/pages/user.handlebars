@@ -324,4 +324,16 @@
   </div>
 
 </div>
+
+<div class="container" id="liked-posts-container">
+  <h3>Liked Posts: </h3>
+    <ol id="liked-post-list">
+        {{#each saves}}
+            <li ><a href="/posts/{{this.save_id}}">{{this.saveTitle}}</a></li>
+        {{/each}}
+    </ol>
+</div>
+
+
+
 <script src="/public/js/userDetailsUpdate.js"></script>
