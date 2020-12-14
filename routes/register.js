@@ -128,7 +128,8 @@ router.post("/", async (req, res) => {
 
             
         });
-        res.redirect("/users/login" + newPost._id.toString());
+        //res.redirect("/users/login" + newPost._id.toString());
+        res.redirect("/");
     }
     else{
       res.json({ message: "username already exist." });
