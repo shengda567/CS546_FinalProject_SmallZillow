@@ -796,7 +796,6 @@ img {
   font-size: 24px;
   cursor: pointer;
 }
-
 .like-button::before {
   font-size: 2em;
   color: #000;
@@ -804,7 +803,6 @@ img {
   position: absolute;
   transform: translate(-50%, -50%);
 }
-
 .like-button::after {
   font-size: 2em;
   color: red;

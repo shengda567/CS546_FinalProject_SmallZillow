@@ -80,14 +80,23 @@ router.post("/managerforgetpassword", async (req, res) =>{
     }
 
     if(!verifyCheck){
-        res.status(401).render("pages/error", { error: "verify code is wrong." });
+        errors.push("verify code is wrong.");
+        res.status(401).render('pages/errors_managerforgetpassword', {
+            errors: errors,
+            hasErrors: true
+        });
+        return;
     }else{
         let tempMana = {};
         tempMana = await ManagersData.getManagerByUsername(
         managerInfo.username
         );
         if (!tempMana) {
-            res.status(401).render("pages/error", { error: "username does not exist" });
+            errors.push("username does not exist");
+            res.status(401).render('pages/errors_managerforgetpassword', {
+                errors: errors,
+                hasErrors: true
+            });
             return;
         }
     
@@ -278,27 +287,27 @@ router.patch("/:id", async (req, res) => {
 
 
 
-// router.patch("/:mId/:registerId", async (req, res) => {
-//   if (!req.params.mId) {
-//     res
-//       .status(400)
-//       .json({ error: "You must Supply a manager ID to delete register" });
-//     return;
-//   }
-//   if (!req.params.registerId) {
-//     res.status(400).json({ error: "You must Supply a register ID to delete" });
-//     return;
-//   }
-//   try {
-//     let manager = await ManagersData.deleteRegister(
-//       req.params.mId,
-//       req.params.registerId
-//     );
-//     res.json(manager);
-//   } catch (e) {
-//     throw e;
-//   }
-// });
+router.patch("/:mId/:registerId", async (req, res) => {
+  if (!req.params.mId) {
+    res
+      .status(400)
+      .json({ error: "You must Supply a manager ID to delete register" });
+    return;
+  }
+  if (!req.params.registerId) {
+    res.status(400).json({ error: "You must Supply a register ID to delete" });
+    return;
+  }
+  try {
+    let manager = await ManagersData.deleteRegister(
+      req.params.mId,
+      req.params.registerId
+    );
+    res.json(manager);
+  } catch (e) {
+    throw e;
+  }
+});
 
 
 
@@ -326,24 +335,24 @@ router.patch("/:mId/:userId/:postId", async (req, res) => {
 
 
 
-// router.patch("/:mId/:userId/:commentId", async (req, res) => {
-//   if (!req.params.mId) {
-//     res
-//       .status(400)
-//       .json({ error: "You must Supply a manager ID to delete register" });
-//     return;
-//   }
-//   if (!req.params.userId) {
-//     res
-//       .status(400)
-//       .json({ error: `You must Supply a user ID to delete user's comment` });
-//     return;
-//   }
-//   if (!req.params.commentId) {
-//     res.status(400).json({ error: `You must Supply a comment ID to delete` });
-//     return;
-//   }
-// });
+router.patch("/:mId/:userId/:commentId", async (req, res) => {
+  if (!req.params.mId) {
+    res
+      .status(400)
+      .json({ error: "You must Supply a manager ID to delete register" });
+    return;
+  }
+  if (!req.params.userId) {
+    res
+      .status(400)
+      .json({ error: `You must Supply a user ID to delete user's comment` });
+    return;
+  }
+  if (!req.params.commentId) {
+    res.status(400).json({ error: `You must Supply a comment ID to delete` });
+    return;
+  }
+});
 
 
 
@@ -426,6 +435,8 @@ router.post("/:id", async (req, res) => {
     res.status(400).json({ error: `No manager have been updated` });
   }
 });
+
+
 
 
 
