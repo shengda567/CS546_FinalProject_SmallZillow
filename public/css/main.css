@@ -414,13 +414,13 @@ img {
   border-radius: 4px;
   transition: all 0.3s ease;
 }
-#posts-area .card:hover {
+.posts-area .card:hover {
   background: #fff;
   box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.15);
   border-radius: 4px;
   transition: all 0.3s ease;
 }
-#posts-area .card {
+.posts-area .card {
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
   border-bottom: 3px solid #266df6;
@@ -556,13 +556,17 @@ img {
 }
 #map-area {
   background-color: #f0f8ff;
+  width: 50%;
+  height: 100%;
 }
 #map {
   height: 100vh;
-  width: 100vh;
+  width:100vh;
+
 }
 #map-area-2 {
-  width: auto;
+  width: 50%;
+  height: 100%;
 
 }
 #map2 {
@@ -659,6 +663,7 @@ img {
 }
 #single-post-information {
   background-color: #F5FFFA;
+  display:inline-block;
   width: 100%;
   margin-top: 20px;
   font-size: 15px;
