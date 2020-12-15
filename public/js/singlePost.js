@@ -12,6 +12,7 @@ window.onload = function () {
   $.ajax({url: "http://localhost:3000/api/checkSaved/" + postId, success: function(data){
     if(data.data){
       $("#heart")[0].classList.toggle('liked');
+      $("#heart").addClass("clicked");
     }
     else{
       console.log("false");
@@ -46,8 +47,8 @@ window.onload = function () {
     else{
       e.currentTarget.classList.toggle('liked');
       if($("#heart").hasClass("clicked")){
+        $("#heart").removeClass("clicked");
 
-        $("#heart").addClass("clicked");
         await $.post(
           "http://localhost:3000/users/remove/" + postId,
           (data) => {
@@ -56,7 +57,8 @@ window.onload = function () {
         );
 
       }else{
-        $("#heart").removeClass("clicked");
+        $("#heart").addClass("clicked");
+
         await $.post(
           "http://localhost:3000/users/add/" + postId,
           (data) => {
