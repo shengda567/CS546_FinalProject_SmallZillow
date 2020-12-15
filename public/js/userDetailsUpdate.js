@@ -232,7 +232,7 @@
       hasError = true;
     }
 
-    let phoneReg = /[1-9]{3}-[0-9]{3}-[0-9]{4}/;
+    let phoneReg = /[1-9]{10}/;
     let phoneValid = phoneReg.test(post_phone);
 
     if (phoneValid == false) {
