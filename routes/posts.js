@@ -71,51 +71,51 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide data to create a post" });
     return;
   }
-  if (!postInfo.title) {
+  if (!postInfo.title || isEmptyOrSpaces(postInfo.title)) {
     res.status(400).json({ error: "You must provide a title" });
     return;
   }
-  if (!postInfo.address) {
+  if (!postInfo.address || isEmptyOrSpaces(postInfo.address)) {
     res.status(400).json({ error: "You must provide a address" });
     return;
   }
-  if (!postInfo.state) {
+  if (!postInfo.state || isEmptyOrSpaces(postInfo.state)) {
     res.status(400).json({ error: "You must provide a state" });
     return;
   }
-  if (!postInfo.city) {
+  if (!postInfo.city || isEmptyOrSpaces(postInfo.city)) {
     res.status(400).json({ error: "You must provide a city" });
     return;
   }
-  if (!postInfo.zipcode) {
+  if (!postInfo.zipcode || isEmptyOrSpaces(postInfo.zipcode)) {
     res.status(400).json({ error: "You must provide a zipcode" });
     return;
   }
-  if (!postInfo.img) {
+  if (!postInfo.img || isEmptyOrSpaces(postInfo.img)) {
     res.status(400).json({ error: "You must provide a image" });
     return;
   }
-  if (!postInfo.description) {
+  if (!postInfo.description || isEmptyOrSpaces(postInfo.description)) {
     res.status(400).json({ error: "You must provide a description" });
     return;
   }
-  if (!postInfo.Time) {
+  if (!postInfo.Time || isEmptyOrSpaces(postInfo.Time)) {
     res.status(400).json({ error: "You must provide a date" });
     return;
   }
-  if (!postInfo.tag) {
+  if (!postInfo.tag || isEmptyOrSpaces(postInfo.tag)) {
     res.status(400).json({ error: "You must provide a tag" });
     return;
   }
-  if (!postInfo.phone) {
+  if (!postInfo.phone || isEmptyOrSpaces(postInfo.phone)) {
     res.status(400).json({ error: "You must provide a phone" });
     return;
   }
-  if (!postInfo.prices) {
+  if (!postInfo.prices || isEmptyOrSpaces(postInfo.prices)) {
     res.status(400).json({ error: "You must provide a price" });
     return;
   }
-  if (!postInfo.email) {
+  if (!postInfo.email || isEmptyOrSpaces(postInfo.email)) {
     res.status(400).json({ error: "You must provide a email" });
     return;
   }
@@ -134,23 +134,23 @@ router.post("/", async (req, res) => {
   try {
     let newPost = await postsData.addPost(
       userId,
-      postInfo.title,
-      postInfo.address,
-      postInfo.state,
-      postInfo.city,
-      postInfo.zipcode,
+      xss(postInfo.title),
+      xss(postInfo.address),
+      xss(postInfo.state),
+      xss(postInfo.city),
+      xss(postInfo.zipcode),
       dir,
-      postInfo.description,
-      postInfo.Time,
-      postInfo.tag,
-      postInfo.phone,
-      parseInt(postInfo.prices),
-      postInfo.email,
+      xss(postInfo.description),
+      xss(postInfo.Time),
+      xss(postInfo.tag),
+      xss(postInfo.phone),
+      parseInt(xss(postInfo.prices)),
+      xss(postInfo.email),
       []
     );
     let newId = newPost._id.toString();
 
-    res.redirect("posts/");
+    res.redirect("/");
   } catch (e) {
     res.status(500).json({ error: e });
   }

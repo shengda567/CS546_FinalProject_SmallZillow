@@ -10,7 +10,6 @@
   var errorArea = $('#error-area');
   let pTag2 = `Here are some of the apartments we currently have`;
 
-  console.log("i am here")
 
   if(errorMessage.text() != ""){
     let pTag = ` <p class = 'search-error-message'>${errorMessage.text()}. ${pTag2}</p>`;

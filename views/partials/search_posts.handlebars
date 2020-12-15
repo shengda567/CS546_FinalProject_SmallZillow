@@ -1,12 +1,14 @@
+<h1>Rental Listings</h1>
+<p id= 'number-of-posts'>{{number}} results</p>
 {{#if error}}
-<div hidden class="search-error">
+<div hidden>
     <p id = 'search-error-message2'>{{error}}</p>
 </div>
 {{/if}}
 {{#grouped_each 2 posts}}
 <div class="row">
       {{#each this}}
-          <div class="col-sm-6" id = 'posts-area'>
+          <div class="col-sm-6 posts-area">
           <div class="card rounded">
             <div class = "card-image">
             <img class="img-fluid" src="http://localhost:3000/{{image}}" alt="Card image" width="300" height = '200'/>
@@ -17,7 +19,7 @@
                   <span class="card-detail-badge">{{this.price}}/mo</span>
             </div>
             <div class="card-body text-center">
-              <h5 class="card-title">{{this.title}}</h5>
+              <p class="card-title">{{this.title}}</p>
 
               <a href="/posts/{{_id}}" class="post-info-btn">Detail</a>
 
