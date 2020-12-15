@@ -91,7 +91,7 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide a zipcode" });
     return;
   }
-  if (!postInfo.img || isEmptyOrSpaces(postInfo.img)) {
+  if (!postInfo.img) {
     res.status(400).json({ error: "You must provide a image" });
     return;
   }
