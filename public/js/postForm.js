@@ -133,7 +133,7 @@ window.onload = function () {
 
     // type check
     //1.zipcode && phone check
-    let numberCheck = /[0-9]/;
+    let numberCheck = /[0-9]{10}/;
     let zipCheck = true;
     for (let i = 0; i < zipcode.length; i++) {
       if (!numberCheck.test(zipcode[i])) {

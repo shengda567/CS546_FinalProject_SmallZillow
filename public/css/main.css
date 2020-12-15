@@ -292,7 +292,7 @@ nav li a {
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
-  display:inline-block;
+  display: inline-block;
   height: 570px;
   width: 100%;
   opacity: 0.8;
@@ -407,12 +407,12 @@ img {
   margin-left: 30px;
 }
 /* POST CARD css */
-.card-title{
+.card-title {
   margin-top: 5px;
   font-size: 16px;
 }
 
-#number-of-posts{
+#number-of-posts {
   font-size: 14px;
 }
 #recent-post {
@@ -531,14 +531,13 @@ img {
   align-items: center;
   flex-flow: row wrap;
 }
-.search-error{
+.search-error {
   display: inline;
   background-color: white;
   color: red;
   text-align: center;
   font-size: 12pt;
   width: 40%;
-
 }
 .search-error-message {
   color: red;
@@ -579,13 +578,11 @@ img {
 }
 #map {
   height: 100vh;
-  width:100vh;
-
+  width: 100vh;
 }
 #map-area-2 {
   width: 50%;
   height: 100%;
-
 }
 #map2 {
   height: 50vh;
@@ -679,8 +676,8 @@ img {
   color: #b4b7c1;
 }
 #single-post-information {
-  background-color: #F5FFFA;
-  display:inline-block;
+  background-color: #f5fffa;
+  display: inline-block;
   width: 100%;
   margin-top: 20px;
   font-size: 15px;
@@ -690,6 +687,11 @@ img {
   width: 100%;
   margin-top: 20px;
   font-size: 15px;
+}
+
+#manager-edit-error {
+  margin-left: 70px;
+  color: red;
 }
 
 .be-comment-text {

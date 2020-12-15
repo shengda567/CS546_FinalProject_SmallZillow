@@ -14,6 +14,7 @@ async function send_form() {
   let newCityInput = $("#city");
   let newStateInput = $("#state");
   let newPasswordInput = $("#password");
+  let verifyInput = $("#verifiy");
 
   let newUserName = newUserNameInput.val();
   let newFirstName = newFirstNameInput.val();
@@ -28,6 +29,7 @@ async function send_form() {
 
   let newState = newStateInput.val();
   let newPassword = newPasswordInput.val();
+  let verify = verifyInput.val();
 
   let formSet = {
     username: newUserName,
@@ -38,6 +40,7 @@ async function send_form() {
     phone: newPhone,
     address: { city: newCity, state: newState },
     password: newPassword,
+    verifiy: verify,
   };
   console.log(formSet);
   try {
@@ -63,6 +66,7 @@ function sign_up_input_check() {
   let newCityInput = $("#city");
   let newStateInput = $("#state");
   let newPasswordInput = $("#password");
+  let verifyInput = $("#verifiy");
 
   let newUserName = newUserNameInput.val();
   let newFirstName = newFirstNameInput.val();
@@ -77,8 +81,11 @@ function sign_up_input_check() {
 
   let newState = newStateInput.val();
   let newPassword = newPasswordInput.val();
+  let verify = verifyInput.val();
 
+  const emailReq = RegExp("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$");
   const charReg = RegExp("^[a-zA-Z_]{1,}$");
+  const numberCheck = /[0-9]{10}/;
   if (!charReg.exec(newFirstName)) {
     //$("#register-error").show();
     $("#register-error").html("First name must be chars only.");
@@ -91,6 +98,28 @@ function sign_up_input_check() {
     //$("#register-error").show();
     $("#register-error").html("City name must be chars only.");
     return true;
+  } else if (!emailReq.exec(newEmail)) {
+    $("#register-error").html(
+      "Email must be the format: [zhangsan-001@gmail.com]."
+    );
+    return true;
+  } else if (!numberCheck.exec(newPhone)) {
+    $("#register-error").html("Phone number should be like this: 1234567890.");
+    return true;
+  } else if (
+    !newUserName.trim() ||
+    !newFirstName.trim() ||
+    !newLastName.trim() ||
+    !newEmail.trim() ||
+    !newGender.trim() ||
+    !newPhone.trim() ||
+    !newCity.trim() ||
+    !newState.trim() ||
+    !newPassword.trim() ||
+    !verify.trim()
+  ) {
+    $("#register-error").html("All the field should be filled.");
+    return true;
   } else if (
     newFirstName &&
     newLastName &&
@@ -101,7 +130,8 @@ function sign_up_input_check() {
     newCity &&
     newState &&
     newPassword &&
-    newUserName
+    newUserName &&
+    verify
   ) {
     return false;
   }

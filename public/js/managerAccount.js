@@ -84,9 +84,22 @@
   let save_manager_profile_button = $("#manager-account-edit-save-button");
   save_manager_profile_button.click(async function (event) {
     event.preventDefault();
+    $("#manager-edit-error").hide();
     let username = $("#manager-username").val();
     let email = $("#manager-email").val();
     let manager_level = $("#manager_level").val();
+
+    const emailReq = RegExp(
+      "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$"
+    );
+    if (!emailReq.exec(email)) {
+      $("#manager-edit-error").html(
+        "Email must be the format: [zhangsan-001@gmail.com]."
+      );
+      $("#manager-edit-error").show();
+      return;
+    }
+    save_manager_profile_button.attr("data-dismiss", "modal");
     let id = $("#manager-id").val();
     console.log("123");
     await $.post(

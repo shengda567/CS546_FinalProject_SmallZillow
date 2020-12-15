@@ -31,7 +31,7 @@
                 <div class="form-group row">
                     <label for="manager-username" class="col-sm-4 col-form-label">Username: </label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control input-lg" id="manager-username" value={{manager.username}}>
+                        <input type="text" class="form-control input-lg" id="manager-username" value={{manager.username}} readonly>
                     </div>
 
                 </div>
@@ -49,13 +49,17 @@
                         <input id="manager-id" hidden value={{manager._id}}>
                     </div>
                 </div>
-
+                <div class="form-group row">
+                    <div id='manager-edit-error' hidden></div>
+                </div>
+                
                 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger btn-lg" data-dismiss="modal" id="manager-account-edit-save-button">Save</button>
+                    <button type="submit" class="btn btn-danger btn-lg" data-dismiss="" id="manager-account-edit-save-button">Save</button>
                 </div>
 
             </form>
+            
             </div>
 
 
