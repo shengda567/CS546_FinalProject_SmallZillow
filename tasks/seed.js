@@ -107,7 +107,7 @@ async function main() {
       'male',
       'hoboken',
       '03/25/1997',
-      '909-655-7823',
+      '9096557823',
       'password',
     );
 
@@ -119,7 +119,7 @@ async function main() {
       'male',
       'hoboken',
       '03/25/1995',
-      '774-301-0708',
+      '7743010708',
       'helloworld1',
     );
 
@@ -131,7 +131,7 @@ async function main() {
       'male',
       'new york',
       '11/15/1977',
-      '909-111-7823',
+      '9091117823',
       'passpass',
     );
   
@@ -143,7 +143,7 @@ async function main() {
       'male',
       'shandong',
       '19/25/1967',
-      '601-301-0788',
+      '6013010788',
       'hunyuantaiji',
     );
 
@@ -155,7 +155,7 @@ async function main() {
       'male',
       'douyu',
       '11/15/1977',
-      '471-655-7003',
+      '4716557003',
       'fabajuhaome',
     );
 
@@ -167,7 +167,7 @@ async function main() {
       'female',
       'fortlee',
       '03/25/1975',
-      '714-301-0708',
+      '7143010708',
       'helloworld',
     );
 
@@ -179,7 +179,7 @@ async function main() {
       'female',
       'fortlee',
       '03/11/1975',
-      '909-001-7823',
+      '9090017823',
       'password1',
     );
 
@@ -191,7 +191,7 @@ async function main() {
       'male',
       'hoboken',
       '03/25/1977',
-      '774-301-0798',
+      '7743010798',
       'hellowo123',
     );
 
@@ -203,7 +203,7 @@ async function main() {
       'male',
       'hoboken',
       '03/25/1997',
-      '909-655-1823',
+      '9096551823',
       'password',
     );
     
@@ -216,7 +216,7 @@ async function main() {
       'female',
       'newyork',
       '03/25/1985',
-      '774-301-0008',
+      '7743010008',
       'hellonicaicai',
     );
 
@@ -228,7 +228,7 @@ async function main() {
       'female',
       'hoboken',
       '03/25/1997',
-      '909-666-7823',
+      '9096667823',
       'pass7897',
     );
  
@@ -240,7 +240,7 @@ async function main() {
       'male',
       'newyork',
       '03/25/1966',
-      '774-301-9999',
+      '7743019999',
       'helloearth',
     );
 
@@ -252,7 +252,7 @@ async function main() {
       'male',
       'newyork',
       '03/25/1972',
-      '929-665-9823',
+      '9296659823',
       'password12',
     );
   
@@ -264,7 +264,7 @@ async function main() {
       'male',
       'fortlee',
       '03/25/1995',
-      '774-301-0338',
+      '7743010338',
       'helloworld1',
     );
 
@@ -276,7 +276,7 @@ async function main() {
       'female',
       'hoboken',
       '03/25/1967',
-      '909-655-7823',
+      '9096557823',
       'password',
     );
 
@@ -288,7 +288,7 @@ async function main() {
       'male',
       'newport',
       '03/25/1980',
-      '774-301-0223',
+      '7743010223',
       'passnklsaf',
     );
 
@@ -316,7 +316,7 @@ async function main() {
        'FIRST 2 MONTHS FREE W/ 14TH MONTH LEASE! Security deposit FREE option through Rhino! Broker fee paid by LL! Amazing Very Large apartment for rent. Vaulted ceilings, large bedrooms and living room, plenty of closet space!! Very well laid out. Central AC!! Laundry in building!! Elevator building!!',
        '05/10/2020',
        'Apartment',
-       '111-777-4444',
+       '1117774444',
        2314,
        'example@gmail.com');
   
@@ -332,7 +332,7 @@ async function main() {
        'Fully updated and spacious one bedroom home in ideally location. Home features open renovated kitchen with stainless steel appliance, back-splash, granite counter tops, hardwood flooring throughout and updated bathroom. Large living space and bedroom are offered to accommodate guests. Basement offers storage and laundry.',
        '08/19/2020',
        'Apartment',
-       '122-333-6666',
+       '1223336666',
         1975,
        'yunyang@gmail.com');
   
@@ -348,7 +348,7 @@ async function main() {
        'Rare studio apt in the heart of Hoboken! Steps to everything. PRIVATE entrance and easy access to common backyard. Two rooms. Eat in Kitchen and Living room/Bedroom. Good size bathroom. Built-ins make for great storage. ',
        '09/10/2020',
        'House',
-       '333-442-4434',
+       '3334424434',
        1175,
        'yoch@gmail.com');
   
@@ -364,7 +364,7 @@ async function main() {
         'NO BROKER FEE! Wonderful 1 bedroom & den in classic Garden St. rowhouse. Period detail blends with modern convenience perfectly w/ large scaled rooms, dining area, great bedroom & separate den/office. Hardwood flrs. ',
         '09/11/2020',
         'Apartment',
-        '333-442-4444',
+        '3334424444',
         2000,
         'yocheckItOut@gmail.com');
   
@@ -380,7 +380,7 @@ async function main() {
        'NEW PHOTOS COMING NEXT WEEK! Spacious 2 bed 1 bath apartment located on Willow Ave! Hardwood floors, Lots of light, many windows, newer kitchen, newer bathroom, central air and heat, exposed brick, and washer/dryer in the unit. ',
        '09/14/2020',
        'Apartment',
-       '333-442-4444',
+       '3334424444',
        23250,
        'yocheckItOut@gmail.com');
   
@@ -396,7 +396,7 @@ async function main() {
         'NO BROKER FEE! Wonderful 1 bedroom & den in classic Garden St. rowhouse. Period detail blends with modern convenience perfectly w/ large scaled rooms, dining area, great bedroom & separate den/office. Hardwood flrs. ',
         '10/9/2020',
         'Apartment',
-        '333-442-4444',
+        '3334424444',
         999,
         'yocheckItOut@gmail.com');
   
@@ -412,7 +412,7 @@ async function main() {
          'We are temporarily ceasing in-person tours with prospective residents. Virtual tours are available. Call us today for more information!  ',
          '11/3/2020',
          'House',
-         '333-442-4444',
+         '3334424444',
          4500,
          'yocheckItOut@gmail.com');
          
@@ -428,7 +428,7 @@ async function main() {
         'Avalon Hoboken features 1 and 2 bedroom apartments in Hoboken, NJ. Apartments include fully equipped kitchens with stainless steel appliances and granite countertops.',
         '11/19/2020',
         'Villa',
-        '333-442-4444',
+        '3334424444',
         5100,
         'yocheckItOut@gmail.com');
   
@@ -444,7 +444,7 @@ async function main() {
          'These luxurious, New York style Lofts feature high ceilings and breathtaking bay view windows which surpass your expectations of style and display an air of serenity.',
          '11/20/2020',
          'Villa',
-         '333-442-4444',
+         '3334424444',
          4100,
          'yocheckItOut@gmail.com');
 
@@ -460,7 +460,7 @@ async function main() {
            `Beautiful 2 bedroom/2 full bath condo apartment on 2nd & Willow Avenue. Unit boasts a brand new designer kitchen with all new stainless steel appliances, hardwood floors, washer & dryer in unit, central A/C & heat and so much more! Very spacious apartment, great for entertaining! 5 minute walk to the Hoboken Path & surrounded by shopping, restaurants, brand new coffee Shop right below, next to Zack's, Chango Kitchen, Onieals, Grand Vin, Antique Bakery, NYC transportation and a block away from one of the most desirable parks in Hoboken. One garage parking space included in the rent, with a 2nd Parking space available for an additional $150 a month. Top floor unit with no apartment above. (Pets considered with damage deposit?) Will Not Last`,
            '11/20/2020',
            'Villa',
-           '333-442-1111',
+           '3334421111',
            3600,
            'youshifio@gmail.com');
 
@@ -475,7 +475,7 @@ async function main() {
              `Looking for Outdoor Living Space? This gorgeous apartment features an amazing and large private patio and it comes with a 1055 SF TWO Bed and TWO Bath home with garage parking space #24. Located in the sought after Steel & Concrete Upper Grand Building at 1300 Grand Street, this home also features 9.6" Ceilings, Gleaming Wood Floors, 42" White Kitchen Cabinetry, Granite Countertops, Stainless Steel Appliances and Large Peninsula with breakfast bar seating. This dream home has in-home W/D, Dual Vanity in the Master Bath, Large Soaking Tub in the Guest Bath, Custom Walk in Closets for Maximum Storage, Central AC, Residents Gym, Two Lobbies, Two Elevators, Scenic Landscaped Courtyard view from in your home and private patio. Located in Uptown Hoboken which is packed with an abundance of Restaurants, Trader Joes, Shops, Day Care, Schools, Children's Play Areas, Basketball, Tennis, Movie Theater, and will soon be home to Hoboken's Largest Park! Commuting is a breeze with easy access to the Bus, Uptown Ferry and the Free Green HOP that picks up at the Adams Street Lobby entrance and takes you to and from the PATH. Available for February 1st occupancy.`,
              '11/30/2020',
              'Villa',
-             '333-442-1111',
+             '3334421111',
              2400,
              'youshifio@gmail.com');
 
