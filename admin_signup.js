@@ -55,16 +55,6 @@ function sign_up_input_check() {
     $("#register-error").html(
       "Email must be the format: [zhangsan-001@gmail.com]."
     );
-
-    return true;
-  } else if (
-    !newUserName.trim() ||
-    !newEmail.trim() ||
-    !newPassword.trim() ||
-    !manager_level.trim() ||
-    !manager_verify_code.trim()
-  ) {
-    $("#register-error").html("All the field should be filled.");
     return true;
   } else if (
     newUserName &&
