@@ -3,7 +3,7 @@
 // });
 // () => {
 
-function send_form() {
+async function send_form() {
   let newUserNameInput = $("#username");
   let newFirstNameInput = $("#firstname");
   let newLastNameInput = $("#lastname");
@@ -108,7 +108,8 @@ function sign_up_input_check() {
 }
 
 let userLoginForm = $("#signup-form");
-userLoginForm[0].addEventListener("submit", (event) => {
+let user_signup_button = $("#submit-user");
+user_signup_button.click(async (event) => {
   event.preventDefault();
 
   let checkSignUP = sign_up_input_check();
@@ -117,8 +118,9 @@ userLoginForm[0].addEventListener("submit", (event) => {
   } //
   else {
     $("#register-error").hide();
-    send_form();
-    //window.location.href = "http://localhost:3000/posts";
+    await send_form();
+    alert("Signup successfully");
+    window.location.href = "http://localhost:3000/users/myaccount";
     //$("#postForm").trigger("reset");
   }
 });

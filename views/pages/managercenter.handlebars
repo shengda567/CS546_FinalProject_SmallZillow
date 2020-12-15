@@ -4,7 +4,7 @@
   <!-- Left-aligned media object -->
   <div class="media">
     <div class="media-left">
-      <img src="/public/img/manager_image.jpeg" class="media-object" style="width:95px">
+      <img src="/public/img/manager_image.jpeg" alt="admin" class="media-object" style="width:95px">
     </div>
     <div class="media-body">
       <h4 class="media-heading" id="manager-photo">Manager: {{manager.username}} 
@@ -29,21 +29,21 @@
             <div class="modal-body">
             <form id="user-account-update-form">
                 <div class="form-group row">
-                    <label for="manager-username" class="col-sm-4 col-form-label"><h4>Username: </h4></label>
+                    <label for="manager-username" class="col-sm-4 col-form-label">Username: </label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control input-lg" id="manager-username" value={{manager.username}}>
                     </div>
 
                 </div>
                 <div class="form-group row">
-                    <label for="manager-email" class="col-sm-4 col-form-label"><h4>Email: </h4></label>
+                    <label for="manager-email" class="col-sm-4 col-form-label">Email: </label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control input-lg" id="manager-email" value={{manager.email}}>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="manager_level" class="col-sm-4 col-form-label"><h4>Manager Level: </h4></label>
+                    <label for="manager_level" class="col-sm-4 col-form-label">Manager Level: </label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control input-lg" id="manager_level" value={{manager.manager_level}}>
                         <input id="manager-id" hidden value={{manager._id}}>
@@ -68,8 +68,8 @@
 
 <div class="container" id="manager-nav-tabs-container">
     <ul class="nav nav-tabs" id="manager-nav-tabs">
-        <li id="allpost-button"><a href="#"><h5>All Posts</h5></a></li>
-        <li id="manager-history-button"><a href="#"><h5>Manager History</h5></a></li>
+        <li id="allpost-button"><a href="#">All Posts</a></li>
+        <li id="manager-history-button"><a href="#">Manager History</a></li>
     </ul>
 </div>
 
@@ -86,24 +86,26 @@
         </thead>
         <tbody>
             {{#each userInfoList}}
+
                 <tr>
-                    <td>
-                        
-                        {{username}}
-                        
-                    </td>
-                    <td>
-                        {{#each post}}
-                            <dt class="col-sm-1" >
-                                <input type="radio" id="manager-posts-dt-radio" name="post-radio" value="{{this._id}}">
-                            </dt>
-                            
-                            <dd class="col-sm-11"><a href="/posts/{{this._id}}">{{this.title}}</a></dd>
-                            
-                        {{/each}}  
-                    </td>
+                    {{#if (post_notEmpty post)}}
+                        <td>{{username}}</td>
+                    
+                        <td>
+                            <dl>
+                                {{#each post}}
+                                    <dt class="col-sm-1" >
+                                        <input type="radio"  name="post-radio" value="{{this._id}}">
+                                    </dt>
+                                    
+                                    <dd class="col-sm-11"><a href="/posts/{{this._id}}">{{this.title}}</a></dd>
+                                    
+                                {{/each}}  
+                            </dl>
+                        </td>
+                    {{/if}}
                 </tr>
-                
+   
             {{/each}}
         </tbody>
       
@@ -141,6 +143,7 @@
             <li >{{this}}</li>
         {{/each}}
     </ol>
+</div>
 </div>
 
 <script src="/public/js/managerAccount.js"></script>
