@@ -37,7 +37,7 @@ router.get('/:id/:comment', async (req, res) => {
     return;
   }
   if (!req.params.comment) {
-    res.status(400).json({ error: 'You must provide ID' });
+    res.status(400).json({ error: 'You must provide comment' });
     return;
   }
   let { ObjectId } = require('mongodb');
