@@ -125,6 +125,11 @@
                 {{!-- <input type="password" id="password" name="password" minlength="8" class = "inputFields" onblur="passwordOnBlur(this)" onfocus="passwordOnFocus(this)" placeholder="Enter a Password(8 characters minimum)" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required> --}}
 
             </p>
+             <p id='verify'>
+                      <label for="verifiy"><b>Verifiy</b></label>
+                      <input type="text" placeholder="Input Verifiy Code" id = "verifiy" name="verifiy">
+                      <img src="/register/api/getCaptcha" alt="captcha" >
+                    </p>
 
             {{!-- <div id="message">
                 <h3>Password must contain the following:</h3>
