@@ -4,11 +4,15 @@
     <h2 class="mainPageText2">We’ll help you find a place you’ll love.</h2>
 
     <form action="/search" method="post" id="search" class="searchForm">
-
+      <label hidden for="search_input"></label>
       <input type="text" class="searchBox1" placeholder="Enter an address, city, or ZIP code" name="search_input"
         id="search_input" >
       <input type='submit' name = 'button' value = '' id="searchButton1" class="searchButton">
+
     </form>
+    {{#if errors}}
+    <h3 class = 'search-error'>{{errors}}</h3>
+    {{/if}}
 
   </div>
      <div class="container" id = 'home-page-posts'>
@@ -27,7 +31,7 @@
                 <span class="card-detail-badge">${{this.price}}/mo</span>
           </div>
           <div class="card-body text-center">
-            <h5 class="card-title">{{this.title}}</h5>
+            <p class="card-title">{{this.title}}</p>
 
             <a href="/posts/{{_id}}" class="post-info-btn">Detail</a>
 

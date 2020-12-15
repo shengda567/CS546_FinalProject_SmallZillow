@@ -285,25 +285,27 @@ nav li a {
 }
 /* Main page*/
 #home-page-container {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("/public/img/niceHouse.jpg");
   /* margin-top: -17px; */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
+  display:inline-block;
   height: 570px;
   width: 100%;
   opacity: 0.8;
+  align-items: center;
 }
 .mainPageText1 {
-  color: white;
+  color: #ffffff;
   text-align: center;
   padding-top: 50px;
 }
 .mainPageText2 {
   padding-top: 30px;
-  color: white;
+  color: #ffffff;
   text-align: center;
 }
 .searchForm {
@@ -405,6 +407,14 @@ img {
   margin-left: 30px;
 }
 /* POST CARD css */
+.card-title{
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+#number-of-posts{
+  font-size: 14px;
+}
 #recent-post {
   margin: 0px 0 30px 0;
 }
@@ -520,6 +530,15 @@ img {
   display: inline-block;
   align-items: center;
   flex-flow: row wrap;
+}
+.search-error{
+  display: inline;
+  background-color: white;
+  color: red;
+  text-align: center;
+  font-size: 12pt;
+  width: 40%;
+
 }
 .search-error-message {
   color: red;

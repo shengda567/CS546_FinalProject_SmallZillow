@@ -9,25 +9,33 @@ window.onload = function () {
   var state = $('#state').text();
   var city = $('#city').text();
   var zipcode = $('#zipcode').text();
-    var requestConfig1 = {
-        method: 'POST',
-        url: '/api/similarPosts' ,
-        contentType: 'application/json',
-        data:JSON.stringify({
-          zipcode:zipcode,
-          address:address,
-          city:city,
-          state:state
-      })
-    };
-
-    $.ajax(requestConfig1).then(function (responseMessage) {
-        let newElement = $(responseMessage);
-
-        recommendPosts.append(newElement);
-    });
+  $.ajax({url: "http://localhost:3000/api/checkSaved/" + postId, success: function(data){
+    if(data.data){
+      $("#heart")[0].classList.toggle('liked');
+    }
+    else{
+      console.log("false");
+    }
+  }});
 
 
+  var requestConfig1 = {
+      method: 'POST',
+      url: '/api/similarPosts' ,
+      contentType: 'application/json',
+      data:JSON.stringify({
+        zipcode:zipcode,
+        address:address,
+        city:city,
+        state:state
+    })
+  };
+
+  $.ajax(requestConfig1).then(function (responseMessage) {
+      let newElement = $(responseMessage);
+
+      recommendPosts.append(newElement);
+  });
 
   // when clicking the button start the timeline/animation:
   document.querySelector(".like-button" ).addEventListener('click', async function(e) {

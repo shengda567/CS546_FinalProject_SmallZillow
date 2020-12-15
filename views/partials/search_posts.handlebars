@@ -1,5 +1,7 @@
+<h1>Rental Listings</h1>
+<p id= 'number-of-posts'>{{number}} results</p>
 {{#if error}}
-<div hidden class="search-error">
+<div hidden>
     <p id = 'search-error-message2'>{{error}}</p>
 </div>
 {{/if}}
@@ -17,7 +19,7 @@
                   <span class="card-detail-badge">{{this.price}}/mo</span>
             </div>
             <div class="card-body text-center">
-              <h5 class="card-title">{{this.title}}</h5>
+              <p class="card-title">{{this.title}}</p>
 
               <a href="/posts/{{_id}}" class="post-info-btn">Detail</a>
 

@@ -3,7 +3,7 @@ const router = express.Router();
 const data = require('../data');
 const commentsData = data.comments;
 const postsData = data.posts;
-
+const xss = require("xss");
 router.get('/:id', async (req, res) => {
   if (!req.params.id) {
     res.status(400).json({ error: 'You must provide ID' });
@@ -83,7 +83,7 @@ router.post('/:id', async (req, res) => {
       {userId: userId,
       username: username},
       req.params.id,
-      req.body.comment_input,
+      xss(req.body.comment_input),
       today,
     );
 
