@@ -7,6 +7,7 @@ const data = require("../data");
 // const mongoCollections = require('../config/mongoCollections');
 const usersData = data.register;
 const postsData = data.posts;
+const xss = require("xss");
 
 const pic = require("../data/VerificationCode");
 
@@ -148,7 +149,6 @@ router.post("/add/:id", async (req, res) => {
     res.status(500).json({ error: e });
   }
 });
-
 
 router.post("/remove/:id", async (req, res) => {
   if (req.session.user) {

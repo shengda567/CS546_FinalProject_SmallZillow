@@ -44,7 +44,7 @@ const constructorMethod = (app) => {
         newList.push(item);
       }
 
-      res.status(200).render("pages/mainPage", {posts: newList});
+      res.status(200).render("pages/mainPage", { posts: newList });
     } catch (e) {
       res.render("pages/mainPage", { errors: "No posts in the databse" });
     }

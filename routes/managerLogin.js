@@ -8,6 +8,7 @@ const managersData = data.managers;
 const registersData = data.register;
 const postsData = data.posts;
 const pic = require("../data/VerificationCode");
+const xss = require("xss");
 
 router.get("/api/getCaptcha", function (req, res, next) {
   let p = "ABCDEFGHKMNPQRSTUVWXYZ1234567890";
@@ -50,7 +51,7 @@ router.post("/checkManager", async (req, res) => {
 
   if (verifyCheck) {
     try {
-      let manager = await managersData.getManagerByUsername(username);
+      let manager = await managersData.getManagerByUsername(xss(username));
       if (manager) {
         usernameCheck = true;
       } else {
