@@ -15,6 +15,9 @@ function isZipCode(str) {
 }
 router.post('/', async (req, res) => {
   try {
+    if(!req.body.search_input){
+      res.status(400).json("you can not search empty thing");
+    }
 
     let input = req.body.search_input;
 

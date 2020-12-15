@@ -137,6 +137,9 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
+  if(!req.params.id){
+    throw 'No id';
+  }
   try {
     const post = await customerinf.getbyone(req.params.id);
     res.json(post);
@@ -146,6 +149,12 @@ router.get("/:id", async (req, res) => {
 });
 
 router.patch("/:id", async (req, res) => {
+  if(!req.params.id){
+    throw 'No id';
+  }
+  if(!req.body){
+    throw 'body wrong';
+  }
   const requestBody = req.body;
   let updatedObject = {};
   try {
