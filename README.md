@@ -1,12 +1,12 @@
-# Group Member:
+# Small Zillow Application
+
+## Group Member:
 
 Zhanming Bai,
 Shengda Zhang,
 Zichong Wang,
 Yun Yang,
 Shuoyu Wang
-
-# Small Zillow Application
 
 ## How to Use
 
