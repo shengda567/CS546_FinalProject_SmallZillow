@@ -22,6 +22,15 @@ router.get("/api/getCaptcha", function (req, res, next) {
 });
 
 router.post("/checkManager", async (req, res) => {
+  if(!req.body.username){
+    res.status(404).json({ message: "No username input" });
+  }
+  if(!req.body.password){
+    res.status(404).json({ message: "No password input" });
+  }
+  if(!req.body.verifiy){
+    res.status(404).json({ message: "No verify input" });
+  }
   const { username, password, verifiy } = req.body;
   let usernameCheck = false;
   let passwordCheck = false;

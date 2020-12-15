@@ -81,7 +81,7 @@
     });
   });
 
-  save_manager_profile_button = $("#manager-account-edit-save-button");
+  let save_manager_profile_button = $("#manager-account-edit-save-button");
   save_manager_profile_button.click(async function (event) {
     event.preventDefault();
     let username = $("#manager-username").val();

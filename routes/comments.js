@@ -14,7 +14,7 @@ router.get('/:id', async (req, res) => {
     let { ObjectId } = require('mongodb');
     let objectID = ObjectId(req.params.id);
     let post = await postsData.getPostById(objectID);
-    commentList = [];
+    let commentList = [];
     for (let i in post.comments){
       try {
         let commentID = post.comments[i];

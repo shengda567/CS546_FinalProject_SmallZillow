@@ -131,17 +131,33 @@ router.post("/managerforgetpassword", async (req, res) =>{
 
 
 router.get("/newpassword/:id", async (req, res) => {
-    if (req.session.manager) {
-        let managerInfo = {};
+  let errors = [];
+  if(!req.session.manager){
+    errors.push("can not change password, something wrong");
+  }
+  if(!req.session.manager.username){
+    errors.push("can not change password, something wrong")
+  }
+  if(errors.length > 0){
+    res.status(401).render('pages/errors_managerforgetpassword', {
+      errors: errors,
+      hasErrors: true
+  })
+  return;
+  }
+
+  try{
+    let managerInfo = {};
         managerInfo = await ManagersData.getManagerByUsername(
           req.session.manager.username
         );
         res.render("pages/manager_newpassword", {
             manager: managerInfo,
           });
-    }else{
-        res.status(401).render("pages/error", { error: "Could not set new password for admin account" });
-    }
+  }catch(e){
+    res.status(401).render("pages/error", { error: "Could not set new password for admin account" });
+  }
+   
 });
 
 
@@ -209,6 +225,9 @@ router.post("/", async (req, res) => {
 
 
 router.get("/:id", async (req, res) => {
+  if(!req.params.id){
+    res.status(400).json({ error: "you must provide manager ID" });
+  }
   try {
     const manager = await ManagersData.getManagerById(req.params.id);
     res.json(manager);
@@ -227,6 +246,9 @@ router.get("/:id", async (req, res) => {
 
 
 router.patch("/:id", async (req, res) => {
+  if(!req.params.id){
+    res.status(400).json({error: "you must provide ID"});
+  }
   const requestBody = req.body;
   let updateObj = {};
   try {
@@ -307,6 +329,7 @@ router.patch("/:mId/:registerId", async (req, res) => {
   } catch (e) {
     throw e;
   }
+  //Default function
 });
 
 
@@ -328,7 +351,7 @@ router.patch("/:mId/:userId/:postId", async (req, res) => {
     res.status(400).json({ error: `You must Supply a post ID to delete` });
     return;
   }
-
+  //Default function
 
 
 });
@@ -352,6 +375,7 @@ router.patch("/:mId/:userId/:commentId", async (req, res) => {
     res.status(400).json({ error: `You must Supply a comment ID to delete` });
     return;
   }
+    //Default function
 });
 
 
@@ -378,6 +402,9 @@ router.delete("/:id", async (req, res) => {
 
 
 router.post("/:id", async (req, res) => {
+  if(!req.params.id){
+    res.status(400).json("you must provide id");
+  }
   const requestBody = req.body;
   let updateObj = {};
   try {

@@ -30,6 +30,9 @@ router.get('/api/getCaptcha', function(req, res, next) {
 
 
 router.post('/check', async (req, res) => {
+  if(!req.session.user){
+    res.status(400).json('ops, something wrong!');
+  }
 
 	//const { username, email, password, verifiy } = req.body;
     let personalinf = JSON.parse(JSON.stringify(req.body));
