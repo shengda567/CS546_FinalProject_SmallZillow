@@ -14,7 +14,7 @@ router.get('/:id', async (req, res) => {
     let { ObjectId } = require('mongodb');
     let objectID = ObjectId(req.params.id);
     let post = await postsData.getPostById(objectID);
-    commentList = [];
+    let commentList = [];
     for (let i in post.comments){
       try {
         let commentID = post.comments[i];
@@ -37,7 +37,7 @@ router.get('/:id/:comment', async (req, res) => {
     return;
   }
   if (!req.params.comment) {
-    res.status(400).json({ error: 'You must provide ID' });
+    res.status(400).json({ error: 'You must provide comment' });
     return;
   }
   let { ObjectId } = require('mongodb');
