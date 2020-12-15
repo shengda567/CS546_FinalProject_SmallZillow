@@ -86,26 +86,26 @@
         </thead>
         <tbody>
             {{#each userInfoList}}
+
                 <tr>
-                    <th>
-                        
-                        {{username}}
-                        
-                    </th>
-                    <th>
-                        <dl>
-                        {{#each post}}
-                            <dt class="col-sm-1" >
-                                <input type="radio"  name="post-radio" value="{{this._id}}">
-                            </dt>
-                            
-                            <dd class="col-sm-11"><a href="/posts/{{this._id}}">{{this.title}}</a></dd>
-                            
-                        {{/each}}  
-                        </dl>
-                    </th>
+                    {{#if (post_notEmpty post)}}
+                        <td>{{username}}</td>
+                    
+                        <td>
+                            <dl>
+                                {{#each post}}
+                                    <dt class="col-sm-1" >
+                                        <input type="radio"  name="post-radio" value="{{this._id}}">
+                                    </dt>
+                                    
+                                    <dd class="col-sm-11"><a href="/posts/{{this._id}}">{{this.title}}</a></dd>
+                                    
+                                {{/each}}  
+                            </dl>
+                        </td>
+                    {{/if}}
                 </tr>
-                
+   
             {{/each}}
         </tbody>
       
