@@ -77,7 +77,7 @@
       hasError = true;
     }
 
-    let phoneReg = /[0-9]{3}-[0-9]{3}-[0-9]{4}/;
+    let phoneReg = /[0-9]{10}/;
     let phoneValid = phoneReg.test(phone);
 
     if (phoneValid == false) {
