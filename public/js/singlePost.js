@@ -3,36 +3,43 @@ window.onload = function () {
   var commentsArea = $('#comments-area');
   var commentInput = $('#comment_input');
   var commentError = $('#comment-error');
-  var postId = $('#postId').attr("data-id");
+  var postId = $('#postId').text();
   var recommendPosts = $('#recommendPosts-area');
-  var address = $('#address').attr("data");
-  var state = $('#state').attr("data");
-  var city = $('#city').attr("data");
-  var zipcode = $('#zipcode').attr("data");
-
-    var requestConfig1 = {
-        method: 'POST',
-        url: '/api/similarPosts' ,
-        contentType: 'application/json',
-        data:JSON.stringify({
-          zipcode:zipcode,
-          address:address,
-          city:city,
-          state:state
-      })
-    };
-
-    $.ajax(requestConfig1).then(function (responseMessage) {
-        let newElement = $(responseMessage);
-
-        recommendPosts.append(newElement);
-    });
+  var address = $('#address').text();
+  var state = $('#state').text();
+  var city = $('#city').text();
+  var zipcode = $('#zipcode').text();
+  $.ajax({url: "http://localhost:3000/api/checkSaved/" + postId, success: function(data){
+    if(data.data){
+      $("#heart")[0].classList.toggle('liked');
+    }
+    else{
+      console.log("false");
+    }
+  }});
 
 
+  var requestConfig1 = {
+      method: 'POST',
+      url: '/api/similarPosts' ,
+      contentType: 'application/json',
+      data:JSON.stringify({
+        zipcode:zipcode,
+        address:address,
+        city:city,
+        state:state
+    })
+  };
+
+  $.ajax(requestConfig1).then(function (responseMessage) {
+      let newElement = $(responseMessage);
+
+      recommendPosts.append(newElement);
+  });
 
   // when clicking the button start the timeline/animation:
   document.querySelector(".like-button" ).addEventListener('click', async function(e) {
-    let user = $('#user-error-message').attr("data");
+    let user = $('#user-error-message').text();;
     if(user == 'false'){
       alert("You have to login first!");
     }
