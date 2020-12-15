@@ -47,9 +47,8 @@ app.engine("handlebars", handlebarsInstance.engine);
 app.use(cookieParase());
 app.set("view engine", "handlebars");
 
-handlebarsInstance.handlebars.registerHelper(
-  "grouped_each",
-  function (every, context, options) {
+handlebarsInstance.handlebars.registerHelper({
+  grouped_each: function (every, context, options) {
     var out = "",
       subcontext = [],
       i;
@@ -64,8 +63,15 @@ handlebarsInstance.handlebars.registerHelper(
       out += options.fn(subcontext);
     }
     return out;
-  }
-);
+  },
+  post_notEmpty: function (list) {
+    if (list.length != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+});
 
 app.use(
   session({
