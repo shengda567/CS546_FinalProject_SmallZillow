@@ -6,6 +6,7 @@ const customerinf = data.register;
 var bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const pic = require("../data/VerificationCode");
+const xss = require("xss");
 //const { default: renderEmpty } = require('antd/lib/config-provider/renderEmpty');
 
 router.get("/", async (req, res) => {
