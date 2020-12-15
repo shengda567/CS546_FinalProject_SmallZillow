@@ -25,6 +25,17 @@ for user login:
 username: Shawn  
  password: Shawn1  
  Or, make your own account on the login page.
+ if you want create manager account, remember use code below (which is still need when you want get your password back):
+ {
+    'manager1',
+    'elementarymydearwatson'
+ },
+ {
+    'manager2',
+    'damnyoujackdonaghy' 
+ }
+
+
 
 ## Github Repo Link
 
