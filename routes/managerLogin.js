@@ -22,13 +22,13 @@ router.get("/api/getCaptcha", function (req, res, next) {
 });
 
 router.post("/checkManager", async (req, res) => {
-  if(!req.body.username){
+  if (!req.body.username) {
     res.status(404).json({ message: "No username input" });
   }
-  if(!req.body.password){
+  if (!req.body.password) {
     res.status(404).json({ message: "No password input" });
   }
-  if(!req.body.verifiy){
+  if (!req.body.verifiy) {
     res.status(404).json({ message: "No verify input" });
   }
   const { username, password, verifiy } = req.body;
@@ -152,25 +152,55 @@ router.get("/logout", async (req, res) => {
   //res.send('Logged out');
 });
 
-
-router.post('/deletepost', async (req, res) =>{
+router.post("/deletepost", async (req, res) => {
   if (!req.params.mId) {
-      res
-        .status(400)
-        .json({ error: "You must Supply a manager ID to delete register" });
-      return;
-    }
-    if (!req.params.userId) {
-      res
-        .status(400)
-        .json({ error: `You must Supply a user ID to delete user's comment` });
-      return;
-    }
-    if (!req.params.commentId) {
-      res.status(400).json({ error: `You must Supply a comment ID to delete` });
-      return;
-    }
+    res
+      .status(400)
+      .json({ error: "You must Supply a manager ID to delete register" });
+    return;
+  }
+  if (!req.params.userId) {
+    res
+      .status(400)
+      .json({ error: `You must Supply a user ID to delete user's comment` });
+    return;
+  }
+  if (!req.params.commentId) {
+    res.status(400).json({ error: `You must Supply a comment ID to delete` });
+    return;
+  }
 });
 
+router.get("/myaccount", async (req, res) => {
+  if (req.session.manager) {
+    let managerInfo = await managersData.getManagerByUsername(
+      req.session.manager.username
+    );
+    let allRegisters = await registersData.getAllUsers();
+    let userInfoList = [];
+    for (let i of allRegisters) {
+      let userInfo = {};
+      userInfo.username = i.username;
+      userInfo.userid = i._id;
+
+      let users = await registersData.getbyone(i._id.toString());
+      userInfo.post = [];
+      for (let j in users.post) {
+        let singlePost = await postsData.getPostById(users.post[j]);
+
+        userInfo.post.push(singlePost);
+      }
+      userInfoList.push(userInfo);
+      console.log(userInfo.post);
+    }
+
+    res.render("pages/managercenter", {
+      manager: managerInfo,
+      userInfoList: userInfoList,
+    });
+  } else {
+    res.render("pages/manager_login");
+  }
+});
 
 module.exports = router;

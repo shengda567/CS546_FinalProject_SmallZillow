@@ -78,7 +78,9 @@ function sign_up_input_check() {
   let newState = newStateInput.val();
   let newPassword = newPasswordInput.val();
 
+  const emailReq = RegExp("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$");
   const charReg = RegExp("^[a-zA-Z_]{1,}$");
+  const numberCheck = /[0-9]{10}/;
   if (!charReg.exec(newFirstName)) {
     //$("#register-error").show();
     $("#register-error").html("First name must be chars only.");
@@ -90,6 +92,27 @@ function sign_up_input_check() {
   } else if (!charReg.exec(newCity)) {
     //$("#register-error").show();
     $("#register-error").html("City name must be chars only.");
+    return true;
+  } else if (!emailReq.exec(newEmail)) {
+    $("#register-error").html(
+      "Email must be the format: [zhangsan-001@gmail.com]."
+    );
+    return true;
+  } else if (!numberCheck.exec(newPhone)) {
+    $("#register-error").html("Phone number should be like this: 1234567890.");
+    return true;
+  } else if (
+    !newUserName.trim() ||
+    !newFirstName.trim() ||
+    !newLastName.trim() ||
+    !newEmail.trim() ||
+    !newGender.trim() ||
+    !newPhone.trim() ||
+    !newCity.trim() ||
+    !newState.trim() ||
+    !newPassword.trim()
+  ) {
+    $("#register-error").html("All the field should be filled.");
     return true;
   } else if (
     newFirstName &&
