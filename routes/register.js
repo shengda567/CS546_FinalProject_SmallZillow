@@ -4,7 +4,7 @@ const router = express.Router();
 const data = require("../data");
 const customerinf = data.register;
 var bodyParser = require("body-parser");
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 //const { default: renderEmpty } = require('antd/lib/config-provider/renderEmpty');
 
 router.get("/", async (req, res) => {
@@ -23,11 +23,11 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide post username" });
     return;
   }
-  if (!personalinf.firstname) {
+  if (!personalinf.user.firstname) {
     res.status(400).json({ error: "You must provide post first name" });
     return;
   }
-  if (!personalinf.lastname) {
+  if (!personalinf.user.lastname) {
     res.status(400).json({ error: "You must provide post last name" });
     return;
   }
@@ -39,15 +39,15 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: "You must provide gender" });
     return;
   }
-  if (!personalinf.city) {
+  if (!personalinf.address.city) {
     res.status(400).json({ error: "You must provide city" });
     return;
   }
-  if (!personalinf.state) {
+  if (!personalinf.address.state) {
     res.status(400).json({ error: "You must provide state" });
     return;
   }
-  if (!personalinf.birthdaytime) {
+  if (!personalinf.BOD) {
     res.status(400).json({ error: "You must provide birthday" });
     return;
   }
@@ -67,75 +67,70 @@ router.post("/", async (req, res) => {
   try {
     const users = await customerinf.getAllUsers();
     let match = 0;
-    for(let i in users){
-      if(users[i].username == personalinf.username){
+    for (let i in users) {
+      if (users[i].username == personalinf.username) {
         match = 1;
       }
     }
-    if(match == 0){
+    if (match == 0) {
       const newPost = await customerinf.createaccount(
         personalinf.username,
-        {firstname: personalinf.firstname,
-        lastname: personalinf.lastname},
+        {
+          firstname: personalinf.user.firstname,
+          lastname: personalinf.user.lastname,
+        },
         personalinf.email,
         personalinf.gender,
-        personalinf.city + ', ' + personalinf.state,
-        personalinf.birthdaytime,
+        personalinf.address.city + ", " + personalinf.address.state,
+        personalinf.BOD,
         personalinf.phone,
         personalinf.password
-        );
-        req.session.user = {
-          userId: newPost._id.toString(),
-          username: personalinf.username,
-          firstName: personalinf.firstname,
-          lastName: personalinf.lastname,
-        };
-        const output = `
+      );
+      req.session.user = {
+        userId: newPost._id.toString(),
+        username: personalinf.username,
+        firstName: personalinf.user.firstname,
+        lastName: personalinf.user.lastname,
+      };
+      const output = `
     <p>You create a new account</p>
     
 `;
 
+      let transporter = nodemailer.createTransport({
+        host: "smtp.qq.com",
+        port: 587,
+        secure: false,
+        auth: {
+          user: "1648271784@qq.com",
+          pass: "wyeqgnsoxracfcej",
+        },
+        tls: {
+          rejectUnauthorized: false,
+        },
+      });
 
-        let transporter = nodemailer.createTransport({
-            host: 'smtp.qq.com',
-            port: 587,
-            secure: false,
-            auth: {
-                user: '1648271784@qq.com',
-                pass: 'wyeqgnsoxracfcej'
-            },
-            tls: {
-                rejectUnauthorized: false
-            }
-        });
+      let mailOptions = {
+        from: "1648271784@qq.com",
+        to: req.body.email,
+        subject: "Create a new account",
+        text: "Hello world?",
+        html: output,
+      };
 
-
-        let mailOptions = {
-            from: '1648271784@qq.com',
-            to: req.body.email,
-            subject: 'Create a new account',
-            text: 'Hello world?',
-            html: output
-        };
-
-
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                return console.log(error);
-            }
-            console.log('Message sent: %s', info.messageId);
-            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-
-            
-        });
-        res.redirect("/users/login" + newPost._id.toString());
-    }
-    else{
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          return console.log(error);
+        }
+        console.log("Message sent: %s", info.messageId);
+        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+      });
+      res.redirect("/users/login" + newPost._id.toString());
+    } else {
       res.json({ message: "username already exist." });
     }
-
   } catch (e) {
-    console.log(e)
+    console.log(e);
     res.status(500).json({ error: e });
   }
 });
