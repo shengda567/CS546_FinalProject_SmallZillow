@@ -27,6 +27,7 @@
       alert("you need choose one post first");
       return;
     }
+    manager_delete_post_button.attr("data-toggle", "modal");
     console.log(valueList[0].value);
     let post_id = valueList[0].value;
 

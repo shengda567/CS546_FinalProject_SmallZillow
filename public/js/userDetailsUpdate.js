@@ -6,6 +6,7 @@
     let valueList = post_form.serializeArray();
     if (valueList.length == 0) {
       alert("you need choose one post first");
+      event.stopPropagation();
       return;
     }
     let post_id = valueList[0].value;

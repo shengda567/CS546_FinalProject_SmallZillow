@@ -18,24 +18,26 @@ In the terminal, navigate to the directory containing app.js, and run the follow
 Then, navigate to localhost:3000 to experience our site.
 
 If you'd like to log in to an existing account, feel free to log using the following info:
-for user login:  
- username: Joshs_account  
- password: password  
- for admin login:
+
+### for user login:
+
+username: shawn_account  
+ password: password
+
+### for admin login:
+
 username: Shawn  
- password: Shawn1  
- Or, make your own account on the login page.
- if you want create manager account, remember use code below (which is still need when you want get your password back):
- {
-    'manager1',
-    'elementarymydearwatson'
- },
- {
-    'manager2',
-    'damnyoujackdonaghy' 
- }
-
-
+password: Shawn1  
+Or, make your own account on the login page.
+if you want create manager account, remember use code below (which is still need when you want get your password back):
+{
+'manager1',
+'elementarymydearwatson'
+},
+{
+'manager2',
+    'damnyoujackdonaghy'
+}
 
 ## Github Repo Link
 
