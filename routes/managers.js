@@ -417,7 +417,7 @@ router.post("/:id", async (req, res) => {
       updateObj.manager_level = xss(requestBody.manager_level);
     }
     if (requestBody.manager_history) {
-      updateObj.manager_history = xss(requestBody.manager_history);
+      updateObj.manager_history = requestBody.manager_history;
     }
   } catch (e) {
     res
