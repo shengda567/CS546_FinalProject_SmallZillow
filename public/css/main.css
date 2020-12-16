@@ -856,3 +856,7 @@ img {
 #UserDetailPostUnchooseError {
   color: red;
 }
+
+#unChooseError {
+  color: red;
+}
