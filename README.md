@@ -29,8 +29,7 @@ username: shawn_account
 username: Shawn  
 password: Shawn1
 
-Or, make your own account on the login page.
-if you want create manager account, remember use code below:
+Or, make your own account on the login page, if you want create manager account, remember use code below:
 
 manager level: manager1
 manager verify code: elementarymydearwatson
