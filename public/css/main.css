@@ -69,6 +69,14 @@ nav li a {
   margin-left: -150px;
 }
 
+#about-container {
+    margin-left: 0px;
+    font-family: "Times New Roman";
+    font-size: 20px;
+    height: 400px;
+    background-image: linear-gradient(-180deg, #00ffff, white);
+}
+
 #login_frame input[type="text"],
 #signup-div input,
 #signup-div select,
@@ -103,19 +111,41 @@ nav li a {
   text-align: center;
 }
 
+#aboutus {
+    font-family: myFirstFont;
+    font-style: oblique;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+#aboutush {
+    font-family: myFirstFont;
+    font-style: oblique;
+    font-weight: bold;
+    font-size: 50px;
+    color: white;
+}
+
+#about-form {
+    font-family: myFirstFont;
+    font-style: oblique;
+    font-weight: bold;
+    font-size: 30px;
+    color: black;
+}
+
 #login_frame input[type="password"],
 #signup-div input,
 #manager_login_frame input[type="password"] {
-  font-family: "Montserrat", sans-serif;
-  font-weight: normal;
-  font-size: 20px;
-  height: 50px;
-  width: 400px;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-
-  color: black;
+    font-family: "Montserrat", sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+    height: 50px;
+    width: 400px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    color: black;
 }
 #login_frame input[type="password"]:focus,
 #signup-div input:focus,
@@ -239,16 +269,26 @@ nav li a {
   text-align: center;
 }
 
+#aboutusform .aboutus1 {
+    border-radius: 5px;
+    background-color: #87ceeb;
+    padding: 20px;
+    width: 75%;
+    margin: auto;
+    margin-top: 40px;
+    text-align: center;
+}
+
 #signup-div,
 #user-find-password-div,
 #changepassword-find-frame {
-  border-radius: 5px;
-  background-color: white;
-  padding: 20px;
-  width: 75%;
-  margin: auto;
-  margin-top: 40px;
-  text-align: center;
+    border-radius: 5px;
+    background-color: white;
+    padding: 20px;
+    width: 75%;
+    margin: auto;
+    margin-top: 40px;
+    text-align: center;
 }
 
 #login_frame h1,
