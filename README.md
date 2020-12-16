@@ -32,9 +32,11 @@ password: Shawn1
 Or, make your own account on the login page, if you want create manager account, remember use code below:
 
 manager level: manager1
+
 manager verify code: elementarymydearwatson
 
 manager level: manager2
+
 manager verify code: damnyoujackdonaghy
 
 ## Github Repo Link
