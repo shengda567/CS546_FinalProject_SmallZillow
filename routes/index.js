@@ -3,6 +3,7 @@ const userRoutes = require("./users");
 const searchRoutes = require("./search");
 const commentRoutes = require("./comments");
 const managerRoutes = require("./managers");
+const aboutusRoutes = require("./aboutus");
 const managerLogRoutes = require("./managerLogin");
 const findRoutes = require("./find");
 const data = require("../data");
@@ -26,6 +27,7 @@ const constructorMethod = (app) => {
   app.use("/findinf", findRoutes);
   app.use("/api", apiRoutes);
   app.use("/users", userRoutes);
+  app.use("/aboutus", aboutusRoutes);
   // home page
   app.get("/", async function (req, res) {
     // main page only shows recent 3 posts.
@@ -44,7 +46,7 @@ const constructorMethod = (app) => {
         newList.push(item);
       }
 
-      res.status(200).render("pages/mainPage", {posts: newList});
+      res.status(200).render("pages/mainPage", { posts: newList });
     } catch (e) {
       res.render("pages/mainPage", { errors: "No posts in the databse" });
     }
