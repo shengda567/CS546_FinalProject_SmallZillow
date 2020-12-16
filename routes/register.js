@@ -28,7 +28,16 @@ router.get("/api/getCaptcha", function (req, res, next) {
 router.post("/", async (req, res) => {
   let personalinf = JSON.parse(JSON.stringify(req.body));
   //const personalinf = req.body;
-  console.log(personalinf);
+    console.log(personalinf);
+    const cookies = req.headers.cookie;
+    var list = cookies.split("; ");
+    for (var i = 0; i < list.length; i++) {
+        var arr = list[i].split("=");
+        if (arr[0] == "captcha") {
+            var captcha = arr[1];
+        }
+    }
+    console.log(captcha);
   if (!req.body) {
     res.status(400).render("pages/error",{ error: "You must provide body" + personalinf });
     return;
@@ -77,7 +86,7 @@ router.post("/", async (req, res) => {
     res.status(400).render("pages/error",{ error: "You password must has at last 10 digits" });
     return;
   }
-  if (personalinf.verifiy == captcha) {
+  if (personalinf.verifiy != captcha) {
     res.status(401).render("pages/error", { error: "Code is wrong." });
     return;
   }
@@ -97,12 +106,12 @@ router.post("/", async (req, res) => {
           firstname: personalinf.user.firstname,
           lastname: personalinf.user.lastname,
         },
-        xss(personalinf.email),
-        xss(personalinf.gender),
-        xss(personalinf.address.city) + ", " + xss(personalinf.address.state),
-        xss(personalinf.BOD),
-        xss(personalinf.phone),
-        xss(personalinf.password)
+        personalinf.email,
+        personalinf.gender,
+        personalinf.address.city + ", " + personalinf.address.state,
+        personalinf.BOD,
+        personalinf.phone,
+        personalinf.password
       );
       req.session.user = {
         userId: newPost._id.toString(),
@@ -112,7 +121,7 @@ router.post("/", async (req, res) => {
       };
       const output = `
     <p>You create a new account</p>
-    
+    <p>The username is ${personalinf.username} .</p>
 `;
 
 
