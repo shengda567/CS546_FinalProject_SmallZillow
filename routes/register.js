@@ -14,15 +14,15 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/api/getCaptcha", function (req, res, next) {
-  let p = "ABCDEFGHKMNPQRSTUVWXYZ1234567890";
-  var str = "";
-  for (var i = 0; i < 4; i++) {
-    str += p.charAt((Math.random() * p.length) | 0);
-  }
-  res.cookie("captcha", str);
-  let img = pic.makeCapcha(str);
-  res.setHeader("Content-Type", "image/bmp");
-  res.end(img.getFileData());
+    let p = "ABCDEFGHKMNPQRSTUVWXYZ1234567890";
+    var str = "";
+    for (var i = 0; i < 4; i++) {
+        str += p.charAt((Math.random() * p.length) | 0);
+    }
+    res.cookie("captcha", str);
+    let img = pic.makeCapcha(str);
+    res.setHeader("Content-Type", "image/bmp");
+    res.end(img.getFileData());
 });
 
 router.post("/", async (req, res) => {
@@ -30,83 +30,54 @@ router.post("/", async (req, res) => {
   //const personalinf = req.body;
   console.log(personalinf);
   if (!req.body) {
-    res
-      .status(400)
-      .render("pages/error", { error: "You must provide body" + personalinf });
+    res.status(400).render("pages/error",{ error: "You must provide body" + personalinf });
     return;
   }
   if (!personalinf.username) {
-    res
-      .status(400)
-      .render("pages/error", { error: "You must provide post username" });
+    res.status(400).render("pages/error",{ error: "You must provide post username" });
     return;
   }
   if (!personalinf.user.firstname) {
-    res
-      .status(400)
-      .render("pages/error", { error: "You must provide post first name" });
+    res.status(400).render("pages/error",{ error: "You must provide post first name" });
     return;
   }
   if (!personalinf.user.lastname) {
-    res
-      .status(400)
-      .render("pages/error", { error: "You must provide post last name" });
+      res.status(400).render("pages/error",{ error: "You must provide post last name" });
     return;
   }
   if (!personalinf.email) {
-    res
-      .status(400)
-      .render("pages/error", { error: "You must provide post email" });
+      res.status(400).render("pages/error",{ error: "You must provide post email" });
     return;
   }
   if (!personalinf.gender) {
-    res.status(400).render("pages/error", { error: "You must provide gender" });
+      res.status(400).render("pages/error",{ error: "You must provide gender" });
     return;
   }
   if (!personalinf.address.city) {
-    res.status(400).render("pages/error", { error: "You must provide city" });
+      res.status(400).render("pages/error",{ error: "You must provide city" });
     return;
   }
   if (!personalinf.address.state) {
-    res.status(400).render("pages/error", { error: "You must provide state" });
+      res.status(400).render("pages/error",{ error: "You must provide state" });
     return;
   }
   if (!personalinf.BOD) {
-    res
-      .status(400)
-      .render("pages/error", { error: "You must provide birthday" });
+      res.status(400).render("pages/error",{ error: "You must provide birthday" });
     return;
   }
   if (!personalinf.phone) {
-    res
-      .status(400)
-      .render("pages/error", { error: "You must provide phone number" });
+      res.status(400).render("pages/error",{ error: "You must provide phone number" });
     return;
   }
   if (!personalinf.password) {
-    res
-      .status(400)
-      .render("pages/error", { error: "You must provide password" });
+    res.status(400).render("pages/error",{ error: "You must provide password" });
     return;
   }
   if (personalinf.password.length < 10) {
-    res.status(400).render("pages/error", {
-      error: "You password must has at last 10 digits",
-    });
+    res.status(400).render("pages/error",{ error: "You password must has at last 10 digits" });
     return;
   }
-
-  let captcha = null;
-  const cookies = req.headers.cookie;
-  var list = cookies.split("; ");
-  for (var i = 0; i < list.length; i++) {
-    var arr = list[i].split("=");
-    if (arr[0] == "captcha") {
-      captcha = arr[1];
-    }
-  }
-
-  if (personalinf.verifiy != captcha) {
+  if (personalinf.verifiy == captcha) {
     res.status(401).render("pages/error", { error: "Code is wrong." });
     return;
   }
@@ -120,21 +91,19 @@ router.post("/", async (req, res) => {
       }
     }
     if (match == 0) {
-      console.log("creataccount success");
       const newPost = await customerinf.createaccount(
         personalinf.username,
         {
           firstname: personalinf.user.firstname,
           lastname: personalinf.user.lastname,
         },
-        personalinf.email,
-        personalinf.gender,
-        personalinf.address.city + ", " + personalinf.address.state,
-        personalinf.BOD,
-        personalinf.phone,
-        personalinf.password
+        xss(personalinf.email),
+        xss(personalinf.gender),
+        xss(personalinf.address.city) + ", " + xss(personalinf.address.state),
+        xss(personalinf.BOD),
+        xss(personalinf.phone),
+        xss(personalinf.password)
       );
-      console.log("creataccount success");
       req.session.user = {
         userId: newPost._id.toString(),
         username: personalinf.username,
@@ -145,6 +114,7 @@ router.post("/", async (req, res) => {
     <p>You create a new account</p>
     
 `;
+
 
       let transporter = nodemailer.createTransport({
         host: "smtp.qq.com",
@@ -163,7 +133,7 @@ router.post("/", async (req, res) => {
         from: "1648271784@qq.com",
         to: req.body.email,
         subject: "Create a new account",
-        text: "Hello world?",
+        text: "Welcome!",
         html: output,
       };
 
@@ -185,8 +155,8 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  if (!req.params.id) {
-    throw "No id";
+  if(!req.params.id){
+    throw 'No id';
   }
   try {
     const post = await customerinf.getbyone(req.params.id);
@@ -197,30 +167,30 @@ router.get("/:id", async (req, res) => {
 });
 
 router.patch("/:id", async (req, res) => {
-  if (!req.params.id) {
-    throw "No id";
+  if(!req.params.id){
+    throw 'No id';
   }
-  if (!req.body) {
-    throw "body wrong";
+  if(!req.body){
+    throw 'body wrong';
   }
   const requestBody = req.body;
   let updatedObject = {};
   try {
     const oldPost = await customerinf.getbyone(req.params.id);
-    if (requestBody.user && requestBody.user !== xss(oldPost.user))
-      updatedObject.user = requestBody.user;
-    if (requestBody.email && requestBody.email !== xss(oldPost.email))
-      updatedObject.email = requestBody.email;
-    if (requestBody.gender && requestBody.gender !== xss(oldPost.gender))
-      updatedObject.gender = requestBody.gender;
-    if (requestBody.address && requestBody.address !== xss(oldPost.address))
-      updatedObject.address = requestBody.address;
-    if (requestBody.BOD && requestBody.BOD !== xss(oldPost.BOD))
-      updatedObject.BOD = requestBody.BOD;
-    if (requestBody.phone && requestBody.phone !== xss(oldPost.phone))
-      updatedObject.phone = requestBody.phone;
-    if (requestBody.password && requestBody.password !== xss(oldPost.password))
-      updatedObject.password = requestBody.password;
+    if (requestBody.user && requestBody.user !== oldPost.user)
+      updatedObject.user = xss(requestBody.user);
+    if (requestBody.email && requestBody.email !== oldPost.email)
+      updatedObject.email = xss(requestBody.email);
+    if (requestBody.gender && requestBody.gender !== oldPost.gender)
+      updatedObject.gender = xss(requestBody.gender);
+    if (requestBody.address && requestBody.address !== oldPost.address)
+      updatedObject.address = xss(requestBody.address);
+    if (requestBody.BOD && requestBody.BOD !== oldPost.BOD)
+      updatedObject.BOD = xss(requestBody.BOD);
+    if (requestBody.phone && requestBody.phone !== oldPost.phone)
+      updatedObject.phone = xss(requestBody.phone);
+    if (requestBody.password && requestBody.password !== oldPost.password)
+      updatedObject.password = xss(requestBody.password);
   } catch (e) {
     res.status(404).json({ error: "Post not found" });
     return;
@@ -269,26 +239,20 @@ router.post("/userInfo/update", async (req, res) => {
   let oldUserDetail = null;
   try {
     oldUserDetail = await customerinf.getByUserName(requestBody.username);
-    if (requestBody.user && requestBody.user !== xss(oldUserDetail.user))
-      updatedObject.user = requestBody.user;
-    if (requestBody.email && requestBody.email !== xss(oldUserDetail.email))
-      updatedObject.email = requestBody.email;
-    if (requestBody.gender && requestBody.gender !== xss(oldUserDetail.gender))
-      updatedObject.gender = requestBody.gender;
-    if (
-      requestBody.address &&
-      requestBody.address !== xss(oldUserDetail.address)
-    )
-      updatedObject.address = requestBody.address;
-    if (requestBody.BOD && requestBody.BOD !== xss(oldUserDetail.BOD))
-      updatedObject.BOD = requestBody.BOD;
-    if (requestBody.phone && requestBody.phone !== xss(oldUserDetail.phone))
-      updatedObject.phone = requestBody.phone;
-    if (
-      requestBody.password &&
-      requestBody.password !== xss(oldUserDetail.password)
-    )
-      updatedObject.password = requestBody.password;
+    if (requestBody.user && requestBody.user !== oldUserDetail.user)
+      updatedObject.user = xss(requestBody.user);
+    if (requestBody.email && requestBody.email !== oldUserDetail.email)
+      updatedObject.email = xss(requestBody.email);
+    if (requestBody.gender && requestBody.gender !== oldUserDetail.gender)
+      updatedObject.gender = xss(requestBody.gender);
+    if (requestBody.address && requestBody.address !== oldUserDetail.address)
+      updatedObject.address = xss(requestBody.address);
+    if (requestBody.BOD && requestBody.BOD !== oldUserDetail.BOD)
+      updatedObject.BOD = xss(requestBody.BOD);
+    if (requestBody.phone && requestBody.phone !== oldUserDetail.phone)
+      updatedObject.phone = xss(requestBody.phone);
+    if (requestBody.password && requestBody.password !== oldUserDetail.password)
+      updatedObject.password = xss(requestBody.password);
   } catch (e) {
     res.status(404).json({ error: "User not found" });
     return;
