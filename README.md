@@ -32,9 +32,11 @@ If you'd like to log in to an existing account, feel free to log using the follo
 Or, make your own account on the login page, if you want create manager account, remember use code below:
 
 **manager level**: manager1
+
 **manager verify code**: elementarymydearwatson
 
 **manager level**: manager2
+
 **manager verify code**: damnyoujackdonaghy
 
 ## Github Repo Link
