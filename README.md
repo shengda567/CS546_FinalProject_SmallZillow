@@ -27,17 +27,16 @@ username: shawn_account
 ### for admin login:
 
 username: Shawn  
-password: Shawn1  
+password: Shawn1
+
 Or, make your own account on the login page.
-if you want create manager account, remember use code below (which is still need when you want get your password back):
-{
-'manager1',
-'elementarymydearwatson'
-},
-{
-'manager2',
-    'damnyoujackdonaghy'
-}
+if you want create manager account, remember use code below:
+
+manager level: manager1,
+manager verify code: elementarymydearwatson
+
+manager level: manager2,
+manager verify code: damnyoujackdonaghy
 
 ## Github Repo Link
 
