@@ -6,6 +6,7 @@ const customerinf = data.register;
 var bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const pic = require("../data/VerificationCode");
+const xss = require("xss");
 //const { default: renderEmpty } = require('antd/lib/config-provider/renderEmpty');
 
 router.get("/", async (req, res) => {
@@ -96,12 +97,12 @@ router.post("/", async (req, res) => {
           firstname: personalinf.user.firstname,
           lastname: personalinf.user.lastname,
         },
-        personalinf.email,
-        personalinf.gender,
-        personalinf.address.city + ", " + personalinf.address.state,
-        personalinf.BOD,
-        personalinf.phone,
-        personalinf.password
+        xss(personalinf.email),
+        xss(personalinf.gender),
+        xss(personalinf.address.city) + ", " + xss(personalinf.address.state),
+        xss(personalinf.BOD),
+        xss(personalinf.phone),
+        xss(personalinf.password)
       );
       req.session.user = {
         userId: newPost._id.toString(),
@@ -132,7 +133,7 @@ router.post("/", async (req, res) => {
         from: "1648271784@qq.com",
         to: req.body.email,
         subject: "Create a new account",
-        text: "Hello world?",
+        text: "Welcome!",
         html: output,
       };
 
@@ -177,19 +178,19 @@ router.patch("/:id", async (req, res) => {
   try {
     const oldPost = await customerinf.getbyone(req.params.id);
     if (requestBody.user && requestBody.user !== oldPost.user)
-      updatedObject.user = requestBody.user;
+      updatedObject.user = xss(requestBody.user);
     if (requestBody.email && requestBody.email !== oldPost.email)
-      updatedObject.email = requestBody.email;
+      updatedObject.email = xss(requestBody.email);
     if (requestBody.gender && requestBody.gender !== oldPost.gender)
-      updatedObject.gender = requestBody.gender;
+      updatedObject.gender = xss(requestBody.gender);
     if (requestBody.address && requestBody.address !== oldPost.address)
-      updatedObject.address = requestBody.address;
+      updatedObject.address = xss(requestBody.address);
     if (requestBody.BOD && requestBody.BOD !== oldPost.BOD)
-      updatedObject.BOD = requestBody.BOD;
+      updatedObject.BOD = xss(requestBody.BOD);
     if (requestBody.phone && requestBody.phone !== oldPost.phone)
-      updatedObject.phone = requestBody.phone;
+      updatedObject.phone = xss(requestBody.phone);
     if (requestBody.password && requestBody.password !== oldPost.password)
-      updatedObject.password = requestBody.password;
+      updatedObject.password = xss(requestBody.password);
   } catch (e) {
     res.status(404).json({ error: "Post not found" });
     return;
@@ -239,19 +240,19 @@ router.post("/userInfo/update", async (req, res) => {
   try {
     oldUserDetail = await customerinf.getByUserName(requestBody.username);
     if (requestBody.user && requestBody.user !== oldUserDetail.user)
-      updatedObject.user = requestBody.user;
+      updatedObject.user = xss(requestBody.user);
     if (requestBody.email && requestBody.email !== oldUserDetail.email)
-      updatedObject.email = requestBody.email;
+      updatedObject.email = xss(requestBody.email);
     if (requestBody.gender && requestBody.gender !== oldUserDetail.gender)
-      updatedObject.gender = requestBody.gender;
+      updatedObject.gender = xss(requestBody.gender);
     if (requestBody.address && requestBody.address !== oldUserDetail.address)
-      updatedObject.address = requestBody.address;
+      updatedObject.address = xss(requestBody.address);
     if (requestBody.BOD && requestBody.BOD !== oldUserDetail.BOD)
-      updatedObject.BOD = requestBody.BOD;
+      updatedObject.BOD = xss(requestBody.BOD);
     if (requestBody.phone && requestBody.phone !== oldUserDetail.phone)
-      updatedObject.phone = requestBody.phone;
+      updatedObject.phone = xss(requestBody.phone);
     if (requestBody.password && requestBody.password !== oldUserDetail.password)
-      updatedObject.password = requestBody.password;
+      updatedObject.password = xss(requestBody.password);
   } catch (e) {
     res.status(404).json({ error: "User not found" });
     return;
