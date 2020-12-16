@@ -1,122 +1,902 @@
 html,
 body {
-  background-color:#d0e4fe;
+  background-color: #d0e4fe;
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 20pt;
 }
-header {
-  border-bottom: 1px solid #afafaf;
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #266df6;
+  font-family: "Montserrat", sans-serif;
+  font-size: large;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #333;
-  margin-bottom: 5px;
+nav li {
+  float: left;
 }
 
-h1 {
-  font-size: 2rem;
-  color: blue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-h2 {
-  font-size: 1.75rem;
-  color: blue;
-}
-
-h3 {
-  font-size: 1.2rem;
-}
-
-h4 {
-  font-size: 1.25rem;
-}
-
-h5 {
-  font-size: 1.15rem;
-}
-
-h6 {
-  font-size: 1.05rem;
-}
-
-footer {
-    color:grey;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-button {
-   outline: 0;
-   background-color: white;
-   border: 0;
-   padding: 10px 15px;
-   color: #53e3a6;
-   border-radius: 3px;
-   width: 125px;
-   cursor: pointer;
-   font-size: 18px;
-}
-form {
-  padding: 20px 0;
-  position: relative;
-  z-index: 2;
-}
-input[type=text], input[type=password] {
-  outline: 0;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background-color: white;
-  width: 250px;
-  border-radius: 3px;
-  padding: 10px 15px;
-  
+nav li a {
   display: block;
+  color: white;
   text-align: center;
-  font-size: 18px;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#login_frame label,
+#manager_login_frame label,
+#signup-div label,
+#managerForm label,
+#user-userForm label,
+#changepassword-find-frame label {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-block;
+  padding: 3px 6px;
+  text-align: right;
+  width: 150px;
+  vertical-align: center;
+}
+
+.male input,
+.female input,
+.other input {
+  width: 30px;
+}
+#user-login-container,
+#signup-main-container,
+#manager-signup-container {
+  margin-left: 90px;
+}
+
+#manager-findpassword-form-div {
+  margin-left: 50px;
+}
+
+#changepassword-container {
+  margin-left: -120px;
+}
+#user-find-password-form-div {
+  margin-left: -150px;
+}
+
+#manager-container {
+  margin-left: -150px;
+}
+
+#about-container {
+    margin-left: 0px;
+    font-family: "Times New Roman";
+    font-size: 20px;
+    height: 400px;
+    background-image: linear-gradient(-180deg, #00ffff, white);
+}
+
+#login_frame input[type="text"],
+#signup-div input,
+#signup-div select,
+#manager_login_frame input[type="text"],
+#user-userForm input,
+#changepassword-find-frame input {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  height: 50px;
+  width: 400px;
+  padding: 6px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+#login_frame input[type="text"]:focus,
+#signup-div input:focus,
+#manager_login_frame input[type="text"]:focus {
+  background-color: lightblue;
+}
+
+#login-p,
+#signup-p,
+#manager-login-p,
+#findpassword-p,
+#manager-signup-p,
+#manager-findpassword-p,
+#change-password-p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+}
+
+#aboutus {
+    font-family: myFirstFont;
+    font-style: oblique;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+#aboutush {
+    font-family: myFirstFont;
+    font-style: oblique;
+    font-weight: bold;
+    font-size: 50px;
+    color: white;
+}
+
+#about-form {
+    font-family: myFirstFont;
+    font-style: oblique;
+    font-weight: bold;
+    font-size: 30px;
+    color: black;
+}
+
+#login_frame input[type="password"],
+#signup-div input,
+#manager_login_frame input[type="password"] {
+    font-family: "Montserrat", sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+    height: 50px;
+    width: 400px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    color: black;
+}
+#login_frame input[type="password"]:focus,
+#signup-div input:focus,
+#manager_login_frame input[type="password"]:focus {
+  background-color: lightblue;
+}
+
+#login_frame input[type="verifiy"],
+#manager_login_frame input[type="verifiy"] {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  height: 50px;
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  color: black;
+}
+#login_frame input[type="verifiy"]:focus,
+#manager_login_frame input[type="verifiy"]:focus {
+  background-color: lightblue;
+}
+
+#verify {
+  margin-left: 105px;
+}
+#login_frame button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  text-align: center;
+  height: 50px;
+  width: 400px;
+  background-color: #266df6;
+  color: white;
+  margin: 8px 43px;
+  border: none;
+
+  cursor: pointer;
+  margin-left: 13%;
+}
+#ChangePassword {
+  margin-left: 145px;
+  font-size: 20px;
+}
+
+#manager-signup-a,
+#manager-signup-page {
+  margin-left: 55px;
+  font-size: 20px;
+}
+
+#manager-signup-forgetpassword-div {
+  margin-left: 95px;
+}
+#signup-div button,
+#changepassword-find-frame button {
+  height: 50px;
+  width: 400px;
+  background-color: #266df6;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 160px;
+}
+
+#manager-login-button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  text-align: center;
+  height: 50px;
+  width: 400px;
+  background-color: #266df6;
+  color: white;
+  margin: 8px 43px;
+  border: none;
+
+  cursor: pointer;
+  margin-left: 12.3%;
+}
+
+#change-password-button {
+  color: white;
+}
+
+#user-findpassword-button,
+#user-changepassword-button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  font-size: 17px;
+  text-align: center;
+  height: 50px;
+  width: 400px;
+  background-color: #266df6;
+  color: white;
+  margin: 8px 43px;
+  border: none;
+
+  cursor: pointer;
+  margin-left: 17.5%;
+}
+
+#manager-signup-a:hover,
+#manager-signup-page:hover {
+  text-decoration: none;
+}
+
+#login_frame .row,
+#manager_login_frame .manager-login-div {
+  border-radius: 5px;
+  background-color: white;
+  padding: 20px;
+  width: 75%;
+  margin: auto;
+  margin-top: 40px;
+  text-align: center;
+}
+
+#aboutusform .aboutus1 {
+    border-radius: 5px;
+    background-color: #87ceeb;
+    padding: 20px;
+    width: 75%;
+    margin: auto;
+    margin-top: 40px;
+    text-align: center;
+}
+
+#signup-div,
+#user-find-password-div,
+#changepassword-find-frame {
+    border-radius: 5px;
+    background-color: white;
+    padding: 20px;
+    width: 75%;
+    margin: auto;
+    margin-top: 40px;
+    text-align: center;
+}
+
+#login_frame h1,
+#manager_login_frame h1 {
+  text-align: center;
+}
+
+#login_frame h2,
+#manager_login_frame h2 {
+  text-align: center;
+}
+
+#userForm {
+  margin-left: -15%;
+}
+
+#signup-form {
+  margin-left: -15%;
+}
+
+.ads {
+  margin: auto;
+  text-align: center;
+}
+
+.furniture_ads {
+  display: inline;
+  border: 1px;
+}
+#moving-house-img,
+#furniture-img {
+  height: 300px;
+  width: 500px;
+}
+/* Main page*/
+#home-page-container {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/public/img/niceHouse.jpg");
+  /* margin-top: -17px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  display: inline-block;
+  height: 570px;
+  width: 100%;
+  opacity: 0.8;
+  align-items: center;
+}
+.mainPageText1 {
+  color: #ffffff;
+  text-align: center;
+  padding-top: 50px;
+}
+.mainPageText2 {
+  padding-top: 30px;
+  color: #ffffff;
+  text-align: center;
+}
+.searchForm {
+  padding-top: 100px;
+  display: inline-flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.searchBox1 {
+  border-radius: 5px;
+  width: 550px;
+  height: 50px;
+  font-size: 14pt;
+}
+.searchButton {
+  background: url("/public/icon/searchicon1.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  border: none;
+}
+#searchButton1 {
+  margin-left: -40px;
+  width: 40px;
+  height: 40px;
+}
+#home-page-posts {
+  background-color: #f8f8ff;
+  width: 100%;
+}
+
+/* post css */
+.new-post-form {
+  width: 100%;
+  margin-left: 20%;
+}
+
+#postErrorList {
+  color: red;
+}
+
+/* img css */
+.img-group {
+  margin: 20%;
+}
+.float {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-left: 20%;
+  display: inline-block;
+}
+img {
+  position: relative;
+}
+.result {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+#file_input {
+  display: none;
+}
+
+.delete {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  text-align: center;
+  line-height: 100px;
+  z-index: 10;
+  font-size: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #777;
+  opacity: 0;
+  transition-duration: 0.7s;
+  -webkit-transition-duration: 0.7s;
+}
+
+.delete:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+#register-error {
+  color: red;
+  text-align: center;
+  margin-left: 250px;
+}
+
+.header {
+  margin-top: 30px;
+  margin-left: 30px;
+}
+/* POST CARD css */
+.card-title {
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+#number-of-posts {
+  font-size: 14px;
+}
+#recent-post {
+  margin: 0px 0 30px 0;
+}
+#recent-post .card:hover {
+  background: #fff;
+  box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.15);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+.posts-area .card:hover {
+  background: #fff;
+  box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.15);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+.posts-area .card {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  border-bottom: 3px solid #266df6;
+}
+
+.card {
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.card-detail-badge {
+  background: #f2d900;
+  text-align: center;
+  border-radius: 25px 25px 25px 25px;
+  color: #000;
+  padding: 5px 15px 5px 15px;
+  font-size: 14px;
+}
+.card-image img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.card-image-overlay {
+  margin-left: auto;
+  text-align: center;
+}
+.card-image-overlay span {
+  display: inline-block;
+}
+.post-info-btn {
+  text-transform: uppercase;
+  width: 125px;
+  height: 30px;
+  border-radius: 80px;
+  font-size: 14px;
+  line-height: 25px;
+  text-align: center;
+  border: 3px solid #e6de08;
+  display: block;
+  text-decoration: none;
+  margin: 10px auto 1px auto;
+  color: #000;
+  overflow: hidden;
+  position: relative;
+  background-color: #e6de08;
+}
+
+.post-info-btn:hover {
+  background-color: #e6de08;
+  color: #1e1717;
+  border: 2px solid #e6de08;
+  background: transparent;
+  transition: all 0.3s ease;
+  box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.15);
+}
+#posts-container {
+  width: 100%;
+  height: 100vh;
+}
+#results {
+  background-color: #f0f8ff;
+  height: auto;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+}
+#search-area {
+  background-color: #f8f8ff;
+  margin: 0;
+  padding-bottom: 15px;
+}
+.criteria {
+  display: inline-block;
+  align-items: center;
+  flex-flow: row wrap;
+}
+.searchForm2 {
+  padding-top: 15px;
+  display: inline-flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.searchBox2 {
+  width: 350px;
+  height: 35px;
+  font-size: 10pt;
+}
+#searchButton2 {
+  width: 30px;
+  height: 30px;
+  margin-left: -40px;
+}
+.select_box {
+  height: 35px;
+  font-size: 10pt;
+}
+.error-area {
+  display: inline-block;
+  align-items: center;
+  flex-flow: row wrap;
+}
+.search-error {
+  display: inline;
+  background-color: white;
+  color: red;
+  text-align: center;
+  font-size: 12pt;
+  width: 40%;
+}
+.search-error-message {
+  color: red;
+  text-align: center;
+  font-size: 10pt;
+}
+#single-container {
+  width: 80%;
+  background-color: #f8f8ff;
+  margin: auto;
+  /* display:inline-flex; */
+}
+#title-area {
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+/* #top-row{
+  height:1000px;
+  display: inline-block;
+} */
+/* .side-image{
+  display:inline-flex;
+  margin:auto; */
+/* map */
+#top-post-area {
+  height: 60vh;
+}
+#map-area {
+  background-color: #f0f8ff;
+  width: 50%;
+  height: 100%;
+}
+#map {
+  height: 100vh;
+  width: 100vh;
+}
+#map-area-2 {
+  width: 50%;
+  height: 100%;
+}
+#map2 {
+  height: 50vh;
+  width: 70vh;
+}
+
+.middle-post-area {
+  border-style: solid;
+
+  border-width: 3px;
+  border-color: #696969;
+}
+
+#similarPosts-container {
+  padding-top: 20px;
+  width: 100%;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+#post-comment-area {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 20px;
+  height: 20vh;
+}
+#comment_input {
+  width: 500px;
+}
+.commentForm {
+  height: auto;
+  display: inline-block;
+  align-items: center;
+}
+#post_button {
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+#comments-area {
+  margin-top: 50px;
+  background-color: #f0f8ff;
+  margin-bottom: 50px !important;
+  border: 1px solid #edeff2;
+  border-radius: 2px;
+  padding: 25px 30px;
+  border: 1px solid #ffffff;
+}
+
+.comments-title {
+  font-size: 15px;
+  color: #262626;
+  margin-bottom: 30px;
+  font-family: "Conv_helveticaneuecyr-bold";
+}
+
+.be-img-comment {
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-bottom: 15px;
+}
+
+.be-ava-comment {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.be-comment-content {
+  margin-left: 70px;
+}
+
+.be-comment-name {
+  font-size: 13px;
+  font-family: "Conv_helveticaneuecyr-bold";
+}
+
+.be-comment-content span {
+  display: inline-block;
+  width: 49%;
+  margin-bottom: 10px;
+}
+
+.be-comment-time {
+  text-align: right;
+}
+
+.be-comment-time {
+  font-size: 11px;
+  color: #b4b7c1;
+}
+#single-post-information {
+  background-color: #f5fffa;
+  display: inline-block;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 15px;
+}
+#single-contact-information {
+  background-color: #fffafa;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+#manager-edit-error {
+  margin-left: 70px;
+  color: red;
+}
+
+#manager-delet-post-button {
+  margin-top: 10px;
+}
+
+.be-comment-text {
+  font-size: 13px;
+  line-height: 18px;
+  color: #7a8192;
+  display: block;
+  background: #f6f6f7;
+  border: 1px solid #edeff2;
+}
+
+/* User -> posts/postsId page*/
+.userSinglePostInfo_div {
+  margin-left: 30%;
+}
+.userSinglePost_Head_div {
+  margin-left: 30%;
+}
+
+#userSinglePostInfoError {
+  color: red;
+}
+#userSinglePostInstruction {
   color: blue;
-  -webkit-transition-duration: 0.25s;
-  transition-duration: 0.25s;
-  font-weight: 300;
 }
-.address{
-  color: #cc0000
+.userSinglePostName {
+  padding-right: 10%;
 }
-.state{
-  color: #cc3300
+
+.liked-a,
+.user-posts-a {
+  color: rgb(49, 40, 40);
 }
-.city{
-  color: #cc6600
+
+.nav-font {
+  font-size: large;
 }
-.zipcode{
-  color: #cc9900
+
+#modal-content-backgroud,
+#manager-edit-content-backgroud,
+#manager-modal-content-backgroud,
+#user-profile-edit-modal-content-backgroud,
+#user-delete-post-modal-content-backgroud,
+#user-posts-edit-modal-content-backgroud {
+  background-color: cornflowerblue;
 }
-.img{
-  color: #cccc00
+
+.user-account-p {
+  font-size: 25px;
+  margin-top: 10px;
 }
-.description{
-  color: #99cc00
+
+#user-account-edit-save-button,
+#manager-account-edit-save-button {
+  float: right;
 }
-.date{
-  color: #66cc00
+
+#user-info-container {
+  margin-top: 20px;
+  background-color: MediumSeaGreen;
+  border-style: solid;
 }
-.tag{
-  color: #33cc00
+
+#user-posts-container,
+#liked-posts-container {
+  margin-top: 20px;
+  background-color: MediumSeaGreen;
+  border-style: solid;
 }
-.phone{
-  color: #00cc00
+
+.user-posts-dt-radio {
+  margin-left: 50px;
+  transform: scale(1.7);
 }
-.price{
-  color: #00cc33
+#manager-posts-dt-radio {
+  margin-left: 40px;
+  transform: scale(1.4);
 }
-.email{
-  color: #00cc66
+
+#user-profile-edit-modal,
+#delete-post-modal {
+  margin-top: 150px;
+}
+
+#manager-nav-tabs {
+  padding: 100px, 0;
+}
+
+#manager-nav-tabs-container {
+  margin-top: 20px;
+  margin-left: -15px;
+  background-color: rgb(202, 241, 240);
+}
+#manager-all-posts-table,
+#manager-all-posts-table th,
+#manager-all-posts-table td {
+  border-color: tomato;
+}
+
+#manager-history-container {
+  margin-top: 20px;
+  border-style: solid;
+  border-color: tomato;
+}
+
+.new-post-form {
+  border-radius: 5px;
+  background-color: #f3f3e6;
+  padding: 20px;
+  width: 75%;
+  margin: auto;
+  text-align: left;
+}
+.comment-error-message {
+  color: red;
+}
+.user-error-message {
+  color: red;
+}
+.gallery {
+  margin-left: auto;
+}
+
+/* heart button */
+.like-button {
+  margin-left: 100px;
+  float: right;
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+}
+.like-button::before {
+  font-size: 2em;
+  color: #000;
+  content: "♥";
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.like-button::after {
+  font-size: 2em;
+  color: red;
+  content: "♥";
+  position: absolute;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s;
+}
+.like-button.liked::after {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+#userDetailErrorLists_div {
+  color: red;
+}
+
+#userDetailPostErrorLists_div {
+  color: red;
+}
+#UserDetailPostUnchooseError {
+  color: red;
+}
+
+#unChooseError {
+  color: red;
 }
