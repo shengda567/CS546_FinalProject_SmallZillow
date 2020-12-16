@@ -694,6 +694,10 @@ img {
   color: red;
 }
 
+#manager-delet-post-button {
+  margin-top: 10px;
+}
+
 .be-comment-text {
   font-size: 13px;
   line-height: 18px;

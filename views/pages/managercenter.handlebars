@@ -78,6 +78,7 @@
 </div>
 
 <div class="container" id="manager-all-posts-container">
+  <button id="manager-delet-post-button" type="submit" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#managerdeleteModal">Delete Post</button>
   <form id="manager-account-post-form">
 
     <table class="table table-condensed" id="manager-all-posts-table">
@@ -85,30 +86,27 @@
             <tr>
                 <th>User name</th>
                 <th>Post name</th>
-                <th><button id="manager-delet-post-button" type="submit" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#managerdeleteModal">Delete Post</button></th>
             </tr>
         </thead>
         <tbody>
             {{#each userInfoList}}
-
-                <tr>
-                    {{#if (post_notEmpty post)}}
-                        <td>{{username}}</td>
-                    
-                        <td>
-                            <dl>
-                                {{#each post}}
-                                    <dt class="col-sm-1" >
-                                        <input type="radio"  name="post-radio" value="{{this._id}}">
-                                    </dt>
-                                    
-                                    <dd class="col-sm-11"><a href="/posts/{{this._id}}">{{this.title}}</a></dd>
-                                    
-                                {{/each}}  
-                            </dl>
-                        </td>
-                    {{/if}}
+                {{#if (post_notEmpty post)}}
+                <tr>  
+                    <td>{{username}}</td>
+                    <td>
+                        <dl>
+                            {{#each post}}
+                                <dt class="col-sm-1" >
+                                    <input type="radio"  name="post-radio" value="{{this._id}}">
+                                </dt>
+                                
+                                <dd class="col-sm-11"><a href="/posts/{{this._id}}">{{this.title}}</a></dd>
+                                
+                            {{/each}}  
+                        </dl>
+                    </td>
                 </tr>
+                {{/if}}
    
             {{/each}}
         </tbody>

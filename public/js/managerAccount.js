@@ -20,6 +20,7 @@
   let manager_delete_post_button = $("#manager-delet-post-button");
   manager_delete_post_button.click(async function (event) {
     event.preventDefault();
+
     let post_form = $("#manager-account-post-form");
     let valueList = post_form.serializeArray();
     if (valueList.length == 0) {
@@ -71,7 +72,7 @@
         await $.post(
           `http://localhost:3000/managers/${id}`,
           { manager_history: manager_history },
-          async (data) => {
+          (data) => {
             console.log(data);
             location.reload();
           }
