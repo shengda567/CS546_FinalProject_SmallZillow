@@ -78,6 +78,14 @@
       hasError = true;
     }
 
+    const emailReq = RegExp(
+      "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$"
+    );
+    if (!emailReq.exec(email)) {
+      error_ul.append(`<li>Invalid email address</li>`);
+      hasError = true;
+    }
+
     let phoneReg = /[0-9]{10}/;
     let phoneValid = phoneReg.test(phone);
 
@@ -230,6 +238,14 @@
     }
     if (!price.trim()) {
       post_error_ul.append(`<li>You must provide price</li>`);
+      hasError = true;
+    }
+
+    const emailReq = RegExp(
+      "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$"
+    );
+    if (!emailReq.exec(post_email)) {
+      post_error_ul.append(`<li>Invalid email address</li>`);
       hasError = true;
     }
 
