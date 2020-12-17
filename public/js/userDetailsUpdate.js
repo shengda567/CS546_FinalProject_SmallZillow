@@ -78,6 +78,14 @@
       hasError = true;
     }
 
+    const emailReq = RegExp(
+      "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$"
+    );
+    if (!emailReq.exec(email)) {
+      error_ul.append(`<li>Invalid email address</li>`);
+      hasError = true;
+    }
+
     let phoneReg = /[0-9]{10}/;
     let phoneValid = phoneReg.test(phone);
 
@@ -88,7 +96,7 @@
       hasError = true;
     }
 
-    let BODReg = /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/;
+    let BODReg = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
     let BODValid = BODReg.test(BOD);
     if (BODValid == false) {
       error_ul.append(`<li>Invalid Birthday</li>`);
@@ -233,7 +241,15 @@
       hasError = true;
     }
 
-    let phoneReg = /[1-9]{10}/;
+    const emailReq = RegExp(
+      "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$"
+    );
+    if (!emailReq.exec(post_email)) {
+      post_error_ul.append(`<li>Invalid email address</li>`);
+      hasError = true;
+    }
+
+    let phoneReg = /[0-9]{10}/;
     let phoneValid = phoneReg.test(post_phone);
 
     if (phoneValid == false) {
