@@ -108,12 +108,12 @@
     </p>
     <dl class="row" id="user-posts-dl-container">
       {{#each posts}}
-      
+
         <dt class="col-sm-1">
           <label for="{{this.id}}" hidden></label>
           <input type="radio" id="{{this.id}}" class="user-posts-dt-radio" name="post-radio" value="{{this.id}}">
         </dt>
-      
+
 
       <dd class="col-sm-11"><a class="user-posts-a" href="/posts/{{this.id}}">{{this.title}}</a></dd>
 

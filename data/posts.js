@@ -1,5 +1,6 @@
 const mongoCollections = require("../config/mongoCollections");
 const posts = mongoCollections.posts;
+
 const registers = require("./register");
 //const uuid = require('uuid/v4');
 
@@ -50,6 +51,7 @@ const exportedMethods = {
   },
   //search post by Id
   async getPostById(id) {
+    if(typeof id !== 'object') throw "No valid id provided";
     const postCollection = await posts();
     const post = await postCollection.findOne({ _id: id });
 
@@ -132,6 +134,7 @@ const exportedMethods = {
     return await this.getPostById(newId);
   },
   async removePost(id) {
+    if(typeof id !== 'object') throw "No valid id provided";
     const postCollection = await posts();
     let post = null;
     try {
@@ -145,8 +148,11 @@ const exportedMethods = {
       throw `Could not delete post with id of ${id}`;
     }
     await registers.removepostfromuser(post.user.id, id);
+    await registers.removeSavedPost(id);
     return true;
   },
+
+
 
   async addCommentToPost(postId, commentId) {
     let currentPost = await this.getPostById(postId);
