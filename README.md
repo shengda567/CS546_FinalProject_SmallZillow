@@ -39,6 +39,9 @@ Or, make your own account on the login page, if you want create manager account,
 
 **manager verify code**: damnyoujackdonaghy
 
+### Notice
+The map on the search page is not fully functional, it only displays the first item of results. The reason we put it on there is to mimic the search page Zillow has. We have fully functional map on each single post page. So please consider the map on the search page as a extra feature we did not fully achieve.
+
 ## Github Repo Link
 
 https://github.com/shengda567/CS546_FinalProject_SmallZillow
