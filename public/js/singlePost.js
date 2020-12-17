@@ -36,6 +36,11 @@ window.onload = function () {
       let newElement = $(responseMessage);
 
       recommendPosts.append(newElement);
+      $('#rental_listings').hide();
+      $('#number-of-posts').hide();
+
+
+
   });
 
   // when clicking the button start the timeline/animation:
@@ -72,6 +77,7 @@ window.onload = function () {
 
   commentForm.submit(function (event) {
     event.preventDefault();
+
     let comment_input = commentInput.val();
     var requestConfig = {
         method: 'POST',
@@ -84,18 +90,14 @@ window.onload = function () {
 
     $.ajax(requestConfig).then(function (responseMessage) {
       if(responseMessage.error){
-        let newElement = "<p class = 'comment-error-message'> " + responseMessage.error + "</p>";
-        commentError.append(newElement);
-        commentError.show();
-
-      }else{
+        alert("You have to login first!");
+      }
+      else{
         let newElement = $(responseMessage);
         commentsArea.empty();
         commentInput.empty();
         commentsArea.append(newElement);
       }
-
-
     });
   });
 }

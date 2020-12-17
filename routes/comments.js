@@ -58,7 +58,7 @@ router.get('/:id/:comment', async (req, res) => {
 });
 
 router.post('/:id', async (req, res) => {
-   console.log(req.session.user)
+  console.log(req.session.user)
   if(!req.session.user){
     res.json({ error: 'You have to login first!!!!' });
     return;
