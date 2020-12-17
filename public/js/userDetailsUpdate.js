@@ -88,7 +88,7 @@
       hasError = true;
     }
 
-    let BODReg = /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/;
+    let BODReg = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
     let BODValid = BODReg.test(BOD);
     if (BODValid == false) {
       error_ul.append(`<li>Invalid Birthday</li>`);
@@ -233,7 +233,7 @@
       hasError = true;
     }
 
-    let phoneReg = /[1-9]{10}/;
+    let phoneReg = /[0-9]{10}/;
     let phoneValid = phoneReg.test(post_phone);
 
     if (phoneValid == false) {

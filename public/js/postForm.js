@@ -133,7 +133,7 @@ window.onload = function () {
 
     // type check
     //1.zipcode && phone check
-    let numberCheck = /[0-9]{10}/;
+    let numberCheck = /[0-9]/;
     let zipCheck = true;
     for (let i = 0; i < zipcode.length; i++) {
       if (!numberCheck.test(zipcode[i])) {
@@ -146,18 +146,9 @@ window.onload = function () {
       hasError = true;
     }
 
-    let phoneCheck = true;
-    for (let i = 0; i < phone.length; i++) {
-      if (!numberCheck.test(phone[i])) {
-        phoneCheck = false;
-        break;
-      }
-    }
-    if (phone.length != 10) {
-      phoneCheck = false;
-    }
-
-    if (phone && phoneCheck == false) {
+    let phoneReg = /[0-9]{10}/;
+    let phoneCheck = phoneReg.test(phone);
+    if (phone.length != 10 || phoneCheck == false) {
       $("#postErrorList").append(
         `<li>Invalid phone number, must be number</li>`
       );
