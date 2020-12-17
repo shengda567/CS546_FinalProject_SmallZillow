@@ -111,14 +111,16 @@ nav li a {
   text-align: center;
 }
 
-#aboutus {
+#aboutus,
+#error-p{
     font-family: myFirstFont;
     font-style: oblique;
     font-weight: bold;
     font-size: 40px;
 }
 
-#aboutush {
+#aboutush,
+#error-note {
     font-family: myFirstFont;
     font-style: oblique;
     font-weight: bold;
@@ -269,7 +271,8 @@ nav li a {
   text-align: center;
 }
 
-#aboutusform .aboutus1 {
+#aboutusform .aboutus1,
+#errorform .errors{
     border-radius: 5px;
     background-color: #87ceeb;
     padding: 20px;
