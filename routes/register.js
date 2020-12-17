@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
             var captcha = arr[1];
         }
     }
-    console.log(captcha);
+    
   if (!req.body) {
     res.status(400).render("pages/error",{ error: "You must provide body" + personalinf });
     return;
@@ -106,12 +106,12 @@ router.post("/", async (req, res) => {
           firstname: personalinf.user.firstname,
           lastname: personalinf.user.lastname,
         },
-        xss(personalinf.email),
-        xss(personalinf.gender),
-        xss(personalinf.address.city) + ", " + xss(personalinf.address.state),
-        xss(personalinf.BOD),
-        xss(personalinf.phone),
-        xss(personalinf.password)
+        personalinf.email,
+        personalinf.gender,
+        personalinf.address.city + ", " + personalinf.address.state,
+        personalinf.BOD,
+        personalinf.phone,
+        personalinf.password
       );
       req.session.user = {
         userId: newPost._id.toString(),
@@ -153,6 +153,7 @@ router.post("/", async (req, res) => {
         console.log("Message sent: %s", info.messageId);
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
       });
+        console.log("Message sent");
       res.redirect("/users/login" + newPost._id.toString());
     } else {
       res.json({ message: "username already exist." });
