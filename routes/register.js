@@ -106,12 +106,12 @@ router.post("/", async (req, res) => {
           firstname: personalinf.user.firstname,
           lastname: personalinf.user.lastname,
         },
-        personalinf.email,
-        personalinf.gender,
-        personalinf.address.city + ", " + personalinf.address.state,
-        personalinf.BOD,
-        personalinf.phone,
-        personalinf.password
+        xss(personalinf.email),
+        xss(personalinf.gender),
+        xss(personalinf.address.city) + ", " + xss(personalinf.address.state),
+        xss(personalinf.BOD),
+        xss(personalinf.phone),
+        xss(personalinf.password)
       );
       req.session.user = {
         userId: newPost._id.toString(),
