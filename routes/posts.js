@@ -9,6 +9,15 @@ function isEmptyOrSpaces(str) {
   return str === null || str.match(/^ *$/) !== null;
 }
 
+function capitalizeTheFirstLetterOfEachWord(words) {
+   var separateWord = words.toLowerCase().split(' ');
+   for (var i = 0; i < separateWord.length; i++) {
+      separateWord[i] = separateWord[i].charAt(0).toUpperCase() +
+      separateWord[i].substring(1);
+   }
+   return separateWord.join(' ');
+}
+
 router.get("/:id", async (req, res) => {
   try {
     let { ObjectId } = require("mongodb");
@@ -135,9 +144,9 @@ router.post("/", async (req, res) => {
     let newPost = await postsData.addPost(
       userId,
       xss(postInfo.title),
-      xss(postInfo.address),
+      capitalizeTheFirstLetterOfEachWord(xss(postInfo.address)),
       xss(postInfo.state),
-      xss(postInfo.city),
+      capitalizeTheFirstLetterOfEachWord(xss(postInfo.city)),
       xss(postInfo.zipcode),
       dir,
       xss(postInfo.description),
@@ -237,12 +246,13 @@ router.patch("/:id", async (req, res) => {
     updatedObject = oldPost;
     if (requestBody.title && requestBody.title !== oldPost.title)
       updatedObject.title = xss(requestBody.title);
-    if (requestBody.address && requestBody.address !== oldPost.address)
-      updatedObject.address = xss(requestBody.address);
+    if (requestBody.address && requestBody.address !== oldPost.address){
+      updatedObject.address = capitalizeTheFirstLetterOfEachWord(xss(requestBody.address));
+    }
     if (requestBody.state && requestBody.state !== oldPost.state)
       updatedObject.state = xss(requestBody.state);
     if (requestBody.city && requestBody.city !== oldPost.city)
-      updatedObject.city = xss(requestBody.city);
+      updatedObject.city = capitalizeTheFirstLetterOfEachWord(xss(requestBody.city));
     if (requestBody.zipcode && requestBody.zipcode !== oldPost.zipcode)
       updatedObject.zipcode = xss(requestBody.zipcode);
     if (
@@ -338,11 +348,11 @@ router.post("/:id", async (req, res) => {
     if (requestBody.title && requestBody.title !== oldPost.title)
       updatedObject.title = xss(requestBody.title);
     if (requestBody.address && requestBody.address !== oldPost.address)
-      updatedObject.address = xss(requestBody.address);
+      updatedObject.address = capitalizeTheFirstLetterOfEachWord(xss(requestBody.address));
     if (requestBody.state && requestBody.state !== oldPost.state)
       updatedObject.state = xss(requestBody.state);
     if (requestBody.city && requestBody.city !== oldPost.city)
-      updatedObject.city = xss(requestBody.city);
+      updatedObject.city = capitalizeTheFirstLetterOfEachWord(xss(requestBody.city));
     if (requestBody.zipcode && requestBody.zipcode !== oldPost.zipcode)
       updatedObject.zipcode = xss(requestBody.zipcode);
     if (

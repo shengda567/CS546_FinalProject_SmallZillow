@@ -5,6 +5,15 @@ const postsData = data.posts;
 const xss = require('xss');
 const usersData = data.register;
 
+function capitalizeTheFirstLetterOfEachWord(words) {
+   var separateWord = words.toLowerCase().split(' ');
+   for (var i = 0; i < separateWord.length; i++) {
+      separateWord[i] = separateWord[i].charAt(0).toUpperCase() +
+      separateWord[i].substring(1);
+   }
+   return separateWord.join(' ');
+}
+
 function isEmptyOrSpaces(str) {
   return str === null || str.match(/^ *$/) !== null;
 }
@@ -94,12 +103,13 @@ router.post('/search', async function (req, res) {
       if(isZipCode(input)){
         results = await postsData.getPostsByZipcode(input);
       }
-      else if(input.includes(" ")){
-        results = await postsData.getPostsByAddress(input);
-      }
       else{
-        results = await postsData.getPostsByCity(input);
+        results = await postsData.getPostsByAddress(capitalizeTheFirstLetterOfEachWord(input));
+        if(results.length == 0){
+          results = await postsData.getPostsByCity(capitalizeTheFirstLetterOfEachWord(input));
+        }
       }
+
       if(results.length == 0){
         error = "Unfortunately, there is no result listed in  " + input;
         let recentPosts = await postsData.getAllPosts();
@@ -172,11 +182,11 @@ router.post('/similarPosts', async function (req, res) {
     let results = [];
     results = await postsData.getPostsByZipcode(zipcode);
     if(results.length == 0)
-      results = await postsData.getPostsByAddress(address);
+      results = await postsData.getPostsByAddress(capitalizeTheFirstLetterOfEachWord(address));
     if(results.length == 0)
-      results = await postsData.getPostsByCity(city);
+      results = await postsData.getPostsByCity(capitalizeTheFirstLetterOfEachWord(city));
     if(results.length == 0)
-      results = await postsData.getPostsByCity(state);
+      results = await postsData.getPostsByState(capitalizeTheFirstLetterOfEachWord(state));
 
     if(results.length == 1){
       error = "Unfortunately, there is no similar results";

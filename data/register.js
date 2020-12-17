@@ -287,6 +287,19 @@ async function removesavefromuser(id, saveID) {
   return await this.getbyone(id.toString());
 }
 
+async function removeSavedPost(id) {
+  if(typeof id !== 'object') throw "No valid id provided";
+  let findDocuments = {
+    save: id,
+  };
+  let firstUpdate = {
+    $pull: { save: id },
+  };
+  const registerCollection = await register();
+  let updatedUsers = await registerCollection.updateMany(findDocuments, firstUpdate);
+  return updatedUsers;
+}
+
 async function removecommentfromuser(id, commentID) {
   var { ObjectId } = require("mongodb");
   var userId = ObjectId(id);
@@ -311,6 +324,7 @@ module.exports = {
   update,
   addpostforuser,
   addsaveforuser,
+  removeSavedPost,
   addcommentforuser,
   removepostfromuser,
   removesavefromuser,

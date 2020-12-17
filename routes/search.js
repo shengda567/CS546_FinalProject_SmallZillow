@@ -3,6 +3,15 @@ const router = express.Router();
 const data = require('../data');
 const postsData = data.posts;
 
+function capitalizeTheFirstLetterOfEachWord(words) {
+   var separateWord = words.toLowerCase().split(' ');
+   for (var i = 0; i < separateWord.length; i++) {
+      separateWord[i] = separateWord[i].charAt(0).toUpperCase() +
+      separateWord[i].substring(1);
+   }
+   return separateWord.join(' ');
+}
+
 function isEmptyOrSpaces(str) {
   return str === null || str.match(/^ *$/) !== null;
 }
@@ -46,11 +55,11 @@ router.post('/', async (req, res) => {
         results = await postsData.getPostsByZipcode(input);
 
       }
-      else if(input.includes(" ")){
-        results = await postsData.getPostsByAddress(input);
-      }
       else{
-        results = await postsData.getPostsByCity(input);
+        results = await postsData.getPostsByAddress(capitalizeTheFirstLetterOfEachWord(input));
+        if(results.length == 0){
+          results = await postsData.getPostsByCity(capitalizeTheFirstLetterOfEachWord(input));
+        }
       }
       if(results.length == 0){
 
@@ -72,7 +81,7 @@ router.post('/', async (req, res) => {
         let map_address = {address:recentPosts[0].address,
                            city: recentPosts[0].city,
                           state: recentPosts[0].state};
-        console.log(map_address)
+
         res.render('pages/posts', { posts: recentList, error: error, number: recentList.length, search: input, address: map_address});
 
       }
@@ -93,7 +102,7 @@ router.post('/', async (req, res) => {
         let map_address = {address:results[0].address,
                        city: results[0].city,
                        state: results[0].state};
-        console.log(map_address)
+
         res.render('pages/posts', { posts: newList, number:newList.length, search: input, address: map_address});
       }
 
