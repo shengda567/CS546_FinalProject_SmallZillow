@@ -3,8 +3,9 @@
     <ul id="userDetailErrorLists_ul"></ul>
   </div>
 
-  <p class="user-account-p">My profile: <button id="edit-profile-button" type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-      data-target="#myModal">Edit Profile</button> <a href="/change" class="btn btn-primary btn-lg" role="button" id="Changepassword">Change Password</a></p>
+  <p class="user-account-p">My profile: <button id="edit-profile-button" type="button" class="btn btn-primary btn-lg"
+      data-toggle="modal" data-target="#myModal">Edit Profile</button> <a href="/change" class="btn btn-primary btn-lg"
+      role="button" id="Changepassword">Change Password</a></p>
 
   <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-lg" id="user-profile-edit-modal">
@@ -22,7 +23,8 @@
             <div class="form-group row">
               <label for="username" class="col-sm-3 col-form-label">Username: </label>
               <div class="col-sm-9">
-                <input readonly type="text" class="form-control input-lg" id="username" value={{user.username}} required>
+                <input readonly type="text" class="form-control input-lg" id="username" value={{user.username}}
+                  required>
               </div>
             </div>
             <div class="form-group row">
@@ -35,7 +37,8 @@
             <div class="form-group row">
               <label for="gender" class="col-sm-3 col-form-label">Gender: </label>
               <div class="col-sm-9">
-                <input placeholder="male" type="text" class="form-control input-lg" id="gender" value={{user.gender}} required>
+                <input placeholder="male" type="text" class="form-control input-lg" id="gender" value={{user.gender}}
+                  required>
               </div>
             </div>
 
@@ -49,14 +52,15 @@
             <div class="form-group row">
               <label for="BOD" class="col-sm-3 col-form-label">Bod: </label>
               <div class="col-sm-9">
-                <input placeholder="01/01/2000" type="text" class="form-control input-lg" id="BOD" value={{user.BOD}} required>
+                <input placeholder="2000-10-10" type="text" class="form-control input-lg" id="BOD" value={{user.BOD}}
+                  required>
               </div>
             </div>
 
             <div class="form-group row">
               <label for="phone" class="col-sm-3 col-form-label">Phone: </label>
               <div class="col-sm-9">
-                <input placeholder="123-123-1234" type="text" class="form-control input-lg" id="phone"
+                <input placeholder="1231231234" type="text" class="form-control input-lg" id="phone"
                   value={{user.phone}} required>
               </div>
             </div>
@@ -109,10 +113,10 @@
     <dl class="row" id="user-posts-dl-container">
       {{#each posts}}
 
-        <dt class="col-sm-1">
-          <label for="{{this.id}}" hidden></label>
-          <input type="radio" id="{{this.id}}" class="user-posts-dt-radio" name="post-radio" value="{{this.id}}">
-        </dt>
+      <dt class="col-sm-1">
+        <label for="{{this.id}}" hidden></label>
+        <input type="radio" id="{{this.id}}" class="user-posts-dt-radio" name="post-radio" value="{{this.id}}">
+      </dt>
 
 
       <dd class="col-sm-11"><a class="user-posts-a" href="/posts/{{this.id}}">{{this.title}}</a></dd>
@@ -289,7 +293,7 @@
             <div class="form-group row">
               <label for="post-phone" class="col-sm-3 col-form-label">Phone: </label>
               <div class="col-sm-9">
-                <input placeholder="123-123-1234" type="text" class="form-control input-lg" id="post-phone">
+                <input placeholder="1231231234" type="text" class="form-control input-lg" id="post-phone">
               </div>
             </div>
 
@@ -329,11 +333,11 @@
 <div class="container" id="liked-posts-container">
 
   <p class="user-account-p">Liked Posts: </p>
-    <ol id="liked-post-list">
-        {{#each saves}}
-            <li ><a href="/posts/{{this.save_id}}" class="liked-a">{{this.saveTitle}}</a></li>
-        {{/each}}
-    </ol>
+  <ol id="liked-post-list">
+    {{#each saves}}
+    <li><a href="/posts/{{this.save_id}}" class="liked-a">{{this.saveTitle}}</a></li>
+    {{/each}}
+  </ol>
 
 </div>
 

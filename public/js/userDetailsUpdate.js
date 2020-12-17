@@ -1,4 +1,4 @@
-function ($) {
+(function ($) {
   let delete_post_button = $("#delet-post-button");
   delete_post_button.click(async function (event) {
     event.preventDefault();
